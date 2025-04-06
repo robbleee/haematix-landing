@@ -1,0 +1,182 @@
+.diagramContainer {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.diagram {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* Node styling */
+.node {
+  cursor: pointer;
+  transition: filter 0.2s ease-out;
+}
+
+.nodeRect {
+  fill: #f5f5f5;
+  stroke: #263238;
+  stroke-width: 1.5;
+  filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2));
+  transition: fill 0.2s ease, stroke-width 0.2s ease, filter 0.2s ease;
+}
+
+.hoverNode .nodeRect {
+  fill: #e8f5ff;
+  stroke-width: 2;
+  filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.25)) brightness(1.05);
+}
+
+.activeNode .nodeRect {
+  fill: #d4edff;
+  stroke-width: 2.5;
+  filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.3)) brightness(1.1);
+}
+
+.nodeTitle {
+  font-size: 12px;
+  fill: #263238;
+  pointer-events: none;
+  font-weight: 500;
+  dominant-baseline: middle;
+}
+
+.nodeItem {
+  font-size: 12px;
+  fill: var(--text-color, #263238);
+  dominant-baseline: middle;
+  pointer-events: none;
+}
+
+/* Connection styling */
+.connectionPath, .arrowPath {
+  fill: none;
+  stroke: #78909c;
+  stroke-width: 1.5;
+  transition: stroke 0.2s ease, stroke-width 0.2s ease;
+}
+
+.arrowHead {
+  fill: #78909c;
+  transition: fill 0.2s ease;
+}
+
+.hoverPath .connectionPath,
+.hoverPath .arrowPath {
+  stroke: #4c6ef5;
+  stroke-width: 2;
+}
+
+.hoverPath marker polygon {
+  fill: #4c6ef5;
+}
+
+.activePath .connectionPath,
+.activePath .arrowPath {
+  stroke: #1a73e8;
+  stroke-width: 2.5;
+}
+
+.activePath marker polygon {
+  fill: #1a73e8;
+}
+
+/* Explanation panel styling */
+.explanationPanel {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 280px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  padding: 20px;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.explanationPanel h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #1a73e8;
+  font-size: 18px;
+}
+
+.descriptionText {
+  margin-bottom: 15px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #455a64;
+}
+
+.detailsText {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #546e7a;
+  background-color: #f5f7fa;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.connectionInfo {
+  margin-top: 15px;
+  font-size: 13px;
+}
+
+.connectionDetail {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.connectionLabel {
+  color: #37474f;
+  font-weight: 500;
+  margin-right: 6px;
+}
+
+.closePanel {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 12px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.closePanel:hover {
+  background-color: #d0d0d0;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .explanationPanel {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    max-height: 50vh;
+    overflow-y: auto;
+    border-radius: 16px 16px 0 0;
+    margin: 0;
+  }
+  
+  .nodeTitle {
+    font-size: 10px;
+  }
+} 

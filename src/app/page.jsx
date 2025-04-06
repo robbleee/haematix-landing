@@ -6,39 +6,29 @@ import styles from './page.module.css';
 export default function Home() {
   return (
     <>
-      {/* Hero Section */}
-      <section className={styles.hero}>
+      {/* Hero Section with Flow Diagram */}
+      <section className={styles.hero} style={{ paddingBottom: '1rem' }}>
         <div className="container">
-          <div className={styles.heroContent}>
-            <h1 style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '1.5rem' }}>
+          <div className={styles.heroContent} style={{ marginBottom: '2rem' }}>
+            <h1 style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '1rem' }}>
               <span className="text-gradient">HematoDx</span>
             </h1>
-            <p style={{ fontSize: '1.25rem', marginBottom: '2rem', maxWidth: '42rem', margin: '0 auto 2rem' }}>
+            <p style={{ fontSize: '1.25rem', maxWidth: '42rem', margin: '0 auto 1.5rem' }}>
               Advanced hematology diagnosis tool using AI to classify findings according to 
               WHO 2022 and ICC 2022 standards.
             </p>
-            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginBottom: '1.5rem' }}>
               <button className="button">Request Demo</button>
               <button className="button" style={{ backgroundColor: 'var(--secondary-background-color)', color: 'var(--text-color)' }}>
                 Learn More
               </button>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Flow Diagram Section */}
-      <section style={{ backgroundColor: 'var(--secondary-background-color)', padding: '3rem 0' }}>
-        <div className="container">
-          <h2 style={{ fontSize: '2rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '2rem' }}>
-            Diagnostic Workflow
-          </h2>
-          <p style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 3rem' }}>
-            Our AI-powered system processes complex hematological data into accurate classifications.
-            Click on any step to learn more about the process.
-          </p>
           
-          <InteractiveFlowDiagram />
+          {/* Flow Diagram integrated with Hero */}
+          <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+            <InteractiveFlowDiagram />
+          </div>
         </div>
       </section>
 

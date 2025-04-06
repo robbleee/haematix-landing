@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styles from './InteractiveFlowDiagram.module.css';
 
 const InteractiveFlowDiagram = () => {
@@ -8,6 +8,12 @@ const InteractiveFlowDiagram = () => {
   const [activeNode, setActiveNode] = useState(null);
   // State to track which node is being hovered
   const [hoverNode, setHoverNode] = useState(null);
+  // State to store explanation panel position
+  const [panelPosition, setPanelPosition] = useState({ top: 0, left: 0 });
+  
+  // Refs for measuring
+  const diagramRef = useRef(null);
+  const nodeRefs = useRef({});
   
   // Data for the flow diagram nodes
   const nodes = [
@@ -97,8 +103,45 @@ const InteractiveFlowDiagram = () => {
   const handleNodeClick = (nodeId, event) => {
     // Prevent event bubbling
     event.stopPropagation();
-    setActiveNode(activeNode === nodeId ? null : nodeId);
+    
+    if (activeNode === nodeId) {
+      setActiveNode(null);
+    } else {
+      setActiveNode(nodeId);
+      // Calculate position for explanation panel when a node is clicked
+      updateExplanationPanelPosition(nodeId);
+    }
   };
+  
+  // Function to calculate and update explanation panel position
+  const updateExplanationPanelPosition = (nodeId) => {
+    if (!nodeId || !nodeRefs.current[nodeId] || !diagramRef.current) return;
+    
+    const nodeElement = nodeRefs.current[nodeId];
+    const diagramRect = diagramRef.current.getBoundingClientRect();
+    const nodeRect = nodeElement.getBoundingClientRect();
+    
+    // Calculate relative position within the diagram
+    const nodeCenter = nodeRect.left + nodeRect.width / 2 - diagramRect.left;
+    
+    // Position the explanation panel centered under the node
+    setPanelPosition({
+      top: nodeRect.bottom - diagramRect.top + 20, // 20px below the node
+      left: Math.max(0, nodeCenter - 140) // Center the 280px wide panel under the node
+    });
+  };
+  
+  // Recalculate panel position when window resizes
+  useEffect(() => {
+    const handleResize = () => {
+      if (activeNode) {
+        updateExplanationPanelPosition(activeNode);
+      }
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [activeNode]);
   
   // Close panel when clicking outside
   const handleBackgroundClick = () => {
@@ -184,7 +227,7 @@ const InteractiveFlowDiagram = () => {
   };
   
   return (
-    <div className={styles.diagramContainer} onClick={handleBackgroundClick}>
+    <div className={styles.diagramContainer} onClick={handleBackgroundClick} ref={diagramRef}>
       <svg className={styles.diagram} viewBox="0 0 980 300">
         {/* Draw connections first so they're behind nodes */}
         {connections.map(conn => {
@@ -232,6 +275,7 @@ const InteractiveFlowDiagram = () => {
             onMouseEnter={() => handleMouseEnter(node.id)}
             onMouseLeave={handleMouseLeave}
             className={`${styles.node} ${activeNode === node.id ? styles.activeNode : ''} ${hoverNode === node.id ? styles.hoverNode : ''}`}
+            ref={el => nodeRefs.current[node.id] = el}
           >
             <rect
               width={node.width}
@@ -251,9 +295,18 @@ const InteractiveFlowDiagram = () => {
         ))}
       </svg>
       
-      {/* Explanation panel */}
+      {/* Explanation panel with dynamic positioning */}
       {activeNode && (
-        <div className={styles.explanationPanel} onClick={(e) => e.stopPropagation()}>
+        <div 
+          className={styles.explanationPanel} 
+          onClick={(e) => e.stopPropagation()}
+          style={{ 
+            position: 'absolute',
+            top: `${panelPosition.top}px`,
+            left: `${panelPosition.left}px`,
+            transform: 'none' // Override any transform from CSS
+          }}
+        >
           <h3>{getNodeById(activeNode).title}</h3>
           <p className={styles.descriptionText}>{getNodeById(activeNode).description}</p>
           <p className={styles.detailsText}>{getNodeById(activeNode).details}</p>

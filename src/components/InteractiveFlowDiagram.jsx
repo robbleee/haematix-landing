@@ -228,7 +228,7 @@ const InteractiveFlowDiagram = () => {
   
   return (
     <div className={styles.diagramContainer} onClick={handleBackgroundClick} ref={diagramRef}>
-      <svg className={styles.diagram} viewBox="0 0 980 300">
+      <svg className={styles.diagram} viewBox="0 0 980 280">
         {/* Draw connections first so they're behind nodes */}
         {connections.map(conn => {
           const isActive = activeNode === conn.from || activeNode === conn.to;

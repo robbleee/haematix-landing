@@ -4,7 +4,8 @@
   max-width: 1200px;
   margin: 0 auto;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  padding-bottom: 280px; /* Reduced padding */
+  padding-bottom: 220px; /* Slightly increased padding */
+  padding-top: 10px; /* Added top padding */
 }
 
 .diagram {
@@ -164,7 +165,7 @@
 /* Responsive styles */
 @media (max-width: 768px) {
   .diagramContainer {
-    padding-bottom: 240px; /* Reduced padding on mobile */
+    padding-bottom: 180px; /* Further reduced padding on mobile */
   }
   
   .explanationPanel {

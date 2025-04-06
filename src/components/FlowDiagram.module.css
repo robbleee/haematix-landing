@@ -1,1 +1,163 @@
- 
+.flowDiagram {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "input"
+    "extraction"
+    "classification"
+    "pathways"
+    "outputs";
+  gap: 2rem;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.flowDiagram.horizontal {
+  grid-template-columns: repeat(3, 1fr) 2fr;
+  grid-template-areas:
+    "input extraction classification pathways"
+    ". . . outputs";
+  align-items: center;
+}
+
+.node {
+  background-color: var(--background-color);
+  border: 2px solid var(--primary-color);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  position: relative;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.node:hover, .node.active {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.node.active {
+  background-color: #E0F2F1;
+  border-color: var(--primary-color);
+}
+
+.inputNode {
+  grid-area: input;
+}
+
+.extractionNode {
+  grid-area: extraction;
+}
+
+.classificationNode {
+  grid-area: classification;
+}
+
+.pathwayContainer {
+  grid-area: pathways;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.outputContainer {
+  grid-area: outputs;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pathwayNode, .outputNode {
+  flex: 1;
+}
+
+.connection {
+  position: absolute;
+  background-color: var(--text-color);
+  z-index: -1;
+  transform-origin: top left;
+  opacity: 0.3;
+  transition: var(--transition);
+}
+
+.connection.vertical {
+  width: 2px;
+  height: 2rem;
+  left: 50%;
+}
+
+.connection.horizontal {
+  height: 2px;
+  width: 2rem;
+  top: 50%;
+}
+
+.connection.active {
+  opacity: 1;
+  background-color: var(--primary-color);
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 0.5rem;
+  background-color: var(--text-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  font-size: 0.85rem;
+  width: max-content;
+  max-width: 200px;
+  box-shadow: var(--box-shadow);
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  transition: var(--transition);
+}
+
+.node.active .tooltip {
+  opacity: 1;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.node.active {
+  animation: pulse 2s infinite;
+}
+
+@media (max-width: 768px) {
+  .flowDiagram {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "input"
+      "extraction"
+      "classification"
+      "pathways"
+      "outputs";
+  }
+  
+  .flowDiagram.horizontal {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "input"
+      "extraction"
+      "classification"
+      "pathways"
+      "outputs";
+  }
+} 

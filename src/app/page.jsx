@@ -7,17 +7,17 @@ export default function Home() {
   return (
     <>
       {/* Hero Section with Flow Diagram */}
-      <section className={styles.hero} style={{ paddingBottom: '1rem' }}>
+      <section className={styles.hero} style={{ paddingTop: '6.5rem', paddingBottom: '0.5rem' }}>
         <div className="container">
-          <div className={styles.heroContent} style={{ marginBottom: '2rem' }}>
-            <h1 style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '1rem' }}>
+          <div className={styles.heroContent} style={{ marginBottom: '0', paddingTop: '0.5rem' }}>
+            <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>
               <span className="text-gradient">HematoDx</span>
             </h1>
-            <p style={{ fontSize: '1.25rem', maxWidth: '42rem', margin: '0 auto 1.5rem' }}>
+            <p style={{ fontSize: '1.15rem', maxWidth: '42rem', margin: '0 auto 0.5rem' }}>
               Advanced hematology diagnosis tool using AI to classify findings according to 
               WHO 2022 and ICC 2022 standards.
             </p>
-            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginBottom: '1.5rem' }}>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginBottom: '0.5rem' }}>
               <button className="button">Request Demo</button>
               <button className="button" style={{ backgroundColor: 'var(--secondary-background-color)', color: 'var(--text-color)' }}>
                 Learn More
@@ -26,21 +26,25 @@ export default function Home() {
           </div>
           
           {/* Flow Diagram integrated with Hero */}
-          <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+          <div style={{ maxWidth: '1000px', margin: '0 auto', paddingTop: '0', marginTop: '-0.5rem' }}>
             <InteractiveFlowDiagram />
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" style={{ backgroundColor: 'var(--background-color)', padding: '4rem 0' }}>
+      <section id="features" style={{ 
+        backgroundColor: '#008080', 
+        padding: '4rem 0',
+        position: 'relative'
+      }}>
         <div className="container">
-          <h2 style={{ fontSize: '2rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '3rem' }}>Key Features</h2>
+          <h2 style={{ fontSize: '2rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '3rem', color: 'white' }}>Key Features</h2>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2rem' }}>
-            <div className={styles.featureCard}>
+            <div className={styles.featureCard} style={{ backgroundColor: 'white', borderRadius: '0.75rem', padding: '1.5rem', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
               <div className={styles.featureIcon}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#008080" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                   <polyline points="14 2 14 8 20 8"></polyline>
                   <line x1="16" y1="13" x2="8" y2="13"></line>
@@ -48,32 +52,34 @@ export default function Home() {
                   <polyline points="10 9 9 9 8 9"></polyline>
                 </svg>
               </div>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Data Extraction</h3>
-              <p>Extract relevant data from unstructured molecular, cytogenetic, and clinical reports with high accuracy.</p>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>IPSS/WHO Classifier</h3>
+              <p>Accurately classify hematologic findings according to WHO 2022 criteria and IPSS guidelines for precise diagnosis.</p>
             </div>
 
-            <div className={styles.featureCard}>
+            <div className={styles.featureCard} style={{ backgroundColor: 'white', borderRadius: '0.75rem', padding: '1.5rem', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
               <div className={styles.featureIcon}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#008080" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4.5 9.5V5.5C4.5 4.4 5.4 3.5 6.5 3.5H17.5C18.6 3.5 19.5 4.4 19.5 5.5V9.5"></path>
+                  <line x1="4.5" y1="14.5" x2="19.5" y2="14.5"></line>
+                  <line x1="4.5" y1="19.5" x2="19.5" y2="19.5"></line>
+                  <polyline points="6.5 9.5 12 4.5 17.5 9.5"></polyline>
                 </svg>
               </div>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Dual Pathway Logic</h3>
-              <p>Simultaneously classify findings according to both WHO 2022 and ICC 2022 standards for comprehensive diagnosis.</p>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>ELN Risk Stratification</h3>
+              <p>Automate European LeukemiaNet (ELN) risk stratification for AML, providing crucial prognostic information for treatment planning.</p>
             </div>
 
-            <div className={styles.featureCard}>
+            <div className={styles.featureCard} style={{ backgroundColor: 'white', borderRadius: '0.75rem', padding: '1.5rem', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
               <div className={styles.featureIcon}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
-                  <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
-                  <line x1="6" y1="1" x2="6" y2="4"></line>
-                  <line x1="10" y1="1" x2="10" y2="4"></line>
-                  <line x1="14" y1="1" x2="14" y2="4"></line>
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#008080" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 3v18"></path>
+                  <path d="M4 8h16"></path>
+                  <path d="M4 16h16"></path>
+                  <rect x="4" y="3" width="16" height="18" rx="2" ry="2"></rect>
                 </svg>
               </div>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Risk Stratification</h3>
-              <p>Automate ELN risk stratification for AML and IPSS for MDS, providing crucial prognostic information.</p>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>IPSS Risk Stratifier</h3>
+              <p>Calculate International Prognostic Scoring System (IPSS) scores for MDS patients, helping determine risk levels and guide treatment decisions.</p>
             </div>
           </div>
         </div>

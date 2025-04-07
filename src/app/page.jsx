@@ -13,7 +13,7 @@ export default function Home() {
             display: 'flex', 
             flexDirection: 'column', 
             alignItems: 'center', 
-            gap: '2.5rem'
+            gap: '4.5rem'
           }}>
             {/* Hero Content - Top */}
             <div className={styles.heroContent} style={{ 
@@ -167,43 +167,267 @@ export default function Home() {
 
       {/* Contact Section */}
       <section id="contact" style={{ 
-        backgroundColor: 'white', 
-        padding: '4rem 0',
-        borderTop: '1px solid rgba(0, 150, 136, 0.1)'
+        backgroundColor: '#009688', 
+        padding: '5rem 0 6rem',
+        position: 'relative',
+        color: 'white',
+        background: 'linear-gradient(135deg, #00a896 0%, #006b63 100%)',
       }}>
+        {/* Decorative elements */}
+        <div style={{ 
+          position: 'absolute', 
+          top: 0, 
+          left: 0, 
+          width: '100%', 
+          height: '100%', 
+          overflow: 'hidden',
+          opacity: 0.15,
+          pointerEvents: 'none'
+        }}>
+          <div style={{ 
+            position: 'absolute', 
+            top: '10%', 
+            right: '15%', 
+            width: '350px', 
+            height: '350px', 
+            borderRadius: '50%',
+            background: 'white',
+            filter: 'blur(80px)'
+          }}></div>
+          <div style={{ 
+            position: 'absolute', 
+            bottom: '10%', 
+            left: '15%', 
+            width: '250px', 
+            height: '250px', 
+            borderRadius: '50%',
+            background: 'white',
+            filter: 'blur(60px)'
+          }}></div>
+        </div>
+
         <div className="container">
-          <h2 style={{ fontSize: '2rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '3rem', color: '#009688' }}>Contact Us</h2>
-          <div style={{ maxWidth: '36rem', margin: '0 auto' }}>
-            <form style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              <div>
-                <label htmlFor="name" style={{ display: 'block', marginBottom: '0.5rem' }}>Name</label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  className={styles.formInput}
-                  placeholder="Your name"
-                />
+          <h2 style={{ 
+            fontSize: '2.5rem', 
+            fontWeight: 'bold', 
+            textAlign: 'center', 
+            marginBottom: '3.5rem', 
+            color: 'white',
+            position: 'relative',
+            zIndex: 1
+          }}>Contact Us</h2>
+          
+          <div style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '3rem',
+            position: 'relative',
+            zIndex: 1,
+            flexWrap: 'wrap'
+          }}>
+            {/* Left Column - Text Content */}
+            <div style={{
+              flex: '1',
+              minWidth: '300px',
+              padding: '1rem'
+            }}>
+              <h3 style={{ 
+                fontSize: '1.8rem', 
+                fontWeight: '600', 
+                marginBottom: '1.5rem', 
+                color: 'white' 
+              }}>Transform Your Diagnostic Workflow</h3>
+              
+              <p style={{ 
+                fontSize: '1.1rem', 
+                marginBottom: '1.5rem', 
+                color: 'rgba(255,255,255,0.9)',
+                lineHeight: '1.7'
+              }}>
+                HematoDx offers cutting-edge AI solutions that enhance precision and efficiency in hematological diagnostics.
+              </p>
+              
+              <div style={{
+                marginBottom: '2rem'
+              }}>
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  marginBottom: '1rem',
+                  gap: '1rem'
+                }}>
+                  <div style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    backgroundColor: 'rgba(255,255,255,0.15)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <p style={{ color: 'white', fontWeight: '500' }}>+1 (800) 555-8765</p>
+                  </div>
+                </div>
+                
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  marginBottom: '1rem',
+                  gap: '1rem'
+                }}>
+                  <div style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    backgroundColor: 'rgba(255,255,255,0.15)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                      <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                  </div>
+                  <div>
+                    <p style={{ color: 'white', fontWeight: '500' }}>contact@hematodx.com</p>
+                  </div>
+                </div>
+                
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center',
+                  gap: '1rem'
+                }}>
+                  <div style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    backgroundColor: 'rgba(255,255,255,0.15)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                  </div>
+                  <div>
+                    <p style={{ color: 'white', fontWeight: '500' }}>100 Medical Plaza, Boston, MA 02115</p>
+                  </div>
+                </div>
               </div>
-              <div>
-                <label htmlFor="email" style={{ display: 'block', marginBottom: '0.5rem' }}>Email</label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  className={styles.formInput}
-                  placeholder="Your email address"
-                />
+            </div>
+            
+            {/* Right Column - Form */}
+            <div style={{
+              flex: '1',
+              minWidth: '300px'
+            }}>
+              <div style={{ 
+                backgroundColor: 'white',
+                borderRadius: '1rem',
+                padding: '2.5rem',
+                boxShadow: '0 15px 35px rgba(0,0,0,0.15)',
+                border: 'none'
+              }}>
+                <form style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                  <div>
+                    <label htmlFor="name" style={{ 
+                      display: 'block', 
+                      marginBottom: '0.5rem', 
+                      color: '#333333',
+                      fontWeight: '500'
+                    }}>Name</label>
+                    <input 
+                      type="text" 
+                      id="name" 
+                      style={{
+                        width: '100%',
+                        padding: '0.75rem 1rem',
+                        borderRadius: '0.5rem',
+                        border: '1px solid #dddddd',
+                        backgroundColor: '#f9f9f9',
+                        color: '#333333',
+                        outline: 'none',
+                        transition: 'all 0.2s ease'
+                      }}
+                      placeholder="Your name"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" style={{ 
+                      display: 'block', 
+                      marginBottom: '0.5rem', 
+                      color: '#333333',
+                      fontWeight: '500'
+                    }}>Email</label>
+                    <input 
+                      type="email" 
+                      id="email" 
+                      style={{
+                        width: '100%',
+                        padding: '0.75rem 1rem',
+                        borderRadius: '0.5rem',
+                        border: '1px solid #dddddd',
+                        backgroundColor: '#f9f9f9',
+                        color: '#333333',
+                        outline: 'none',
+                        transition: 'all 0.2s ease'
+                      }}
+                      placeholder="Your email address"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="message" style={{ 
+                      display: 'block', 
+                      marginBottom: '0.5rem', 
+                      color: '#333333',
+                      fontWeight: '500'
+                    }}>Message</label>
+                    <textarea 
+                      id="message" 
+                      rows="4" 
+                      style={{
+                        width: '100%',
+                        padding: '0.75rem 1rem',
+                        borderRadius: '0.5rem',
+                        border: '1px solid #dddddd',
+                        backgroundColor: '#f9f9f9',
+                        color: '#333333',
+                        outline: 'none',
+                        transition: 'all 0.2s ease',
+                        resize: 'vertical'
+                      }}
+                      placeholder="How can we help you?"
+                    ></textarea>
+                  </div>
+                  <button 
+                    style={{ 
+                      backgroundColor: '#009688', 
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '0.5rem',
+                      padding: '0.85rem 1.5rem',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease',
+                      marginTop: '0.5rem'
+                    }}
+                  >
+                    Send Message
+                  </button>
+                </form>
               </div>
-              <div>
-                <label htmlFor="message" style={{ display: 'block', marginBottom: '0.5rem' }}>Message</label>
-                <textarea 
-                  id="message" 
-                  rows="4" 
-                  className={styles.formInput}
-                  placeholder="How can we help you?"
-                ></textarea>
-              </div>
-              <button className="button" style={{ width: '100%' }}>Send Message</button>
-            </form>
+            </div>
           </div>
         </div>
       </section>

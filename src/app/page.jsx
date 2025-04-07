@@ -101,8 +101,8 @@ export default function Home() {
                   <polyline points="10 9 9 9 8 9"></polyline>
                 </svg>
               </div>
-              <h3 style={{ fontSize: '1.35rem', fontWeight: '600', marginBottom: '0.75rem', color: '#009688' }}>IPSS/WHO Classifier</h3>
-              <p style={{ color: '#4a5568', lineHeight: '1.6' }}>Accurately classify hematologic findings according to WHO 2022 criteria and IPSS guidelines for precise diagnosis.</p>
+              <h3 style={{ fontSize: '1.35rem', fontWeight: '600', marginBottom: '0.75rem', color: '#009688' }}>ICC/WHO Classifier</h3>
+              <p style={{ color: '#4a5568', lineHeight: '1.6' }}>Accurately classify hematologic findings according to WHO 2022 criteria and ICC 2022 guidelines for precise diagnosis.</p>
             </div>
 
             <div className={styles.featureCard} style={{ 
@@ -162,21 +162,6 @@ export default function Home() {
               <p style={{ color: '#4a5568', lineHeight: '1.6' }}>Calculate International Prognostic Scoring System (IPSS) scores for MDS patients, helping determine risk levels and guide treatment decisions.</p>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section id="demo" style={{ 
-        backgroundColor: 'white',
-        padding: '4rem 0',
-        borderTop: '1px solid rgba(0, 150, 136, 0.1)'
-      }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <h2 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#009688' }}>Ready to Transform Your Diagnostic Workflow?</h2>
-          <p style={{ fontSize: '1.25rem', marginBottom: '2rem', maxWidth: '42rem', margin: '0 auto 2rem' }}>
-            Join leading hematology centers already using HematoDx to streamline their diagnostic process.
-          </p>
-          <button className="button">Request Demo</button>
         </div>
       </section>
 

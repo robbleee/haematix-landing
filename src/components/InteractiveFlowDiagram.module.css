@@ -8,7 +8,7 @@
   padding-top: 10px; /* Added top padding */
   background-color: white;
   border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1), 0 0 20px rgba(0, 150, 136, 0.15);
   border: 1px solid rgba(0, 150, 136, 0.1);
   padding: 25px 25px 290px;
 }
@@ -17,7 +17,7 @@
   content: '';
   position: absolute;
   left: 50%;
-  top: 315px;
+  top: 355px;
   transform: translateX(-50%);
   width: 40px;
   height: 4px;
@@ -27,9 +27,9 @@
 
 .diagramTitle {
   font-size: 18px;
-  font-weight: 600;
-  text-align: center;
-  color: #263238;
+  font-weight: 500;
+  text-align: left;
+  color: #009688;
   margin: 0 0 20px;
   padding-bottom: 15px;
   border-bottom: 1px solid rgba(0, 150, 136, 0.1);
@@ -143,6 +143,16 @@
   border-bottom: 1px solid rgba(0, 150, 136, 0.1);
 }
 
+.subtitleText {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 500;
+  color: #607d8b;
+  margin-top: -2px;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
 .descriptionText {
   margin-bottom: 8px;
   font-size: 12px;
@@ -216,7 +226,7 @@
   }
   
   .diagramContainer::after {
-    top: 305px;
+    top: 355px;
   }
   
   .diagramTitle {
@@ -229,13 +239,18 @@
     padding: 12px 12px 20px;
     max-width: 98%;
     width: 98%;
-    top: 300px !important; /* Force the desired position */
+    top: 340px !important;
   }
   
   .explanationPanel h3 {
     font-size: 12px;
     padding-bottom: 5px;
     margin-bottom: 5px;
+  }
+  
+  .subtitleText {
+    font-size: 10px;
+    margin-bottom: 8px;
   }
   
   .descriptionText, .detailsText, .connectionInfo {

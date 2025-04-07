@@ -204,6 +204,7 @@ const InteractiveFlowDiagram = () => {
   
   return (
     <div className={styles.diagramContainer} onClick={handleBackgroundClick} ref={diagramRef}>
+      <h4 className={styles.diagramTitle}>Classification workflow</h4>
       <svg className={styles.diagram} viewBox="0 0 980 280">
         {/* Draw connections first so they're behind nodes */}
         {connections.map(conn => {
@@ -278,7 +279,7 @@ const InteractiveFlowDiagram = () => {
           onClick={(e) => e.stopPropagation()}
           style={{ 
             position: 'absolute',
-            top: '310px',
+            top: '370px',
             left: '50%',
             transform: 'translateX(-50%)',
             width: '98%',
@@ -305,11 +306,11 @@ const InteractiveFlowDiagram = () => {
           onClick={(e) => e.stopPropagation()}
           style={{ 
             position: 'absolute',
-            top: '310px', // Positioned even lower
-            left: '50%',  // Center horizontally
-            transform: 'translateX(-50%)', // Ensure perfect centering
-            width: '98%', // Almost full width
-            maxWidth: '800px' // Much wider maximum width
+            top: '370px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '98%',
+            maxWidth: '800px'
           }}
         >
           <h3>{getNodeById(activeNode).title}</h3>

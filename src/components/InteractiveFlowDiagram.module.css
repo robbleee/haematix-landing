@@ -1,11 +1,38 @@
 .diagramContainer {
   position: relative;
   width: 100%;
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  padding-bottom: 220px; /* Slightly increased padding */
+  padding-bottom: 260px; /* Reduced padding since we have more horizontal space */
   padding-top: 10px; /* Added top padding */
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  border: 1px solid rgba(0, 150, 136, 0.1);
+  padding: 25px 25px 290px;
+}
+
+.diagramContainer::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 315px;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 4px;
+  background-color: rgba(0, 150, 136, 0.15);
+  border-radius: 2px;
+}
+
+.diagramTitle {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  color: #263238;
+  margin: 0 0 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(0, 150, 136, 0.1);
 }
 
 .diagram {
@@ -90,89 +117,133 @@
 
 /* Explanation panel styling */
 .explanationPanel {
-  width: 280px;
   background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  padding: 15px 20px 25px;
   z-index: 1000;
   animation: fadeIn 0.3s ease-out;
-  max-width: 90vw;
-  border-top: 3px solid #009688;
+  border: 1px solid rgba(0, 150, 136, 0.2);
+  border-top: 4px solid #009688;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(10px) translateX(-50%); }
+  to { opacity: 1; transform: translateY(0) translateX(-50%); }
 }
 
 .explanationPanel h3 {
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   color: #009688;
-  font-size: 18px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(0, 150, 136, 0.1);
 }
 
 .descriptionText {
-  margin-bottom: 15px;
-  font-size: 14px;
+  margin-bottom: 8px;
+  font-size: 12px;
   line-height: 1.4;
   color: #455a64;
 }
 
 .detailsText {
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: 12px;
+  line-height: 1.4;
   color: #546e7a;
   background-color: #f5f7fa;
   padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 15px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  border-left: 3px solid rgba(0, 150, 136, 0.3);
 }
 
 .connectionInfo {
-  margin-top: 15px;
-  font-size: 13px;
+  margin-top: 8px;
+  font-size: 12px;
+  background-color: rgba(0, 150, 136, 0.05);
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .connectionDetail {
-  margin-bottom: 8px;
+  margin-bottom: 0;
   display: flex;
   align-items: center;
+  flex: 1;
+  min-width: 180px;
 }
 
 .connectionLabel {
   color: #009688;
-  font-weight: 500;
-  margin-right: 6px;
+  font-weight: 600;
+  margin-right: 8px;
 }
 
 .closePanel {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 6px 12px;
-  background-color: #e0f2f1;
+  display: block;
+  margin: 15px auto 0;
+  padding: 4px 10px;
+  background-color: #009688;
+  color: white;
   border-radius: 4px;
-  font-size: 13px;
+  font-size: 12px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease;
+  text-align: center;
+  font-weight: 500;
+  width: 80px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .closePanel:hover {
-  background-color: #b2dfdb;
+  background-color: #00796b;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
 }
 
 /* Responsive styles */
 @media (max-width: 768px) {
   .diagramContainer {
-    padding-bottom: 180px; /* Further reduced padding on mobile */
+    padding: 15px 15px 280px;
+    margin: 0 10px;
+    width: calc(100% - 20px);
+  }
+  
+  .diagramContainer::after {
+    top: 305px;
+  }
+  
+  .diagramTitle {
+    font-size: 16px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
   }
   
   .explanationPanel {
-    width: 100%;
-    max-width: 90vw;
-    margin: 0 auto;
-    left: 5vw !important; /* Override inline styles for mobile */
+    padding: 12px 12px 20px;
+    max-width: 98%;
+    width: 98%;
+    top: 300px !important; /* Force the desired position */
+  }
+  
+  .explanationPanel h3 {
+    font-size: 12px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .descriptionText, .detailsText, .connectionInfo {
+    font-size: 11px;
+  }
+
+  .connectionDetail {
+    min-width: 150px;
   }
   
   .nodeTitle {

@@ -8,8 +8,6 @@ const InteractiveFlowDiagram = () => {
   const [activeNode, setActiveNode] = useState(null);
   // State to track which node is being hovered
   const [hoverNode, setHoverNode] = useState(null);
-  // State to store explanation panel position
-  const [panelPosition, setPanelPosition] = useState({ top: 0, left: 0 });
   
   // Refs for measuring
   const diagramRef = useRef(null);
@@ -108,40 +106,18 @@ const InteractiveFlowDiagram = () => {
       setActiveNode(null);
     } else {
       setActiveNode(nodeId);
-      // Calculate position for explanation panel when a node is clicked
-      updateExplanationPanelPosition(nodeId);
     }
   };
   
-  // Function to calculate and update explanation panel position
-  const updateExplanationPanelPosition = (nodeId) => {
-    if (!nodeId || !nodeRefs.current[nodeId] || !diagramRef.current) return;
-    
-    const nodeElement = nodeRefs.current[nodeId];
-    const diagramRect = diagramRef.current.getBoundingClientRect();
-    const nodeRect = nodeElement.getBoundingClientRect();
-    
-    // Calculate relative position within the diagram
-    const nodeCenter = nodeRect.left + nodeRect.width / 2 - diagramRect.left;
-    
-    // Position the explanation panel centered under the node
-    setPanelPosition({
-      top: nodeRect.bottom - diagramRect.top + 20, // 20px below the node
-      left: Math.max(0, nodeCenter - 140) // Center the 280px wide panel under the node
-    });
-  };
-  
-  // Recalculate panel position when window resizes
+  // Recalculate panel position when window resizes - no longer needed but keeping simplified version for possible future use
   useEffect(() => {
     const handleResize = () => {
-      if (activeNode) {
-        updateExplanationPanelPosition(activeNode);
-      }
+      // No need to update position as we're using fixed central position
     };
     
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [activeNode]);
+  }, []);
   
   // Close panel when clicking outside
   const handleBackgroundClick = () => {
@@ -295,44 +271,50 @@ const InteractiveFlowDiagram = () => {
         ))}
       </svg>
       
-      {/* Explanation panel with dynamic positioning */}
+      {/* Default explanation panel when no node is selected */}
+      {!activeNode && (
+        <div 
+          className={styles.explanationPanel} 
+          onClick={(e) => e.stopPropagation()}
+          style={{ 
+            position: 'absolute',
+            top: '310px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '98%',
+            maxWidth: '800px'
+          }}
+        >
+          <h3>HematoDx Diagnostic Flow</h3>
+          <p className={styles.descriptionText}>
+            This interactive diagram shows how our system processes and classifies hematologic findings.
+          </p>
+          <p className={styles.detailsText}>
+            The flow begins with three input sources on the left (Molecular Reports, Cytogenetic Reports, and Clinical Data). 
+            These data are processed through our Key Field Extraction engine, which feeds into our Classification Model. 
+            Finally, patients are classified according to both WHO 2022 and ICC 2022 guidelines, shown on the right.
+            Click on any element to learn more about its role in the diagnostic process.
+          </p>
+        </div>
+      )}
+      
+      {/* Explanation panel with fixed central positioning */}
       {activeNode && (
         <div 
           className={styles.explanationPanel} 
           onClick={(e) => e.stopPropagation()}
           style={{ 
             position: 'absolute',
-            top: `${panelPosition.top}px`,
-            left: `${panelPosition.left}px`,
-            transform: 'none' // Override any transform from CSS
+            top: '310px', // Positioned even lower
+            left: '50%',  // Center horizontally
+            transform: 'translateX(-50%)', // Ensure perfect centering
+            width: '98%', // Almost full width
+            maxWidth: '800px' // Much wider maximum width
           }}
         >
           <h3>{getNodeById(activeNode).title}</h3>
           <p className={styles.descriptionText}>{getNodeById(activeNode).description}</p>
           <p className={styles.detailsText}>{getNodeById(activeNode).details}</p>
-          
-          {/* Connection information */}
-          <div className={styles.connectionInfo}>
-            {connections
-              .filter(conn => conn.from === activeNode)
-              .map(conn => (
-                <div key={conn.to} className={styles.connectionDetail}>
-                  <span className={styles.connectionLabel}>→ Leads to:</span> 
-                  <span>{getNodeById(conn.to).title}</span>
-                </div>
-              ))
-            }
-            
-            {connections
-              .filter(conn => conn.to === activeNode)
-              .map(conn => (
-                <div key={conn.from} className={styles.connectionDetail}>
-                  <span className={styles.connectionLabel}>← Preceded by:</span> 
-                  <span>{getNodeById(conn.from).title}</span>
-                </div>
-              ))
-            }
-          </div>
           
           <div className={styles.closePanel} onClick={() => setActiveNode(null)}>
             Close

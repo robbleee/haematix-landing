@@ -41,14 +41,20 @@ export default function Home() {
                 <button type="button" className="button" style={{ transition: 'all 0.2s ease' }}>
                   Request Demo
                 </button>
-                {/* Add :hover styles in CSS. Ensure CSS variables are defined */}
-                <button type="button" className="button" style={{
-                  backgroundColor: 'var(--secondary-background-color)',
-                  color: 'var(--text-color)',
-                  transition: 'all 0.2s ease'
-                }}>
+                {/* Link to document section */}
+                <a 
+                  href="#documentation" 
+                  className="button" 
+                  style={{
+                    backgroundColor: 'var(--secondary-background-color)',
+                    color: 'var(--text-color)',
+                    transition: 'all 0.2s ease',
+                    textDecoration: 'none',
+                    display: 'inline-block'
+                  }}
+                >
                   Learn More
-                </button>
+                </a>
               </div>
             </div>
 
@@ -59,6 +65,35 @@ export default function Home() {
               margin: '0 auto'
             }}>
               <InteractiveFlowDiagram />
+              <div style={{ 
+                display: 'flex', 
+                justifyContent: 'center',
+                marginTop: '2rem'
+              }}>
+                <a 
+                  href="/full-flow" 
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    backgroundColor: '#00796b',
+                    color: 'white',
+                    padding: '0.7rem 1.5rem',
+                    borderRadius: '0.5rem',
+                    textDecoration: 'none',
+                    fontWeight: '500',
+                    transition: 'all 0.2s ease',
+                    boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+                  }}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <polyline points="8 12 12 16 16 12"></polyline>
+                    <line x1="12" y1="8" x2="12" y2="16"></line>
+                  </svg>
+                  View Detailed Flow Diagram
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -188,11 +223,12 @@ export default function Home() {
       </section>
 
       {/* Document Access Section */}
-      <div className="container" style={{
+      <div id="documentation" className="container" style={{
         marginTop: '3rem', // Keep space above
         marginBottom: '5rem', // Increased space below this section
         textAlign: 'center',
-        padding: '0 1.5rem' // Horizontal padding only
+        padding: '0 1.5rem', // Horizontal padding only
+        scrollMarginTop: '80px' // Adds margin to scroll position for fixed headers
       }}>
         <div style={{
           backgroundColor: 'rgba(0, 150, 136, 0.08)',
@@ -211,10 +247,9 @@ export default function Home() {
           <p style={{ color: '#607d8b', lineHeight: '1.6', marginBottom: '1.5rem', fontSize: '0.95rem', fontStyle: 'italic' }}>
             Additional reference materials and technical documentation will be made available as we expand our resources.
           </p>
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-            {/* Add :hover styles in CSS */}
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <a
-              href="/classifer_methodology.pdf" // Ensure this path is correct
+              href="/classifer_methodology.pdf"
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -236,7 +271,32 @@ export default function Home() {
                 <line x1="12" y1="18" x2="12" y2="12"></line>
                 <line x1="9" y1="15" x2="15" y2="15"></line>
               </svg>
-              View Classification Methodology
+              Classification Methodology
+            </a>
+            <a
+              href="/risk_methodology.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                backgroundColor: '#00796b',
+                color: 'white',
+                padding: '0.7rem 1.5rem',
+                borderRadius: '0.5rem',
+                textDecoration: 'none',
+                fontWeight: '500',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                <polyline points="17 6 23 6 23 12"></polyline>
+              </svg>
+              Risk Stratification Guide
             </a>
           </div>
         </div>

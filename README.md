@@ -1,4 +1,4 @@
-# HematoDx - Hematology Diagnosis Tool
+# HaematoAx - Hematology Diagnosis Tool
 
 A modern web application for hematology diagnosis, providing classification according to WHO 2022 and ICC 2022 standards for AML and MDS, as well as risk stratification.
 

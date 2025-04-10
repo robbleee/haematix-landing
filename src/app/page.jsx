@@ -22,7 +22,7 @@ export default function Home() {
               textAlign: 'center'
             }}>
               <h1 style={{ fontSize: '2.8rem', fontWeight: 'bold', marginBottom: '1rem' }}>
-                <span className="text-gradient">HematoDx</span>
+                <span className="text-gradient">HaematoAx</span>
               </h1>
               <p style={{ fontSize: '1.2rem', margin: '0 auto 1.5rem', lineHeight: '1.6', maxWidth: '42rem' }}>
                 AI-powered diagnostic system for precise classification of hematologic disorders according to WHO 2022 and ICC 2022 guidelines, enabling more accurate treatment decisions.
@@ -165,6 +165,75 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Methodology PDF Download Section */}
+      <div className="container" style={{ marginTop: '3rem', textAlign: 'center', padding: '1.5rem' }}>
+        <div style={{ 
+          backgroundColor: 'rgba(0, 150, 136, 0.08)', 
+          borderRadius: '1rem', 
+          padding: '2rem', 
+          maxWidth: '700px', 
+          margin: '0 auto',
+          border: '1px solid rgba(0, 150, 136, 0.2)'
+        }}>
+          <h3 style={{ fontSize: '1.5rem', fontWeight: '600', marginBottom: '1rem', color: '#009688' }}>
+            Classifier Methodology Documentation
+          </h3>
+          <p style={{ color: '#4a5568', lineHeight: '1.6', marginBottom: '1.5rem' }}>
+            Learn more about the technical details and methodology behind our classification system in the detailed documentation.
+          </p>
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+            <a 
+              href="/classifer_methodology.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                backgroundColor: '#009688',
+                color: 'white',
+                padding: '0.7rem 1.5rem',
+                borderRadius: '0.5rem',
+                textDecoration: 'none',
+                fontWeight: '500',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="12" y1="18" x2="12" y2="12"></line>
+                <line x1="9" y1="15" x2="15" y2="15"></line>
+              </svg>
+              View Methodology PDF
+            </a>
+            <a 
+              href="/classifer_methodology.pdf" 
+              download="HaematoAx_Classifier_Methodology.pdf"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                backgroundColor: '#00796b',
+                color: 'white',
+                padding: '0.7rem 1.5rem',
+                borderRadius: '0.5rem',
+                textDecoration: 'none',
+                fontWeight: '500',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Download PDF
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* Contact Section */}
       <section id="contact" style={{ 
         backgroundColor: '#009688', 
@@ -246,7 +315,7 @@ export default function Home() {
                 color: 'rgba(255,255,255,0.9)',
                 lineHeight: '1.7'
               }}>
-                HematoDx offers cutting-edge AI solutions that enhance precision and efficiency in hematological diagnostics.
+                HaematoAx offers cutting-edge AI solutions that enhance precision and efficiency in hematological diagnostics.
               </p>
               
               <div style={{
@@ -297,7 +366,7 @@ export default function Home() {
                     </svg>
                   </div>
                   <div>
-                    <p style={{ color: 'white', fontWeight: '500' }}>contact@hematodx.com</p>
+                    <p style={{ color: 'white', fontWeight: '500' }}>contact@HaematoAx.com</p>
                   </div>
                 </div>
                 

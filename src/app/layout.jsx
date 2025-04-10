@@ -1,8 +1,14 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'HematoDx - Hematology Diagnosis Tool',
+  title: 'HaematoAx - Hematology Diagnosis Tool',
   description: 'Advanced tool for hematology diagnoses using WHO 2022 and ICC 2022 classifications',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any', type: 'image/x-icon' },
+      { url: '/favicon.svg', type: 'image/svg+xml' }
+    ]
+  }
 };
 
 export default function RootLayout({ children }) {
@@ -12,14 +18,14 @@ export default function RootLayout({ children }) {
         <header style={{ backgroundColor: 'var(--background-color)', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
           <div className="container" style={{ padding: '1rem 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
-              <span className="text-gradient">HematoDx</span>
+              <span className="text-gradient">HaematoAx</span>
             </div>
             <nav>
               <ul style={{ display: 'flex', gap: '1.5rem', listStyle: 'none' }}>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#workflow">Workflow</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a className="button" href="#demo">Request Demo</a></li>
+                <li><a className="button" href="https://blood-cancer-classifier.streamlit.app/">Login</a></li>
               </ul>
             </nav>
           </div>
@@ -29,7 +35,7 @@ export default function RootLayout({ children }) {
         </main>
         <footer style={{ backgroundColor: 'var(--secondary-background-color)', padding: '2rem 0' }}>
           <div className="container" style={{ textAlign: 'center' }}>
-            <p>© {new Date().getFullYear()} HematoDx. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} HaematoAx. All rights reserved.</p>
           </div>
         </footer>
       </body>

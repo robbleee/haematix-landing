@@ -5,7 +5,7 @@ import styles from './InteractiveFlowDiagram.module.css';
 
 const InteractiveFlowDiagram = () => {
   // State to track which node is active/clicked
-  const [activeNode, setActiveNode] = useState(null);
+  const [activeNode, setActiveNode] = useState('molecular');
   // State to track which node is being hovered
   const [hoverNode, setHoverNode] = useState(null);
   
@@ -286,7 +286,7 @@ const InteractiveFlowDiagram = () => {
             maxWidth: '800px'
           }}
         >
-          <h3>HematoDx Diagnostic Flow</h3>
+          <h3>HaematoAx Diagnostic Flow</h3>
           <p className={styles.descriptionText}>
             This interactive diagram shows how our system processes and classifies hematologic findings.
           </p>
@@ -317,8 +317,35 @@ const InteractiveFlowDiagram = () => {
           <p className={styles.descriptionText}>{getNodeById(activeNode).description}</p>
           <p className={styles.detailsText}>{getNodeById(activeNode).details}</p>
           
-          <div className={styles.closePanel} onClick={() => setActiveNode(null)}>
-            Close
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-start' }}>
+            {activeNode === 'classification' && (
+              <a 
+                href="/classifer_methodology.pdf" 
+                download="HaematoAx_Classifier_Methodology.pdf"
+                className={styles.closePanel}
+                style={{ 
+                  backgroundColor: '#009688', 
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  whiteSpace: 'nowrap',
+                  width: 'auto',
+                  minWidth: '180px',
+                  padding: '4px 16px'
+                }}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="12" y1="18" x2="12" y2="12"></line>
+                  <line x1="9" y1="15" x2="15" y2="15"></line>
+                </svg>
+                View Methodology
+              </a>
+            )}
+            <div className={styles.closePanel} onClick={() => setActiveNode(null)}>
+              Close
+            </div>
           </div>
         </div>
       )}

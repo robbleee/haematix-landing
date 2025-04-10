@@ -317,7 +317,23 @@ const InteractiveFlowDiagram = () => {
           <p className={styles.descriptionText}>{getNodeById(activeNode).description}</p>
           <p className={styles.detailsText}>{getNodeById(activeNode).details}</p>
           
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-start' }}>
+          <div style={{ 
+            display: 'flex', 
+            gap: '1rem', 
+            justifyContent: 'flex-start',
+            marginTop: '20px'
+          }}>
+            <div 
+              className={styles.closePanel} 
+              onClick={() => setActiveNode(null)}
+              style={{
+                margin: '0',
+                textAlign: 'center',
+                width: '80px'
+              }}
+            >
+              Close
+            </div>
             {activeNode === 'classification' && (
               <a 
                 href="/classifer_methodology.pdf" 
@@ -331,7 +347,8 @@ const InteractiveFlowDiagram = () => {
                   whiteSpace: 'nowrap',
                   width: 'auto',
                   minWidth: '180px',
-                  padding: '4px 16px'
+                  padding: '4px 16px',
+                  margin: '0'
                 }}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -343,9 +360,6 @@ const InteractiveFlowDiagram = () => {
                 View Methodology
               </a>
             )}
-            <div className={styles.closePanel} onClick={() => setActiveNode(null)}>
-              Close
-            </div>
           </div>
         </div>
       )}

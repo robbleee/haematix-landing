@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
             <nav>
               <ul style={{ display: 'flex', gap: '1.5rem', listStyle: 'none' }}>
                 <li><a href="#features">Features</a></li>
-                <li><a href="#workflow">Workflow</a></li>
+                <li><a href="full-flow">Workflow</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a className="button" href="https://blood-cancer-classifier.streamlit.app/">Login</a></li>
               </ul>

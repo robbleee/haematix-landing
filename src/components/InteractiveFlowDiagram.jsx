@@ -293,7 +293,7 @@ const InteractiveFlowDiagram = () => {
           onClick={(e) => e.stopPropagation()}
           style={{ 
             position: 'absolute',
-            top: '410px',
+            top: '430px',
             left: '50%',
             transform: 'translateX(-50%)',
             width: '98%',
@@ -319,7 +319,7 @@ const InteractiveFlowDiagram = () => {
           onClick={(e) => e.stopPropagation()}
           style={{ 
             position: 'absolute',
-            top: '410px',
+            top: '430px',
             left: '50%',
             transform: 'translateX(-50%)',
             width: '98%',

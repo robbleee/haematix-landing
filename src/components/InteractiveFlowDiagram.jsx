@@ -203,8 +203,22 @@ const InteractiveFlowDiagram = () => {
   };
   
   return (
-    <div className={styles.diagramContainer} onClick={handleBackgroundClick} ref={diagramRef}>
-      <h4 className={styles.diagramTitle}>Classification workflow</h4>
+    <div className={`${styles.diagramContainer} interactive-flow`} onClick={handleBackgroundClick} ref={diagramRef}>
+      <div className={styles.diagramHeader}>
+        <h4 className={styles.diagramTitle}>Classification workflow</h4>
+        <a 
+          href="/full-flow" 
+          className={styles.fullFlowButton}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="8" y1="12" x2="16" y2="12"></line>
+            <line x1="12" y1="8" x2="12" y2="16"></line>
+          </svg>
+          Full Workflow
+        </a>
+      </div>
       <svg className={styles.diagram} viewBox="0 0 980 280">
         {/* Draw connections first so they're behind nodes */}
         {connections.map(conn => {
@@ -279,7 +293,7 @@ const InteractiveFlowDiagram = () => {
           onClick={(e) => e.stopPropagation()}
           style={{ 
             position: 'absolute',
-            top: '370px',
+            top: '410px',
             left: '50%',
             transform: 'translateX(-50%)',
             width: '98%',
@@ -288,13 +302,12 @@ const InteractiveFlowDiagram = () => {
         >
           <h3>HaematoAx Diagnostic Flow</h3>
           <p className={styles.descriptionText}>
-            This interactive diagram shows how our system processes and classifies hematologic findings.
+            This diagram shows how our system processes and classifies hematologic findings.
           </p>
           <p className={styles.detailsText}>
-            The flow begins with three input sources on the left (Molecular Reports, Cytogenetic Reports, and Clinical Data). 
-            These data are processed through our Key Field Extraction engine, which feeds into our Classification Model. 
-            Finally, patients are classified according to both WHO 2022 and ICC 2022 guidelines, shown on the right.
-            Click on any element to learn more about its role in the diagnostic process.
+            Data flows from left to right: input sources (Molecular, Cytogenetic, Clinical) → 
+            Key Field Extraction → Classification Model → WHO and ICC classifications.
+            Click any element for more details.
           </p>
         </div>
       )}
@@ -306,7 +319,7 @@ const InteractiveFlowDiagram = () => {
           onClick={(e) => e.stopPropagation()}
           style={{ 
             position: 'absolute',
-            top: '370px',
+            top: '410px',
             left: '50%',
             transform: 'translateX(-50%)',
             width: '98%',
@@ -363,6 +376,24 @@ const InteractiveFlowDiagram = () => {
           </div>
         </div>
       )}
+      
+      <style jsx>{`
+        /* Increase text size */
+        :global(.interactive-flow .node text) {
+          font-size: 15px !important;
+          font-weight: 500 !important;
+        }
+        
+        :global(.interactive-flow .connection) {
+          stroke-width: 2px !important;
+        }
+        
+        :global(.interactive-flow rect),
+        :global(.interactive-flow circle),
+        :global(.interactive-flow ellipse) {
+          stroke-width: 2px !important;
+        }
+      `}</style>
     </div>
   );
 };

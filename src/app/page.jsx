@@ -58,42 +58,16 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Flow Diagram - Bottom (Kept As Is) */}
+            {/* Flow Diagram - Bottom */}
             <div style={{
               width: '100%',
-              maxWidth: '900px', // Using the width from your provided code
-              margin: '0 auto'
+              maxWidth: '1000px', // Reduced from 1300px to 1000px
+              margin: '0 auto',
+              transform: 'scale(0.95)', // Reduced from 1.1 to 0.95
+              transformOrigin: 'center top'
             }}>
               <InteractiveFlowDiagram />
-              <div style={{ 
-                display: 'flex', 
-                justifyContent: 'center',
-                marginTop: '2rem'
-              }}>
-                <a 
-                  href="/full-flow" 
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    backgroundColor: '#00796b',
-                    color: 'white',
-                    padding: '0.7rem 1.5rem',
-                    borderRadius: '0.5rem',
-                    textDecoration: 'none',
-                    fontWeight: '500',
-                    transition: 'all 0.2s ease',
-                    boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
-                  }}
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                    <polyline points="8 12 12 16 16 12"></polyline>
-                    <line x1="12" y1="8" x2="12" y2="16"></line>
-                  </svg>
-                  View Detailed Flow Diagram
-                </a>
-              </div>
+              {/* Removed the redundant "View Detailed Flow Diagram" button */}
             </div>
           </div>
         </div>

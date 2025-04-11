@@ -9,12 +9,12 @@ export default function Home() {
       <header className="bg-primary text-white">
         <div className="container mx-auto py-6 px-6 sm:px-8 flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <Image 
+        <Image
               src="/hemlogo.svg" 
               alt="Hematological Classification Platform Logo" 
               width={40} 
               height={40} 
-              priority 
+          priority
             />
             <h1 className="text-2xl font-bold tracking-tight">HemClassify</h1>
           </div>
@@ -55,8 +55,8 @@ export default function Home() {
                 className="bg-primary hover:bg-primary-dark text-white py-3 px-6 rounded-md font-medium transition-colors text-center"
               >
                 Request Demo
-              </a>
-              <a 
+        </a>
+        <a
                 href="#overview" 
                 className="bg-white hover:bg-gray-100 text-primary border border-primary py-3 px-6 rounded-md font-medium transition-colors text-center"
               >
@@ -450,7 +450,7 @@ export default function Home() {
           
           {/* Full-width Flowchart Image */}
           <div className="w-full mb-10">
-            <Image 
+          <Image
               src="/Flowchart.png" 
               alt="Hematological Classification Workflow" 
               width={1920} 
@@ -720,8 +720,8 @@ export default function Home() {
                     className="block bg-primary hover:bg-primary-dark text-white py-3 px-6 rounded-md font-medium transition-colors text-center"
                   >
                     Schedule a Demonstration
-                  </a>
-                  <a 
+        </a>
+        <a
                     href="#" 
                     className="block bg-white hover:bg-gray-100 text-primary border border-primary py-3 px-6 rounded-md font-medium transition-colors text-center"
                   >
@@ -787,7 +787,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div>
               <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                <Image 
+          <Image
                   src="/hemlogo.svg" 
                   alt="HemClassify Logo" 
                   width={24} 

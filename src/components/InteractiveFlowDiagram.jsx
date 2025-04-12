@@ -19,7 +19,7 @@ const InteractiveFlowDiagram = () => {
       id: 'molecular',
       title: 'Molecular Reports',
       description: 'Free text laboratory reports containing molecular genetic findings and mutations.',
-      details: 'These reports include key genetic information such as FLT3-ITD, NPM1, CEBPA, TP53, IDH1/2, and other mutations critical for accurate hematological diagnosis and classification.',
+      details: 'These reports include key genetic information such as FLT3-ITD, NPM1, CEBPA, TP53, IDH1/2, and other mutations critical for accurate haematological diagnosis and classification.',
       x: 50,
       y: 70,
       width: 160,
@@ -302,7 +302,7 @@ const InteractiveFlowDiagram = () => {
         >
           <h3>HaematoAx Diagnostic Flow</h3>
           <p className={styles.descriptionText}>
-            This diagram shows how our system processes and classifies hematologic findings.
+            This diagram shows how our system processes and classifies haematologic findings.
           </p>
           <p className={styles.detailsText}>
             Data flows from left to right: input sources (Molecular, Cytogenetic, Clinical) → 

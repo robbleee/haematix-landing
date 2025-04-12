@@ -1,6 +1,6 @@
-# HaematoAx - Hematology Diagnosis Tool
+# HaematoAx - Haematology Diagnosis Tool
 
-A modern web application for hematology diagnosis, providing classification according to WHO 2022 and ICC 2022 standards for AML and MDS, as well as risk stratification.
+A modern web application for haematology diagnosis, providing classification according to WHO 2022 and ICC 2022 standards for AML and MDS, as well as risk stratification.
 
 ## Features
 
@@ -26,8 +26,8 @@ A modern web application for hematology diagnosis, providing classification acco
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/hemato-dx.git
-   cd hemato-dx
+   git clone https://github.com/yourusername/haemato-dx.git
+   cd haemato-dx
    ```
 
 2. Install dependencies:

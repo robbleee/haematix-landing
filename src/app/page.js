@@ -11,7 +11,7 @@ export default function Home() {
           <div className="flex items-center gap-3">
         <Image
               src="/hemlogo.svg" 
-              alt="Hematological Classification Platform Logo" 
+              alt="Haematological Classification Platform Logo" 
               width={40} 
               height={40} 
           priority
@@ -44,7 +44,7 @@ export default function Home() {
           {/* Hero content - centered */}
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold text-heading mb-6">
-              Advanced Hematological Diagnostic Platform
+              Advanced Haematological Diagnostic Platform
             </h2>
             <h3 className="text-xl sm:text-2xl text-gray-700 mb-8">
               Precision Classification for AML, MDS, and Future CHIP Integration
@@ -85,7 +85,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold mb-2 text-heading">Unified Classification System</h3>
               <p className="text-gray-600 mb-4">
-                Integrate WHO 2022 and ICC 2022 guidelines into a unified, hierarchical classification system for hematological disorders.
+                Integrate WHO 2022 and ICC 2022 guidelines into a unified, hierarchical classification system for haematological disorders.
               </p>
             </div>
 
@@ -109,7 +109,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold mb-2 text-heading">Actionable Classifications</h3>
               <p className="text-gray-600 mb-4">
-                Offer clear and actionable classifications for Acute Myeloid Leukemia (AML), Myelodysplastic Syndrome (MDS), and upcoming Clonal Hematopoiesis of Indeterminate Potential (CHIP).
+                Offer clear and actionable classifications for Acute Myeloid Leukemia (AML), Myelodysplastic Syndrome (MDS), and upcoming Clonal Haematopoiesis of Indeterminate Potential (CHIP).
               </p>
             </div>
           </div>
@@ -387,7 +387,7 @@ export default function Home() {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">About Our Platform</h2>
             <p className="text-lg text-gray-700 mb-8">
-              HemDiagnose is a suite of evidence-based diagnostic support tools designed by hematologists for healthcare professionals. Our tools leverage clinical algorithms and the latest research to help clinicians make more accurate diagnoses and treatment decisions.
+              HemDiagnose is a suite of evidence-based diagnostic support tools designed by haematologists for healthcare professionals. Our tools leverage clinical algorithms and the latest research to help clinicians make more accurate diagnoses and treatment decisions.
             </p>
             <p className="text-lg text-gray-700">
               All recommendations provided by our tools are supported by current clinical practice guidelines and peer-reviewed literature. These tools are meant to supplement, not replace, clinical judgment.
@@ -452,7 +452,7 @@ export default function Home() {
           <div className="w-full mb-10">
           <Image
               src="/Flowchart.png" 
-              alt="Hematological Classification Workflow" 
+              alt="Haematological Classification Workflow" 
               width={1920} 
               height={600}
               className="w-full rounded-lg shadow-md"
@@ -797,7 +797,7 @@ export default function Home() {
                 HemClassify
               </h3>
               <p className="text-gray-300 mb-4">
-                Advanced hematological classification platform integrating WHO 2022 and ICC 2022 guidelines.
+                Advanced haematological classification platform integrating WHO 2022 and ICC 2022 guidelines.
               </p>
               <div className="flex gap-4">
                 <a href="#" className="text-gray-300 hover:text-white">

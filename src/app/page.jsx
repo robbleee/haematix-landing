@@ -34,7 +34,7 @@ export default function Home() {
                 <span className="text-gradient">HaematoAx</span>
               </h1>
               <p style={{ fontSize: '1.2rem', margin: '0 auto 1.5rem', lineHeight: '1.6', maxWidth: '42rem', color: '#4a5568' }}>
-                AI-powered diagnostic system for precise classification of hematologic disorders according to WHO 2022 and ICC 2022 guidelines, enabling more accurate treatment decisions.
+                AI-powered diagnostic system for precise classification of haematologic disorders according to WHO 2022 and ICC 2022 guidelines, enabling more accurate treatment decisions.
               </p>
               <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginBottom: '0.5rem' }}>
                 {/* Add :hover styles in CSS */}
@@ -97,7 +97,7 @@ export default function Home() {
             color: '#4a5568',
             lineHeight: '1.6'
           }}>
-            Comprehensive diagnostic tools designed for hematology specialists with advanced classification systems.
+            Comprehensive diagnostic tools designed for haematology specialists with advanced classification systems.
           </p>
 
           {/* Consider adding card :hover styles in CSS (e.g., transform: translateY(-5px); box-shadow: ...;) */}
@@ -131,7 +131,7 @@ export default function Home() {
                 </svg>
               </div>
               <h3 style={{ fontSize: '1.35rem', fontWeight: '600', marginBottom: '0.75rem', color: '#009688' }}>ICC/WHO Classifier</h3>
-              <p style={{ color: '#4a5568', lineHeight: '1.6' }}>Accurately classify hematologic findings according to WHO 2022 criteria and ICC 2022 guidelines for precise diagnosis.</p>
+              <p style={{ color: '#4a5568', lineHeight: '1.6' }}>Accurately classify haematologic findings according to WHO 2022 criteria and ICC 2022 guidelines for precise diagnosis.</p>
             </div>
 
             {/* Feature Card 2 */}
@@ -325,7 +325,7 @@ export default function Home() {
                 color: '#4a5568',
                 lineHeight: '1.7'
               }}>
-                HaematoAx offers cutting-edge AI solutions that enhance precision and efficiency in hematological diagnostics. Reach out via the form to learn more.
+                HaematoAx offers cutting-edge AI solutions that enhance precision and efficiency in haematological diagnostics. Reach out via the form to learn more.
               </p>
 
               {/* Contact Info List REMOVED */}

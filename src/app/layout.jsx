@@ -1,8 +1,8 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'HaematoAx - Hematology Diagnosis Tool',
-  description: 'Advanced tool for hematology diagnoses using WHO 2022 and ICC 2022 classifications',
+  title: 'HaematoAx - Haematology Diagnosis Tool',
+  description: 'Advanced tool for haematology diagnoses using WHO 2022 and ICC 2022 classifications',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any', type: 'image/x-icon' },

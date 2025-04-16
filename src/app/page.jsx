@@ -31,7 +31,7 @@ export default function Home() {
             }}>
               <h1 style={{ fontSize: '2.8rem', fontWeight: 'bold', marginBottom: '1rem' }}>
                 {/* Ensure .text-gradient class is defined in your CSS */}
-                <span className="text-gradient">HaematoAx</span>
+                <span className="text-gradient">HaematAx</span>
               </h1>
               <p style={{ fontSize: '1.2rem', margin: '0 auto 1.5rem', lineHeight: '1.6', maxWidth: '42rem', color: '#4a5568' }}>
                 AI-powered diagnostic system for precise classification of haematologic disorders according to WHO 2022 and ICC 2022 guidelines, enabling more accurate treatment decisions.
@@ -325,7 +325,7 @@ export default function Home() {
                 color: '#4a5568',
                 lineHeight: '1.7'
               }}>
-                HaematoAx offers cutting-edge AI solutions that enhance precision and efficiency in haematological diagnostics. Reach out via the form to learn more.
+                HaematAx offers cutting-edge AI solutions that enhance precision and efficiency in haematological diagnostics. Reach out via the form to learn more.
               </p>
 
               {/* Contact Info List REMOVED */}

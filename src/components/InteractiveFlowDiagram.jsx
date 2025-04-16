@@ -300,7 +300,7 @@ const InteractiveFlowDiagram = () => {
             maxWidth: '800px'
           }}
         >
-          <h3>HaematoAx Diagnostic Flow</h3>
+          <h3>HaematAx Diagnostic Flow</h3>
           <p className={styles.descriptionText}>
             This diagram shows how our system processes and classifies haematologic findings.
           </p>
@@ -350,7 +350,7 @@ const InteractiveFlowDiagram = () => {
             {activeNode === 'classification' && (
               <a 
                 href="/classifer_methodology.pdf" 
-                download="HaematoAx_Classifier_Methodology.pdf"
+                download="HaematAx_Classifier_Methodology.pdf"
                 className={styles.closePanel}
                 style={{ 
                   backgroundColor: '#009688', 

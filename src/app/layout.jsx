@@ -1,7 +1,7 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'HaematAx - Haematology Diagnosis Tool',
+  title: 'Haematix - Haematology Diagnosis Tool',
   description: 'Advanced tool for haematology diagnoses using WHO 2022 and ICC 2022 classifications',
   icons: {
     icon: [
@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
         <header style={{ backgroundColor: 'var(--background-color)', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
           <div className="container" style={{ padding: '1rem 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
-              <span className="text-gradient">HaematAx</span>
+              <span className="text-gradient">Haematix</span>
             </div>
             <nav>
               <ul style={{ display: 'flex', gap: '1.5rem', listStyle: 'none' }}>
@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
         </main>
         <footer style={{ backgroundColor: 'var(--secondary-background-color)', padding: '2rem 0' }}>
           <div className="container" style={{ textAlign: 'center' }}>
-            <p>© {new Date().getFullYear()} HaematAx. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Haematix. All rights reserved.</p>
           </div>
         </footer>
       </body>

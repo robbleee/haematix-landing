@@ -1,4 +1,5 @@
 import './globals.css';
+import Link from 'next/link';
 
 export const metadata = {
   title: 'Haematix - Haematology Diagnosis Tool',
@@ -16,16 +17,26 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <header style={{ backgroundColor: 'var(--background-color)', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
-          <div className="container" style={{ padding: '1rem 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ 
+            padding: '1rem 2rem', 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center',
+            maxWidth: '1600px',
+            margin: '0 auto'
+          }}>
             <div style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
-              <span className="text-gradient">Haematix</span>
+              <Link href="/" style={{ textDecoration: 'none' }}>
+                <span className="text-gradient">Haematix</span>
+              </Link>
             </div>
             <nav>
               <ul style={{ display: 'flex', gap: '1.5rem', listStyle: 'none' }}>
-                <li><a href="#features">Features</a></li>
-                <li><a href="full-flow">Workflow</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a className="button" href="https://blood-cancer-classifier.streamlit.app/">Login</a></li>
+                <li><Link href="/" style={{ textDecoration: 'none' }}>Home</Link></li>
+                <li><Link href="/vision" style={{ textDecoration: 'none' }}>Our Vision</Link></li>
+                <li><Link href="/#features" style={{ textDecoration: 'none' }}>Features</Link></li>
+                <li><Link href="/#documentation" style={{ textDecoration: 'none' }}>Documentation</Link></li>
+                <li><a className="button" href="https://blood-cancer-classifier.streamlit.app/" target="_blank" rel="noopener noreferrer">Login</a></li>
               </ul>
             </nav>
           </div>

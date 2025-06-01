@@ -46,7 +46,7 @@ export default function RootLayout({ children }) {
         </main>
         <footer style={{ backgroundColor: 'var(--secondary-background-color)', padding: '2rem 0' }}>
           <div className="container" style={{ textAlign: 'center' }}>
-            <p>© {new Date().getFullYear()} Haem.io. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Haem.io. All rights reserved.</p> 
           </div>
         </footer>
       </body>

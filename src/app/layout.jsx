@@ -2,7 +2,7 @@ import './globals.css';
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Haematix - Haematology Diagnosis Tool',
+  title: 'Haem.io - Haematology Diagnosis Tool',
   description: 'Advanced tool for haematology diagnoses using WHO 2022 and ICC 2022 classifications',
   icons: {
     icon: [
@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
           }}>
             <div style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
               <Link href="/" style={{ textDecoration: 'none' }}>
-                <span className="text-gradient">Haematix</span>
+                <span className="text-gradient">Haem.io</span>
               </Link>
             </div>
             <nav>
@@ -46,7 +46,7 @@ export default function RootLayout({ children }) {
         </main>
         <footer style={{ backgroundColor: 'var(--secondary-background-color)', padding: '2rem 0' }}>
           <div className="container" style={{ textAlign: 'center' }}>
-            <p>© {new Date().getFullYear()} Haematix. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Haem.io. All rights reserved.</p>
           </div>
         </footer>
       </body>

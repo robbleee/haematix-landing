@@ -1,4 +1,4 @@
-# Haematix - Haematology Diagnosis Tool
+# Haem.io - Haematology Diagnosis Tool
 
 A modern web application for haematology diagnosis, providing classification according to WHO 2022 and ICC 2022 standards for AML and MDS, as well as risk stratification.
 

@@ -176,7 +176,6 @@ export default function Home() {
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="var(--primary)" className="w-5 h-5 mt-0.5 flex-shrink-0">
                     <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                   </svg>
-                  <span>Continuous learning system improves extraction accuracy over time</span>
                 </li>
               </ul>
             </div>

@@ -1,0 +1,370 @@
+.resultsPage {
+  min-height: 100vh;
+}
+
+.hero {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 6rem 0 4rem;
+  border-bottom: 1px solid rgba(0, 150, 136, 0.1);
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #6c757d;
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.statCard {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 150, 136, 0.1);
+  transition: all 0.3s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.statNumber {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  color: #6c757d;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.content {
+  padding: 4rem 0;
+  background: white;
+}
+
+.controls {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.searchBox {
+  flex: 1;
+  min-width: 300px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 150, 136, 0.1);
+}
+
+.searchInput::placeholder {
+  color: #adb5bd;
+}
+
+.filters {
+  display: flex;
+  gap: 1rem;
+}
+
+.filterSelect {
+  padding: 0.75rem 1rem;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 150px;
+}
+
+.filterSelect:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 150, 136, 0.1);
+}
+
+.tableContainer {
+  overflow-x: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9ecef;
+  background: white;
+}
+
+.resultsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.resultsTable th {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 1rem 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  color: #495057;
+  border-bottom: 2px solid #dee2e6;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.sortable:hover {
+  background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+  color: var(--primary-color);
+}
+
+.sortIcon {
+  margin-left: 0.5rem;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.resultsTable td {
+  padding: 1rem 0.75rem;
+  border-bottom: 1px solid #f1f3f4;
+  vertical-align: top;
+}
+
+.resultRow {
+  transition: all 0.2s ease;
+}
+
+.resultRow:hover {
+  background-color: rgba(0, 150, 136, 0.02);
+}
+
+.episodeNumber {
+  font-weight: 600;
+  color: var(--primary-color);
+  min-width: 100px;
+}
+
+.diagnosis {
+  font-weight: 500;
+  max-width: 250px;
+  word-wrap: break-word;
+}
+
+.haemTool {
+  max-width: 300px;
+  word-wrap: break-word;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.comments {
+  max-width: 200px;
+  word-wrap: break-word;
+  font-size: 0.85rem;
+  color: #6c757d;
+  line-height: 1.4;
+}
+
+/* Badge styles */
+.matchYes {
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  color: #155724;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+  border: 1px solid #c3e6cb;
+}
+
+.matchNo {
+  background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+  color: #721c24;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+  border: 1px solid #f5c6cb;
+}
+
+.matchEmpty {
+  background: linear-gradient(135deg, #e2e3e5 0%, #d6d8db 100%);
+  color: #6c757d;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+  border: 1px solid #d6d8db;
+}
+
+.boolYes {
+  background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+  color: #0c5460;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+  border: 1px solid #bee5eb;
+}
+
+.boolNo {
+  background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+  color: #8b4513;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+  border: 1px solid #fdcb6e;
+}
+
+.boolNA {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  color: #6c757d;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  display: inline-block;
+  border: 1px solid #e9ecef;
+}
+
+.noResults {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #6c757d;
+}
+
+.noResults p {
+  font-size: 1.1rem;
+  margin-bottom: 0;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .tableContainer {
+    font-size: 0.8rem;
+  }
+  
+  .resultsTable th,
+  .resultsTable td {
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .haemTool,
+  .comments {
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 4rem 0 3rem;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .statCard {
+    padding: 1.5rem;
+  }
+  
+  .statNumber {
+    font-size: 2rem;
+  }
+  
+  .controls {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .searchBox {
+    min-width: auto;
+  }
+  
+  .tableContainer {
+    font-size: 0.75rem;
+  }
+  
+  .resultsTable th,
+  .resultsTable td {
+    padding: 0.5rem 0.25rem;
+  }
+  
+  .haemTool,
+  .comments,
+  .diagnosis {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+  }
+  
+  .statNumber {
+    font-size: 1.8rem;
+  }
+} 

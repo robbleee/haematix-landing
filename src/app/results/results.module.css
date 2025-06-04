@@ -1,0 +1,183 @@
+.resultsPage {
+  min-height: 100vh;
+  background-color: var(--secondary-background-color);
+  padding: 2rem 0;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.controls {
+  background: var(--background-color);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.searchBox {
+  flex: 1;
+  min-width: 300px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: var(--border-radius);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+.filters {
+  display: flex;
+  gap: 1rem;
+}
+
+.filterSelect {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: var(--border-radius);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: 1rem;
+  min-width: 150px;
+}
+
+.tableContainer {
+  background: var(--background-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow-x: auto;
+}
+
+.resultsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.resultsTable th {
+  background-color: var(--secondary-background-color);
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-color);
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.sortable {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+.sortable:hover {
+  background-color: rgba(0, 150, 136, 0.1);
+}
+
+.sortIcon {
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.resultRow {
+  border-bottom: 1px solid #f3f4f6;
+  transition: background-color 0.2s ease;
+}
+
+.resultRow:hover {
+  background-color: var(--secondary-background-color);
+}
+
+.resultRow td {
+  padding: 1rem;
+  vertical-align: top;
+  color: var(--text-color);
+}
+
+.episodeNumber {
+  font-weight: 600;
+  text-align: center;
+  width: 80px;
+}
+
+.diagnosis {
+  max-width: 250px;
+  word-wrap: break-word;
+}
+
+.haemTool {
+  max-width: 300px;
+  word-wrap: break-word;
+}
+
+.comments {
+  max-width: 200px;
+  word-wrap: break-word;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.matchYes {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #059669;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.matchNo {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.matchEmpty {
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.boolYes {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #2563eb;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.boolNo {
+  background-color: rgba(156, 163, 175, 0.1);
+  color: #6b7280;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.boolNA {
+  color: #9ca3af;
+  font-style: italic;
+  font-size: 0.75rem;
+}
+
+.noResults {
+  text-align: center;
+  padding: 2rem;
+  color: #9ca3af;
+  font-style: italic;
+} 

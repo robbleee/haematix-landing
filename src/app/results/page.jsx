@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import styles from './results.module.css';
 
 const diagnosticData = [
   {

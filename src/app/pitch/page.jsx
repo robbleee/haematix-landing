@@ -82,43 +82,44 @@ const pitchSlides = [
   {
     id: 3,
     title: "Perfect Market Convergence",
-    subtitle: "Guideline Complexity Meets Formal Logic Solutions",
+    subtitle: "Riding the Wave: Multi-Billion Dollar Market Transformation",
     content: (
       <div className={styles.slideContent}>
         <div className={styles.marketLayout}>
           <div className={styles.marketLeft}>
             <div className={styles.marketForces}>
               <div className={styles.force}>
-                <h4>Exponential Pathway Complexity</h4>
-                <p>WHO/ICC revisions exceed human capacity for consistent application</p>
+                <h4>Global AI in Diagnostics</h4>
+                <p>$1.92B → $46.59B by 2034 (37.6% CAGR) - explosive growth in AI-powered diagnostic interpretation</p>
               </div>
               <div className={styles.force}>
-                <h4>Precision Medicine Demands</h4>
-                <p>Regulatory pressure for evidence-based diagnostic adherence</p>
+                <h4>Clinical Decision Support Systems</h4>
+                <p>$5.79B → $10.71B by 2030 (11.0% CAGR) - mature, stable foundation for diagnostic assistance</p>
               </div>
               <div className={styles.force}>
-                <h4>NHS Digital Transformation</h4>
-                <p>40% increase in AI procurement, focus on validated logic systems</p>
+                <h4>NHS AI Transformation</h4>
+                <p>£500M+ in AI contracts, £123M across 86 technologies, targeting 29M GP appointments annually</p>
               </div>
             </div>
           </div>
           
           <div className={styles.marketRight}>
             <div className={styles.marketOpportunity}>
-              <div className={styles.marketValue}>£15B</div>
-              <h4>Diagnostic Logic Market by 2030</h4>
+              <div className={styles.marketValue}>$164B</div>
+              <h4>AI in Healthcare Market by 2030</h4>
+              <p>49.1% CAGR growth driven by chronic disease management, diagnostic accuracy demands, and productivity gains worth $14-55B annually.</p>
               <div className={styles.marketSupport}>
                 <div className={styles.supportItem}>
-                  <span>Clinical decision support: £8.2B → £15.1B (2030)</span>
-                  <small><a href="https://www.marketsandmarkets.com/Market-Reports/clinical-decision-support-systems-market-651.html" target="_blank" rel="noopener noreferrer">MarketsandMarkets</a></small>
+                  <span>Global AI Healthcare: $14.92B → $164.16B (2030)</span>
+                  <small><a href="https://www.globenewswire.com/news-release/2025/01/14/3009462/28124/en/164-Bn-Artificial-Intelligence-AI-in-Healthcare-Markets-Global-Forecast-to-2030-Market-to-Grow-at-a-CAGR-of-49-1-with-Koninklijke-Philips-Microsoft-Siemens-NVIDIA-and-Epic-Systems-.html" target="_blank" rel="noopener noreferrer">GlobeNewswire, 2025</a></small>
                 </div>
                 <div className={styles.supportItem}>
-                  <span>AI diagnostics growing 25% annually</span>
-                  <small><a href="https://www.mckinsey.com/industries/healthcare-systems-and-services/our-insights/transforming-healthcare-with-ai" target="_blank" rel="noopener noreferrer">McKinsey</a></small>
+                  <span>AI Diagnostics: $1.92B → $46.59B (2034)</span>
+                  <small><a href="https://www.globenewswire.com/news-release/2025/05/29/3090079/0/en/46-5-Bn-AI-in-Medical-Diagnostics-Market-Opportunities-and-Strategies-to-2034-Machine-Learning-and-Computer-Vision-Set-to-Transform-AI-Diagnostics-Landscape.html" target="_blank" rel="noopener noreferrer">GlobeNewswire, 2025</a></small>
                 </div>
                 <div className={styles.supportItem}>
-                  <span>85% diagnostic errors from cognitive overload</span>
-                  <small><a href="https://www.nationalacademies.org/our-work/improving-diagnosis-in-health-care" target="_blank" rel="noopener noreferrer">Institute of Medicine</a></small>
+                  <span>UK CDSS: £361.9M → £634.9M (2030)</span>
+                  <small><a href="https://www.grandviewresearch.com/horizon/outlook/clinical-decision-support-systems-market/uk" target="_blank" rel="noopener noreferrer">Grand View Research, 2025</a></small>
                 </div>
               </div>
             </div>
@@ -307,8 +308,7 @@ const pitchSlides = [
   },
   {
     id: 9,
-    title: "Engineer the Future of Medicine",
-    subtitle: "Formal Logic + AI = Diagnostic Certainty at Scale",
+
     content: (
       <div className={styles.slideContent}>
         <div className={styles.impactLayout}>
@@ -339,7 +339,6 @@ const pitchSlides = [
         <div className={styles.finalCta}>
           <h4>Ready to Formalize Medical Logic?</h4>
           <div className={styles.ctaButtons}>
-            <a href="mailto:invest@haem.io" className="button">Schedule Your Demo</a>
             <a href="/results" className={styles.secondaryButton}>See Our Logic</a>
           </div>
         </div>

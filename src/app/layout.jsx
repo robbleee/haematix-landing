@@ -36,8 +36,6 @@ export default function RootLayout({ children }) {
                 <li><Link href="/vision" style={{ textDecoration: 'none' }}>Our Vision</Link></li>
                 <li><Link href="/results" style={{ textDecoration: 'none' }}>Results</Link></li>
                 <li><Link href="/pitch" style={{ textDecoration: 'none' }}>Pitch</Link></li>
-                <li><Link href="/#features" style={{ textDecoration: 'none' }}>Features</Link></li>
-                <li><Link href="/#documentation" style={{ textDecoration: 'none' }}>Documentation</Link></li>
                 <li><a className="button" href="https://haemio.streamlit.app/" target="_blank" rel="noopener noreferrer">Login</a></li>
               </ul>
             </nav>

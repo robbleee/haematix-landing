@@ -1,83 +1,79 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './pitch.module.css';
 
 const pitchSlides = [
   {
     id: 1,
-    title: "The Genetic Information Crisis",
-    subtitle: "Critical Data Trapped in Unreadable Reports",
+    title: "The Diagnostic Pathway Crisis",
+    subtitle: "Exponentially Complex Guidelines Meet Unstructured Data",
     content: (
       <div className={styles.slideContent}>
-        <h3>Every Cancer Diagnosis Requires Genetic Intelligence</h3>
-        <p>Modern cancer care depends on molecular genetics  —  but the critical information is buried in dense, unstructured laboratory reports that take hours to decode.</p>
+        <h3>Diagnosticians Face an Impossible Challenge</h3>
+        <p>Every accurate haematology diagnosis requires two things that are getting exponentially more difficult: extracting precise genetic data from unstructured reports, and applying increasingly complex diagnostic pathways that evolve with every guideline revision.</p>
         
         <div className={styles.problemGrid}>
           <div className={styles.problemCard}>
-            <h4>Information Chaos</h4>
-            <p>Genetic data scattered across cytogenetics, flow cytometry, and molecular reports</p>
+            <h4>Unstructured Data Chaos</h4>
+            <p>Critical genetic markers are buried in dense, inconsistent laboratory reports. Cytogenetics, flow cytometry, and molecular data exist in different formats with no standardization. Clinicians spend hours manually extracting the parameters they need before any diagnostic logic can even begin.</p>
           </div>
           <div className={styles.problemCard}>
-            <h4>Time Wastage</h4>
-            <p>Clinicians spend hours manually extracting relevant markers from technical jargon</p>
-          </div>
-          <div className={styles.problemCard}>
-            <h4>Integration Nightmare</h4>
-            <p>Combining multiple data sources requires rare expertise and precious time</p>
+            <h4>Pathway Complexity Explosion</h4>
+            <p>WHO 2022 and ICC 2022 guidelines contain hundreds of interconnected diagnostic pathways with precise criteria that change with each revision. The logic is too complex for consistent human application, yet there's no systematic way to formalize and maintain these evolving decision trees.</p>
           </div>
         </div>
         
         <div className={styles.insight}>
-          The genetic intelligence exists  —  it's just locked away in formats designed for machines, not medicine.
+          The diagnostic intelligence exists — but it's trapped in unstructured formats while the pathways to apply it become impossibly complex.
         </div>
       </div>
     )
   },
   {
     id: 2,
-    title: "Our Breakthrough: AI That Reads Like a Geneticist",
-    subtitle: "LLM Technology Unlocks Hidden Clinical Intelligence",
+    title: "Formal Logic Meets Intelligent Extraction",
+    subtitle: "Structured Diagnostic Pathways + AI-Powered Data Liberation",
     content: (
       <div className={styles.slideContent}>
-        <div className={styles.breakthrough}>
-          <div className={styles.breakthroughItem}>
-            <h4>Deep Understanding</h4>
-            <p>Our LLM comprehends genetic reports with the sophistication of an expert haematologist</p>
-          </div>
-          <div className={styles.breakthroughItem}>
-            <h4>Instant Processing</h4>
-            <p>Transforms hours of manual analysis into seconds of precise genetic intelligence</p>
-          </div>
-          <div className={styles.breakthroughItem}>
-            <h4>Clinical Translation</h4>
-            <p>Converts complex molecular data into clear diagnostic pathway recommendations</p>
-          </div>
-        </div>
-        
         <div className={styles.pathway}>
           <div className={styles.pathwayStep}>
             <div className={styles.stepNumber}>01</div>
             <div className={styles.stepContent}>
-              <h4>Extract</h4>
-              <p>AI identifies every relevant genetic marker</p>
+              <h4>AI Extraction</h4>
+              <p>LLM identifies and extracts genetic parameters from unstructured reports</p>
             </div>
           </div>
           <div className={styles.pathwayFlow}></div>
           <div className={styles.pathwayStep}>
             <div className={styles.stepNumber}>02</div>
             <div className={styles.stepContent}>
-              <h4>Interpret</h4>
-              <p>Maps findings to WHO & ICC classifications</p>
+              <h4>Formal Logic Engine</h4>
+              <p>Structured diagnostic pathways apply WHO/ICC criteria with mathematical precision</p>
             </div>
           </div>
           <div className={styles.pathwayFlow}></div>
           <div className={styles.pathwayStep}>
             <div className={styles.stepNumber}>03</div>
             <div className={styles.stepContent}>
-              <h4>Guide</h4>
-              <p>Delivers clear diagnostic recommendations</p>
+              <h4>AI Review</h4>
+              <p>Post-diagnostic validation and pathway adherence verification</p>
             </div>
+          </div>
+        </div>
+
+        <div className={styles.breakthrough}>
+          <div className={styles.breakthroughItem}>
+            <h4>Pathway Formalization</h4>
+            <p>Complex diagnostic guidelines converted into testable, maintainable logic trees</p>
+          </div>
+          <div className={styles.breakthroughItem}>
+            <h4>Data Liberation</h4>
+            <p>AI extracts structured genetic parameters from any report format</p>
+          </div>
+          <div className={styles.breakthroughItem}>
+            <h4>Logic Validation</h4>
+            <p>Every diagnostic pathway is formally tested and validated against real-world cases</p>
           </div>
         </div>
       </div>
@@ -86,194 +82,265 @@ const pitchSlides = [
   {
     id: 3,
     title: "Perfect Market Convergence",
-    subtitle: "Technology Meets Urgent Clinical Need",
+    subtitle: "Guideline Complexity Meets Formal Logic Solutions",
     content: (
       <div className={styles.slideContent}>
-        <h3>The Stars Are Aligned</h3>
-        
-        <div className={styles.marketForces}>
-          <div className={styles.force}>
-            <h4>NHS Digital Revolution</h4>
-            <p>40% increase in AI procurement driving unprecedented adoption of intelligent clinical tools</p>
+        <div className={styles.marketLayout}>
+          <div className={styles.marketLeft}>
+            <div className={styles.marketForces}>
+              <div className={styles.force}>
+                <h4>Exponential Pathway Complexity</h4>
+                <p>WHO/ICC revisions exceed human capacity for consistent application</p>
+              </div>
+              <div className={styles.force}>
+                <h4>Precision Medicine Demands</h4>
+                <p>Regulatory pressure for evidence-based diagnostic adherence</p>
+              </div>
+              <div className={styles.force}>
+                <h4>NHS Digital Transformation</h4>
+                <p>40% increase in AI procurement, focus on validated logic systems</p>
+              </div>
+            </div>
           </div>
-          <div className={styles.force}>
-            <h4>Molecular Medicine Explosion</h4>
-            <p>Rapid expansion of genetic testing creating an information crisis that demands AI solutions</p>
+          
+          <div className={styles.marketRight}>
+            <div className={styles.marketOpportunity}>
+              <div className={styles.marketValue}>£15B</div>
+              <h4>Diagnostic Logic Market by 2030</h4>
+              <div className={styles.marketSupport}>
+                <div className={styles.supportItem}>
+                  <span>Clinical decision support: £8.2B → £15.1B (2030)</span>
+                  <small><a href="https://www.marketsandmarkets.com/Market-Reports/clinical-decision-support-systems-market-651.html" target="_blank" rel="noopener noreferrer">MarketsandMarkets</a></small>
+                </div>
+                <div className={styles.supportItem}>
+                  <span>AI diagnostics growing 25% annually</span>
+                  <small><a href="https://www.mckinsey.com/industries/healthcare-systems-and-services/our-insights/transforming-healthcare-with-ai" target="_blank" rel="noopener noreferrer">McKinsey</a></small>
+                </div>
+                <div className={styles.supportItem}>
+                  <span>85% diagnostic errors from cognitive overload</span>
+                  <small><a href="https://www.nationalacademies.org/our-work/improving-diagnosis-in-health-care" target="_blank" rel="noopener noreferrer">Institute of Medicine</a></small>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        
-        <div className={styles.marketOpportunity}>
-          <div className={styles.marketValue}>£15B</div>
-          <h4>Global Market by 2030</h4>
-          <p>Haematology is the perfect entry point: simple blood sampling meets complex molecular genetics, creating ideal conditions for AI-powered diagnostic intelligence.</p>
         </div>
       </div>
     )
   },
   {
     id: 4,
-    title: "Unmatched Competitive Advantage",
-    subtitle: "Clinical Authority + Technical Excellence = Market Leadership",
+    title: "Unmatched Technical Architecture",
+    subtitle: "Formal Logic + AI Integration = Diagnostic Leadership",
     content: (
       <div className={styles.slideContent}>
-        <h3>Built to Win</h3>
+        <div className={styles.heroFeature}>
+          <div className={styles.mainAdvantage}>
+            <h3>Formal Logic Mastery</h3>
+            <p>We bring algorithmic trading precision to diagnostic pathway formalization—building complex, testable logic systems that know rather than guess.</p>
+          </div>
+          
+          <div className={styles.supportingPoints}>
+            <div className={styles.supportPoint}>
+              <h4>Clinical Integration</h4>
+              <p>Deep haematology partnerships ensure formalized pathways reflect real-world complexity</p>
+            </div>
+            <div className={styles.supportPoint}>
+              <h4>Systematic Validation</h4>
+              <p>Every pathway is formally tested, version-controlled, and validated against case libraries</p>
+            </div>
+          </div>
+        </div>
         
-        <div className={styles.advantages}>
-          <div className={styles.advantage}>
-            <h4>Deep Specialization</h4>
-            <p>Laser-focused on haematology—we understand every nuance of blood cancer genetics</p>
-          </div>
-          <div className={styles.advantage}>
-            <h4>NHS Integration</h4>
-            <p>Established clinical partnerships provide direct validation pathway and market access</p>
-          </div>
-          <div className={styles.advantage}>
-            <h4>Technical Mastery</h4>
-            <p>Algorithmic trading expertise applied to real-time diagnostic decision systems</p>
-          </div>
-          <div className={styles.advantage}>
-            <h4>Regulatory Pathway</h4>
-            <p>Clear route to MHRA approval through established medical device frameworks and clinical validation</p>
-          </div>
+        <div className={styles.architectureInsight}>
+          We're not building AI that guesses—we're building formal logic systems that know, with AI that extracts and validates.
         </div>
       </div>
     )
   },
   {
     id: 5,
-    title: "Platform Scalability",
-    subtitle: "Positioned for Expansion as Molecular Medicine Evolves",
+    title: "Effortless Clinical Integration",
+    subtitle: "Designed for Junior Clinicians, Trusted by Experts",
     content: (
       <div className={styles.slideContent}>
-        <h3>Beyond Haematology: A Platform Built for Growth</h3>
+        <h3>Zero Learning Curve, Maximum Confidence</h3>
         
-        <div className={styles.scalabilityVision}>
-          <p>Our LLM-powered extraction technology isn't limited to blood cancers. We're building the foundational infrastructure that can adapt and scale as molecular understanding advances across all cancer types.</p>
-        </div>
-        
-        <div className={styles.expansionPath}>
-          <div className={styles.expansionCard}>
-            <h4>Solid Tumors</h4>
-            <p>As biopsy-based molecular profiling becomes routine, our platform is ready to decode the complex genetic landscapes of solid cancers</p>
+        <div className={styles.advantages}>
+          <div className={styles.advantage}>
+            <h4>No Training Required</h4>
+            <p>Junior clinicians can achieve expert-level diagnostic accuracy from day one—the system guides them through each pathway naturally</p>
           </div>
-          <div className={styles.expansionCard}>
-            <h4>Emerging Biomarkers</h4>
-            <p>When new genetic markers and pathways are discovered, our AI can be rapidly trained to recognize and interpret these evolving diagnostic criteria</p>
+          <div className={styles.advantage}>
+            <h4>Intuitive Interface</h4>
+            <p>Upload report, get structured diagnosis. Complex logic runs invisibly in the background while clinicians see clear, actionable results</p>
           </div>
-          <div className={styles.expansionCard}>
-            <h4>Multi-Cancer Panels</h4>
-            <p>Our technology foundation supports the integration of pan-cancer genomic testing as it becomes clinically validated</p>
+          <div className={styles.advantage}>
+            <h4>Confidence Building</h4>
+            <p>Shows the reasoning behind each decision, helping junior doctors learn while ensuring they never miss critical diagnostic criteria</p>
           </div>
         </div>
         
-        <div className={styles.globalAccess}>
-          <h4>Global Accessibility</h4>
-          <p>Our platform can be tailored for developing economies and centers with limited diagnostic capabilities, democratizing access to advanced molecular intelligence regardless of local infrastructure constraints.</p>
-        </div>
-        
-        <div className={styles.strategicPosition}>
-          <h4>Strategic Positioning</h4>
-          <p>By mastering the most complex molecular diagnostics in haematology first, we're building the expertise and technology stack needed to lead the broader transformation of cancer diagnosis as the field evolves.</p>
+        <div className={styles.insight}>
+          Sophisticated formal logic, simple clinical experience—bridging the gap between complex guidelines and everyday practice.
         </div>
       </div>
     )
   },
   {
     id: 6,
-    title: "Clinical Trial Intelligence",
-    subtitle: "Connecting Patients to Hope Through Data",
+    title: "Platform Scalability",
+    subtitle: "Formal Logic Infrastructure Scales Across All Specialties",
     content: (
       <div className={styles.slideContent}>
-        <h3>Beyond Diagnosis: Transforming Patient Outcomes</h3>
-        
-        <div className={styles.trialVision}>
-          <p>Our diagnostic intelligence becomes a gateway to treatment opportunities. By understanding the precise molecular profile of each patient, we can automatically identify relevant clinical trials and cutting-edge therapies.</p>
+        <div className={styles.splitLayout}>
+          <div className={styles.leftColumn}>
+            <h3>Beyond Haematology</h3>
+            <p>Our formal logic architecture isn't specialty-specific. We're building foundational infrastructure for formalizing any complex diagnostic pathway.</p>
+            
+            <div className={styles.globalAccess}>
+              <h4>Global Standardization</h4>
+              <p>Consistent diagnostic pathway adherence regardless of local expertise, democratizing world-class diagnostic logic.</p>
+            </div>
+          </div>
+          
+          <div className={styles.rightColumn}>
+            <div className={styles.expansionPath}>
+              <div className={styles.expansionCard}>
+                <h4>Oncology Pathways</h4>
+                <p>Solid tumor criteria formalized using same logic framework</p>
+              </div>
+              <div className={styles.expansionCard}>
+                <h4>Guideline Evolution</h4>
+                <p>Rapid, tested implementation across pathway dependencies</p>
+              </div>
+              <div className={styles.expansionCard}>
+                <h4>Multi-Specialty Logic</h4>
+                <p>Core platform scales to cardiology, neurology, any specialty</p>
+              </div>
+            </div>
+          </div>
         </div>
         
-        <div className={styles.trialFeatures}>
-          <div className={styles.trialCard}>
-            <h4>Rare Disease Matching</h4>
-            <p>Patients with rare molecular subtypes are automatically flagged for specialized clinical trials and research programs</p>
-          </div>
-          <div className={styles.trialCard}>
-            <h4>Poor Prognosis Optimization</h4>
-            <p>When standard treatments offer limited hope, our system identifies experimental therapies and novel treatment protocols</p>
-          </div>
-          <div className={styles.trialCard}>
-            <h4>Real-Time Opportunities</h4>
-            <p>Continuous monitoring of global clinical trial databases ensures patients never miss potentially life-saving opportunities</p>
-          </div>
-
-        </div>
-        
-        <div className={styles.impactStatement}>
-          <h4>Transforming Hope into Action</h4>
-          <p>Every diagnostic decision becomes an opportunity to connect patients with the most advanced treatments available, turning molecular complexity into personalized pathways to better outcomes.</p>
+        <div className={styles.strategicPosition}>
+          <h4>Strategic Moat</h4>
+          <p>Mastering the most complex diagnostic domain first builds unassailable advantage in formal medical logic systems.</p>
         </div>
       </div>
     )
   },
   {
     id: 7,
-    title: "Investment Opportunity",
-    subtitle: "£3-5M Series A to Revolutionize Cancer Diagnosis",
+    title: "Clinical Validation Engine",
+    subtitle: "Continuous Learning Through Formal Logic Testing",
     content: (
       <div className={styles.slideContent}>
-        <h3>Your Capital, Our Innovation, Global Impact</h3>
+        <h3>Beyond Diagnosis: Systematic Pathway Improvement</h3>
         
-        <div className={styles.investmentGrid}>
-          <div className={styles.investmentCard}>
-            <h4>NHS Expansion</h4>
-            <p>Scale from pilot to multi-center validation across leading haematology units</p>
+        <div className={styles.trialVision}>
+          <p>Our platform doesn't just apply diagnostic logic—it continuously validates and improves pathway adherence through systematic case analysis, creating a learning loop that strengthens diagnostic certainty over time.</p>
+        </div>
+        
+        <div className={styles.trialFeatures}>
+          <div className={styles.trialCard}>
+            <h4>Pathway Validation</h4>
+            <p>Every diagnostic decision is traced through formal logic trees, creating comprehensive audit trails for regulatory compliance</p>
           </div>
-          <div className={styles.investmentCard}>
-            <h4>Regulatory Success</h4>
-            <p>Achieve MHRA approval and establish commercial deployment framework</p>
+          <div className={styles.trialCard}>
+            <h4>Logic Refinement</h4>
+            <p>Post-diagnostic AI review identifies pathway gaps and suggests formal logic improvements based on outcome data</p>
           </div>
-          <div className={styles.investmentCard}>
-            <h4>Team Growth</h4>
-            <p>Expand clinical expertise and accelerate platform development</p>
-          </div>
-          <div className={styles.investmentCard}>
-            <h4>Technology Leadership</h4>
-            <p>Advanced LLM capabilities and diagnostic pathway expansion</p>
+          <div className={styles.trialCard}>
+            <h4>Guideline Integration</h4>
+            <p>Systematic testing framework ensures new diagnostic criteria can be validated before clinical deployment</p>
           </div>
         </div>
         
-        <div className={styles.timeline}>
-          <div className={styles.timelineValue}>18 Months</div>
-          <h4>Path to Market Leadership</h4>
-          <p>NHS validation opens doors to private sector dominance and international expansion</p>
+        <div className={styles.impactStatement}>
+          <h4>Transforming Diagnostic Science</h4>
+          <p>We're creating the first systematic approach to diagnostic pathway formalization, testing, and evolution—turning medical guidelines into engineering-grade logic systems.</p>
         </div>
       </div>
     )
   },
   {
     id: 8,
-    title: "Transform Medicine With Us",
-    subtitle: "The Future of Precision Diagnosis Starts Now",
+    title: "Investment Opportunity",
+    subtitle: "£500k-£2M Seed to Formalize Medical Decision-Making",
     content: (
       <div className={styles.slideContent}>
-        <h3>Join the Revolution</h3>
-        
-        <div className={styles.vision}>
-          <p>We're not building another diagnostic tool. We're creating the intelligent layer that transforms molecular complexity into clinical clarity—making precision medicine accessible to every clinician, everywhere.</p>
+        <div className={styles.investmentLayout}>
+          <div className={styles.investmentHero}>
+            <div className={styles.fundingAmount}>£500k-£2M</div>
+            <div className={styles.fundingLabel}>Seed Round</div>
+            <div className={styles.fundingPurpose}>Capital to Build the Diagnostic Logic Revolution</div>
+          </div>
           
-          <div className={styles.futureVision}>
-            <h4>Imagine Tomorrow</h4>
-            <div className={styles.visionPoints}>
-              <div className={styles.visionPoint}>Complex genetic reports become instant clinical insights</div>
-              <div className={styles.visionPoint}>Diagnostic certainty replaces overwhelming complexity</div>
-              <div className={styles.visionPoint}>Precision medicine becomes universal, not elite</div>
+          <div className={styles.investmentFlow}>
+            <div className={styles.flowStep}>
+              <div className={styles.stepLabel}>Platform</div>
+              <div className={styles.stepDetail}>Scale formal pathway development across multiple haematology subspecialties</div>
+            </div>
+            
+            <div className={styles.flowConnector}></div>
+            
+            <div className={styles.flowStep}>
+              <div className={styles.stepLabel}>Validation</div>
+              <div className={styles.stepDetail}>Multi-center testing with comprehensive outcome tracking</div>
+            </div>
+            
+            <div className={styles.flowConnector}></div>
+            
+            <div className={styles.flowStep}>
+              <div className={styles.stepLabel}>Scale</div>
+              <div className={styles.stepDetail}>Expand logic engineering and clinical informatics capabilities</div>
+            </div>
+          </div>
+          
+          <div className={styles.milestoneBadge}>
+            <div className={styles.milestoneNumber}>18</div>
+            <div className={styles.milestoneUnit}>Months</div>
+            <div className={styles.milestoneGoal}>NHS Validation → Global Market</div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 9,
+    title: "Engineer the Future of Medicine",
+    subtitle: "Formal Logic + AI = Diagnostic Certainty at Scale",
+    content: (
+      <div className={styles.slideContent}>
+        <div className={styles.impactLayout}>
+          <div className={styles.visionStatement}>
+            <h3>Transforming Medical Guidelines into Engineering-Grade Logic Systems</h3>
+            <p>We're not building another AI diagnostic tool. We're creating the framework that makes complex medical decision-making as reliable as software engineering.</p>
+          </div>
+          
+          <div className={styles.transformationGrid}>
+            <div className={styles.transformPoint}>
+              <span className={styles.transformIcon}>⚡</span>
+              <h4>Formal Logic</h4>
+              <p>Diagnostic pathways become testable systems</p>
+            </div>
+            <div className={styles.transformPoint}>
+              <span className={styles.transformIcon}>🎯</span>
+              <h4>Verified Adherence</h4>
+              <p>Guideline compliance automatically auditable</p>
+            </div>
+            <div className={styles.transformPoint}>
+              <span className={styles.transformIcon}>🔬</span>
+              <h4>Engineering Reliability</h4>
+              <p>Medical decisions achieve software-grade precision</p>
             </div>
           </div>
         </div>
         
         <div className={styles.finalCta}>
-          <h4>Ready to Lead the Diagnostic Revolution?</h4>
+          <h4>Ready to Formalize Medical Logic?</h4>
           <div className={styles.ctaButtons}>
             <a href="mailto:invest@haem.io" className="button">Schedule Your Demo</a>
-            <a href="/results" className={styles.secondaryButton}>See Our Impact</a>
+            <a href="/results" className={styles.secondaryButton}>See Our Logic</a>
           </div>
         </div>
       </div>
@@ -306,7 +373,10 @@ export default function Pitch() {
       </a>
 
       {/* Main Slide */}
-      <div className={styles.slide}>
+      <div 
+        key={currentSlide} 
+        className={styles.slide}
+      >
         <div className="container">
           <div className={styles.slideHeader}>
             <h1><span className="text-gradient">{slide.title}</span></h1>

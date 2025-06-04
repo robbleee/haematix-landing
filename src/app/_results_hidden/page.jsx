@@ -5,7 +5,7 @@ import styles from './results.module.css';
 
 const diagnosticData = [
   {
-    episodeNumber: '34979',
+    episodeNumber: '1',
     hodsD: 'AML with CBFB::MYH11 fusion',
     hodsICC: 'Yes',
     hodsWHO: 'Yes',
@@ -17,7 +17,7 @@ const diagnosticData = [
     fixes: ''
   },
   {
-    episodeNumber: '34877',
+    episodeNumber: '2',
     hodsD: 'AML NOS',
     hodsICC: 'Yes',
     hodsWHO: 'No',
@@ -29,7 +29,7 @@ const diagnosticData = [
     fixes: 'System says no cytogenetics but then comments on then in MRD'
   },
   {
-    episodeNumber: '33419',
+    episodeNumber: '3',
     hodsD: 'AML with NPM1 mutation',
     hodsICC: 'Yes',
     hodsWHO: 'Yes',
@@ -41,7 +41,7 @@ const diagnosticData = [
     fixes: ''
   },
   {
-    episodeNumber: '34829',
+    episodeNumber: '4',
     hodsD: 'AML NOS, AML with maturation',
     hodsICC: 'Yes',
     hodsWHO: 'Yes',
@@ -53,7 +53,7 @@ const diagnosticData = [
     fixes: ''
   },
   {
-    episodeNumber: '33047',
+    episodeNumber: '5',
     hodsD: 'AML with NPM1 mutation',
     hodsICC: 'Yes',
     hodsWHO: 'Yes',
@@ -65,7 +65,7 @@ const diagnosticData = [
     fixes: ''
   },
   {
-    episodeNumber: '34013',
+    episodeNumber: '6',
     hodsD: 'MDS with increased blasts -2 (MDS-IB2 - WHO 2022) MDS/AML (ICC 2022)',
     hodsICC: 'Yes',
     hodsWHO: 'Yes',
@@ -77,7 +77,7 @@ const diagnosticData = [
     fixes: ''
   },
   {
-    episodeNumber: '34181',
+    episodeNumber: '7',
     hodsD: 'AML with mutated TP53 (ICC 2022)/ AML with MDS related cytogenetics (WHO 2022).',
     hodsICC: 'Yes',
     hodsWHO: 'Yes',
@@ -89,7 +89,7 @@ const diagnosticData = [
     fixes: ''
   },
   {
-    episodeNumber: '30818',
+    episodeNumber: '8',
     hodsD: 'AML with NPM1 mutation',
     hodsICC: 'Yes',
     hodsWHO: 'Yes',
@@ -101,7 +101,7 @@ const diagnosticData = [
     fixes: ''
   },
   {
-    episodeNumber: '30290',
+    episodeNumber: '9',
     hodsD: 'AML with NPM1 mutation.',
     hodsICC: 'Yes',
     hodsWHO: 'Yes',
@@ -113,7 +113,7 @@ const diagnosticData = [
     fixes: ''
   },
   {
-    episodeNumber: '32175',
+    episodeNumber: '10',
     hodsD: 'Acute Myeloid Leukaemia, myelodysplasia-related (WHO 2022)',
     hodsICC: 'No',
     hodsWHO: 'Yes',
@@ -125,7 +125,7 @@ const diagnosticData = [
     fixes: ''
   },
   {
-    episodeNumber: '26569',
+    episodeNumber: '11',
     hodsD: 'AML with NPM1 mutation',
     hodsICC: 'Yes',
     hodsWHO: 'Yes',
@@ -137,7 +137,7 @@ const diagnosticData = [
     fixes: ''
   },
   {
-    episodeNumber: '34304',
+    episodeNumber: '12',
     hodsD: 'MDS-IB2 (WHO5) / MDS/AML (ICC2022)',
     hodsICC: 'Yes',
     hodsWHO: 'Yes',
@@ -149,7 +149,7 @@ const diagnosticData = [
     fixes: ''
   },
   {
-    episodeNumber: '34390',
+    episodeNumber: '13',
     hodsD: 'AML with NPM1 mutation',
     hodsICC: 'Yes',
     hodsWHO: 'Yes',
@@ -161,7 +161,7 @@ const diagnosticData = [
     fixes: ''
   },
   {
-    episodeNumber: '31513',
+    episodeNumber: '14',
     hodsD: 'AML with myelodysplasia-related gene mutations',
     hodsICC: 'Yes',
     hodsWHO: 'No',
@@ -173,7 +173,7 @@ const diagnosticData = [
     fixes: ''
   },
   {
-    episodeNumber: '29897',
+    episodeNumber: '15',
     hodsD: 'AML',
     hodsICC: 'No',
     hodsWHO: 'No',
@@ -185,7 +185,7 @@ const diagnosticData = [
     fixes: ''
   },
   {
-    episodeNumber: '29936',
+    episodeNumber: '16',
     hodsD: 'AML with myelodysplasia-related gene mutation',
     hodsICC: 'Yes',
     hodsWHO: 'No',
@@ -197,116 +197,116 @@ const diagnosticData = [
     fixes: ''
   },
   {
-    episodeNumber: '19323',
-    hodsD: 'AML with NPM1 mutation',
-    hodsICC: 'Yes',
-    hodsWHO: 'Yes',
-    hodsMRD: 'No',
-    hodsGene: 'Yes',
-    haemTool: 'AML with NPM1 mutation (WHO 2022), AML with mutated NPM1 (ICC 2022)',
-    match: 'Yes',
-    comments: 'FLT3 mentioned',
-    fixes: ''
-  },
-  {
-    episodeNumber: '25756',
-    hodsD: 'hypocellular acute myeloid leukaemia',
-    hodsICC: 'No',
-    hodsWHO: 'No',
-    hodsMRD: 'No',
-    hodsGene: 'NA',
-    haemTool: ' Acute myeloid leukaemia with maturation (WHO 2022), AML, NOS (ICC 2022)',
-    match: 'No',
-    comments: 'Lack of detail in HODS report',
-    fixes: ''
-  },
-  {
-    episodeNumber: '33942',
-    hodsD: 'AML with KMT2A gene rearrangement (ICC, WHO 2022).',
-    hodsICC: 'Yes',
-    hodsWHO: 'Yes',
-    hodsMRD: 'Yes',
-    hodsGene: 'NA',
-    haemTool: 'AML with KMT2A rearrangement (WHO 2022), AML with other KMT2A rearrangements(ICC 2022)',
-    match: 'Yes',
-    comments: '',
-    fixes: ''
-  },
-  {
-    episodeNumber: '34011',
-    hodsD: 'AML with NPM1 mutation',
+    episodeNumber: '17',
+    hodsD: 'AML with mutated CEBPA (ICC 2022) / AML with CEBPA mutation (WHO 2022)',
     hodsICC: 'Yes',
     hodsWHO: 'Yes',
     hodsMRD: 'Yes',
     hodsGene: 'Yes',
-    haemTool: 'AML with NPM1 mutation (WHO 2022), AML with mutated NPM1 (ICC 2022)',
-    match: '',
-    comments: 'Also mentioned FLT3',
+    haemTool: 'AML with CEBPA mutation (WHO 2022), AML with mutated CEBPA (ICC 2022)',
+    match: 'Yes',
+    comments: 'advice given re potentially germline CEBPA',
     fixes: ''
   },
   {
-    episodeNumber: '33938',
-    hodsD: ' AML, myelodyplasia related (WHO 2022)/AML with myelodsyplasia related gene mutation (ICC 2022)',
+    episodeNumber: '18',
+    hodsD: 'AML with myelodysplasia-related cytogenetic abnormality (ICC 2022) AML, myelodysplasia-related (WHO 2022)',
     hodsICC: 'Yes',
     hodsWHO: 'Yes',
     hodsMRD: 'Yes',
-    hodsGene: 'NA',
-    haemTool: ' AML, myelodysplasia related (WHO 2022), AML with myelodysplasia related gene mutation (ICC 2022)',
-    match: 'Yes',
-    comments: '',
-    fixes: ''
-  },
-  {
-    episodeNumber: '33781',
-    hodsD: 'MDS IB2 (WHO 2022), MDS/AML (ICC 2022)',
-    hodsICC: 'Yes',
-    hodsWHO: 'Yes',
-    hodsMRD: 'Yes',
-    hodsGene: 'NA',
-    haemTool: 'MDS with increased blasts 2 (WHO 2022), MDS/AML with myelodysplasia related gene mutation (ICC 2022)',
-    match: 'Yes',
-    comments: '',
-    fixes: ''
-  },
-  {
-    episodeNumber: '34100',
-    hodsD: 'AML myelodysplasia related (WHO 2022), AML myelodysplasia related gene mutation (ICC 2022)',
-    hodsICC: 'Yes',
-    hodsWHO: 'Yes',
-    hodsMRD: 'Yes',
-    hodsGene: 'NA',
-    haemTool: ' AML, myelodysplasia related (WHO 2022), AML with myelodysplasia related gene mutation (ICC 2022)',
-    match: 'Yes',
-    comments: '',
-    fixes: ''
-  },
-  {
-    episodeNumber: '34324',
-    hodsD: 'AML, myelodysplasia related, post cytotoxic therapy (WHO 2022), AML with myelodysplasia related cytogenetic abnormality, therapy related (ICC, 2022) ',
-    hodsICC: 'Yes',
-    hodsWHO: 'Yes',
-    hodsMRD: 'No',
     hodsGene: 'No',
-    haemTool: 'AML, myelodysplasia related, previous cytotoxic therapy (WHO 2022), AML with mutated TP53, therapy related (ICC 2022)',
-    match: 'No',
-    comments: 'Need to discuss who is correct here',
+    haemTool: 'AML, myelodysplasia related (WHO 2022), AML with myelodysplasia related cytogenetic abnormality (ICC 2022)',
+    match: 'Yes',
+    comments: 'NRAS mutation advice - but no mention in classification',
     fixes: ''
   },
   {
-    episodeNumber: '34680',
-    hodsD: 'AML with CBFB::MYH11 fusion (ICC 2022, WHO 2022) ',
+    episodeNumber: '19',
+    hodsD: 'AML with t(8;21)',
     hodsICC: 'Yes',
     hodsWHO: 'Yes',
     hodsMRD: 'Yes',
     hodsGene: 'NA',
-    haemTool: ' AML with CBFB::MYH11 fusion (WHO 2022), AML with inv(16)(p13.1q22) or t(16;16)(p13.1;q22)/CBFB::MYH11 (ICC 2022)',
+    haemTool: 'AML with RUNX1::RUNX1T1 fusion (WHO 2022), AML with t(8;21)(q22;q22.1)/RUNX1::RUNX1T1 (ICC 2022)',
+    match: 'Yes',
+    comments: 'KIT gene mentioned',
+    fixes: ''
+  },
+  {
+    episodeNumber: '20',
+    hodsD: 'Acute myeloid leukaemia, myelodysplasia-related (WHO 2022)/ AML with myelodysplasia-related cytogenetic abnormality (ICC 2022)',
+    hodsICC: 'Yes',
+    hodsWHO: 'Yes',
+    hodsMRD: 'Yes',
+    hodsGene: 'No',
+    haemTool: 'AML, myelodysplasia related (WHO 2022), AML with myelodysplasia related cytogenetic abnormality (ICC 2022)',
+    match: 'Yes',
+    comments: 'NF1 mutation mentioned',
+    fixes: ''
+  },
+  {
+    episodeNumber: '21',
+    hodsD: 'AML, myelodysplasia related',
+    hodsICC: 'Yes',
+    hodsWHO: 'Yes',
+    hodsMRD: 'Yes',
+    hodsGene: 'No',
+    haemTool: 'AML, myelodysplasia related (WHO 2022), AML with myelodysplasia related gene mutation (ICC 2022)',
     match: 'Yes',
     comments: '',
     fixes: ''
   },
   {
-    episodeNumber: '35279',
-    hodsD: 'AML, myelodysplasia related, progressed from MDS (WHO,2022), AML with myelodysplasia related gene mutation, arising post MDS (ICC 2022)',
+    episodeNumber: '22',
+    hodsD: 'Acute myeloid leukaemia myelodysplasia-related (WHO 2022)/ AML with myelodysplasia-related gene mutation (ICC 2022)',
+    hodsICC: 'Yes',
+    hodsWHO: 'Yes',
+    hodsMRD: 'Yes',
+    hodsGene: 'No',
+    haemTool: 'AML, myelodysplasia related (WHO 2022), AML with myelodysplasia related gene mutation (ICC 2022)',
+    match: 'Yes',
+    comments: '',
+    fixes: ''
+  },
+  {
+    episodeNumber: '23',
+    hodsD: 'AML with myelodysplasia related cytogenetic abnormality (ICC 2022) / AML, myelodysplasia related (WHO 2022)',
+    hodsICC: 'Yes',
+    hodsWHO: 'Yes',
+    hodsMRD: 'Yes',
+    hodsGene: 'Yes',
+    haemTool: 'AML, myelodysplasia related (WHO 2022), AML with myelodysplasia related cytogenetic abnormality (ICC 2022)',
+    match: 'Yes',
+    comments: '',
+    fixes: ''
+  },
+  {
+    episodeNumber: '24',
+    hodsD: 'AML, NOS, AML with recurrent genetic abnormalities',
+    hodsICC: 'Yes',
+    hodsWHO: 'Yes',
+    hodsMRD: 'Yes',
+    hodsGene: 'Yes',
+    haemTool: 'AML with CEBPA mutation (WHO 2022), AML with mutated CEBPA (ICC 2022)',
+    match: 'No',
+    comments: '',
+    fixes: ''
+  },
+  {
+    episodeNumber: '25',
+    hodsD: 'AML with myelodysplasia-related gene mutation',
+    hodsICC: 'Yes',
+    hodsWHO: 'No',
+    hodsMRD: 'Yes',
+    hodsGene: 'Yes',
+    haemTool: 'AML, myelodysplasia related (WHO 2022), AML with myelodysplasia related gene mutation (ICC 2022)',
+    match: 'Yes',
+    comments: 'DDX41 advice given',
+    fixes: ''
+  },
+  {
+    episodeNumber: '26',
+    hodsD: 'AML, myelodysplasia related (WHO2022) AML with myelodysplasia-related gene mutation (ICC2022)',
     hodsICC: 'Yes',
     hodsWHO: 'Yes',
     hodsMRD: 'Yes',
@@ -317,7 +317,7 @@ const diagnosticData = [
     fixes: ''
   },
   {
-    episodeNumber: '35017',
+    episodeNumber: '27',
     hodsD: 'Acute erythroid leukaemia, post cytotoxic therapy (WHO, 2022), AML with TP53 mutation, therapy related (ICC 2022)',
     hodsICC: 'Yes',
     hodsWHO: 'Yes',
@@ -329,7 +329,7 @@ const diagnosticData = [
     fixes: ''
   },
   {
-    episodeNumber: '35303',
+    episodeNumber: '28',
     hodsD: 'AML with TP53 mutation (ICC 2022)',
     hodsICC: 'Yes',
     hodsWHO: 'No',
@@ -424,7 +424,7 @@ export default function Results() {
             <div className={styles.searchBox}>
               <input
                 type="text"
-                placeholder="Search by episode number, diagnosis, or comments..."
+                placeholder="Search by case number, diagnosis, or comments..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className={styles.searchInput}
@@ -450,7 +450,7 @@ export default function Results() {
               <thead>
                 <tr>
                   <th onClick={() => handleSort('episodeNumber')} className={styles.sortable}>
-                    Episode #
+                    Case #
                     {sortField === 'episodeNumber' && (
                       <span className={styles.sortIcon}>
                         {sortDirection === 'asc' ? '↑' : '↓'}

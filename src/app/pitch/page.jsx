@@ -339,7 +339,7 @@ const pitchSlides = [
         <div className={styles.finalCta}>
           <h4>Ready to Formalize Medical Logic?</h4>
           <div className={styles.ctaButtons}>
-            <a href="/results" className={styles.secondaryButton}>See Our Logic</a>
+            <a href="/#documentation" className={styles.secondaryButton}>View Documentation</a>
           </div>
         </div>
       </div>

@@ -196,6 +196,121 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Disparity Analysis Section */}
+      <section style={{
+        backgroundColor: '#f8f9fa',
+        padding: '4rem 0',
+        borderTop: '1px solid rgba(0, 150, 136, 0.1)'
+      }}>
+        <div className="container">
+          <div style={{
+            textAlign: 'center',
+            maxWidth: '800px',
+            margin: '0 auto'
+          }}>
+            <h2 style={{
+              fontSize: '2.25rem',
+              fontWeight: 'bold',
+              marginBottom: '1rem',
+              color: '#009688'
+            }}>Classification Analysis</h2>
+            
+            <p style={{
+              fontSize: '1.1rem',
+              color: '#4a5568',
+              lineHeight: '1.6',
+              marginBottom: '2rem'
+            }}>
+              Explore comprehensive disparity analysis between WHO 2022 and ICC 2022 classification systems, featuring detailed visualizations and clinical impact assessments across 204 test cases.
+            </p>
+            
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+              gap: '2rem',
+              marginBottom: '3rem'
+            }}>
+              <div style={{
+                backgroundColor: 'white',
+                borderRadius: '1rem',
+                padding: '1.5rem',
+                boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
+                border: '1px solid rgba(0, 150, 136, 0.15)'
+              }}>
+                <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📊</div>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#009688', marginBottom: '0.5rem' }}>204</h3>
+                <p style={{ fontSize: '0.9rem', color: '#4a5568' }}>Total Test Cases</p>
+              </div>
+              
+              <div style={{
+                backgroundColor: 'white',
+                borderRadius: '1rem',
+                padding: '1.5rem',
+                boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
+                border: '1px solid rgba(0, 150, 136, 0.15)'
+              }}>
+                <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>⚠️</div>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#f59e0b', marginBottom: '0.5rem' }}>83</h3>
+                <p style={{ fontSize: '0.9rem', color: '#4a5568' }}>Classification Differences</p>
+              </div>
+              
+              <div style={{
+                backgroundColor: 'white',
+                borderRadius: '1rem',
+                padding: '1.5rem',
+                boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
+                border: '1px solid rgba(0, 150, 136, 0.15)'
+              }}>
+                <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🔥</div>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#ef4444', marginBottom: '0.5rem' }}>42</h3>
+                <p style={{ fontSize: '0.9rem', color: '#4a5568' }}>High Significance</p>
+              </div>
+              
+              <div style={{
+                backgroundColor: 'white',
+                borderRadius: '1rem',
+                padding: '1.5rem',
+                boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
+                border: '1px solid rgba(0, 150, 136, 0.15)'
+              }}>
+                <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🎯</div>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#8b5cf6', marginBottom: '0.5rem' }}>14</h3>
+                <p style={{ fontSize: '0.9rem', color: '#4a5568' }}>Focus Areas</p>
+              </div>
+            </div>
+            
+            <a 
+              href="/testing-stats" 
+              className="button" 
+              style={{
+                backgroundColor: '#009688',
+                color: 'white',
+                padding: '1rem 2rem',
+                borderRadius: '0.5rem',
+                textDecoration: 'none',
+                display: 'inline-block',
+                fontWeight: '600',
+                fontSize: '1.1rem',
+                transition: 'all 0.2s ease',
+                boxShadow: '0 4px 10px rgba(0, 150, 136, 0.2)'
+              }}
+              onMouseOver={(e) => {
+                e.target.style.backgroundColor = '#00796b';
+                e.target.style.transform = 'translateY(-2px)';
+                e.target.style.boxShadow = '0 6px 15px rgba(0, 150, 136, 0.3)';
+              }}
+              onMouseOut={(e) => {
+                e.target.style.backgroundColor = '#009688';
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = '0 4px 10px rgba(0, 150, 136, 0.2)';
+              }}
+            >
+              🚀 Explore Testing Suite & Analysis
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Document Access Section */}
       <div id="documentation" className="container" style={{
         marginTop: '3rem', // Keep space above

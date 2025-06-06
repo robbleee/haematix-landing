@@ -14,7 +14,7 @@ export default function TestingSuitePage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [disparitySearchTerm, setDisparitySearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
-  const [testType, setTestType] = useState('synthetic_positive_unit_tests');
+  const [activeTab, setActiveTab] = useState('individual');
 
   useEffect(() => {
     fetchTestData();
@@ -218,7 +218,7 @@ export default function TestingSuitePage() {
                   padding: '0.25rem'
                 }}>
                   <button
-                    onClick={() => setTestType('synthetic_positive_unit_tests')}
+                    onClick={() => setActiveTab('individual')}
                     style={{
                       padding: '0.75rem 1.5rem',
                       fontSize: '0.875rem',
@@ -227,14 +227,14 @@ export default function TestingSuitePage() {
                       border: 'none',
                       cursor: 'pointer',
                       transition: 'var(--transition)',
-                      backgroundColor: testType === 'synthetic_positive_unit_tests' ? 'var(--primary-color)' : 'transparent',
-                      color: testType === 'synthetic_positive_unit_tests' ? 'white' : 'var(--text-color)'
+                      backgroundColor: activeTab === 'individual' ? 'var(--primary-color)' : 'transparent',
+                      color: activeTab === 'individual' ? 'white' : 'var(--text-color)'
                     }}
                   >
-                    Synthetic Positive Unit Tests
+                    Individual Tests
                   </button>
                   <button
-                    onClick={() => setTestType('real_world_validation')}
+                    onClick={() => setActiveTab('differences')}
                     style={{
                       padding: '0.75rem 1.5rem',
                       fontSize: '0.875rem',
@@ -243,11 +243,11 @@ export default function TestingSuitePage() {
                       border: 'none',
                       cursor: 'pointer',
                       transition: 'var(--transition)',
-                      backgroundColor: testType === 'real_world_validation' ? 'var(--primary-color)' : 'transparent',
-                      color: testType === 'real_world_validation' ? 'white' : 'var(--text-color)'
+                      backgroundColor: activeTab === 'differences' ? 'var(--primary-color)' : 'transparent',
+                      color: activeTab === 'differences' ? 'white' : 'var(--text-color)'
                     }}
                   >
-                    Real-world Validation (Coming Soon)
+                    WHO vs ICC Disparities ({disparityData?.test_results?.length || 0})
                   </button>
                 </div>
               </div>
@@ -301,7 +301,7 @@ export default function TestingSuitePage() {
 
         <section style={{ padding: '3rem 0' }}>
           <div className="wide-container">
-            {testType === 'synthetic_positive_unit_tests' ? (
+            {activeTab === 'individual' ? (
               <div className="responsive-grid">
                 <div style={{
                   backgroundColor: 'var(--background-color)',
@@ -319,6 +319,35 @@ export default function TestingSuitePage() {
                     Test Configuration
                   </h2>
                   
+                  <div style={{ marginBottom: '1.5rem' }}>
+                    <label style={{ 
+                      display: 'block', 
+                      fontSize: '0.875rem', 
+                      fontWeight: '600', 
+                      color: 'var(--text-color)', 
+                      marginBottom: '0.5rem' 
+                    }}>
+                      Test Type
+                    </label>
+                    <select
+                      value="synthetic_positive_unit_tests"
+                      disabled
+                      style={{
+                        width: '100%',
+                        padding: '0.75rem',
+                        border: '1px solid #d1d5db',
+                        borderRadius: 'var(--border-radius)',
+                        backgroundColor: '#f9fafb',
+                        color: '#6b7280',
+                        fontSize: '0.875rem',
+                        cursor: 'not-allowed'
+                      }}
+                    >
+                      <option value="synthetic_positive_unit_tests">Synthetic Positive Unit Tests</option>
+                      <option value="real_world_validation" disabled>Real-world Validation (Coming Soon)</option>
+                    </select>
+                  </div>
+
                   <div style={{ marginBottom: '1.5rem' }}>
                     <label style={{ 
                       display: 'block', 
@@ -757,13 +786,477 @@ export default function TestingSuitePage() {
                 </div>
               </div>
             ) : (
-              <div style={{ 
-                textAlign: 'center', 
-                color: '#9ca3af', 
-                padding: '2rem 0',
-                fontSize: '0.875rem'
-              }}>
-                <p>Real-world validation content will be displayed here</p>
+              // Disparity Testing view with 3-panel layout
+              <div className="responsive-grid">
+                {/* Left Panel - Test Configuration */}
+                <div style={{
+                  backgroundColor: 'var(--background-color)',
+                  borderRadius: 'var(--border-radius)',
+                  boxShadow: 'var(--box-shadow)',
+                  padding: '2rem',
+                  height: 'fit-content'
+                }}>
+                  <h2 style={{ 
+                    fontSize: '1.25rem', 
+                    fontWeight: 'bold', 
+                    color: 'var(--text-color)', 
+                    marginBottom: '0.5rem' 
+                  }}>
+                    Disparity Configuration
+                  </h2>
+                  
+                  {/* Filter by Difference Type */}
+                  <div style={{ marginBottom: '1.5rem' }}>
+                    <label style={{ 
+                      display: 'block', 
+                      fontSize: '0.875rem', 
+                      fontWeight: '600', 
+                      color: 'var(--text-color)', 
+                      marginBottom: '0.5rem' 
+                    }}>
+                      Filter by Result
+                    </label>
+                    <select
+                      value={disparityFilter}
+                      onChange={(e) => setDisparityFilter(e.target.value)}
+                      style={{
+                        width: '100%',
+                        padding: '0.75rem',
+                        border: '1px solid #d1d5db',
+                        borderRadius: 'var(--border-radius)',
+                        backgroundColor: 'var(--background-color)',
+                        color: 'var(--text-color)',
+                        fontSize: '0.875rem'
+                      }}
+                    >
+                      <option value="all">All Tests</option>
+                      <option value="different">Different Results</option>
+                      <option value="equivalent">Equivalent Results</option>
+                      <option value="high_significance">High Significance</option>
+                      <option value="medium_significance">Medium Significance</option>
+                    </select>
+                  </div>
+
+                  {/* Search */}
+                  <div style={{ marginBottom: '1.5rem' }}>
+                    <label style={{ 
+                      display: 'block', 
+                      fontSize: '0.875rem', 
+                      fontWeight: '600', 
+                      color: 'var(--text-color)', 
+                      marginBottom: '0.5rem' 
+                    }}>
+                      Search Tests
+                    </label>
+                    <input
+                      type="text"
+                      value={disparitySearchTerm}
+                      onChange={(e) => setDisparitySearchTerm(e.target.value)}
+                      placeholder="Search by test ID, classification, or focus..."
+                      style={{
+                        width: '100%',
+                        padding: '0.75rem',
+                        border: '1px solid #d1d5db',
+                        borderRadius: 'var(--border-radius)',
+                        backgroundColor: 'var(--background-color)',
+                        color: 'var(--text-color)',
+                        fontSize: '0.875rem'
+                      }}
+                    />
+                  </div>
+
+                  {/* Summary Stats */}
+                  {disparityData?.summary && (
+                    <div style={{
+                      backgroundColor: 'var(--secondary-background-color)',
+                      borderRadius: 'var(--border-radius)',
+                      padding: '1rem'
+                    }}>
+                      <h3 style={{ 
+                        fontWeight: '600', 
+                        color: 'var(--text-color)', 
+                        marginBottom: '0.75rem',
+                        fontSize: '0.875rem'
+                      }}>
+                        Summary Statistics
+                      </h3>
+                      <div style={{ fontSize: '0.75rem', color: '#6b7280', marginBottom: '0.5rem' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
+                          <span>Total Tests:</span>
+                          <span style={{ fontWeight: '600' }}>{disparityData.summary.total_tests}</span>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
+                          <span>Different Results:</span>
+                          <span style={{ fontWeight: '600', color: '#dc2626' }}>{disparityData.summary.different_results}</span>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
+                          <span>Equivalent Results:</span>
+                          <span style={{ fontWeight: '600', color: '#059669' }}>{disparityData.summary.equivalent_results}</span>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                          <span>High Significance:</span>
+                          <span style={{ fontWeight: '600', color: '#dc2626' }}>{disparityData.summary.high_significance_differences}</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Middle Panel - Test Cases List */}
+                <div style={{
+                  backgroundColor: 'var(--background-color)',
+                  borderRadius: 'var(--border-radius)',
+                  boxShadow: 'var(--box-shadow)',
+                  padding: '2rem',
+                  height: 'fit-content'
+                }}>
+                  <h2 style={{ 
+                    fontSize: '1.25rem', 
+                    fontWeight: 'bold', 
+                    color: 'var(--text-color)', 
+                    marginBottom: '1.5rem' 
+                  }}>
+                    Disparity Cases ({filteredDisparityTests.length})
+                  </h2>
+                  
+                  <div style={{ 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    gap: '0.75rem', 
+                    maxHeight: '600px', 
+                    overflowY: 'auto' 
+                  }}>
+                    {filteredDisparityTests.map((test, index) => (
+                      <div
+                        key={test.test_id || index}
+                        onClick={() => setSelectedDisparityTest(test)}
+                        style={{
+                          padding: '1rem',
+                          border: selectedDisparityTest === test ? '2px solid var(--primary-color)' : '1px solid #e5e7eb',
+                          borderRadius: 'var(--border-radius)',
+                          cursor: 'pointer',
+                          transition: 'var(--transition)',
+                          backgroundColor: selectedDisparityTest === test ? 'rgba(0, 150, 136, 0.05)' : 'var(--background-color)'
+                        }}
+                        onMouseOver={(e) => {
+                          if (selectedDisparityTest !== test) {
+                            e.target.style.backgroundColor = 'var(--secondary-background-color)';
+                          }
+                        }}
+                        onMouseOut={(e) => {
+                          if (selectedDisparityTest !== test) {
+                            e.target.style.backgroundColor = 'var(--background-color)';
+                          }
+                        }}
+                      >
+                        <div style={{ 
+                          display: 'flex', 
+                          justifyContent: 'space-between', 
+                          alignItems: 'flex-start', 
+                          marginBottom: '0.5rem' 
+                        }}>
+                          <h3 style={{ 
+                            fontSize: '0.875rem', 
+                            fontWeight: '600', 
+                            color: 'var(--text-color)',
+                            wordWrap: 'break-word',
+                            overflowWrap: 'break-word',
+                            lineHeight: '1.4'
+                          }}>
+                            {test.test_id}
+                          </h3>
+                          <span style={{
+                            padding: '0.25rem 0.5rem',
+                            fontSize: '0.6875rem',
+                            borderRadius: '9999px',
+                            backgroundColor: test.are_equivalent === false ? 'rgba(239, 68, 68, 0.1)' : 'rgba(16, 185, 129, 0.1)',
+                            color: test.are_equivalent === false ? '#dc2626' : '#059669',
+                            fontWeight: '600'
+                          }}>
+                            {test.are_equivalent === false ? 'DIFFERENT' : 'EQUIVALENT'}
+                          </span>
+                        </div>
+                        <p style={{ fontSize: '0.75rem', color: '#9ca3af', marginBottom: '0.25rem' }}>
+                          Focus: {test.test_focus}
+                        </p>
+                        <p style={{ fontSize: '0.75rem', color: '#9ca3af' }}>
+                          Blasts: {test.input_data?.blasts_percentage || 'N/A'}%
+                        </p>
+                        {test.difference_analysis && (
+                          <p style={{ 
+                            fontSize: '0.6875rem', 
+                            color: test.difference_analysis.significance === 'high' ? '#dc2626' : 
+                                   test.difference_analysis.significance === 'medium' ? '#f59e0b' : '#6b7280',
+                            fontWeight: '600',
+                            marginTop: '0.25rem'
+                          }}>
+                            {test.difference_analysis.significance?.toUpperCase()} SIGNIFICANCE
+                          </p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right Panel - Test Details */}
+                <div style={{
+                  backgroundColor: 'var(--background-color)',
+                  borderRadius: 'var(--border-radius)',
+                  boxShadow: 'var(--box-shadow)',
+                  padding: '2rem',
+                  height: 'fit-content',
+                  minWidth: 0,
+                  overflow: 'hidden'
+                }}>
+                  <h2 style={{ 
+                    fontSize: '1.25rem', 
+                    fontWeight: 'bold', 
+                    color: 'var(--text-color)', 
+                    marginBottom: '1.5rem' 
+                  }}>
+                    Disparity Details
+                  </h2>
+                  
+                  {selectedDisparityTest ? (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                      {/* Test Header */}
+                      <div>
+                        <h3 style={{ 
+                          fontSize: '1.125rem', 
+                          fontWeight: '600', 
+                          color: 'var(--text-color)', 
+                          marginBottom: '0.5rem',
+                          wordWrap: 'break-word',
+                          overflowWrap: 'break-word'
+                        }}>
+                          {selectedDisparityTest.test_id}
+                        </h3>
+                        <p style={{ 
+                          fontSize: '0.875rem', 
+                          color: '#6b7280',
+                          wordWrap: 'break-word',
+                          overflowWrap: 'break-word'
+                        }}>
+                          Focus: {selectedDisparityTest.test_focus}
+                        </p>
+                      </div>
+
+                      {/* WHO vs ICC Classifications */}
+                      <div>
+                        <h4 style={{ fontWeight: '600', color: 'var(--text-color)', marginBottom: '0.5rem' }}>
+                          Classification Comparison
+                        </h4>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                          <div>
+                            <p style={{ fontSize: '0.875rem', fontWeight: '600', color: '#6b7280' }}>WHO 2022:</p>
+                            <p style={{
+                              fontSize: '0.875rem',
+                              color: 'var(--text-color)',
+                              backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                              padding: '0.5rem',
+                              borderRadius: 'var(--border-radius)',
+                              wordWrap: 'break-word',
+                              overflowWrap: 'break-word',
+                              lineHeight: '1.4'
+                            }}>
+                              {selectedDisparityTest.who_classification}
+                            </p>
+                          </div>
+                          <div>
+                            <p style={{ fontSize: '0.875rem', fontWeight: '600', color: '#6b7280' }}>ICC 2022:</p>
+                            <p style={{
+                              fontSize: '0.875rem',
+                              color: 'var(--text-color)',
+                              backgroundColor: 'rgba(0, 150, 136, 0.1)',
+                              padding: '0.5rem',
+                              borderRadius: 'var(--border-radius)',
+                              wordWrap: 'break-word',
+                              overflowWrap: 'break-word',
+                              lineHeight: '1.4'
+                            }}>
+                              {selectedDisparityTest.icc_classification}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Difference Analysis */}
+                      {selectedDisparityTest.difference_analysis && (
+                        <div>
+                          <h4 style={{ fontWeight: '600', color: 'var(--text-color)', marginBottom: '0.5rem' }}>
+                            Difference Analysis
+                          </h4>
+                          <div style={{
+                            backgroundColor: 'var(--secondary-background-color)',
+                            borderRadius: 'var(--border-radius)',
+                            padding: '0.75rem'
+                          }}>
+                            <div style={{ fontSize: '0.875rem', color: 'var(--text-color)' }}>
+                              <p style={{ marginBottom: '0.5rem' }}>
+                                <strong>Significance:</strong> {selectedDisparityTest.difference_analysis.significance}
+                              </p>
+                              <p style={{ marginBottom: '0.5rem' }}>
+                                <strong>Clinical Impact Score:</strong> {selectedDisparityTest.difference_analysis.clinical_impact_score}/10
+                              </p>
+                              <p style={{ marginBottom: '0.5rem' }}>
+                                <strong>Difference Type:</strong> {selectedDisparityTest.difference_analysis.difference_type}
+                              </p>
+                              {selectedDisparityTest.difference_analysis.clinical_consequences && selectedDisparityTest.difference_analysis.clinical_consequences.length > 0 && (
+                                <div>
+                                  <strong>Clinical Consequences:</strong>
+                                  <ul style={{ marginTop: '0.25rem', paddingLeft: '1.5rem', fontSize: '0.8rem' }}>
+                                    {selectedDisparityTest.difference_analysis.clinical_consequences.map((consequence, i) => (
+                                      <li key={i} style={{ marginBottom: '0.25rem' }}>{consequence}</li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* WHO Derivation */}
+                      {selectedDisparityTest.who_derivation && (
+                        <div>
+                          <h4 style={{ fontWeight: '600', color: 'var(--text-color)', marginBottom: '0.5rem' }}>
+                            WHO 2022 Derivation Logic
+                          </h4>
+                          <div style={{
+                            backgroundColor: 'rgba(59, 130, 246, 0.05)',
+                            borderRadius: 'var(--border-radius)',
+                            padding: '0.75rem',
+                            maxHeight: '200px',
+                            overflowY: 'auto',
+                            overflowX: 'hidden'
+                          }}>
+                            <ol style={{ 
+                              fontSize: '0.75rem', 
+                              color: 'var(--text-color)', 
+                              margin: 0,
+                              paddingLeft: '1rem',
+                              lineHeight: '1.5'
+                            }}>
+                              {selectedDisparityTest.who_derivation.map((step, index) => (
+                                <li key={index} style={{ 
+                                  marginBottom: '0.5rem',
+                                  wordWrap: 'break-word',
+                                  overflowWrap: 'break-word'
+                                }}>
+                                  {step}
+                                </li>
+                              ))}
+                            </ol>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* ICC Derivation */}
+                      {selectedDisparityTest.icc_derivation && (
+                        <div>
+                          <h4 style={{ fontWeight: '600', color: 'var(--text-color)', marginBottom: '0.5rem' }}>
+                            ICC 2022 Derivation Logic
+                          </h4>
+                          <div style={{
+                            backgroundColor: 'rgba(0, 150, 136, 0.05)',
+                            borderRadius: 'var(--border-radius)',
+                            padding: '0.75rem',
+                            maxHeight: '200px',
+                            overflowY: 'auto',
+                            overflowX: 'hidden'
+                          }}>
+                            <ol style={{ 
+                              fontSize: '0.75rem', 
+                              color: 'var(--text-color)', 
+                              margin: 0,
+                              paddingLeft: '1rem',
+                              lineHeight: '1.5'
+                            }}>
+                              {selectedDisparityTest.icc_derivation.map((step, index) => (
+                                <li key={index} style={{ 
+                                  marginBottom: '0.5rem',
+                                  wordWrap: 'break-word',
+                                  overflowWrap: 'break-word'
+                                }}>
+                                  {step}
+                                </li>
+                              ))}
+                            </ol>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Input Data */}
+                      <div>
+                        <h4 style={{ fontWeight: '600', color: 'var(--text-color)', marginBottom: '0.5rem' }}>Input Data</h4>
+                        <div style={{
+                          backgroundColor: 'var(--secondary-background-color)',
+                          borderRadius: 'var(--border-radius)',
+                          padding: '0.75rem',
+                          overflow: 'auto',
+                          maxHeight: '200px'
+                        }}>
+                          <pre style={{ 
+                            fontSize: '0.75rem', 
+                            color: 'var(--text-color)', 
+                            whiteSpace: 'pre-wrap',
+                            wordWrap: 'break-word',
+                            overflowWrap: 'break-word',
+                            fontFamily: 'monospace',
+                            margin: 0,
+                            lineHeight: '1.4'
+                          }}>
+                            {JSON.stringify(selectedDisparityTest.input_data, null, 2)}
+                          </pre>
+                        </div>
+                      </div>
+
+                      {/* Status */}
+                      <div>
+                        <h4 style={{ fontWeight: '600', color: 'var(--text-color)', marginBottom: '0.5rem' }}>
+                          Test Status
+                        </h4>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                          <span style={{
+                            padding: '0.5rem 0.75rem',
+                            fontSize: '0.875rem',
+                            borderRadius: '9999px',
+                            backgroundColor: selectedDisparityTest.are_equivalent === false ? 'rgba(239, 68, 68, 0.1)' : 'rgba(16, 185, 129, 0.1)',
+                            color: selectedDisparityTest.are_equivalent === false ? '#dc2626' : '#059669',
+                            fontWeight: '600',
+                            whiteSpace: 'nowrap'
+                          }}>
+                            {selectedDisparityTest.are_equivalent === false ? 'DIFFERENT RESULTS' : 'EQUIVALENT RESULTS'}
+                          </span>
+                          {selectedDisparityTest.difference_analysis && (
+                            <span style={{
+                              padding: '0.5rem 0.75rem',
+                              fontSize: '0.875rem',
+                              borderRadius: '9999px',
+                              backgroundColor: selectedDisparityTest.difference_analysis.significance === 'high' ? 'rgba(239, 68, 68, 0.1)' : 
+                                             selectedDisparityTest.difference_analysis.significance === 'medium' ? 'rgba(245, 158, 11, 0.1)' : 'rgba(107, 114, 128, 0.1)',
+                              color: selectedDisparityTest.difference_analysis.significance === 'high' ? '#dc2626' : 
+                                     selectedDisparityTest.difference_analysis.significance === 'medium' ? '#d97706' : '#6b7280',
+                              fontWeight: '600',
+                              whiteSpace: 'nowrap'
+                            }}>
+                              {selectedDisparityTest.difference_analysis.significance?.toUpperCase()} SIGNIFICANCE
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div style={{ 
+                      textAlign: 'center', 
+                      color: '#9ca3af', 
+                      padding: '2rem 0',
+                      fontSize: '0.875rem'
+                    }}>
+                      <p>Select a disparity case to view details</p>
+                    </div>
+                  )}
+                </div>
               </div>
             )}
           </div>

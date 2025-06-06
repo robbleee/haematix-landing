@@ -23,23 +23,7 @@ export default function FullFlowPage() {
         }}>
           Full Interactive Flow Diagram
         </h1>
-        <Link 
-          href="/"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            backgroundColor: '#009688',
-            color: 'white',
-            padding: '0.7rem 1.5rem',
-            borderRadius: '0.5rem',
-            textDecoration: 'none',
-            fontWeight: '500',
-            transition: 'all 0.2s ease'
-          }}
-        >
-          ← Back to Home
-        </Link>
+      
       </div>
       
       <FullInteractiveFlowDiagram />

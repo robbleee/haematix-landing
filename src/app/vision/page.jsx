@@ -11,21 +11,8 @@ export default function VisionPage() {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    // Hide the header navigation
-    const header = document.querySelector('header');
-    if (header) {
-      header.style.display = 'none';
-    }
-
     // Trigger sparkle animation
     setTimeout(() => setIsLoaded(true), 100);
-
-    // Show header again when component unmounts
-    return () => {
-      if (header) {
-        header.style.display = '';
-      }
-    };
   }, []);
 
   useEffect(() => {
@@ -223,35 +210,6 @@ export default function VisionPage() {
       position: 'relative',
       fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif"
     }}>
-      {/* Back to Home Button */}
-      <Link 
-        href="/"
-        style={{
-          position: 'fixed',
-          top: '2rem',
-          left: '2rem',
-          zIndex: 1001,
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          background: 'rgba(255, 255, 255, 0.95)',
-          border: '1px solid rgba(0, 150, 136, 0.2)',
-          color: 'var(--primary-color)',
-          padding: '0.75rem 1.5rem',
-          borderRadius: 'var(--border-radius)',
-          textDecoration: 'none',
-          fontWeight: '600',
-          backdropFilter: 'blur(10px)',
-          transition: 'var(--transition)',
-          boxShadow: 'var(--box-shadow)'
-        }}
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M15 18l-6-6 6-6"/>
-        </svg>
-        Back to Home
-      </Link>
-
       {/* Particle Background */}
       <div style={{
         position: 'absolute',

@@ -7,25 +7,34 @@ const pitchSlides = [
   {
     id: 1,
     title: "The Diagnostic Pathway Crisis",
-    subtitle: "Exponentially Complex Guidelines Meet Unstructured Data",
+    subtitle: "Complex Guidelines Meet Unstructured Data",
     content: (
       <div className={styles.slideContent}>
         <h3>Diagnosticians Face an Impossible Challenge</h3>
-        <p>Every accurate haematology diagnosis requires two things that are getting exponentially more difficult: extracting precise genetic data from unstructured reports, and applying increasingly complex diagnostic pathways that evolve with every guideline revision.</p>
         
-        <div className={styles.problemGrid}>
-          <div className={styles.problemCard}>
+        <div className={styles.diagnosticFlow}>
+          <div className={styles.flowPanel}>
             <h4>Unstructured Data Chaos</h4>
-            <p>Critical genetic markers are buried in dense, inconsistent laboratory reports. Cytogenetics, flow cytometry, and molecular data exist in different formats with no standardization. Clinicians spend hours manually extracting the parameters they need before any diagnostic logic can even begin.</p>
+            <p>Critical genetic markers buried in dense, inconsistent laboratory reports. Cytogenetics, flow cytometry, and molecular data exist in different formats with no standardization.</p>
           </div>
-          <div className={styles.problemCard}>
+          
+          <div className={styles.flowArrow}>→</div>
+          
+          <div className={styles.diagnostician}>
+            <h4>Overwhelmed Diagnostician</h4>
+            <p>Clinicians spend hours manually extracting parameters before any diagnostic logic can begin</p>
+          </div>
+          
+          <div className={styles.flowArrow}>→</div>
+          
+          <div className={styles.flowPanel}>
             <h4>Pathway Complexity Explosion</h4>
-            <p>WHO 2022 and ICC 2022 guidelines contain hundreds of interconnected diagnostic pathways with precise criteria that change with each revision. The logic is too complex for consistent human application, yet there's no systematic way to formalize and maintain these evolving decision trees.</p>
+            <p>WHO 2022 and ICC 2022 guidelines contain hundreds of interconnected diagnostic pathways with precise criteria. Too complex for consistent human application.</p>
           </div>
         </div>
         
-        <div className={styles.insight}>
-          The diagnostic intelligence exists — but it's trapped in unstructured formats while the pathways to apply it become impossibly complex.
+        <div className={styles.flowInsight}>
+          The diagnostic intelligence exists — but it's trapped in unstructured formats while pathways become impossibly complex
         </div>
       </div>
     )
@@ -166,149 +175,80 @@ const pitchSlides = [
       <div className={styles.slideContent}>
         <h3>Zero Learning Curve, Maximum Confidence</h3>
         
-        <div className={styles.advantages}>
+        <div className={styles.largeAdvantages}>
           <div className={styles.advantage}>
             <h4>No Training Required</h4>
-            <p>Junior clinicians can achieve expert-level diagnostic accuracy from day one—the system guides them through each pathway naturally</p>
+            <p>Junior clinicians achieve expert-level diagnostic accuracy from day one</p>
           </div>
           <div className={styles.advantage}>
             <h4>Intuitive Interface</h4>
-            <p>Upload report, get structured diagnosis. Complex logic runs invisibly in the background while clinicians see clear, actionable results</p>
+            <p>Upload report, get structured diagnosis. Complex logic runs invisibly</p>
           </div>
           <div className={styles.advantage}>
             <h4>Confidence Building</h4>
-            <p>Shows the reasoning behind each decision, helping junior doctors learn while ensuring they never miss critical diagnostic criteria</p>
+            <p>Shows reasoning behind each decision, helping doctors learn while ensuring they never miss critical criteria</p>
+          </div>
+          <div className={styles.advantage}>
+            <h4>Expert Validation</h4>
+            <p>Built on WHO 2022 and ICC 2022 guidelines, validated by leading hematologists worldwide</p>
           </div>
         </div>
         
         <div className={styles.insight}>
-          Sophisticated formal logic, simple clinical experience—bridging the gap between complex guidelines and everyday practice.
+          Sophisticated formal logic, simple clinical experience.
         </div>
       </div>
     )
   },
   {
     id: 6,
-    title: "Platform Scalability",
-    subtitle: "Formal Logic Infrastructure Scales Across All Specialties",
+    title: "Investment Opportunity",
+    subtitle: "£500k-£2M Seed to Formalize Medical Decision-Making",
     content: (
       <div className={styles.slideContent}>
-        <div className={styles.splitLayout}>
-          <div className={styles.leftColumn}>
-            <h3>Beyond Haematology</h3>
-            <p>Our formal logic architecture isn't specialty-specific. We're building foundational infrastructure for formalizing any complex diagnostic pathway.</p>
+        <div className={styles.professionalInvestmentLayout}>
+          <div className={styles.investmentOverview}>
+            <div className={styles.fundingRequest}>
+              <div className={styles.amount}>£500k-£2M</div>
+              <div className={styles.stage}>Seed Round</div>
+              <div className={styles.purpose}>Building the diagnostic logic revolution</div>
+            </div>
             
-            <div className={styles.globalAccess}>
-              <h4>Global Standardization</h4>
-              <p>Consistent diagnostic pathway adherence regardless of local expertise, democratizing world-class diagnostic logic.</p>
+            <div className={styles.keyMetrics}>
+              <div className={styles.metric}>
+                <div className={styles.metricValue}>18</div>
+                <div className={styles.metricLabel}>Months to NHS validation</div>
+              </div>
+              <div className={styles.metric}>
+                <div className={styles.metricValue}>£164B</div>
+                <div className={styles.metricLabel}>AI Healthcare market by 2030</div>
+              </div>
             </div>
           </div>
           
-          <div className={styles.rightColumn}>
-            <div className={styles.expansionPath}>
-              <div className={styles.expansionCard}>
-                <h4>Oncology Pathways</h4>
-                <p>Solid tumor criteria formalized using same logic framework</p>
+          <div className={styles.usageBreakdown}>
+            <h4>Use of Funds</h4>
+            <div className={styles.fundingItems}>
+              <div className={styles.fundingItem}>
+                <div className={styles.itemCategory}>Platform Development</div>
+                <div className={styles.itemDescription}>Scale formal pathway development across haematology subspecialties</div>
               </div>
-              <div className={styles.expansionCard}>
-                <h4>Guideline Evolution</h4>
-                <p>Rapid, tested implementation across pathway dependencies</p>
+              <div className={styles.fundingItem}>
+                <div className={styles.itemCategory}>Clinical Validation</div>
+                <div className={styles.itemDescription}>Multi-center testing with comprehensive outcome tracking</div>
               </div>
-              <div className={styles.expansionCard}>
-                <h4>Multi-Specialty Logic</h4>
-                <p>Core platform scales to cardiology, neurology, any specialty</p>
+              <div className={styles.fundingItem}>
+                <div className={styles.itemCategory}>Team Expansion</div>
+                <div className={styles.itemDescription}>Logic engineering and clinical informatics capabilities</div>
               </div>
             </div>
           </div>
-        </div>
-        
-        <div className={styles.strategicPosition}>
-          <h4>Strategic Moat</h4>
-          <p>Mastering the most complex diagnostic domain first builds unassailable advantage in formal medical logic systems.</p>
         </div>
       </div>
     )
   },
   {
     id: 7,
-    title: "Clinical Validation Engine",
-    subtitle: "Continuous Learning Through Formal Logic Testing",
-    content: (
-      <div className={styles.slideContent}>
-        <h3>Beyond Diagnosis: Systematic Pathway Improvement</h3>
-        
-        <div className={styles.trialVision}>
-          <p>Our platform doesn't just apply diagnostic logic—it continuously validates and improves pathway adherence through systematic case analysis, creating a learning loop that strengthens diagnostic certainty over time.</p>
-        </div>
-        
-        <div className={styles.trialFeatures}>
-          <div className={styles.trialCard}>
-            <h4>Pathway Validation</h4>
-            <p>Every diagnostic decision is traced through formal logic trees, creating comprehensive audit trails for regulatory compliance</p>
-          </div>
-          <div className={styles.trialCard}>
-            <h4>Logic Refinement</h4>
-            <p>Post-diagnostic AI review identifies pathway gaps and suggests formal logic improvements based on outcome data</p>
-          </div>
-          <div className={styles.trialCard}>
-            <h4>Guideline Integration</h4>
-            <p>Systematic testing framework ensures new diagnostic criteria can be validated before clinical deployment</p>
-          </div>
-        </div>
-        
-        <div className={styles.impactStatement}>
-          <h4>Transforming Diagnostic Science</h4>
-          <p>We're creating the first systematic approach to diagnostic pathway formalization, testing, and evolution—turning medical guidelines into engineering-grade logic systems.</p>
-        </div>
-      </div>
-    )
-  },
-  {
-    id: 8,
-    title: "Investment Opportunity",
-    subtitle: "£500k-£2M Seed to Formalize Medical Decision-Making",
-    content: (
-      <div className={styles.slideContent}>
-        <div className={styles.investmentLayout}>
-          <div className={styles.investmentHero}>
-            <div className={styles.fundingAmount}>£500k-£2M</div>
-            <div className={styles.fundingLabel}>Seed Round</div>
-            <div className={styles.fundingPurpose}>Capital to Build the Diagnostic Logic Revolution</div>
-          </div>
-          
-          <div className={styles.investmentFlow}>
-            <div className={styles.flowStep}>
-              <div className={styles.stepLabel}>Platform</div>
-              <div className={styles.stepDetail}>Scale formal pathway development across multiple haematology subspecialties</div>
-            </div>
-            
-            <div className={styles.flowConnector}></div>
-            
-            <div className={styles.flowStep}>
-              <div className={styles.stepLabel}>Validation</div>
-              <div className={styles.stepDetail}>Multi-center testing with comprehensive outcome tracking</div>
-            </div>
-            
-            <div className={styles.flowConnector}></div>
-            
-            <div className={styles.flowStep}>
-              <div className={styles.stepLabel}>Scale</div>
-              <div className={styles.stepDetail}>Expand logic engineering and clinical informatics capabilities</div>
-            </div>
-          </div>
-          
-          <div className={styles.milestoneBadge}>
-            <div className={styles.milestoneNumber}>18</div>
-            <div className={styles.milestoneUnit}>Months</div>
-            <div className={styles.milestoneGoal}>NHS Validation → Global Market</div>
-          </div>
-        </div>
-      </div>
-    )
-  },
-  {
-    id: 9,
-
     content: (
       <div className={styles.slideContent}>
         <div className={styles.impactLayout}>
@@ -317,31 +257,10 @@ const pitchSlides = [
             <p>We're not building another AI diagnostic tool. We're creating the framework that makes complex medical decision-making as reliable as software engineering.</p>
           </div>
           
-          <div className={styles.transformationGrid}>
-            <div className={styles.transformPoint}>
-              <span className={styles.transformIcon}>⚡</span>
-              <h4>Formal Logic</h4>
-              <p>Diagnostic pathways become testable systems</p>
-            </div>
-            <div className={styles.transformPoint}>
-              <span className={styles.transformIcon}>🎯</span>
-              <h4>Verified Adherence</h4>
-              <p>Guideline compliance automatically auditable</p>
-            </div>
-            <div className={styles.transformPoint}>
-              <span className={styles.transformIcon}>🔬</span>
-              <h4>Engineering Reliability</h4>
-              <p>Medical decisions achieve software-grade precision</p>
-            </div>
-          </div>
+          
         </div>
         
-        <div className={styles.finalCta}>
-          <h4>Ready to Formalize Medical Logic?</h4>
-          <div className={styles.ctaButtons}>
-            <a href="/#documentation" className={styles.secondaryButton}>View Documentation</a>
-          </div>
-        </div>
+       
       </div>
     )
   }

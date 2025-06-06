@@ -1,0 +1,522 @@
+.roadmapPage {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, var(--background-color) 0%, #f8f9fa 100%);
+  padding: 4rem 0 3rem;
+  position: relative;
+  border-bottom: 1px solid rgba(0, 150, 136, 0.1);
+}
+
+.backButton {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  background: var(--primary-color);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 150, 136, 0.3);
+}
+
+.backButton:hover {
+  background: #4DB6AC;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 150, 136, 0.4);
+}
+
+.headerContent {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.headerContent h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #6c757d;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Progress Section */
+.progressSection {
+  padding: 3rem 0;
+  background: white;
+}
+
+.progressStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.statCard {
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, white 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f1f5f9;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.statNumber {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 1rem;
+  color: #64748b;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.statIndicator {
+  width: 60px;
+  height: 4px;
+  border-radius: 2px;
+  margin: 0 auto;
+}
+
+/* Roadmap Section */
+.roadmapSection {
+  padding: 4rem 0;
+}
+
+.roadmapContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.roadmapGroup {
+  margin-bottom: 4rem;
+}
+
+.groupTitle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 2rem;
+  text-align: center;
+  justify-content: center;
+}
+
+.groupIcon {
+  font-size: 2rem;
+}
+
+.itemsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.roadmapItem {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.roadmapItem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  transition: all 0.3s ease;
+}
+
+.roadmapItem.completed::before {
+  background: linear-gradient(90deg, #10b981, #059669);
+}
+
+.roadmapItem.inProgress::before {
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+}
+
+.roadmapItem.planned::before {
+  background: linear-gradient(90deg, #6b7280, #4b5563);
+}
+
+.roadmapItem:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.roadmapItem.completed:hover {
+  border-color: #10b981;
+}
+
+.roadmapItem.inProgress:hover {
+  border-color: #f59e0b;
+}
+
+.roadmapItem.planned:hover {
+  border-color: #6b7280;
+}
+
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.itemAbbrev {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  background: rgba(0, 150, 136, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  min-width: 60px;
+  text-align: center;
+}
+
+.statusBadge {
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.itemName {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.itemDescription {
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.itemMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.completedDate,
+.targetDate {
+  font-size: 0.9rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.priority {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Priority styling */
+.roadmapItem.high {
+  border-left: 4px solid #ef4444;
+}
+
+.roadmapItem.medium {
+  border-left: 4px solid #f59e0b;
+}
+
+.roadmapItem.low {
+  border-left: 4px solid #6b7280;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.modalContent {
+  background: white;
+  border-radius: 20px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 2rem 1rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.modalHeader h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.closeButton:hover {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+.modalBody {
+  padding: 1rem 2rem 2rem;
+}
+
+.modalDescription {
+  font-size: 1.1rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.modalBody h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.featuresList {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.featuresList li {
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  color: #1e293b;
+  border-left: 4px solid var(--primary-color);
+}
+
+.modalMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.modalMetaItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalMetaItem strong {
+  color: #1e293b;
+}
+
+/* Vision Section */
+.visionSection {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, var(--primary-color) 0%, #4DB6AC 100%);
+  color: white;
+}
+
+.visionContent {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.visionContent h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+.visionContent > p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+  opacity: 0.95;
+}
+
+.visionPoints {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.visionPoint {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: left;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.visionPoint:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.visionPoint h4 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.visionPoint p {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .headerContent h1 {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
+
+  .progressStats {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .itemsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .itemHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .itemMeta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .visionPoints {
+    grid-template-columns: 1fr;
+  }
+
+  .visionContent h2 {
+    font-size: 2rem;
+  }
+
+  .backButton {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .modal {
+    padding: 1rem;
+  }
+
+  .modalHeader {
+    padding: 1.5rem 1.5rem 1rem;
+  }
+
+  .modalBody {
+    padding: 1rem 1.5rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .roadmapSection {
+    padding: 2rem 0;
+  }
+
+  .roadmapItem {
+    padding: 1.5rem;
+  }
+
+  .itemName {
+    font-size: 1.2rem;
+  }
+
+  .itemDescription {
+    font-size: 0.9rem;
+  }
+} 

@@ -1,0 +1,28 @@
+# WHO vs ICC Classification Disparity Testing
+# This file contains test cases where WHO 2022 and ICC 2022 classifications 
+# differ for the same input data, highlighting diagnostic approach differences.
+
+test_run_metadata:
+  timestamp: '2024-01-01T00:00:00.000Z'
+  total_disparity_cases: 0
+  description: 'Comparative testing between WHO 2022 and ICC 2022 classifications'
+  last_updated: 'Pending YAML file from user'
+  
+# Example structure for when you provide the actual data:
+# disparity_test_cases:
+#   - case_id: 'example_001'
+#     description: 'Example disparity case'
+#     input_data:
+#       blasts_percentage: 25.0
+#       AML_defining_recurrent_genetic_abnormalities:
+#         NPM1: true
+#       qualifiers: {}
+#     who_2022:
+#       classification: 'AML with NPM1 mutation (WHO 2022)'
+#       derivation: ['Step 1', 'Step 2', 'etc...']
+#     icc_2022:
+#       classification: 'AML with mutated NPM1 (ICC 2022)'
+#       derivation: ['Step 1', 'Step 2', 'etc...']
+#     difference_explanation: 'Explanation of why the classifications differ'
+
+disparity_test_cases: [] 

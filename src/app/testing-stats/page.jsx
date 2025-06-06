@@ -5,14 +5,20 @@ import { parse } from 'yaml';
 
 export default function TestingSuitePage() {
   const [testData, setTestData] = useState(null);
+  const [disparityData, setDisparityData] = useState(null);
   const [selectedSuite, setSelectedSuite] = useState('aml_classification');
   const [selectedTest, setSelectedTest] = useState(null);
+  const [selectedDisparityTest, setSelectedDisparityTest] = useState(null);
   const [filter, setFilter] = useState('all');
+  const [disparityFilter, setDisparityFilter] = useState('different');
   const [searchTerm, setSearchTerm] = useState('');
+  const [disparitySearchTerm, setDisparitySearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
+  const [testType, setTestType] = useState('synthetic_positive_unit_tests');
 
   useEffect(() => {
     fetchTestData();
+    fetchDisparityData();
   }, []);
 
   const fetchTestData = async () => {
@@ -21,9 +27,19 @@ export default function TestingSuitePage() {
       const yamlText = await response.text();
       const data = parse(yamlText);
       setTestData(data);
-      setLoading(false);
     } catch (error) {
       console.error('Error loading test data:', error);
+    }
+  };
+
+  const fetchDisparityData = async () => {
+    try {
+      const response = await fetch('/api/disparity-testing-yaml');
+      const data = await response.json();
+      setDisparityData(data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error loading disparity data:', error);
       setLoading(false);
     }
   };
@@ -53,7 +69,7 @@ export default function TestingSuitePage() {
     );
   }
 
-  if (!testData) {
+  if (!testData || !disparityData) {
     return (
       <div style={{ 
         minHeight: '100vh', 
@@ -71,10 +87,8 @@ export default function TestingSuitePage() {
 
   const currentSuite = testData.test_suites[selectedSuite];
   const filteredTests = currentSuite?.test_cases?.filter(test => {
-    // Handle both WHO 2022 and ICC 2022 tests, but exclude tests where both are null (error handling tests)
     const testResults = test.who_2022 || test.icc_2022;
     
-    // Skip tests that have no valid results (error handling tests)
     if (!testResults) {
       return false;
     }
@@ -115,6 +129,23 @@ export default function TestingSuitePage() {
     return matches_expected === true || matches_expected === 'true';
   };
 
+  // Filter disparity tests
+  const filteredDisparityTests = disparityData?.test_results?.filter(test => {
+    const matchesFilter = disparityFilter === 'all' || 
+      (disparityFilter === 'different' && test.are_equivalent === false) ||
+      (disparityFilter === 'equivalent' && test.are_equivalent === true) ||
+      (disparityFilter === 'high_significance' && test.difference_analysis?.significance === 'high') ||
+      (disparityFilter === 'medium_significance' && test.difference_analysis?.significance === 'medium');
+    
+    const matchesSearch = !disparitySearchTerm || 
+      test.test_id?.toLowerCase().includes(disparitySearchTerm.toLowerCase()) ||
+      test.who_classification?.toLowerCase().includes(disparitySearchTerm.toLowerCase()) ||
+      test.icc_classification?.toLowerCase().includes(disparitySearchTerm.toLowerCase()) ||
+      test.test_focus?.toLowerCase().includes(disparitySearchTerm.toLowerCase());
+
+    return matchesFilter && matchesSearch;
+  }) || [];
+
   return (
     <>
       <style jsx>{`
@@ -129,16 +160,16 @@ export default function TestingSuitePage() {
         }
         @media (min-width: 768px) {
           .responsive-grid {
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
           }
         }
         @media (min-width: 1024px) {
           .responsive-grid {
-            grid-template-columns: 300px 400px 1fr;
+            grid-template-columns: 350px 450px 1fr;
           }
         }
         .wide-container {
-          max-width: 95%;
+          max-width: 98%;
           margin: 0 auto;
           padding: 0 1rem;
         }
@@ -150,7 +181,6 @@ export default function TestingSuitePage() {
       `}</style>
       
       <div style={{ minHeight: '100vh', backgroundColor: 'var(--secondary-background-color)' }}>
-        {/* Hero Section */}
         <section style={{
           backgroundColor: 'var(--background-color)',
           padding: '4rem 0 3rem',
@@ -176,7 +206,52 @@ export default function TestingSuitePage() {
                 Comprehensive test suite results for WHO 2022 and ICC 2022 classification functions
               </p>
               
-              {/* Metadata Cards */}
+              <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                marginBottom: '2rem'
+              }}>
+                <div style={{
+                  display: 'flex',
+                  backgroundColor: 'var(--secondary-background-color)',
+                  borderRadius: 'var(--border-radius)',
+                  padding: '0.25rem'
+                }}>
+                  <button
+                    onClick={() => setTestType('synthetic_positive_unit_tests')}
+                    style={{
+                      padding: '0.75rem 1.5rem',
+                      fontSize: '0.875rem',
+                      fontWeight: '600',
+                      borderRadius: 'var(--border-radius)',
+                      border: 'none',
+                      cursor: 'pointer',
+                      transition: 'var(--transition)',
+                      backgroundColor: testType === 'synthetic_positive_unit_tests' ? 'var(--primary-color)' : 'transparent',
+                      color: testType === 'synthetic_positive_unit_tests' ? 'white' : 'var(--text-color)'
+                    }}
+                  >
+                    Synthetic Positive Unit Tests
+                  </button>
+                  <button
+                    onClick={() => setTestType('real_world_validation')}
+                    style={{
+                      padding: '0.75rem 1.5rem',
+                      fontSize: '0.875rem',
+                      fontWeight: '600',
+                      borderRadius: 'var(--border-radius)',
+                      border: 'none',
+                      cursor: 'pointer',
+                      transition: 'var(--transition)',
+                      backgroundColor: testType === 'real_world_validation' ? 'var(--primary-color)' : 'transparent',
+                      color: testType === 'real_world_validation' ? 'white' : 'var(--text-color)'
+                    }}
+                  >
+                    Real-world Validation (Coming Soon)
+                  </button>
+                </div>
+              </div>
+              
               <div style={{ 
                 display: 'grid', 
                 gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
@@ -214,9 +289,9 @@ export default function TestingSuitePage() {
                   boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)',
                   border: '1px solid rgba(0, 150, 136, 0.1)'
                 }}>
-                  <p style={{ fontSize: '0.875rem', fontWeight: '600', color: '#6b7280', marginBottom: '0.5rem' }}>Python Version</p>
+                  <p style={{ fontSize: '0.875rem', fontWeight: '600', color: '#6b7280', marginBottom: '0.5rem' }}>Disparity Cases</p>
                   <p style={{ fontSize: '1rem', fontWeight: '600', color: 'var(--text-color)' }}>
-                    {testData.test_run_metadata.python_version.split(' ')[0]}
+                    {disparityData?.test_run_metadata?.total_disparity_cases || 0}
                   </p>
                 </div>
               </div>
@@ -224,476 +299,473 @@ export default function TestingSuitePage() {
           </div>
         </section>
 
-        {/* Main Content */}
         <section style={{ padding: '3rem 0' }}>
           <div className="wide-container">
-            <div className="responsive-grid">
-              {/* Left Panel - Test Selection */}
-              <div style={{
-                backgroundColor: 'var(--background-color)',
-                borderRadius: 'var(--border-radius)',
-                boxShadow: 'var(--box-shadow)',
-                padding: '2rem',
-                height: 'fit-content'
-              }}>
-                <h2 style={{ 
-                  fontSize: '1.25rem', 
-                  fontWeight: 'bold', 
-                  color: 'var(--text-color)', 
-                  marginBottom: '1.5rem' 
+            {testType === 'synthetic_positive_unit_tests' ? (
+              <div className="responsive-grid">
+                <div style={{
+                  backgroundColor: 'var(--background-color)',
+                  borderRadius: 'var(--border-radius)',
+                  boxShadow: 'var(--box-shadow)',
+                  padding: '2rem',
+                  height: 'fit-content'
                 }}>
-                  Test Configuration
-                </h2>
-                
-                {/* Suite Selector */}
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <label style={{ 
-                    display: 'block', 
-                    fontSize: '0.875rem', 
-                    fontWeight: '600', 
+                  <h2 style={{ 
+                    fontSize: '1.25rem', 
+                    fontWeight: 'bold', 
                     color: 'var(--text-color)', 
                     marginBottom: '0.5rem' 
                   }}>
-                    Select Test Suite
-                  </label>
-                  <select
-                    value={selectedSuite}
-                    onChange={(e) => {
-                      setSelectedSuite(e.target.value);
-                      setSelectedTest(null);
-                    }}
-                    style={{
-                      width: '100%',
-                      padding: '0.75rem',
-                      border: '1px solid #d1d5db',
-                      borderRadius: 'var(--border-radius)',
-                      backgroundColor: 'var(--background-color)',
-                      color: 'var(--text-color)',
-                      fontSize: '0.875rem'
-                    }}
-                  >
-                    {Object.entries(testData.test_suites).map(([key, suite]) => (
-                      <option key={key} value={key}>
-                        {suite.test_suite} ({suite.total_tests} tests)
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Filters */}
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <label style={{ 
-                    display: 'block', 
-                    fontSize: '0.875rem', 
-                    fontWeight: '600', 
-                    color: 'var(--text-color)', 
-                    marginBottom: '0.5rem' 
-                  }}>
-                    Filter Tests
-                  </label>
-                  <select
-                    value={filter}
-                    onChange={(e) => setFilter(e.target.value)}
-                    style={{
-                      width: '100%',
-                      padding: '0.75rem',
-                      border: '1px solid #d1d5db',
-                      borderRadius: 'var(--border-radius)',
-                      backgroundColor: 'var(--background-color)',
-                      color: 'var(--text-color)',
-                      fontSize: '0.875rem'
-                    }}
-                  >
-                    <option value="all">All Tests</option>
-                    <option value="passed">Passed Only</option>
-                    <option value="failed">Failed Only</option>
-                  </select>
-                </div>
-
-                {/* Search */}
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <label style={{ 
-                    display: 'block', 
-                    fontSize: '0.875rem', 
-                    fontWeight: '600', 
-                    color: 'var(--text-color)', 
-                    marginBottom: '0.5rem' 
-                  }}>
-                    Search Tests
-                  </label>
-                  <input
-                    type="text"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Search by name, classification, or input..."
-                    style={{
-                      width: '100%',
-                      padding: '0.75rem',
-                      border: '1px solid #d1d5db',
-                      borderRadius: 'var(--border-radius)',
-                      backgroundColor: 'var(--background-color)',
-                      color: 'var(--text-color)',
-                      fontSize: '0.875rem'
-                    }}
-                  />
-                </div>
-
-                {/* Summary */}
-                {testData.summary && (
-                  <div style={{
-                    backgroundColor: 'var(--secondary-background-color)',
-                    borderRadius: 'var(--border-radius)',
-                    padding: '1rem'
-                  }}>
-                    <h3 style={{ 
+                    Test Configuration
+                  </h2>
+                  
+                  <div style={{ marginBottom: '1.5rem' }}>
+                    <label style={{ 
+                      display: 'block', 
+                      fontSize: '0.875rem', 
                       fontWeight: '600', 
                       color: 'var(--text-color)', 
-                      marginBottom: '0.75rem',
-                      fontSize: '0.875rem'
+                      marginBottom: '0.5rem' 
                     }}>
-                      Test Summary
-                    </h3>
-                    {Object.entries(testData.summary).map(([key, summary]) => (
-                      <div key={key} style={{ marginBottom: '0.5rem' }}>
-                        <p style={{ 
-                          fontSize: '0.75rem', 
-                          fontWeight: '600', 
-                          color: 'var(--text-color)', 
-                          textTransform: 'capitalize' 
-                        }}>
-                          {key}
-                        </p>
-                        <div style={{ fontSize: '0.6875rem', color: '#6b7280' }}>
-                          <span style={{ color: '#059669' }}>✓ {summary.who_2022_passed || 0} WHO 2022</span>
-                          {summary.icc_2022_passed && (
-                            <span style={{ marginLeft: '0.5rem', color: 'var(--primary-color)' }}>
-                              ✓ {summary.icc_2022_passed} ICC 2022
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    ))}
+                      Select Test Suite
+                    </label>
+                    <select
+                      value={selectedSuite}
+                      onChange={(e) => {
+                        setSelectedSuite(e.target.value);
+                        setSelectedTest(null);
+                      }}
+                      style={{
+                        width: '100%',
+                        padding: '0.75rem',
+                        border: '1px solid #d1d5db',
+                        borderRadius: 'var(--border-radius)',
+                        backgroundColor: 'var(--background-color)',
+                        color: 'var(--text-color)',
+                        fontSize: '0.875rem'
+                      }}
+                    >
+                      {Object.entries(testData.test_suites).map(([key, suite]) => (
+                        <option key={key} value={key}>
+                          {suite.test_suite} ({suite.total_tests} tests)
+                        </option>
+                      ))}
+                    </select>
                   </div>
-                )}
-              </div>
 
-              {/* Middle Panel - Test List */}
-              <div style={{
-                backgroundColor: 'var(--background-color)',
-                borderRadius: 'var(--border-radius)',
-                boxShadow: 'var(--box-shadow)',
-                padding: '2rem',
-                height: 'fit-content'
-              }}>
-                <h2 style={{ 
-                  fontSize: '1.25rem', 
-                  fontWeight: 'bold', 
-                  color: 'var(--text-color)', 
-                  marginBottom: '1.5rem' 
-                }}>
-                  Test Cases ({filteredTests.length})
-                </h2>
-                
-                <div style={{ 
-                  display: 'flex', 
-                  flexDirection: 'column', 
-                  gap: '0.75rem', 
-                  maxHeight: '600px', 
-                  overflowY: 'auto' 
-                }}>
-                  {filteredTests.map((test, index) => {
-                    const testResults = getTestResults(test);
-                    return (
-                      <div
-                        key={index}
-                        onClick={() => setSelectedTest(test)}
-                        style={{
-                          padding: '1rem',
-                          border: selectedTest === test ? '2px solid var(--primary-color)' : '1px solid #e5e7eb',
-                          borderRadius: 'var(--border-radius)',
-                          cursor: 'pointer',
-                          transition: 'var(--transition)',
-                          backgroundColor: selectedTest === test ? 'rgba(0, 150, 136, 0.05)' : 'var(--background-color)'
-                        }}
-                        onMouseOver={(e) => {
-                          if (selectedTest !== test) {
-                            e.target.style.backgroundColor = 'var(--secondary-background-color)';
-                          }
-                        }}
-                        onMouseOut={(e) => {
-                          if (selectedTest !== test) {
-                            e.target.style.backgroundColor = 'var(--background-color)';
-                          }
-                        }}
-                      >
-                        <div style={{ 
-                          display: 'flex', 
-                          justifyContent: 'space-between', 
-                          alignItems: 'flex-start', 
-                          marginBottom: '0.5rem' 
-                        }}>
-                          <h3 style={{ 
-                            fontSize: '0.875rem', 
-                            fontWeight: '600', 
-                            color: 'var(--text-color)',
-                            wordWrap: 'break-word',
-                            overflowWrap: 'break-word',
-                            lineHeight: '1.4'
-                          }}>
-                            {testResults?.expected}
-                          </h3>
-                          <span style={{
-                            padding: '0.25rem 0.5rem',
-                            fontSize: '0.6875rem',
-                            borderRadius: '9999px',
-                            backgroundColor: getStatusColor(testResults?.success),
-                            color: getStatusTextColor(testResults?.success),
-                            fontWeight: '600'
-                          }}>
-                            {getSuccessStatus(testResults?.success) ? 'PASS' : 'FAIL'}
-                          </span>
-                        </div>
-                        <p style={{ fontSize: '0.75rem', color: '#9ca3af' }}>
-                          Blasts: {test.input_data?.blasts_percentage || 'N/A'}%
-                        </p>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
+                  <div style={{ marginBottom: '1.5rem' }}>
+                    <label style={{ 
+                      display: 'block', 
+                      fontSize: '0.875rem', 
+                      fontWeight: '600', 
+                      color: 'var(--text-color)', 
+                      marginBottom: '0.5rem' 
+                    }}>
+                      Filter Tests
+                    </label>
+                    <select
+                      value={filter}
+                      onChange={(e) => setFilter(e.target.value)}
+                      style={{
+                        width: '100%',
+                        padding: '0.75rem',
+                        border: '1px solid #d1d5db',
+                        borderRadius: 'var(--border-radius)',
+                        backgroundColor: 'var(--background-color)',
+                        color: 'var(--text-color)',
+                        fontSize: '0.875rem'
+                      }}
+                    >
+                      <option value="all">All Tests</option>
+                      <option value="passed">Passed Only</option>
+                      <option value="failed">Failed Only</option>
+                    </select>
+                  </div>
 
-              {/* Right Panel - Test Details */}
-              <div style={{
-                backgroundColor: 'var(--background-color)',
-                borderRadius: 'var(--border-radius)',
-                boxShadow: 'var(--box-shadow)',
-                padding: '2rem',
-                height: 'fit-content',
-                minWidth: 0,
-                overflow: 'hidden'
-              }}>
-                <h2 style={{ 
-                  fontSize: '1.25rem', 
-                  fontWeight: 'bold', 
-                  color: 'var(--text-color)', 
-                  marginBottom: '1.5rem' 
-                }}>
-                  Test Details
-                </h2>
-                
-                {selectedTest ? (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                    {/* Test Header */}
-                    <div>
+                  <div style={{ marginBottom: '1.5rem' }}>
+                    <label style={{ 
+                      display: 'block', 
+                      fontSize: '0.875rem', 
+                      fontWeight: '600', 
+                      color: 'var(--text-color)', 
+                      marginBottom: '0.5rem' 
+                    }}>
+                      Search Tests
+                    </label>
+                    <input
+                      type="text"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      placeholder="Search by name, classification, or input..."
+                      style={{
+                        width: '100%',
+                        padding: '0.75rem',
+                        border: '1px solid #d1d5db',
+                        borderRadius: 'var(--border-radius)',
+                        backgroundColor: 'var(--background-color)',
+                        color: 'var(--text-color)',
+                        fontSize: '0.875rem'
+                      }}
+                    />
+                  </div>
+
+                  {testData.summary && (
+                    <div style={{
+                      backgroundColor: 'var(--secondary-background-color)',
+                      borderRadius: 'var(--border-radius)',
+                      padding: '1rem'
+                    }}>
                       <h3 style={{ 
-                        fontSize: '1.125rem', 
                         fontWeight: '600', 
                         color: 'var(--text-color)', 
-                        marginBottom: '0.5rem',
-                        wordWrap: 'break-word',
-                        overflowWrap: 'break-word'
+                        marginBottom: '0.75rem',
+                        fontSize: '0.875rem'
                       }}>
-                        {selectedTest.test_method}
+                        Test Summary
                       </h3>
-                      <p style={{ 
-                        fontSize: '0.875rem', 
-                        color: '#6b7280',
-                        wordWrap: 'break-word',
-                        overflowWrap: 'break-word'
-                      }}>
-                        {selectedTest.test_name}
-                      </p>
+                      {Object.entries(testData.summary).map(([key, summary]) => (
+                        <div key={key} style={{ marginBottom: '0.5rem' }}>
+                          <p style={{ 
+                            fontSize: '0.75rem', 
+                            fontWeight: '600', 
+                            color: 'var(--text-color)', 
+                            textTransform: 'capitalize' 
+                          }}>
+                            {key}
+                          </p>
+                          <div style={{ fontSize: '0.6875rem', color: '#6b7280' }}>
+                            <span style={{ color: '#059669' }}>✓ {summary.who_2022_passed || 0} WHO 2022</span>
+                            {summary.icc_2022_passed && (
+                              <span style={{ marginLeft: '0.5rem', color: 'var(--primary-color)' }}>
+                                ✓ {summary.icc_2022_passed} ICC 2022
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      ))}
                     </div>
+                  )}
+                </div>
 
-                    {/* Input Data */}
-                    <div>
-                      <h4 style={{ fontWeight: '600', color: 'var(--text-color)', marginBottom: '0.5rem' }}>Input Data</h4>
-                      <div style={{
-                        backgroundColor: 'var(--secondary-background-color)',
-                        borderRadius: 'var(--border-radius)',
-                        padding: '0.75rem',
-                        overflow: 'auto',
-                        maxHeight: '200px'
-                      }}>
-                        <pre style={{ 
-                          fontSize: '0.75rem', 
-                          color: 'var(--text-color)', 
-                          whiteSpace: 'pre-wrap',
-                          wordWrap: 'break-word',
-                          overflowWrap: 'break-word',
-                          fontFamily: 'monospace',
-                          margin: 0,
-                          lineHeight: '1.4'
-                        }}>
-                          {JSON.stringify(selectedTest.input_data, null, 2)}
-                        </pre>
-                      </div>
-                    </div>
-
-                    {/* Expected vs Actual */}
-                    {(() => {
-                      const testResults = getTestResults(selectedTest);
+                <div style={{
+                  backgroundColor: 'var(--background-color)',
+                  borderRadius: 'var(--border-radius)',
+                  boxShadow: 'var(--box-shadow)',
+                  padding: '2rem',
+                  height: 'fit-content'
+                }}>
+                  <h2 style={{ 
+                    fontSize: '1.25rem', 
+                    fontWeight: 'bold', 
+                    color: 'var(--text-color)', 
+                    marginBottom: '1.5rem' 
+                  }}>
+                    Test Cases ({filteredTests.length})
+                  </h2>
+                  
+                  <div style={{ 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    gap: '0.75rem', 
+                    maxHeight: '600px', 
+                    overflowY: 'auto' 
+                  }}>
+                    {filteredTests.map((test, index) => {
+                      const testResults = getTestResults(test);
                       return (
-                        <div>
-                          <h4 style={{ fontWeight: '600', color: 'var(--text-color)', marginBottom: '0.5rem' }}>
-                            Classification Results
-                          </h4>
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                            <div>
-                              <p style={{ fontSize: '0.875rem', fontWeight: '600', color: '#6b7280' }}>Expected:</p>
-                              <p style={{
-                                fontSize: '0.875rem',
-                                color: 'var(--text-color)',
-                                backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                                padding: '0.5rem',
-                                borderRadius: 'var(--border-radius)',
-                                wordWrap: 'break-word',
-                                overflowWrap: 'break-word',
-                                lineHeight: '1.4'
-                              }}>
-                                {testResults?.expected}
-                              </p>
+                        <div
+                          key={index}
+                          onClick={() => setSelectedTest(test)}
+                          style={{
+                            padding: '1rem',
+                            border: selectedTest === test ? '2px solid var(--primary-color)' : '1px solid #e5e7eb',
+                            borderRadius: 'var(--border-radius)',
+                            cursor: 'pointer',
+                            transition: 'var(--transition)',
+                            backgroundColor: selectedTest === test ? 'rgba(0, 150, 136, 0.05)' : 'var(--background-color)'
+                          }}
+                          onMouseOver={(e) => {
+                            if (selectedTest !== test) {
+                              e.target.style.backgroundColor = 'var(--secondary-background-color)';
+                            }
+                          }}
+                          onMouseOut={(e) => {
+                            if (selectedTest !== test) {
+                              e.target.style.backgroundColor = 'var(--background-color)';
+                            }
+                          }}
+                        >
+                          <div style={{ 
+                            display: 'flex', 
+                            justifyContent: 'space-between', 
+                            alignItems: 'flex-start', 
+                            marginBottom: '0.5rem' 
+                          }}>
+                            <h3 style={{ 
+                              fontSize: '0.875rem', 
+                              fontWeight: '600', 
+                              color: 'var(--text-color)',
+                              wordWrap: 'break-word',
+                              overflowWrap: 'break-word',
+                              lineHeight: '1.4'
+                            }}>
+                              {testResults?.expected}
+                            </h3>
+                            <span style={{
+                              padding: '0.25rem 0.5rem',
+                              fontSize: '0.6875rem',
+                              borderRadius: '9999px',
+                              backgroundColor: getStatusColor(testResults?.success),
+                              color: getStatusTextColor(testResults?.success),
+                              fontWeight: '600'
+                            }}>
+                              {getSuccessStatus(testResults?.success) ? 'PASS' : 'FAIL'}
+                            </span>
+                          </div>
+                          <p style={{ fontSize: '0.75rem', color: '#9ca3af' }}>
+                            Blasts: {test.input_data?.blasts_percentage || 'N/A'}%
+                          </p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div style={{
+                  backgroundColor: 'var(--background-color)',
+                  borderRadius: 'var(--border-radius)',
+                  boxShadow: 'var(--box-shadow)',
+                  padding: '2rem',
+                  height: 'fit-content',
+                  minWidth: 0,
+                  overflow: 'hidden'
+                }}>
+                  <h2 style={{ 
+                    fontSize: '1.25rem', 
+                    fontWeight: 'bold', 
+                    color: 'var(--text-color)', 
+                    marginBottom: '1.5rem' 
+                  }}>
+                    Test Details
+                  </h2>
+                  
+                  {selectedTest ? (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                      <div>
+                        <h3 style={{ 
+                          fontSize: '1.125rem', 
+                          fontWeight: '600', 
+                          color: 'var(--text-color)', 
+                          marginBottom: '0.5rem',
+                          wordWrap: 'break-word',
+                          overflowWrap: 'break-word'
+                        }}>
+                          {selectedTest.test_method}
+                        </h3>
+                        <p style={{ 
+                          fontSize: '0.875rem', 
+                          color: '#6b7280',
+                          wordWrap: 'break-word',
+                          overflowWrap: 'break-word'
+                        }}>
+                          {selectedTest.test_name}
+                        </p>
+                      </div>
+
+                      <div>
+                        <h4 style={{ fontWeight: '600', color: 'var(--text-color)', marginBottom: '0.5rem' }}>Input Data</h4>
+                        <div style={{
+                          backgroundColor: 'var(--secondary-background-color)',
+                          borderRadius: 'var(--border-radius)',
+                          padding: '0.75rem',
+                          overflow: 'auto',
+                          maxHeight: '200px'
+                        }}>
+                          <pre style={{ 
+                            fontSize: '0.75rem', 
+                            color: 'var(--text-color)', 
+                            whiteSpace: 'pre-wrap',
+                            wordWrap: 'break-word',
+                            overflowWrap: 'break-word',
+                            fontFamily: 'monospace',
+                            margin: 0,
+                            lineHeight: '1.4'
+                          }}>
+                            {JSON.stringify(selectedTest.input_data, null, 2)}
+                          </pre>
+                        </div>
+                      </div>
+
+                      {(() => {
+                        const testResults = getTestResults(selectedTest);
+                        return (
+                          <div>
+                            <h4 style={{ fontWeight: '600', color: 'var(--text-color)', marginBottom: '0.5rem' }}>
+                              Classification Results
+                            </h4>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                              <div>
+                                <p style={{ fontSize: '0.875rem', fontWeight: '600', color: '#6b7280' }}>Expected:</p>
+                                <p style={{
+                                  fontSize: '0.875rem',
+                                  color: 'var(--text-color)',
+                                  backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                                  padding: '0.5rem',
+                                  borderRadius: 'var(--border-radius)',
+                                  wordWrap: 'break-word',
+                                  overflowWrap: 'break-word',
+                                  lineHeight: '1.4'
+                                }}>
+                                  {testResults?.expected}
+                                </p>
+                              </div>
+                              <div>
+                                <p style={{ fontSize: '0.875rem', fontWeight: '600', color: '#6b7280' }}>Actual:</p>
+                                <p style={{
+                                  fontSize: '0.875rem',
+                                  padding: '0.5rem',
+                                  borderRadius: 'var(--border-radius)',
+                                  backgroundColor: getMatchesExpected(testResults?.matches_expected) 
+                                    ? 'rgba(16, 185, 129, 0.1)' 
+                                    : 'rgba(239, 68, 68, 0.1)',
+                                  color: getMatchesExpected(testResults?.matches_expected) 
+                                    ? '#059669' 
+                                    : '#dc2626',
+                                  wordWrap: 'break-word',
+                                  overflowWrap: 'break-word',
+                                  lineHeight: '1.4'
+                                }}>
+                                  {testResults?.actual}
+                                </p>
+                              </div>
                             </div>
-                            <div>
-                              <p style={{ fontSize: '0.875rem', fontWeight: '600', color: '#6b7280' }}>Actual:</p>
-                              <p style={{
+                          </div>
+                        );
+                      })()}
+
+                      {(() => {
+                        const testResults = getTestResults(selectedTest);
+                        return (
+                          <div>
+                            <h4 style={{ fontWeight: '600', color: 'var(--text-color)', marginBottom: '0.5rem' }}>
+                              Derivation Logic
+                            </h4>
+                            <div style={{
+                              backgroundColor: 'var(--secondary-background-color)',
+                              borderRadius: 'var(--border-radius)',
+                              padding: '0.75rem',
+                              maxHeight: '300px',
+                              overflowY: 'auto',
+                              overflowX: 'hidden'
+                            }}>
+                              <ol style={{ 
+                                fontSize: '0.75rem', 
+                                color: 'var(--text-color)', 
+                                margin: 0,
+                                paddingLeft: '1rem',
+                                lineHeight: '1.5'
+                              }}>
+                                {testResults?.derivation?.map((step, index) => (
+                                  <li key={index} style={{ 
+                                    marginBottom: '0.5rem',
+                                    wordWrap: 'break-word',
+                                    overflowWrap: 'break-word'
+                                  }}>
+                                    {step}
+                                  </li>
+                                ))}
+                              </ol>
+                            </div>
+                          </div>
+                        );
+                      })()}
+
+                      {(() => {
+                        const testResults = getTestResults(selectedTest);
+                        return (
+                          <div>
+                            <h4 style={{ fontWeight: '600', color: 'var(--text-color)', marginBottom: '0.5rem' }}>
+                              Test Status
+                            </h4>
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                              <span style={{
+                                padding: '0.5rem 0.75rem',
                                 fontSize: '0.875rem',
-                                padding: '0.5rem',
-                                borderRadius: 'var(--border-radius)',
+                                borderRadius: '9999px',
+                                backgroundColor: getStatusColor(testResults?.success),
+                                color: getStatusTextColor(testResults?.success),
+                                fontWeight: '600',
+                                whiteSpace: 'nowrap'
+                              }}>
+                                {getSuccessStatus(testResults?.success) ? 'PASSED' : 'FAILED'}
+                              </span>
+                              <span style={{
+                                padding: '0.5rem 0.75rem',
+                                fontSize: '0.875rem',
+                                borderRadius: '9999px',
                                 backgroundColor: getMatchesExpected(testResults?.matches_expected) 
                                   ? 'rgba(16, 185, 129, 0.1)' 
                                   : 'rgba(239, 68, 68, 0.1)',
                                 color: getMatchesExpected(testResults?.matches_expected) 
                                   ? '#059669' 
                                   : '#dc2626',
+                                fontWeight: '600',
+                                whiteSpace: 'nowrap'
+                              }}>
+                                {getMatchesExpected(testResults?.matches_expected) ? 'MATCHES EXPECTED' : 'MISMATCH'}
+                              </span>
+                            </div>
+                          </div>
+                        );
+                      })()}
+
+                      {(() => {
+                        const testResults = getTestResults(selectedTest);
+                        return testResults?.error && (
+                          <div>
+                            <h4 style={{ fontWeight: '600', color: '#dc2626', marginBottom: '0.5rem' }}>Error</h4>
+                            <div style={{
+                              backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                              border: '1px solid rgba(239, 68, 68, 0.2)',
+                              borderRadius: 'var(--border-radius)',
+                              padding: '0.75rem'
+                            }}>
+                              <p style={{ 
+                                fontSize: '0.875rem', 
+                                color: '#dc2626',
                                 wordWrap: 'break-word',
                                 overflowWrap: 'break-word',
                                 lineHeight: '1.4'
                               }}>
-                                {testResults?.actual}
+                                {testResults.error}
                               </p>
                             </div>
                           </div>
-                        </div>
-                      );
-                    })()}
-
-                    {/* Derivation Logic */}
-                    {(() => {
-                      const testResults = getTestResults(selectedTest);
-                      return (
-                        <div>
-                          <h4 style={{ fontWeight: '600', color: 'var(--text-color)', marginBottom: '0.5rem' }}>
-                            Derivation Logic
-                          </h4>
-                          <div style={{
-                            backgroundColor: 'var(--secondary-background-color)',
-                            borderRadius: 'var(--border-radius)',
-                            padding: '0.75rem',
-                            maxHeight: '300px',
-                            overflowY: 'auto',
-                            overflowX: 'hidden'
-                          }}>
-                            <ol style={{ 
-                              fontSize: '0.75rem', 
-                              color: 'var(--text-color)', 
-                              margin: 0,
-                              paddingLeft: '1rem',
-                              lineHeight: '1.5'
-                            }}>
-                              {testResults?.derivation?.map((step, index) => (
-                                <li key={index} style={{ 
-                                  marginBottom: '0.5rem',
-                                  wordWrap: 'break-word',
-                                  overflowWrap: 'break-word'
-                                }}>
-                                  {step}
-                                </li>
-                              ))}
-                            </ol>
-                          </div>
-                        </div>
-                      );
-                    })()}
-
-                    {/* Status */}
-                    {(() => {
-                      const testResults = getTestResults(selectedTest);
-                      return (
-                        <div>
-                          <h4 style={{ fontWeight: '600', color: 'var(--text-color)', marginBottom: '0.5rem' }}>
-                            Test Status
-                          </h4>
-                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                            <span style={{
-                              padding: '0.5rem 0.75rem',
-                              fontSize: '0.875rem',
-                              borderRadius: '9999px',
-                              backgroundColor: getStatusColor(testResults?.success),
-                              color: getStatusTextColor(testResults?.success),
-                              fontWeight: '600',
-                              whiteSpace: 'nowrap'
-                            }}>
-                              {getSuccessStatus(testResults?.success) ? 'PASSED' : 'FAILED'}
-                            </span>
-                            <span style={{
-                              padding: '0.5rem 0.75rem',
-                              fontSize: '0.875rem',
-                              borderRadius: '9999px',
-                              backgroundColor: getMatchesExpected(testResults?.matches_expected) 
-                                ? 'rgba(16, 185, 129, 0.1)' 
-                                : 'rgba(239, 68, 68, 0.1)',
-                              color: getMatchesExpected(testResults?.matches_expected) 
-                                ? '#059669' 
-                                : '#dc2626',
-                              fontWeight: '600',
-                              whiteSpace: 'nowrap'
-                            }}>
-                              {getMatchesExpected(testResults?.matches_expected) ? 'MATCHES EXPECTED' : 'MISMATCH'}
-                            </span>
-                          </div>
-                        </div>
-                      );
-                    })()}
-
-                    {/* Error (if any) */}
-                    {(() => {
-                      const testResults = getTestResults(selectedTest);
-                      return testResults?.error && (
-                        <div>
-                          <h4 style={{ fontWeight: '600', color: '#dc2626', marginBottom: '0.5rem' }}>Error</h4>
-                          <div style={{
-                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
-                            border: '1px solid rgba(239, 68, 68, 0.2)',
-                            borderRadius: 'var(--border-radius)',
-                            padding: '0.75rem'
-                          }}>
-                            <p style={{ 
-                              fontSize: '0.875rem', 
-                              color: '#dc2626',
-                              wordWrap: 'break-word',
-                              overflowWrap: 'break-word',
-                              lineHeight: '1.4'
-                            }}>
-                              {testResults.error}
-                            </p>
-                          </div>
-                        </div>
-                      );
-                    })()}
-                  </div>
-                ) : (
-                  <div style={{ 
-                    textAlign: 'center', 
-                    color: '#9ca3af', 
-                    padding: '2rem 0',
-                    fontSize: '0.875rem'
-                  }}>
-                    <p>Select a test case to view details</p>
-                  </div>
-                )}
+                        );
+                      })()}
+                    </div>
+                  ) : (
+                    <div style={{ 
+                      textAlign: 'center', 
+                      color: '#9ca3af', 
+                      padding: '2rem 0',
+                      fontSize: '0.875rem'
+                    }}>
+                      <p>Select a test case to view details</p>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
+            ) : (
+              <div style={{ 
+                textAlign: 'center', 
+                color: '#9ca3af', 
+                padding: '2rem 0',
+                fontSize: '0.875rem'
+              }}>
+                <p>Real-world validation content will be displayed here</p>
+              </div>
+            )}
           </div>
         </section>
       </div>

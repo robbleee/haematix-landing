@@ -34,6 +34,7 @@ export default function RootLayout({ children }) {
               <ul style={{ display: 'flex', gap: '1.5rem', listStyle: 'none' }}>
                 <li><Link href="/" style={{ textDecoration: 'none' }}>Home</Link></li>
                 <li><Link href="/vision" style={{ textDecoration: 'none' }}>Our Vision</Link></li>
+                <li><Link href="/roadmap" style={{ textDecoration: 'none' }}>Roadmap</Link></li>
                 <li><Link href="/#documentation" style={{ textDecoration: 'none' }}>Documentation</Link></li>
                 <li><Link href="/testing-stats" style={{ textDecoration: 'none' }}>Testing Suite</Link></li>
                 <li><Link href="/pitch" style={{ textDecoration: 'none' }}>Pitch</Link></li>

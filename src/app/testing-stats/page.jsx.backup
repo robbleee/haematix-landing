@@ -978,11 +978,11 @@ export default function TestingSuitePage() {
                       padding: '0.25rem'
                     }}>
                       {[
-                        { id: 'introduction', label: 'Introduction' },
-                        { id: 'overview', label: 'Overview' },
-                        { id: 'visualizations', label: 'Charts' },
-                        { id: 'analysis', label: 'Analysis' },
-                        { id: 'explorer', label: 'Test Explorer' }
+                        { id: 'introduction', label: 'Introduction', icon: '📋' },
+                        { id: 'overview', label: 'Overview', icon: '📊' },
+                        { id: 'visualizations', label: 'Charts', icon: '📈' },
+                        { id: 'analysis', label: 'Analysis', icon: '🔍' },
+                        { id: 'explorer', label: 'Test Explorer', icon: '🗂️' }
                       ].map((tab) => (
                         <button
                           key={tab.id}
@@ -996,9 +996,13 @@ export default function TestingSuitePage() {
                             cursor: 'pointer',
                             transition: 'var(--transition)',
                             backgroundColor: disparitySubTab === tab.id ? 'var(--primary-color)' : 'transparent',
-                            color: disparitySubTab === tab.id ? 'white' : 'var(--text-color)'
+                            color: disparitySubTab === tab.id ? 'white' : 'var(--text-color)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.5rem'
                           }}
                         >
+                          <span>{tab.icon}</span>
                           <span>{tab.label}</span>
                         </button>
                       ))}
@@ -1042,8 +1046,8 @@ export default function TestingSuitePage() {
                           margin: '0 auto',
                           lineHeight: '1.6'
                         }}>
-                          Comparison of WHO 2022 and ICC 2022 hematological classification systems 
-                          applied to identical test cases.
+                          A comprehensive comparative study examining differences between WHO 2022 and ICC 2022 
+                          hematological classification systems and their clinical implications.
                         </p>
                       </div>
 
@@ -1058,6 +1062,7 @@ export default function TestingSuitePage() {
                           alignItems: 'center',
                           gap: '0.75rem'
                         }}>
+                          <span style={{ fontSize: '1.75rem' }}>🔬</span>
                           What is Disparity Testing?
                         </h3>
                         <div style={{ 
@@ -1072,17 +1077,19 @@ export default function TestingSuitePage() {
                             lineHeight: '1.7',
                             marginBottom: '1.5rem'
                           }}>
-                            Disparity testing compares the output of two classification systems when given identical 
-                            input data. The WHO 2022 and ICC 2022 classification systems are applied to the same 
-                            set of hematological test cases.
+                            Disparity testing is a systematic methodology for identifying and analyzing differences 
+                            between multiple classification systems when applied to the same clinical data. In our context, 
+                            we compare how the WHO 2022 and ICC 2022 classification systems categorize identical 
+                            hematological cases.
                           </p>
                           <p style={{ 
                             fontSize: '1.125rem', 
                             color: 'var(--text-color)', 
                             lineHeight: '1.7'
                           }}>
-                            We have applied a simplistic rating of clinical significance for each disparity, 
-                            categorizing differences by their potential impact on patient management.
+                            This analysis goes beyond simple comparison—it evaluates the clinical significance of 
+                            these differences, their potential impact on patient care, and identifies patterns in 
+                            where and why these classification systems diverge.
                           </p>
                         </div>
                       </div>
@@ -1098,7 +1105,8 @@ export default function TestingSuitePage() {
                           alignItems: 'center',
                           gap: '0.75rem'
                         }}>
-                          Use Cases
+                          <span style={{ fontSize: '1.75rem' }}>🎯</span>
+                          Why This Matters
                         </h3>
                         <div style={{ 
                           display: 'grid', 
@@ -1117,15 +1125,16 @@ export default function TestingSuitePage() {
                               color: '#3b82f6', 
                               marginBottom: '0.75rem' 
                             }}>
-                              Clinical Variance Assessment
+                              🏥 Clinical Decision Making
                             </h4>
                             <p style={{ 
                               fontSize: '1rem', 
                               color: 'var(--text-color)', 
                               lineHeight: '1.6' 
                             }}>
-                              Different classifications may result in different treatment protocols. 
-                              This analysis documents where such differences occur.
+                              Different classifications can lead to different treatment protocols, prognoses, and 
+                              clinical recommendations. Understanding these differences is crucial for informed 
+                              medical decision-making.
                             </p>
                           </div>
                           
@@ -1141,15 +1150,15 @@ export default function TestingSuitePage() {
                               color: '#10b981', 
                               marginBottom: '0.75rem' 
                             }}>
-                              System Cross-Reference
+                              🔄 System Interoperability
                             </h4>
                             <p style={{ 
                               fontSize: '1rem', 
                               color: 'var(--text-color)', 
                               lineHeight: '1.6' 
                             }}>
-                              Healthcare institutions using different classification standards can 
-                              reference this mapping for data translation purposes.
+                              Healthcare systems worldwide use different classification standards. Mapping these 
+                              differences enables better data sharing, research collaboration, and standardization efforts.
                             </p>
                           </div>
                           
@@ -1165,15 +1174,15 @@ export default function TestingSuitePage() {
                               color: '#8b5cf6', 
                               marginBottom: '0.75rem' 
                             }}>
-                              Edge Case Documentation
+                              📊 Quality Assurance
                             </h4>
                             <p style={{ 
                               fontSize: '1rem', 
                               color: 'var(--text-color)', 
                               lineHeight: '1.6' 
                             }}>
-                              Documents cases where classification systems produce different results, 
-                              particularly in borderline or complex scenarios.
+                              Systematic comparison helps identify edge cases, ambiguous scenarios, and areas 
+                              where classification systems may need refinement or clarification.
                             </p>
                           </div>
                         </div>
@@ -1190,7 +1199,8 @@ export default function TestingSuitePage() {
                           alignItems: 'center',
                           gap: '0.75rem'
                         }}>
-                          Process
+                          <span style={{ fontSize: '1.75rem' }}>⚙️</span>
+                          Our Methodology
                         </h3>
                         <div style={{ 
                           backgroundColor: 'var(--secondary-background-color)', 
@@ -1224,15 +1234,15 @@ export default function TestingSuitePage() {
                                   color: 'var(--text-color)', 
                                   marginBottom: '0.5rem' 
                                 }}>
-                                  Test Case Generation
+                                  Controlled Input Generation
                                 </h4>
                                 <p style={{ 
                                   fontSize: '1rem', 
                                   color: '#6b7280', 
                                   lineHeight: '1.6' 
                                 }}>
-                                  Test cases covering various hematological scenarios including blast percentages, 
-                                  genetic abnormalities, and morphological features.
+                                  We create comprehensive test cases covering various hematological scenarios, 
+                                  including different blast percentages, genetic abnormalities, and morphological features.
                                 </p>
                               </div>
                             </div>
@@ -1260,15 +1270,15 @@ export default function TestingSuitePage() {
                                   color: 'var(--text-color)', 
                                   marginBottom: '0.5rem' 
                                 }}>
-                                  Parallel Processing
+                                  Parallel Classification
                                 </h4>
                                 <p style={{ 
                                   fontSize: '1rem', 
                                   color: '#6b7280', 
                                   lineHeight: '1.6' 
                                 }}>
-                                  Each test case is processed through WHO 2022 and ICC 2022 classification 
-                                  algorithms. Derivation logic is recorded for each result.
+                                  Each test case is processed through both WHO 2022 and ICC 2022 classification 
+                                  algorithms independently, capturing the complete derivation logic for transparency.
                                 </p>
                               </div>
                             </div>
@@ -1296,15 +1306,15 @@ export default function TestingSuitePage() {
                                   color: 'var(--text-color)', 
                                   marginBottom: '0.5rem' 
                                 }}>
-                                  Result Comparison
+                                  Systematic Comparison
                                 </h4>
                                 <p style={{ 
                                   fontSize: '1rem', 
                                   color: '#6b7280', 
                                   lineHeight: '1.6' 
                                 }}>
-                                  Results are compared for equivalence. Non-equivalent results are analyzed 
-                                  for clinical significance and treatment impact.
+                                  Results are compared not just for equivalence, but analyzed for clinical significance, 
+                                  impact on treatment decisions, and patterns of divergence.
                                 </p>
                               </div>
                             </div>
@@ -1332,15 +1342,15 @@ export default function TestingSuitePage() {
                                   color: 'var(--text-color)', 
                                   marginBottom: '0.5rem' 
                                 }}>
-                                  Significance Assignment
+                                  Impact Assessment
                                 </h4>
                                 <p style={{ 
                                   fontSize: '1rem', 
                                   color: '#6b7280', 
                                   lineHeight: '1.6' 
                                 }}>
-                                  Each disparity is assigned a clinical significance level (critical, high, medium, low) 
-                                  based on potential impact on patient management decisions.
+                                  Each disparity is evaluated for its potential clinical consequences, assigned 
+                                  significance levels, and categorized by focus area for comprehensive analysis.
                                 </p>
                               </div>
                             </div>
@@ -1359,7 +1369,8 @@ export default function TestingSuitePage() {
                           alignItems: 'center',
                           gap: '0.75rem'
                         }}>
-                          Data Categories
+                          <span style={{ fontSize: '1.75rem' }}>📈</span>
+                          Key Metrics We Track
                         </h3>
                         <div style={{ 
                           display: 'grid', 
@@ -1373,11 +1384,12 @@ export default function TestingSuitePage() {
                             textAlign: 'center',
                             border: '1px solid rgba(239, 68, 68, 0.1)'
                           }}>
+                            <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>⚠️</div>
                             <h4 style={{ fontSize: '1rem', fontWeight: '600', color: '#ef4444', marginBottom: '0.5rem' }}>
                               Significance Level
                             </h4>
                             <p style={{ fontSize: '0.875rem', color: '#6b7280' }}>
-                              Critical, High, Medium, Low impact ratings
+                              Critical, High, Medium, Low impact classifications
                             </p>
                           </div>
                           
@@ -1388,6 +1400,7 @@ export default function TestingSuitePage() {
                             textAlign: 'center',
                             border: '1px solid rgba(245, 158, 11, 0.1)'
                           }}>
+                            <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🎯</div>
                             <h4 style={{ fontSize: '1rem', fontWeight: '600', color: '#f59e0b', marginBottom: '0.5rem' }}>
                               Focus Areas
                             </h4>
@@ -1403,11 +1416,12 @@ export default function TestingSuitePage() {
                             textAlign: 'center',
                             border: '1px solid rgba(16, 185, 129, 0.1)'
                           }}>
+                            <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>💊</div>
                             <h4 style={{ fontSize: '1rem', fontWeight: '600', color: '#10b981', marginBottom: '0.5rem' }}>
                               Clinical Impact
                             </h4>
                             <p style={{ fontSize: '0.875rem', color: '#6b7280' }}>
-                              Treatment and prognosis differences
+                              Treatment and prognosis implications
                             </p>
                           </div>
                           
@@ -1418,11 +1432,12 @@ export default function TestingSuitePage() {
                             textAlign: 'center',
                             border: '1px solid rgba(139, 92, 246, 0.1)'
                           }}>
+                            <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🔄</div>
                             <h4 style={{ fontSize: '1rem', fontWeight: '600', color: '#8b5cf6', marginBottom: '0.5rem' }}>
-                              Algorithm Complexity
+                              Complexity
                             </h4>
                             <p style={{ fontSize: '0.875rem', color: '#6b7280' }}>
-                              Number of derivation steps per result
+                              Derivation steps and decision pathways
                             </p>
                           </div>
                         </div>
@@ -1442,7 +1457,7 @@ export default function TestingSuitePage() {
                           color: 'var(--primary-color)', 
                           marginBottom: '1rem' 
                         }}>
-                          Navigation
+                          Ready to Explore?
                         </h4>
                         <p style={{ 
                           fontSize: '1rem', 
@@ -1451,8 +1466,9 @@ export default function TestingSuitePage() {
                           maxWidth: '600px',
                           margin: '0 auto 1.5rem'
                         }}>
-                          Use the tabs above to view summary statistics, charts, detailed analysis tables, 
-                          or examine individual test cases.
+                          Use the tabs above to dive into our comprehensive analysis. Start with the Overview for 
+                          summary statistics, explore detailed Charts and Analysis, or use the Test Explorer to 
+                          examine individual cases.
                         </p>
                         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
                           <button
@@ -1471,7 +1487,7 @@ export default function TestingSuitePage() {
                             onMouseOver={(e) => e.target.style.backgroundColor = '#0d7377'}
                             onMouseOut={(e) => e.target.style.backgroundColor = 'var(--primary-color)'}
                           >
-                            View Overview
+                            📊 View Overview
                           </button>
                           <button
                             onClick={() => setDisparitySubTab('explorer')}
@@ -1495,33 +1511,8 @@ export default function TestingSuitePage() {
                               e.target.style.color = 'var(--primary-color)';
                             }}
                           >
-                            Explore Test Cases
+                            🗂️ Explore Test Cases
                           </button>
-                          <a
-                            href="/disparity-analysis"
-                            style={{
-                              padding: '0.75rem 1.5rem',
-                              backgroundColor: 'transparent',
-                              color: '#8b5cf6',
-                              border: '2px solid #8b5cf6',
-                              borderRadius: 'var(--border-radius)',
-                              fontSize: '0.875rem',
-                              fontWeight: '600',
-                              textDecoration: 'none',
-                              display: 'inline-block',
-                              transition: 'var(--transition)'
-                            }}
-                            onMouseOver={(e) => {
-                              e.target.style.backgroundColor = '#8b5cf6';
-                              e.target.style.color = 'white';
-                            }}
-                            onMouseOut={(e) => {
-                              e.target.style.backgroundColor = 'transparent';
-                              e.target.style.color = '#8b5cf6';
-                            }}
-                          >
-                            Deep Analysis
-                          </a>
                         </div>
                       </div>
                     </div>

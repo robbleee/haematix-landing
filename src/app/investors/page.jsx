@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import styles from './pitch.module.css';
+import styles from './investors.module.css';
 
 const pitchSlides = [
   {
@@ -297,28 +297,17 @@ const pitchSlides = [
             <h3>The Problem</h3>
             <div className={styles.simpleStats}>
               <div className={styles.statItem}>
-                <div className={styles.statNumber}>£1,800</div>
-                <div className={styles.statLabel}>per diagnosis</div>
-              </div>
-              <div className={styles.statMultiplier}>×</div>
-              <div className={styles.statItem}>
-                <div className={styles.statNumber}>40,000</div>
-                <div className={styles.statLabel}>cases/year</div>
-              </div>
-              <div className={styles.statEquals}>=</div>
-              <div className={styles.statItem}>
                 <div className={styles.statNumber}>£72M</div>
                 <div className={styles.statLabel}>NHS annual cost</div>
               </div>
             </div>
-            <p>Conservative estimate assuming perfect diagnostics</p>
-            <p><strong>£293.9K per trust</strong> just for blood cancer classification</p>
+            <p><strong>£293.9K per trust</strong> • Conservative estimate</p>
           </div>
           
           <div className={styles.flowArrow}>→</div>
           
           <div className={styles.flowPanel}>
-            <h3>Our Pricing Model for Fixing the Problem</h3>
+            <h3>Our Solution</h3>
             <div className={styles.pricingList}>
               <div className={styles.pricingItem}>
                 <span className={styles.pricingValue}>£15K</span>
@@ -335,10 +324,6 @@ const pitchSlides = [
             </div>
             <p>Annual SaaS licenses</p>
           </div>
-        </div>
-        
-        <div className={styles.valueProposition}>
-          <p><strong>Value Proposition:</strong> Massive cost savings through AI-powered efficiency while generating sustainable recurring revenue</p>
         </div>
       </div>
     )
@@ -412,86 +397,80 @@ const pitchSlides = [
     subtitle: "Building the Comprehensive Haematology Solution",
     content: (
       <div className={styles.slideContent}>
-        <div className={styles.flowDiagram}>
-          <div className={styles.flowTrack} style={{ marginBottom: '60px' }}>
-            <h3 style={{ marginBottom: '40px' }}>Disease Expansion</h3>
-            <div className={styles.flowPath}>
-              <div className={styles.flowPhase} style={{ marginBottom: '30px' }}>
-                <div className={styles.phaseCircle}>
-                  <span className={styles.phaseNumber}>1</span>
-                </div>
-                <div className={styles.phaseContent}>
-                  <h4>Phase 1</h4>
-                  <div className={styles.phaseStatus}>Complete</div>
-                  <p>AML & MDS subtypes</p>
-                </div>
-              </div>
-              
-              <div className={styles.flowArrow} style={{ margin: '20px 0' }}>→</div>
-              
-              <div className={styles.flowPhase} style={{ marginBottom: '30px' }}>
-                <div className={styles.phaseCircle}>
-                  <span className={styles.phaseNumber}>2</span>
-                </div>
-                <div className={styles.phaseContent}>
-                  <h4>Phase 2</h4>
-                  <div className={styles.phaseTimeframe}>Y1-2</div>
-                  <p>Lymphoid Malignancies</p>
+        <div className={styles.roadmapFlow}>
+          <div className={styles.flowTrack}>
+            <h3>Disease Expansion Journey</h3>
+            <div className={styles.expansionFlow}>
+              <div className={styles.milestone}>
+                <div className={styles.milestoneNode}>
+                  <div className={styles.nodeIcon}>✓</div>
+                  <div className={styles.nodeContent}>
+                    <h4>Phase 1</h4>
+                    <p>AML & MDS</p>
+                    <span className={styles.status}>Complete</span>
+                  </div>
                 </div>
               </div>
               
-              <div className={styles.flowArrow} style={{ margin: '20px 0' }}>→</div>
+              <div className={styles.flowConnector}>→</div>
               
-              <div className={styles.flowPhase} style={{ marginBottom: '30px' }}>
-                <div className={styles.phaseCircle}>
-                  <span className={styles.phaseNumber}>3</span>
-                </div>
-                <div className={styles.phaseContent}>
-                  <h4>Phase 3</h4>
-                  <div className={styles.phaseTimeframe}>Y2-3</div>
-                  <p>MPNs & Multiple Myeloma</p>
+              <div className={styles.milestone}>
+                <div className={styles.milestoneNode}>
+                  <div className={styles.nodeIcon}>🔬</div>
+                  <div className={styles.nodeContent}>
+                    <h4>Y1-2</h4>
+                    <p>Lymphoid Malignancies</p>
+                    <span className={styles.timeline}>Next</span>
+                  </div>
                 </div>
               </div>
               
-              <div className={styles.flowArrow} style={{ margin: '20px 0' }}>→</div>
+              <div className={styles.flowConnector}>→</div>
               
-              <div className={styles.flowPhase}>
-                <div className={styles.phaseCircle}>
-                  <span className={styles.phaseNumber}>4</span>
+              <div className={styles.milestone}>
+                <div className={styles.milestoneNode}>
+                  <div className={styles.nodeIcon}>🧬</div>
+                  <div className={styles.nodeContent}>
+                    <h4>Y2-3</h4>
+                    <p>MPNs & Multiple Myeloma</p>
+                    <span className={styles.timeline}>Scaling</span>
+                  </div>
                 </div>
-                <div className={styles.phaseContent}>
-                  <h4>Phase 4</h4>
-                  <div className={styles.phaseTimeframe}>Y3+</div>
-                  <p>All Rare Blood Cancers</p>
+              </div>
+              
+              <div className={styles.flowConnector}>→</div>
+              
+              <div className={styles.milestone}>
+                <div className={styles.milestoneNode}>
+                  <div className={styles.nodeIcon}>🎯</div>
+                  <div className={styles.nodeContent}>
+                    <h4>Y3+</h4>
+                    <p>All Rare Blood Cancers</p>
+                    <span className={styles.timeline}>Complete</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           
-          <div className={styles.flowTrack}>
-            <h3 style={{ marginBottom: '40px' }}>Platform Integration</h3>
-            <div className={styles.integrationFlow}>
-              <div className={styles.integrationPhase} style={{ marginBottom: '40px' }}>
-                <div className={styles.integrationIcon}>
-                  <span>API</span>
-                </div>
-                <div className={styles.integrationContent}>
-                  <h4>Upstream Integration</h4>
-                  <div className={styles.timeframe}>Y1-2</div>
-                  <p>Direct data ingestion from genetic testing systems & LIS</p>
+          <div className={styles.platformTrack}>
+            <h3>Platform Evolution</h3>
+            <div className={styles.platformFlow}>
+              <div className={styles.platformStep}>
+                <div className={styles.stepIcon}>🔗</div>
+                <div className={styles.stepContent}>
+                  <h4>API Integration</h4>
+                  <p>Direct data ingestion from genetic testing systems</p>
                 </div>
               </div>
               
-              <div className={styles.flowConnector} style={{ margin: '30px 0' }}>+</div>
+              <div className={styles.plusConnector}>+</div>
               
-              <div className={styles.integrationPhase}>
-                <div className={styles.integrationIcon}>
-                  <span>DB</span>
-                </div>
-                <div className={styles.integrationContent}>
-                  <h4>Trial Database Expansion</h4>
-                  <div className={styles.timeframe}>Y1-2</div>
-                  <p>UK (ISRCTN) & US (ClinicalTrials.gov) - 25x more options</p>
+              <div className={styles.platformStep}>
+                <div className={styles.stepIcon}>🗄️</div>
+                <div className={styles.stepContent}>
+                  <h4>Trial Database</h4>
+                  <p>UK & US expansion - 25x more matching options</p>
                 </div>
               </div>
             </div>

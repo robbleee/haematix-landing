@@ -38,9 +38,7 @@ export default function Home() {
               </p>
               <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginBottom: '0.5rem' }}>
                 {/* Add :hover styles in CSS */}
-                <button type="button" className="button" style={{ transition: 'all 0.2s ease' }}>
-                  Request Demo
-                </button>
+
                 {/* Link to document section */}
                 <a 
                   href="#documentation" 

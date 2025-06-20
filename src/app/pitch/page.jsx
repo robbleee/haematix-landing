@@ -6,6 +6,25 @@ import styles from './pitch.module.css';
 const pitchSlides = [
   {
     id: 1,
+    content: (
+      <div className={styles.slideContent}>
+        <div className={styles.titleSlide}>
+          <div className={styles.titleMain}>
+            <h1 className={styles.companyName}>
+              <span className="text-gradient">Haem.io</span>
+            </h1>
+            <p className={styles.tagline}>Intelligent Diagnostics for Precision Haematology</p>
+          </div>
+          
+          <div className={styles.clinicalBackground}>
+            <div className={styles.backgroundPattern}></div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 2,
     title: "The Diagnostic Pathway Crisis",
     subtitle: "Complex Guidelines Meet Unstructured Data",
     content: (
@@ -40,7 +59,7 @@ const pitchSlides = [
     )
   },
   {
-    id: 2,
+    id: 3,
     title: "Formal Logic Meets Intelligent Extraction",
     subtitle: "Structured Diagnostic Pathways + AI-Powered Data Liberation",
     content: (
@@ -89,7 +108,137 @@ const pitchSlides = [
     )
   },
   {
-    id: 3,
+    id: 4,
+    title: "Effortless Clinical Integration",
+    subtitle: "Designed for Junior Clinicians, Trusted by Experts",
+    content: (
+      <div className={styles.slideContent}>
+        <h3>Zero Learning Curve, Maximum Confidence</h3>
+        
+        <div className={styles.largeAdvantages}>
+          <div className={styles.advantage}>
+            <h4>No Training Required</h4>
+            <p>Junior clinicians achieve expert-level diagnostic accuracy from day one</p>
+          </div>
+          <div className={styles.advantage}>
+            <h4>Intuitive Interface</h4>
+            <p>Upload report, get structured diagnosis. Complex logic runs invisibly</p>
+          </div>
+          <div className={styles.advantage}>
+            <h4>Confidence Building</h4>
+            <p>Shows reasoning behind each decision, helping doctors learn while ensuring they never miss critical criteria</p>
+          </div>
+          <div className={styles.advantage}>
+            <h4>Expert Validation</h4>
+            <p>Built on WHO 2022 and ICC 2022 guidelines, validated by leading hematologists worldwide</p>
+          </div>
+        </div>
+        
+        <div className={styles.insight}>
+          Sophisticated formal logic, simple clinical experience.
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 5,
+    title: "Why We Win",
+    subtitle: "Deep Integration, Unmatched Expertise",
+    content: (
+      <div className={styles.slideContent}>
+        <div className={styles.competitiveAdvantage}>
+          <div className={styles.advantagePoints}>
+            <div className={styles.advantagePoint}>
+              <div className={styles.pointNumber}>1</div>
+              <h4>Format-Agnostic Integration</h4>
+              <p>We consume data in any format (PDF, text, etc.), integrating effortlessly into any existing clinical workflow without requiring changes to lab or hospital systems.</p>
+            </div>
+            
+            <div className={styles.advantagePoint}>
+              <div className={styles.pointNumber}>2</div>
+              <h4>Expert-Driven AI</h4>
+              <p>We leverage our in-house clinical team's expertise to formalise the complex classification logic for numerous cancer subtypes. This drastically reduces development costs and ensures world-class accuracy.</p>
+            </div>
+            
+            <div className={styles.advantagePoint}>
+              <div className={styles.pointNumber}>3</div>
+              <h4>From Weeks to Seconds</h4>
+              <p>We deliver an accurate, reproducible, and transparent diagnosis in seconds, a process that traditionally takes days or weeks.</p>
+            </div>
+            
+            <div className={styles.advantagePoint}>
+              <div className={styles.pointNumber}>4</div>
+              <h4>Comprehensive Downstream Insights</h4>
+              <p>The rich, structured data we create powers a suite of downstream analyses: personalised treatment suggestions, genetic trial matching, risk stratification, gene reviews, and MRD reviews.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 6,
+    title: "How It Works",
+    subtitle: "From Raw Data to Actionable Report in Minutes",
+    content: (
+      <div className={styles.slideContent}>
+        <div className={styles.howItWorksFlow}>
+          <div className={styles.workflowStep}>
+            <div className={styles.stepIcon} data-icon="upload"></div>
+            <div className={styles.stepNumber}>01</div>
+            <div className={styles.stepContent}>
+              <h4>UPLOAD</h4>
+              <p>User uploads unstructured lab reports</p>
+            </div>
+          </div>
+          
+          <div className={styles.workflowArrow}>→</div>
+          
+          <div className={styles.workflowStep}>
+            <div className={styles.stepIcon} data-icon="analyze"></div>
+            <div className={styles.stepNumber}>02</div>
+            <div className={styles.stepContent}>
+              <h4>ANALYSE</h4>
+              <p>AI engine parses data, classifies disease, assesses risk</p>
+            </div>
+          </div>
+          
+          <div className={styles.workflowArrow}>→</div>
+          
+          <div className={styles.workflowStep}>
+            <div className={styles.stepIcon} data-icon="report"></div>
+            <div className={styles.stepNumber}>03</div>
+            <div className={styles.stepContent}>
+              <h4>REPORT</h4>
+              <p>Comprehensive PDF report generated for clinical team</p>
+            </div>
+          </div>
+        </div>
+        
+        <div className={styles.workflowInsight}>
+          <div className={styles.timeComparison}>
+            <div className={styles.beforeAfter}>
+              <div className={styles.beforeTime}>
+                <div className={styles.beforeLabel}>BEFORE</div>
+                <div className={styles.beforeValue}>Hours to Weeks</div>
+                <div className={styles.beforeDescription}>Manual diagnosis process</div>
+              </div>
+              
+              <div className={styles.comparisonArrow}>→</div>
+              
+              <div className={styles.afterTime}>
+                <div className={styles.afterLabel}>WITH HAEM.IO</div>
+                <div className={styles.afterValue}>3-5 Minutes</div>
+                <div className={styles.afterDescription}>Automated diagnostic report</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 7,
     title: "Perfect Market Convergence",
     subtitle: "Riding the Wave: Multi-Billion Dollar Market Transformation",
     content: (
@@ -138,108 +287,212 @@ const pitchSlides = [
     )
   },
   {
-    id: 4,
-    title: "Unmatched Technical Architecture",
-    subtitle: "Formal Logic + AI Integration = Diagnostic Leadership",
+    id: 8,
+    title: "The £72M Problem & Our Solution",
+    subtitle: "Conservative NHS Costs vs. Our Pricing Model",
     content: (
       <div className={styles.slideContent}>
-        <div className={styles.heroFeature}>
-          <div className={styles.mainAdvantage}>
-            <h3>Formal Logic Mastery</h3>
-            <p>We bring algorithmic trading precision to diagnostic pathway formalization—building complex, testable logic systems that know rather than guess.</p>
+        <div className={styles.diagnosticFlow}>
+          <div className={styles.flowPanel}>
+            <h3>The Problem</h3>
+            <div className={styles.simpleStats}>
+              <div className={styles.statItem}>
+                <div className={styles.statNumber}>£1,800</div>
+                <div className={styles.statLabel}>per diagnosis</div>
+              </div>
+              <div className={styles.statMultiplier}>×</div>
+              <div className={styles.statItem}>
+                <div className={styles.statNumber}>40,000</div>
+                <div className={styles.statLabel}>cases/year</div>
+              </div>
+              <div className={styles.statEquals}>=</div>
+              <div className={styles.statItem}>
+                <div className={styles.statNumber}>£72M</div>
+                <div className={styles.statLabel}>NHS annual cost</div>
+              </div>
+            </div>
+            <p>Conservative estimate assuming perfect diagnostics</p>
+            <p><strong>£293.9K per trust</strong> just for blood cancer classification</p>
           </div>
           
-          <div className={styles.supportingPoints}>
-            <div className={styles.supportPoint}>
-              <h4>Clinical Integration</h4>
-              <p>Deep haematology partnerships ensure formalized pathways reflect real-world complexity</p>
+          <div className={styles.flowArrow}>→</div>
+          
+          <div className={styles.flowPanel}>
+            <h3>Our Pricing Model for Fixing the Problem</h3>
+            <div className={styles.pricingList}>
+              <div className={styles.pricingItem}>
+                <span className={styles.pricingValue}>£15K</span>
+                <span className={styles.pricingTitle}>Hospital Dept</span>
+              </div>
+              <div className={styles.pricingItem}>
+                <span className={styles.pricingValue}>£30K</span>
+                <span className={styles.pricingTitle}>Hospital Trust</span>
+              </div>
+              <div className={styles.pricingItem}>
+                <span className={styles.pricingValue}>£25K</span>
+                <span className={styles.pricingTitle}>Pharma/CRO</span>
+              </div>
             </div>
-            <div className={styles.supportPoint}>
-              <h4>Systematic Validation</h4>
-              <p>Every pathway is formally tested, version-controlled, and validated against case libraries</p>
-            </div>
+            <p>Annual SaaS licenses</p>
           </div>
         </div>
         
-        <div className={styles.architectureInsight}>
-          We're not building AI that guesses—we're building formal logic systems that know, with AI that extracts and validates.
+        <div className={styles.valueProposition}>
+          <p><strong>Value Proposition:</strong> Massive cost savings through AI-powered efficiency while generating sustainable recurring revenue</p>
         </div>
       </div>
     )
   },
   {
-    id: 5,
-    title: "Effortless Clinical Integration",
-    subtitle: "Designed for Junior Clinicians, Trusted by Experts",
+    id: 9,
+    title: "The Team",
+    subtitle: "World-Class Expertise in AI, Physics & Medicine",
     content: (
       <div className={styles.slideContent}>
-        <h3>Zero Learning Curve, Maximum Confidence</h3>
-        
-        <div className={styles.largeAdvantages}>
-          <div className={styles.advantage}>
-            <h4>No Training Required</h4>
-            <p>Junior clinicians achieve expert-level diagnostic accuracy from day one</p>
-          </div>
-          <div className={styles.advantage}>
-            <h4>Intuitive Interface</h4>
-            <p>Upload report, get structured diagnosis. Complex logic runs invisibly</p>
-          </div>
-          <div className={styles.advantage}>
-            <h4>Confidence Building</h4>
-            <p>Shows reasoning behind each decision, helping doctors learn while ensuring they never miss critical criteria</p>
-          </div>
-          <div className={styles.advantage}>
-            <h4>Expert Validation</h4>
-            <p>Built on WHO 2022 and ICC 2022 guidelines, validated by leading hematologists worldwide</p>
-          </div>
-        </div>
-        
-        <div className={styles.insight}>
-          Sophisticated formal logic, simple clinical experience.
-        </div>
-      </div>
-    )
-  },
-  {
-    id: 6,
-    title: "Investment Opportunity",
-    subtitle: "£500k-£2M Seed to Formalize Medical Decision-Making",
-    content: (
-      <div className={styles.slideContent}>
-        <div className={styles.professionalInvestmentLayout}>
-          <div className={styles.investmentOverview}>
-            <div className={styles.fundingRequest}>
-              <div className={styles.amount}>£500k-£2M</div>
-              <div className={styles.stage}>Seed Round</div>
-              <div className={styles.purpose}>Building the diagnostic logic revolution</div>
+        <div className={styles.teamLayout}>
+          <div className={styles.teamGrid}>
+            <div className={styles.teamMember}>
+              <div className={styles.memberPhoto}>
+                <div className={styles.photoPlaceholder}>RL</div>
+              </div>
+              <div className={styles.memberInfo}>
+                <h3>Robert Edward Lee</h3>
+                <h4>CEO</h4>
+                <p>Background in Computer Science & FinTech AI. Driving the business vision.</p>
+              </div>
             </div>
             
-            <div className={styles.keyMetrics}>
-              <div className={styles.metric}>
-                <div className={styles.metricValue}>18</div>
-                <div className={styles.metricLabel}>Months to NHS validation</div>
+            <div className={styles.teamMember}>
+              <div className={styles.memberPhoto}>
+                <div className={styles.photoPlaceholder}>DC</div>
               </div>
-              <div className={styles.metric}>
-                <div className={styles.metricValue}>£164B</div>
-                <div className={styles.metricLabel}>AI Healthcare market by 2030</div>
+              <div className={styles.memberInfo}>
+                <h3>Dr. Danny Clark</h3>
+                <h4>CTO</h4>
+                <p>PhD in Nuclear Physics from CERN. Leading technology and platform architecture.</p>
+              </div>
+            </div>
+            
+            <div className={styles.teamMember}>
+              <div className={styles.memberPhoto}>
+                <div className={styles.photoPlaceholder}>JB</div>
+              </div>
+              <div className={styles.memberInfo}>
+                <h3>Dr. John Burthem</h3>
+                <h4>Co-CMO</h4>
+                <p>Practising haematologist providing essential domain expertise and overseeing clinical strategy and validation.</p>
+              </div>
+            </div>
+            
+            <div className={styles.teamMember}>
+              <div className={styles.memberPhoto}>
+                <div className={styles.photoPlaceholder}>LC</div>
+              </div>
+              <div className={styles.memberInfo}>
+                <h3>Dr. Luke Carter-Brzezinski</h3>
+                <h4>Co-CMO</h4>
+                <p>Practising haematologist providing essential domain expertise and overseeing clinical strategy and validation.</p>
               </div>
             </div>
           </div>
           
-          <div className={styles.usageBreakdown}>
-            <h4>Use of Funds</h4>
-            <div className={styles.fundingItems}>
-              <div className={styles.fundingItem}>
-                <div className={styles.itemCategory}>Platform Development</div>
-                <div className={styles.itemDescription}>Scale formal pathway development across haematology subspecialties</div>
+          <div className={styles.teamStrength}>
+            <div className={styles.strengthCard}>
+              <h4>Unique Multidisciplinary Foundation</h4>
+              <p>Combining deep clinical expertise in haematology with cutting-edge AI and formal logic capabilities - the perfect blend for revolutionizing medical diagnostics.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 10,
+    title: "The Product Roadmap",
+    subtitle: "Building the Comprehensive Haematology Solution",
+    content: (
+      <div className={styles.slideContent}>
+        <div className={styles.flowDiagram}>
+          <div className={styles.flowTrack} style={{ marginBottom: '60px' }}>
+            <h3 style={{ marginBottom: '40px' }}>Disease Expansion</h3>
+            <div className={styles.flowPath}>
+              <div className={styles.flowPhase} style={{ marginBottom: '30px' }}>
+                <div className={styles.phaseCircle}>
+                  <span className={styles.phaseNumber}>1</span>
+                </div>
+                <div className={styles.phaseContent}>
+                  <h4>Phase 1</h4>
+                  <div className={styles.phaseStatus}>Complete</div>
+                  <p>AML & MDS subtypes</p>
+                </div>
               </div>
-              <div className={styles.fundingItem}>
-                <div className={styles.itemCategory}>Clinical Validation</div>
-                <div className={styles.itemDescription}>Multi-center testing with comprehensive outcome tracking</div>
+              
+              <div className={styles.flowArrow} style={{ margin: '20px 0' }}>→</div>
+              
+              <div className={styles.flowPhase} style={{ marginBottom: '30px' }}>
+                <div className={styles.phaseCircle}>
+                  <span className={styles.phaseNumber}>2</span>
+                </div>
+                <div className={styles.phaseContent}>
+                  <h4>Phase 2</h4>
+                  <div className={styles.phaseTimeframe}>Y1-2</div>
+                  <p>Lymphoid Malignancies</p>
+                </div>
               </div>
-              <div className={styles.fundingItem}>
-                <div className={styles.itemCategory}>Team Expansion</div>
-                <div className={styles.itemDescription}>Logic engineering and clinical informatics capabilities</div>
+              
+              <div className={styles.flowArrow} style={{ margin: '20px 0' }}>→</div>
+              
+              <div className={styles.flowPhase} style={{ marginBottom: '30px' }}>
+                <div className={styles.phaseCircle}>
+                  <span className={styles.phaseNumber}>3</span>
+                </div>
+                <div className={styles.phaseContent}>
+                  <h4>Phase 3</h4>
+                  <div className={styles.phaseTimeframe}>Y2-3</div>
+                  <p>MPNs & Multiple Myeloma</p>
+                </div>
+              </div>
+              
+              <div className={styles.flowArrow} style={{ margin: '20px 0' }}>→</div>
+              
+              <div className={styles.flowPhase}>
+                <div className={styles.phaseCircle}>
+                  <span className={styles.phaseNumber}>4</span>
+                </div>
+                <div className={styles.phaseContent}>
+                  <h4>Phase 4</h4>
+                  <div className={styles.phaseTimeframe}>Y3+</div>
+                  <p>All Rare Blood Cancers</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className={styles.flowTrack}>
+            <h3 style={{ marginBottom: '40px' }}>Platform Integration</h3>
+            <div className={styles.integrationFlow}>
+              <div className={styles.integrationPhase} style={{ marginBottom: '40px' }}>
+                <div className={styles.integrationIcon}>
+                  <span>API</span>
+                </div>
+                <div className={styles.integrationContent}>
+                  <h4>Upstream Integration</h4>
+                  <div className={styles.timeframe}>Y1-2</div>
+                  <p>Direct data ingestion from genetic testing systems & LIS</p>
+                </div>
+              </div>
+              
+              <div className={styles.flowConnector} style={{ margin: '30px 0' }}>+</div>
+              
+              <div className={styles.integrationPhase}>
+                <div className={styles.integrationIcon}>
+                  <span>DB</span>
+                </div>
+                <div className={styles.integrationContent}>
+                  <h4>Trial Database Expansion</h4>
+                  <div className={styles.timeframe}>Y1-2</div>
+                  <p>UK (ISRCTN) & US (ClinicalTrials.gov) - 25x more options</p>
+                </div>
               </div>
             </div>
           </div>
@@ -248,7 +501,157 @@ const pitchSlides = [
     )
   },
   {
-    id: 7,
+    id: 11,
+    title: "Our Capital-Efficient Regulatory Strategy",
+    subtitle: "A Lean and De-Risked Path to Market",
+    content: (
+      <div className={styles.slideContent}>
+        <div className={styles.regulatoryStrategy}>
+          <div className={styles.regulatoryComparison}>
+            <div className={styles.comparisonSection}>
+              <h3>The "DIY" Advantage vs. The Standard Approach</h3>
+              <p>Instead of allocating £50,000+ to external consultants, our team has the technical and clinical expertise to manage the entire process internally.</p>
+              <p><strong>Our funding is therefore targeted only at the unavoidable external fees required for certification.</strong></p>
+            </div>
+          </div>
+          
+          <div className={styles.costBreakdown}>
+            <h3>Minimum Mandatory Costs for UKCA Marking</h3>
+            <div className={styles.costTable}>
+              <div className={styles.tableHeader}>
+                <div className={styles.tableCell}>Cost Item</div>
+                <div className={styles.tableCell}>Type</div>
+                <div className={styles.tableCell}>Estimated Cost</div>
+              </div>
+              <div className={styles.tableRow}>
+                <div className={styles.tableCell}>ISO 13485 Certification Audit</div>
+                <div className={styles.tableCell}>Mandatory External Fee</div>
+                <div className={styles.tableCell}>£3,000 - £5,000</div>
+              </div>
+              <div className={styles.tableRow}>
+                <div className={styles.tableCell}>UK Approved Body Audit</div>
+                <div className={styles.tableCell}>Mandatory External Fee</div>
+                <div className={styles.tableCell}>£15,000 - £20,000</div>
+              </div>
+              <div className={styles.tableRow}>
+                <div className={styles.tableCell}>MHRA Registration Fee</div>
+                <div className={styles.tableCell}>Mandatory External Fee</div>
+                <div className={styles.tableCell}>£261</div>
+              </div>
+              <div className={styles.tableTotal}>
+                <div className={styles.tableCell}><strong>Total Minimum Cash Outlay</strong></div>
+                <div className={styles.tableCell}></div>
+                <div className={styles.tableCell}><strong>~£18,000 - £25,000</strong></div>
+              </div>
+            </div>
+          </div>
+          
+          <div className={styles.fundingAllocation}>
+            <h4>Our Funding Allocation for this Goal</h4>
+            <p>Our ask includes a specific budget for these hard costs, plus a small buffer for expert review before submission.</p>
+          </div>
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 12,
+    title: "Use of Funds",
+    subtitle: "How We Will Deploy Capital for Growth",
+    content: (
+      <div className={styles.slideContent}>
+        <div className={styles.useOfFunds}>
+          <div className={styles.fundingColumns}>
+            <div className={styles.fundingColumn}>
+              <div className={styles.columnHeader}>
+                <div className={styles.columnIcon} data-icon="team"></div>
+                <div className={styles.columnPercentage}>50%</div>
+                <h3>Team Expansion</h3>
+              </div>
+
+              <div className={styles.columnContent}>
+                <h4>Key Hires</h4>
+                <ul>
+                  <li>Fund full-time salaries for the CEO and CTO</li>
+                  <li>Hire an experienced Institutional Sales professional in Year 2 to build relationships with NHS trusts and drive revenue post-certification</li>
+                  <li>Expand the engineering team to accelerate roadmap delivery</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div className={styles.fundingColumn}>
+              <div className={styles.columnHeader}>
+                <div className={styles.columnIcon} data-icon="product"></div>
+                <div className={styles.columnPercentage}>30%</div>
+                <h3>Product & Regulatory</h3>
+              </div>
+
+              <div className={styles.columnContent}>
+                <h4>Key Actions</h4>
+                <ul>
+                  <li>Fund the entire UKCA medical device registration process, including essential consultancy, auditing, and QMS implementation fees</li>
+                  <li>Continuously expand our clinical trial database and product features</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div className={styles.fundingColumn}>
+              <div className={styles.columnHeader}>
+                <div className={styles.columnIcon} data-icon="marketing"></div>
+                <div className={styles.columnPercentage}>20%</div>
+                <h3>Sales & Marketing</h3>
+              </div>
+
+              <div className={styles.columnContent}>
+                <h4>Key Actions</h4>
+                <ul>
+                  <li>Fund our presence at key industry conferences (e.g., BSH)</li>
+                  <li>Execute targeted digital marketing campaigns to reach clinical leads</li>
+                  <li>Support the publication of validation studies to build clinical credibility</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 13,
+    title: "Seed Round",
+    subtitle: "£750k to Accelerate Market Entry",
+    content: (
+      <div className={styles.slideContent}>
+        <div className={styles.simpleRequest}>
+          <div className={styles.fundingAmount}>
+            <div className={styles.amount}>£750,000</div>
+            <div className={styles.stage}>Seed Funding</div>
+          </div>
+          
+          <div className={styles.keyObjectives}>
+            <div className={styles.objective}>
+              <h4>18 Months to NHS Validation</h4>
+              <p>Complete UKCA certification and secure first NHS contracts</p>
+            </div>
+            <div className={styles.objective}>
+              <h4>Team & Product Scale</h4>
+              <p>Hire sales professional, expand engineering, enhance platform</p>
+            </div>
+            <div className={styles.objective}>
+              <h4>Market Position</h4>
+              <p>Establish leadership in AI diagnostic logic for haematology</p>
+            </div>
+          </div>
+          
+          <div className={styles.marketContext}>
+            <p><strong>Market Opportunity:</strong> £164B AI Healthcare market by 2030, with NHS actively investing £500M+ in AI solutions</p>
+          </div>
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 14,
     content: (
       <div className={styles.slideContent}>
         <div className={styles.impactLayout}>

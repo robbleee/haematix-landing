@@ -1,5 +1,7 @@
 import './globals.css';
 import Link from 'next/link';
+import CookieBanner from '../components/CookieBanner';
+import ComplianceFooter from '../components/ComplianceFooter';
 
 export const metadata = {
   title: 'Haem.io - Haematology Diagnosis Tool',
@@ -44,11 +46,8 @@ export default function RootLayout({ children }) {
         <main>
           {children}
         </main>
-        <footer style={{ backgroundColor: 'var(--secondary-background-color)', padding: '2rem 0' }}>
-          <div className="container" style={{ textAlign: 'center' }}>
-            <p>© {new Date().getFullYear()} Haem.io. All rights reserved.</p> 
-          </div>
-        </footer>
+        <ComplianceFooter />
+        <CookieBanner />
       </body>
     </html>
   );

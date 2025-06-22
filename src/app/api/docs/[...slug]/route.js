@@ -4,7 +4,10 @@ import path from 'path';
 
 export async function GET(request, { params }) {
   try {
-    const { filename } = params;
+    const { slug } = await params;
+    
+    // Reconstruct the file path from the slug array
+    const filename = slug.join('/');
     
     // Security check: only allow .md files and prevent directory traversal
     if (!filename.endsWith('.md') || filename.includes('..')) {

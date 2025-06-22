@@ -1,0 +1,140 @@
+.cookieBanner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid #e0e0e0;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.text p {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.privacyLink {
+  color: #007acc;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.privacyLink:hover {
+  text-decoration: underline;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.acceptButton, .declineButton {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.acceptButton {
+  background: linear-gradient(135deg, #007acc, #0066cc);
+  color: white;
+}
+
+.acceptButton:hover {
+  background: linear-gradient(135deg, #0066cc, #0052a3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 122, 204, 0.3);
+}
+
+.declineButton {
+  background: transparent;
+  color: #666;
+  border: 1px solid #ddd;
+}
+
+.declineButton:hover {
+  background: #f5f5f5;
+  color: #333;
+  border-color: #ccc;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .cookieBanner {
+    background: rgba(20, 20, 20, 0.98);
+    border-top-color: #333;
+  }
+  
+  .text p {
+    color: #e0e0e0;
+  }
+  
+  .declineButton {
+    color: #ccc;
+    border-color: #555;
+  }
+  
+  .declineButton:hover {
+    background: #333;
+    color: #fff;
+    border-color: #666;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+    padding: 1.25rem 1rem;
+  }
+  
+  .text {
+    min-width: auto;
+  }
+  
+  .actions {
+    justify-content: space-between;
+  }
+  
+  .acceptButton, .declineButton {
+    flex: 1;
+    padding: 0.875rem 1rem;
+  }
+} 

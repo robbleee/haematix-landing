@@ -191,120 +191,289 @@ export default function Home() {
               <p style={{ color: '#4a5568', lineHeight: '1.6' }}>Calculate International Prognostic Scoring System (IPSS) scores for MDS patients, helping determine risk levels and guide treatment decisions.</p>
             </div>
           </div>
-        </div>
+                </div>
       </section>
 
-      {/* Disparity Analysis Section */}
+      {/* Clinical Trial Matching Section */}
       <section style={{
-        backgroundColor: '#f8f9fa',
+        backgroundColor: '#f8fdfc',
         padding: '4rem 0',
-        borderTop: '1px solid rgba(0, 150, 136, 0.1)'
+        borderTop: '2px solid rgba(0, 150, 136, 0.2)'
       }}>
         <div className="container">
           <div style={{
             textAlign: 'center',
+            maxWidth: '900px',
+            margin: '0 auto 3rem'
+          }}>
+            <h2 style={{
+              fontSize: '2.5rem',
+              fontWeight: '700',
+              marginBottom: '1.5rem',
+              color: '#00695c',
+              textShadow: '0 2px 4px rgba(0,0,0,0.1)'
+            }}>Clinical Trial Matching</h2>
+            
+            <p style={{
+              fontSize: '1.15rem',
+              color: '#37474f',
+              lineHeight: '1.7',
+              marginBottom: '0.5rem',
+              fontWeight: '400'
+            }}>
+              Our AI-powered system analyzes patient genetic profiles and clinical characteristics to identify relevant blood cancer clinical trials, ensuring patients have access to cutting-edge treatments.
+            </p>
+          </div>
+
+          {/* Horizontal Process Flow */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '3rem',
+            marginBottom: '4rem',
+            flexWrap: 'wrap'
+          }}>
+            {/* Step 1 */}
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              maxWidth: '200px',
+              textAlign: 'center'
+            }}>
+              <div style={{
+                background: 'linear-gradient(135deg, #009688 0%, #00796b 100%)',
+                borderRadius: '20px',
+                width: '100px',
+                height: '100px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '1rem',
+                boxShadow: '0 8px 20px rgba(0, 150, 136, 0.3)',
+                transform: 'scale(1)',
+                transition: 'transform 0.3s ease'
+              }}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                  <path d="M2 17l10 5 10-5"></path>
+                  <path d="M2 12l10 5 10-5"></path>
+                </svg>
+              </div>
+              <h3 style={{ fontSize: '1.3rem', fontWeight: '700', marginBottom: '0.5rem', color: '#00695c' }}>
+                Data Analysis
+              </h3>
+              <p style={{ color: '#546e7a', lineHeight: '1.5', fontSize: '0.9rem' }}>
+                Extract genetic mutations, cytogenetic abnormalities, and molecular markers
+              </p>
+            </div>
+
+            {/* Arrow */}
+            <div style={{
+              color: '#00796b',
+              fontSize: '2rem',
+              fontWeight: 'bold'
+            }}>
+              →
+            </div>
+
+            {/* Step 2 */}
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              maxWidth: '200px',
+              textAlign: 'center'
+            }}>
+              <div style={{
+                background: 'linear-gradient(135deg, #00796b 0%, #004d40 100%)',
+                borderRadius: '20px',
+                width: '100px',
+                height: '100px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '1rem',
+                boxShadow: '0 8px 20px rgba(0, 121, 107, 0.3)',
+                transform: 'scale(1)',
+                transition: 'transform 0.3s ease'
+              }}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 12l2 2 4-4"></path>
+                  <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c2.2 0 4.2.8 5.76 2.12"></path>
+                </svg>
+              </div>
+              <h3 style={{ fontSize: '1.3rem', fontWeight: '700', marginBottom: '0.5rem', color: '#00695c' }}>
+                AI Matching
+              </h3>
+              <p style={{ color: '#546e7a', lineHeight: '1.5', fontSize: '0.9rem' }}>
+                Match patient profiles against trial eligibility criteria using advanced algorithms
+              </p>
+            </div>
+
+            {/* Arrow */}
+            <div style={{
+              color: '#00796b',
+              fontSize: '2rem',
+              fontWeight: 'bold'
+            }}>
+              →
+            </div>
+
+            {/* Step 3 */}
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              maxWidth: '200px',
+              textAlign: 'center'
+            }}>
+              <div style={{
+                background: 'linear-gradient(135deg, #004d40 0%, #00251a 100%)',
+                borderRadius: '20px',
+                width: '100px',
+                height: '100px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '1rem',
+                boxShadow: '0 8px 20px rgba(0, 77, 64, 0.3)',
+                transform: 'scale(1)',
+                transition: 'transform 0.3s ease'
+              }}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+              </div>
+              <h3 style={{ fontSize: '1.3rem', fontWeight: '700', marginBottom: '0.5rem', color: '#00695c' }}>
+                Recommendations
+              </h3>
+              <p style={{ color: '#546e7a', lineHeight: '1.5', fontSize: '0.9rem' }}>
+                Provide ranked list of relevant trials with detailed eligibility assessment
+              </p>
+            </div>
+          </div>
+
+          {/* Matching Criteria - Vertical List Style */}
+          <div style={{
             maxWidth: '800px',
             margin: '0 auto'
           }}>
-            <h2 style={{
-              fontSize: '2.25rem',
-              fontWeight: 'bold',
-              marginBottom: '1rem',
-              color: '#009688'
-            }}>Classification Analysis</h2>
-            
-            <p style={{
-              fontSize: '1.1rem',
-              color: '#4a5568',
-              lineHeight: '1.6',
-              marginBottom: '2rem'
+            <h3 style={{
+              fontSize: '1.8rem',
+              fontWeight: '600',
+              textAlign: 'center',
+              marginBottom: '2.5rem',
+              color: '#00695c'
             }}>
-              Explore comprehensive disparity analysis between WHO 2022 and ICC 2022 classification systems, featuring detailed visualizations and clinical impact assessments across 204 test cases.
-            </p>
+              Key Matching Criteria
+            </h3>
             
             <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-              gap: '2rem',
-              marginBottom: '3rem'
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1.5rem'
             }}>
+              {/* Genetic Mutations */}
               <div style={{
-                backgroundColor: 'white',
-                borderRadius: '1rem',
-                padding: '1.5rem',
-                boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
-                border: '1px solid rgba(0, 150, 136, 0.15)'
+                background: 'linear-gradient(135deg, #ffffff 0%, #f1f8e9 50%, #ffffff 100%)',
+                borderRadius: '15px',
+                padding: '2rem',
+                borderLeft: '6px solid #009688',
+                boxShadow: '0 4px 15px rgba(0, 150, 136, 0.1)',
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
               }}>
-                <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📊</div>
-                <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#009688', marginBottom: '0.5rem' }}>204</h3>
-                <p style={{ fontSize: '0.9rem', color: '#4a5568' }}>Total Test Cases</p>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                  <div style={{
+                    backgroundColor: 'rgba(0, 150, 136, 0.15)',
+                    borderRadius: '12px',
+                    padding: '0.8rem',
+                    minWidth: '50px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    <span style={{ fontSize: '1.5rem' }}>🧬</span>
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <h4 style={{ fontSize: '1.3rem', fontWeight: '600', color: '#00695c', margin: '0 0 0.5rem 0' }}>
+                      Genetic Mutations & Variants
+                    </h4>
+                    <p style={{ color: '#546e7a', fontSize: '1rem', lineHeight: '1.6', margin: 0 }}>
+                      FLT3-ITD, NPM1, CEBPA mutations • TP53, IDH1/2, ASXL1 variants • Fusion genes (PML-RARA, BCR-ABL)
+                    </p>
+                  </div>
+                </div>
               </div>
-              
+
+              {/* Biomarkers */}
               <div style={{
-                backgroundColor: 'white',
-                borderRadius: '1rem',
-                padding: '1.5rem',
-                boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
-                border: '1px solid rgba(0, 150, 136, 0.15)'
+                background: 'linear-gradient(135deg, #ffffff 0%, #e8f5e8 50%, #ffffff 100%)',
+                borderRadius: '15px',
+                padding: '2rem',
+                borderLeft: '6px solid #00796b',
+                boxShadow: '0 4px 15px rgba(0, 121, 107, 0.1)',
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
               }}>
-                <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>⚠️</div>
-                <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#f59e0b', marginBottom: '0.5rem' }}>83</h3>
-                <p style={{ fontSize: '0.9rem', color: '#4a5568' }}>Classification Differences</p>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                  <div style={{
+                    backgroundColor: 'rgba(0, 121, 107, 0.15)',
+                    borderRadius: '12px',
+                    padding: '0.8rem',
+                    minWidth: '50px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    <span style={{ fontSize: '1.5rem' }}>🔬</span>
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <h4 style={{ fontSize: '1.3rem', fontWeight: '600', color: '#00695c', margin: '0 0 0.5rem 0' }}>
+                      Biomarkers & Immunophenotype
+                    </h4>
+                    <p style={{ color: '#546e7a', fontSize: '1rem', lineHeight: '1.6', margin: 0 }}>
+                      Flow cytometry markers • Immunophenotype profiles • Protein expression levels • Surface antigens
+                    </p>
+                  </div>
+                </div>
               </div>
-              
+
+              {/* Clinical Data */}
               <div style={{
-                backgroundColor: 'white',
-                borderRadius: '1rem',
-                padding: '1.5rem',
-                boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
-                border: '1px solid rgba(0, 150, 136, 0.15)'
+                background: 'linear-gradient(135deg, #ffffff 0%, #e0f2f1 50%, #ffffff 100%)',
+                borderRadius: '15px',
+                padding: '2rem',
+                borderLeft: '6px solid #004d40',
+                boxShadow: '0 4px 15px rgba(0, 77, 64, 0.1)',
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
               }}>
-                <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🔥</div>
-                <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#ef4444', marginBottom: '0.5rem' }}>42</h3>
-                <p style={{ fontSize: '0.9rem', color: '#4a5568' }}>High Significance</p>
-              </div>
-              
-              <div style={{
-                backgroundColor: 'white',
-                borderRadius: '1rem',
-                padding: '1.5rem',
-                boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
-                border: '1px solid rgba(0, 150, 136, 0.15)'
-              }}>
-                <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🎯</div>
-                <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#8b5cf6', marginBottom: '0.5rem' }}>14</h3>
-                <p style={{ fontSize: '0.9rem', color: '#4a5568' }}>Focus Areas</p>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                  <div style={{
+                    backgroundColor: 'rgba(0, 77, 64, 0.15)',
+                    borderRadius: '12px',
+                    padding: '0.8rem',
+                    minWidth: '50px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    <span style={{ fontSize: '1.5rem' }}>📊</span>
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <h4 style={{ fontSize: '1.3rem', fontWeight: '600', color: '#00695c', margin: '0 0 0.5rem 0' }}>
+                      Clinical Parameters
+                    </h4>
+                    <p style={{ color: '#546e7a', fontSize: '1rem', lineHeight: '1.6', margin: 0 }}>
+                      Age, performance status • Prior treatment history • Comorbidities and contraindications • Disease stage
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
-            
-            <a 
-              href="/testing-stats" 
-              className="button" 
-              style={{
-                backgroundColor: '#009688',
-                color: 'white',
-                padding: '1rem 2rem',
-                borderRadius: '0.5rem',
-                textDecoration: 'none',
-                display: 'inline-block',
-                fontWeight: '600',
-                fontSize: '1.1rem',
-                transition: 'all 0.2s ease',
-                boxShadow: '0 4px 10px rgba(0, 150, 136, 0.2)'
-              }}
-              onMouseOver={(e) => {
-                e.target.style.backgroundColor = '#00796b';
-                e.target.style.transform = 'translateY(-2px)';
-                e.target.style.boxShadow = '0 6px 15px rgba(0, 150, 136, 0.3)';
-              }}
-              onMouseOut={(e) => {
-                e.target.style.backgroundColor = '#009688';
-                e.target.style.transform = 'translateY(0)';
-                e.target.style.boxShadow = '0 4px 10px rgba(0, 150, 136, 0.2)';
-              }}
-            >
-              🚀 Explore Testing Suite & Analysis
-            </a>
           </div>
         </div>
       </section>

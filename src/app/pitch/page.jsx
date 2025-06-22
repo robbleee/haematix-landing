@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import styles from './investors.module.css';
+import styles from './pitch.module.css';
 
 const pitchSlides = [
   {
@@ -397,82 +397,34 @@ const pitchSlides = [
     subtitle: "Building the Comprehensive Haematology Solution",
     content: (
       <div className={styles.slideContent}>
-        <div className={styles.roadmapFlow}>
-          <div className={styles.flowTrack}>
-            <h3>Disease Expansion Journey</h3>
-            <div className={styles.expansionFlow}>
-              <div className={styles.milestone}>
-                <div className={styles.milestoneNode}>
-                  <div className={styles.nodeIcon}>✓</div>
-                  <div className={styles.nodeContent}>
-                    <h4>Phase 1</h4>
-                    <p>AML & MDS</p>
-                    <span className={styles.status}>Complete</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div className={styles.flowConnector}>→</div>
-              
-              <div className={styles.milestone}>
-                <div className={styles.milestoneNode}>
-                  <div className={styles.nodeIcon}>🔬</div>
-                  <div className={styles.nodeContent}>
-                    <h4>Y1-2</h4>
-                    <p>Lymphoid Malignancies</p>
-                    <span className={styles.timeline}>Next</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div className={styles.flowConnector}>→</div>
-              
-              <div className={styles.milestone}>
-                <div className={styles.milestoneNode}>
-                  <div className={styles.nodeIcon}>🧬</div>
-                  <div className={styles.nodeContent}>
-                    <h4>Y2-3</h4>
-                    <p>MPNs & Multiple Myeloma</p>
-                    <span className={styles.timeline}>Scaling</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div className={styles.flowConnector}>→</div>
-              
-              <div className={styles.milestone}>
-                <div className={styles.milestoneNode}>
-                  <div className={styles.nodeIcon}>🎯</div>
-                  <div className={styles.nodeContent}>
-                    <h4>Y3+</h4>
-                    <p>All Rare Blood Cancers</p>
-                    <span className={styles.timeline}>Complete</span>
-                  </div>
-                </div>
-              </div>
+        <div className={styles.compactRoadmap}>
+          <h3>Disease Expansion Timeline</h3>
+          <div className={styles.roadmapPhases}>
+            <div className={styles.phase}>
+              <span className={styles.phaseLabel}>Phase 1 ✓</span>
+              <span className={styles.phaseDetail}>AML & MDS</span>
+            </div>
+            <div className={styles.phase}>
+              <span className={styles.phaseLabel}>Y1-2</span>
+              <span className={styles.phaseDetail}>Lymphoid Malignancies</span>
+            </div>
+            <div className={styles.phase}>
+              <span className={styles.phaseLabel}>Y2-3</span>
+              <span className={styles.phaseDetail}>MPNs & Multiple Myeloma</span>
+            </div>
+            <div className={styles.phase}>
+              <span className={styles.phaseLabel}>Y3+</span>
+              <span className={styles.phaseDetail}>All Rare Blood Cancers</span>
             </div>
           </div>
           
-          <div className={styles.platformTrack}>
-            <h3>Platform Evolution</h3>
-            <div className={styles.platformFlow}>
-              <div className={styles.platformStep}>
-                <div className={styles.stepIcon}>🔗</div>
-                <div className={styles.stepContent}>
-                  <h4>API Integration</h4>
-                  <p>Direct data ingestion from genetic testing systems</p>
-                </div>
-              </div>
-              
-              <div className={styles.plusConnector}>+</div>
-              
-              <div className={styles.platformStep}>
-                <div className={styles.stepIcon}>🗄️</div>
-                <div className={styles.stepContent}>
-                  <h4>Trial Database</h4>
-                  <p>UK & US expansion - 25x more matching options</p>
-                </div>
-              </div>
+          <h3>Platform Integration (Y1-2)</h3>
+          <div className={styles.integrationSummary}>
+            <div className={styles.integration}>
+              <strong>Upstream:</strong> Direct data ingestion from genetic testing systems
+            </div>
+            <div className={styles.integration}>
+              <strong>Trial Database:</strong> UK & US expansion - 25x more matching options
             </div>
           </div>
         </div>
@@ -672,37 +624,19 @@ export default function Pitch() {
         ← Back
       </a>
 
-      {/* Main Slide - Screen View */}
-      <div className={styles.screenView}>
-        <div 
-          key={currentSlide} 
-          className={styles.slide}
-        >
-          <div className="container">
-            <div className={styles.slideHeader}>
-              <h1><span className="text-gradient">{slide.title}</span></h1>
-              <p className={styles.slideSubtitle}>{slide.subtitle}</p>
-            </div>
-            
-            {slide.content}
+      {/* Main Slide */}
+      <div 
+        key={currentSlide} 
+        className={styles.slide}
+      >
+        <div className="container">
+          <div className={styles.slideHeader}>
+            <h1><span className="text-gradient">{slide.title}</span></h1>
+            <p className={styles.slideSubtitle}>{slide.subtitle}</p>
           </div>
+          
+          {slide.content}
         </div>
-      </div>
-
-      {/* All Slides - Print View */}
-      <div className={styles.printView}>
-        {pitchSlides.map((slideData, index) => (
-          <div key={index} className={styles.slide}>
-            <div className="container">
-              <div className={styles.slideHeader}>
-                <h1><span className="text-gradient">{slideData.title}</span></h1>
-                <p className={styles.slideSubtitle}>{slideData.subtitle}</p>
-              </div>
-              
-              {slideData.content}
-            </div>
-          </div>
-        ))}
       </div>
 
       {/* Navigation */}

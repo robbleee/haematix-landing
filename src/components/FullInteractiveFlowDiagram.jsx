@@ -12,41 +12,47 @@ const FlowchartDiagram = () => {
   // Includes dataExample property
   const nodes = [
       // Main Path
-      { id: 'start', x: 50, y: 285, width: 100, height: 40, type: 'ellipse', label: 'Start', explanation: 'Initiates the data processing workflow.', dataExample: 'Process triggered.' },
+      { id: 'start', x: 50, y: 285, width: 100, height: 40, type: 'ellipse', label: 'Start', explanation: 'Initiates the data processing workflow.', dataExample: 'Process triggered.', style: { fill: '#C8E6C9', stroke: '#66BB6A', strokeWidth: 2 } },
       { id: 'reports', x: 200, y: 280, width: 130, height: 50, type: 'rect', label: 'All Relevant Reports', explanation: 'Input data source: Gathers all necessary patient reports or documents.', dataExample: 'Patient: JD001\nReports: Path_Report_12A.pdf, Mol_Report_34B.txt, Cyto_Report_56C.hl7...' },
       { id: 'nlp', x: 400, y: 280, width: 160, height: 50, type: 'rect', label: 'Natural Language Model', explanation: 'Processes the text from reports using NLP techniques.', dataExample: 'Analyzing text for keywords and values...' },
-      { id: 'predefined', x: 400, y: 370, width: 160, height: 60, type: 'rect', label: ["Predefined Required", "Data Fields"], explanation: 'Specifies the key data points the NLP model should look for and extract.', dataExample: "['Gene Mutation', 'VAF', 'Blast %', 'Cytogenetics', 'Diagnosis Term']", style: { fill: '#e0f2f1', stroke: '#00796b' } },
+              { id: 'predefined', x: 400, y: 370, width: 160, height: 60, type: 'rect', label: ["Predefined Required", "Data Fields"], explanation: 'Specifies the key data points the NLP model should look for and extract.', dataExample: "['Gene Mutation', 'VAF', 'Blast %', 'Cytogenetics', 'Diagnosis Term']" },
       { id: 'extracted', x: 610, y: 280, width: 130, height: 50, type: 'rect', label: 'Extracted Data fields', explanation: 'Structured data extracted from the reports by the NLP model.', dataExample: JSON.stringify({ gene: 'FLT3', mutation: 'ITD', vaf: '45%', blasts: '60%', cyto: '46,XX', diagnosis: 'AML' }, null, 2) },
 
+      // Treatment and Clinical Trial Path
+      { id: 'treatmentEngine', x: 450, y: 10, width: 200, height: 50, type: 'rect', label: 'Treatment Suggestion Engine', explanation: 'AI-powered system that analyzes patient data to recommend personalized treatment options based on current guidelines and evidence.', dataExample: 'Recommendations:\n1. Gilteritinib (FLT3 inhibitor) - FDA approved for FLT3-ITD AML\n2. Intensive chemotherapy: 7+3 (Cytarabine + Daunorubicin)\n3. Consider clinical trials for novel FLT3 inhibitors', style: { fill: '#E3F2FD', stroke: '#1976D2', strokeWidth: 2 } },
+      { id: 'clinicalTrialEngine', x: 700, y: 10, width: 200, height: 50, type: 'rect', label: 'Clinical Trial Matching Engine', explanation: 'Intelligent matching system that identifies relevant clinical trials based on patient molecular profile, disease characteristics, and eligibility criteria.', dataExample: 'Matched Trials:\n1. NCT04293562: FLT3-ITD AML combination therapy\n2. NCT04462627: Novel FLT3 inhibitor Phase II\n3. NCT04170816: Personalized AML treatment study\nMatch Score: 95%', style: { fill: '#E3F2FD', stroke: '#1976D2', strokeWidth: 2 } },
+
       // Reasoning Path
-      { id: 'allData', x: 625, y: 80, width: 100, height: 100, type: 'circle', label: 'All Data', explanation: 'A central pool potentially combining extracted data with other sources for deeper analysis.', dataExample: JSON.stringify({ patient_id: 'JD001', report_ids: ['12A', '34B', '56C'], extracted_fields: { gene: 'FLT3', mutation: 'ITD', vaf: '45%' }, demographic: { age: 55, sex: 'F'}, lab_values: { wbc: '15.3', hgb: '9.8' } }, null, 2)},
-      { id: 'reasoning', x: 860, y: 105, width: 140, height: 50, type: 'rect', label: 'Reasoning Model', explanation: 'Performs advanced analysis or review based on the comprehensive data.', dataExample: 'Applying rules, heuristics, and AI models...' },
-      { id: 'classReview', x: 1200, y: 30, width: 150, height: 40, type: 'roundedRect', label: 'Classification Review', explanation: 'Output review related to the assigned classifications.', dataExample: 'Review Result: Classification consistent with extracted data.' },
-      { id: 'mrdReview', x: 1200, y: 80, width: 150, height: 40, type: 'roundedRect', label: 'MRD Strategy Review', explanation: 'Output review related to Minimal Residual Disease strategy.', dataExample: 'Recommendation: Follow-up MRD testing via flow cytometry.' },
-      { id: 'geneReview', x: 1200, y: 130, width: 150, height: 40, type: 'roundedRect', label: 'Gene Review', explanation: 'Output review focusing on genetic markers or mutations.', dataExample: 'Finding: Actionable FLT3-ITD mutation identified. Consider Gilteritinib.' },
-      { id: 'diffReview', x: 1200, y: 180, width: 150, height: 40, type: 'roundedRect', label: 'Differentiation Review', explanation: 'Output review related to cell differentiation status.', dataExample: 'Finding: Markers indicate myeloid lineage consistent with AML.' },
+      { id: 'allData', x: 625, y: 90, width: 100, height: 100, type: 'circle', label: 'All Data', explanation: 'A central pool potentially combining extracted data with other sources for deeper analysis.', dataExample: JSON.stringify({ patient_id: 'JD001', report_ids: ['12A', '34B', '56C'], extracted_fields: { gene: 'FLT3', mutation: 'ITD', vaf: '45%' }, demographic: { age: 55, sex: 'F'}, lab_values: { wbc: '15.3', hgb: '9.8' } }, null, 2)},
+      { id: 'reasoning', x: 860, y: 115, width: 140, height: 50, type: 'rect', label: 'Reasoning Model', explanation: 'Performs advanced analysis or review based on the comprehensive data.', dataExample: 'Applying rules, heuristics, and AI models...' },
+      { id: 'classReview', x: 1200, y: 30, width: 150, height: 40, type: 'roundedRect', label: 'Classification Review', explanation: 'Output review related to the assigned classifications.', dataExample: 'Review Result: Classification consistent with extracted data.', style: { fill: '#E3F2FD', stroke: '#1976D2', strokeWidth: 2 } },
+      { id: 'mrdReview', x: 1200, y: 80, width: 150, height: 40, type: 'roundedRect', label: 'MRD Strategy Review', explanation: 'Output review related to Minimal Residual Disease strategy.', dataExample: 'Recommendation: Follow-up MRD testing via flow cytometry.', style: { fill: '#E3F2FD', stroke: '#1976D2', strokeWidth: 2 } },
+      { id: 'geneReview', x: 1200, y: 130, width: 150, height: 40, type: 'roundedRect', label: 'Gene Review', explanation: 'Output review focusing on genetic markers or mutations.', dataExample: 'Finding: Actionable FLT3-ITD mutation identified. Consider Gilteritinib.', style: { fill: '#E3F2FD', stroke: '#1976D2', strokeWidth: 2 } },
+      { id: 'diffReview', x: 1200, y: 180, width: 150, height: 40, type: 'roundedRect', label: 'Differentiation Review', explanation: 'Output review related to cell differentiation status.', dataExample: 'Finding: Markers indicate myeloid lineage consistent with AML.', style: { fill: '#E3F2FD', stroke: '#1976D2', strokeWidth: 2 } },
 
       // Classification Path (WHO/ICC are parallelograms)
       { id: 'classificationModel', x: 810, y: 280, width: 140, height: 50, type: 'rect', label: 'Classification Model', explanation: 'Analyzes extracted data to assign disease classifications.', dataExample: 'Input: { blasts: 60, cyto: \'46,XX\', gene: \'FLT3\', ...}\nApplying WHO 2022 / ICC 2022 logic...' },
       { id: 'who', x: 1020, y: 255, width: 140, height: 40, type: 'parallelogram', label: 'WHO Classification', explanation: 'Outputs classification based on World Health Organization standards.', dataExample: 'WHO 2022: Acute myeloid leukaemia, NOS > AML with FLT3-ITD' }, // Type changed back
       { id: 'icc', x: 1020, y: 305, width: 140, height: 40, type: 'parallelogram', label: 'ICC Classification', explanation: 'Outputs classification based on International Consensus Classification standards.', dataExample: 'ICC 2022: AML with other defined genetic alterations > AML, FLT3-ITD mutated' }, // Type changed back
-      { id: 'classifications', x: 1230, y: 280, width: 130, height: 50, type: 'roundedRect', label: 'Classifications', explanation: 'Consolidated output of the different classification results.', dataExample: JSON.stringify({ WHO_2022: 'AML with FLT3-ITD', ICC_2022: 'AML, FLT3-ITD mutated'}, null, 2) },
+      { id: 'classifications', x: 1230, y: 280, width: 130, height: 50, type: 'roundedRect', label: 'Classifications', explanation: 'Consolidated output of the different classification results.', dataExample: JSON.stringify({ WHO_2022: 'AML with FLT3-ITD', ICC_2022: 'AML, FLT3-ITD mutated'}, null, 2), style: { fill: '#E3F2FD', stroke: '#1976D2', strokeWidth: 2 } },
 
       // Decision and Risk Path
       { id: 'decision', x: 830, y: 410, width: 100, height: 80, type: 'diamond', label: 'AML or MDS', explanation: 'Decision point: Determines the disease subtype (Acute Myeloid Leukemia or Myelodysplastic Syndromes) to guide risk stratification.', dataExample: 'Condition: blasts (60%) >= 20%\nResult: AML' },
       { id: 'ipcc', x: 1020, y: 385, width: 150, height: 60, type: 'rect', label: ["IPCC Risk", "Stratification Model"], explanation: 'Risk model applied if the diagnosis is MDS (uses International Prognostic Scoring System criteria).', dataExample: 'N/A for this AML case.' },
-      { id: 'ipccScores', x: 1230, y: 395, width: 130, height: 40, type: 'roundedRect', label: 'IPCC Risk Scores', explanation: 'Calculated risk score for MDS patients.', dataExample: 'N/A' },
+      { id: 'ipccScores', x: 1230, y: 395, width: 130, height: 40, type: 'roundedRect', label: 'IPCC Risk Scores', explanation: 'Calculated risk score for MDS patients.', dataExample: 'N/A', style: { fill: '#E3F2FD', stroke: '#1976D2', strokeWidth: 2 } },
       { id: 'eln', x: 1020, y: 460, width: 150, height: 60, type: 'rect', label: ["ELN Risk", "Stratification Model"], explanation: 'Risk model applied if the diagnosis is AML (uses European LeukemiaNet criteria).', dataExample: 'Input: { cyto: \'46,XX\', gene: \'FLT3\', mutation: \'ITD\', ...}\nApplying ELN 2022 criteria...' },
-      { id: 'elnScores', x: 1230, y: 470, width: 130, height: 40, type: 'roundedRect', label: 'ELN Risk Scores', explanation: 'Calculated risk score for AML patients.', dataExample: 'ELN 2022 Risk: Adverse' },
+      { id: 'elnScores', x: 1230, y: 470, width: 130, height: 40, type: 'roundedRect', label: 'ELN Risk Scores', explanation: 'Calculated risk score for AML patients.', dataExample: 'ELN 2022 Risk: Adverse', style: { fill: '#E3F2FD', stroke: '#1976D2', strokeWidth: 2 } },
   ];
 
   // --- Connection Definitions ---
   // Adjusted midX for c17-c20, removed labels c11/c12
   const connections = [
       { id: 'c1', source: 'start', target: 'reports', type: 'solid' }, { id: 'c2', source: 'reports', target: 'nlp', type: 'solid' },
-      { id: 'c3', source: 'predefined', target: 'nlp', type: 'solid' }, { id: 'c4', source: 'nlp', target: 'extracted', type: 'solid' },
+      { id: 'c3', source: 'predefined', target: 'nlp', type: 'solid' },       { id: 'c4', source: 'nlp', target: 'extracted', type: 'solid' },
       { id: 'c5', source: 'extracted', target: 'classificationModel', type: 'solid' }, { id: 'c15', source: 'extracted', target: 'allData', type: 'dashed' },
       { id: 'c16', source: 'allData', target: 'reasoning', type: 'solid' },
+      { id: 'c24', source: 'allData', target: 'treatmentEngine', type: 'solid' },
+      { id: 'c25', source: 'allData', target: 'clinicalTrialEngine', type: 'solid' },
       { id: 'c17', source: 'reasoning', target: 'classReview', type: 'solid', pathType: 'elbow', midX: 1100 }, // Adjusted midX based on reasoning pos
       { id: 'c18', source: 'reasoning', target: 'mrdReview', type: 'solid', pathType: 'elbow', midX: 1100 },
       { id: 'c19', source: 'reasoning', target: 'geneReview', type: 'solid', pathType: 'elbow', midX: 1100 },
@@ -190,7 +196,7 @@ const FlowchartDiagram = () => {
   return (
     <div className="diagramContainer" ref={diagramRef}>
 
-      <svg className="diagram" width="1400" height="620" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1400 620">
+      <svg className="diagram" width="1500" height="620" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1500 620">
         <defs>
           <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="8" refY="3.5" orient="auto" markerUnits="strokeWidth">
             <polygon points="0 0, 10 3.5, 0 7" className="arrowHead" />
@@ -247,7 +253,7 @@ const FlowchartDiagram = () => {
         /* Same CSS as before */
         .diagramContainer { position: relative; width: 100%; margin: 0 auto; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; padding-top: 10px; background-color: #f8f9fa; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.08), 0 0 15px rgba(0, 150, 136, 0.1); border: 1px solid rgba(0, 150, 136, 0.1); padding: 25px; overflow: auto; height: 85vh; }
         .diagramTitle { font-size: 18px; font-weight: 500; text-align: left; color: #00796b; margin: 0 0 20px; padding-bottom: 15px; border-bottom: 1px solid rgba(0, 150, 136, 0.15); }
-        .diagram { width: 100%; height: auto; display: block; min-width: 1400px; }
+        .diagram { width: 100%; height: auto; display: block; min-width: 1500px; }
         .node { cursor: pointer; transition: filter 0.2s ease-out; }
         .nodeRect { fill: white; stroke: #009688; stroke-width: 1.5; filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.1)); transition: fill 0.2s ease, stroke-width 0.2s ease, filter 0.2s ease, stroke 0.2s ease; }
         .hoverNode .nodeRect { fill: #e0f2f1; stroke: #00796b; stroke-width: 2; filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.15)) brightness(1.03); }

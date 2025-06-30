@@ -45,22 +45,43 @@
 .fullFlowButton {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background-color: #009688;
+  gap: 8px;
+  background: linear-gradient(135deg, #009688 0%, #00796b 100%);
   color: white;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 6px 12px;
-  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 8px;
   text-decoration: none;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,150,136,0.3);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
 }
 
 .fullFlowButton:hover {
-  background-color: #00796b;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, #00796b 0%, #004d40 100%);
+  box-shadow: 0 6px 16px rgba(0,150,136,0.4);
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,0.1);
+}
+
+.fullFlowButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: 100%; }
 }
 
 .diagram {

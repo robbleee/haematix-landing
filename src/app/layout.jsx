@@ -2,6 +2,7 @@ import './globals.css';
 import Link from 'next/link';
 import CookieBanner from '../components/CookieBanner';
 import ComplianceFooter from '../components/ComplianceFooter';
+import MobileNav from '../components/MobileNav';
 
 export const metadata = {
   title: 'Haem.io - Haematology Diagnosis Tool',
@@ -18,7 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <header style={{ backgroundColor: 'var(--background-color)', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+        <header style={{ backgroundColor: 'var(--background-color)', boxShadow: '0 2px 4px rgba(0,0,0,0.1)', position: 'relative' }}>
           <div style={{ 
             padding: '1rem 2rem', 
             display: 'flex', 
@@ -32,8 +33,10 @@ export default function RootLayout({ children }) {
                 <span className="text-gradient">Haem.io</span>
               </Link>
             </div>
+            
+            {/* Desktop Navigation */}
             <nav>
-              <ul style={{ display: 'flex', gap: '1.5rem', listStyle: 'none' }}>
+              <ul style={{ display: 'flex', gap: '1.5rem', listStyle: 'none', margin: 0, padding: 0 }}>
                 <li><Link href="/" style={{ textDecoration: 'none' }}>Home</Link></li>
                 <li><Link href="/vision" style={{ textDecoration: 'none' }}>Our Vision</Link></li>
                 <li><Link href="/roadmap" style={{ textDecoration: 'none' }}>Roadmap</Link></li>
@@ -41,6 +44,9 @@ export default function RootLayout({ children }) {
                 <li><a className="button" href="https://app.haem.io/" target="_blank" rel="noopener noreferrer">Login</a></li>
               </ul>
             </nav>
+
+            {/* Mobile Navigation Component */}
+            <MobileNav />
           </div>
         </header>
         <main>

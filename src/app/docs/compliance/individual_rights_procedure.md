@@ -9,7 +9,7 @@
 - **Created**: December 2024
 - **Last Updated**: December 2024
 - **Next Review**: June 2025
-- **Owner**: Data Controller (Robert Lee)
+- **Owner**: Data Controller (Robert Lee, Haem.io Ltd)
 - **Classification**: CONFIDENTIAL
 
 ---
@@ -82,7 +82,7 @@ CONTACT:
 If you have questions about your request, please contact us at robbielee543@gmail.com quoting reference [REF-YYYY-MM-DD-XXX].
 
 Best regards,
-Robert Lee
+Robert Lee, Haem.io Ltd
 Data Controller
 Haem.io Blood Cancer Classification System
 ```
@@ -177,7 +177,7 @@ TECHNICAL INFORMATION:
 If you need clarification about any information provided or believe something is missing, please contact us.
 
 Best regards,
-Robert Lee
+Robert Lee, Haem.io Ltd
 Data Controller
 ```
 

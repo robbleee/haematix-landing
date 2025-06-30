@@ -57,7 +57,7 @@ export default function Home() {
             </div>
 
             {/* Flow Diagram - Bottom */}
-            <div style={{
+            <div className="flow-diagram-container" style={{
               width: '100%',
               maxWidth: '1000px', // Reduced from 1300px to 1000px
               margin: '0 auto',
@@ -66,6 +66,150 @@ export default function Home() {
             }}>
               <InteractiveFlowDiagram />
               {/* Removed the redundant "View Detailed Flow Diagram" button */}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mobile-only vertical flow diagram */}
+      <section className="mobile-flow-section" style={{
+        backgroundColor: '#f8fdfc',
+        padding: '3rem 0',
+        borderTop: '1px solid rgba(0, 150, 136, 0.2)'
+      }}>
+        <div className="container">
+          <h2 style={{
+            fontSize: '1.8rem',
+            fontWeight: '700',
+            textAlign: 'center',
+            marginBottom: '2rem',
+            color: '#00695c'
+          }}>How Haem.io Works</h2>
+          
+          <div className="mobile-flow-steps" style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '1.5rem',
+            maxWidth: '300px',
+            margin: '0 auto'
+          }}>
+            
+            {/* Step 1: Molecular Genetics */}
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              textAlign: 'center',
+              width: '100%'
+            }}>
+                             <div style={{
+                 background: 'linear-gradient(135deg, #009688 0%, #00796b 100%)',
+                 borderRadius: '20px',
+                 width: '80px',
+                 height: '80px',
+                 display: 'flex',
+                 alignItems: 'center',
+                 justifyContent: 'center',
+                 marginBottom: '1rem',
+                 boxShadow: '0 6px 15px rgba(0, 150, 136, 0.3)'
+               }}>
+                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                   <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                   <path d="M2 17l10 5 10-5"></path>
+                   <path d="M2 12l10 5 10-5"></path>
+                 </svg>
+               </div>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: '600', marginBottom: '0.5rem', color: '#00695c' }}>
+                Molecular Genetics
+              </h3>
+              <p style={{ color: '#546e7a', lineHeight: '1.4', fontSize: '0.9rem' }}>
+                Analyze genetic mutations, cytogenetics, and molecular markers
+              </p>
+            </div>
+
+            {/* Arrow Down */}
+            <div style={{
+              color: '#00796b',
+              fontSize: '1.5rem',
+              fontWeight: 'bold'
+            }}>
+              ↓
+            </div>
+
+            {/* Step 2: Diagnosis */}
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              textAlign: 'center',
+              width: '100%'
+            }}>
+                             <div style={{
+                 background: 'linear-gradient(135deg, #00796b 0%, #004d40 100%)',
+                 borderRadius: '20px',
+                 width: '80px',
+                 height: '80px',
+                 display: 'flex',
+                 alignItems: 'center',
+                 justifyContent: 'center',
+                 marginBottom: '1rem',
+                 boxShadow: '0 6px 15px rgba(0, 121, 107, 0.3)'
+               }}>
+                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                   <path d="M9 12l2 2 4-4"></path>
+                   <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c2.2 0 4.2.8 5.76 2.12"></path>
+                 </svg>
+               </div>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: '600', marginBottom: '0.5rem', color: '#00695c' }}>
+                AI Diagnosis
+              </h3>
+              <p style={{ color: '#546e7a', lineHeight: '1.4', fontSize: '0.9rem' }}>
+                WHO 2022 & ICC 2022 compliant classification and risk stratification
+              </p>
+            </div>
+
+            {/* Arrow Down */}
+            <div style={{
+              color: '#00796b',
+              fontSize: '1.5rem',
+              fontWeight: 'bold'
+            }}>
+              ↓
+            </div>
+
+            {/* Step 3: Treatment/Clinical Trials */}
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              textAlign: 'center',
+              width: '100%'
+            }}>
+                             <div style={{
+                 background: 'linear-gradient(135deg, #004d40 0%, #00251a 100%)',
+                 borderRadius: '20px',
+                 width: '80px',
+                 height: '80px',
+                 display: 'flex',
+                 alignItems: 'center',
+                 justifyContent: 'center',
+                 marginBottom: '1rem',
+                 boxShadow: '0 6px 15px rgba(0, 77, 64, 0.3)'
+               }}>
+                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                   <polyline points="14 2 14 8 20 8"></polyline>
+                   <line x1="16" y1="13" x2="8" y2="13"></line>
+                   <line x1="16" y1="17" x2="8" y2="17"></line>
+                 </svg>
+               </div>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: '600', marginBottom: '0.5rem', color: '#00695c' }}>
+                Treatment Matching
+              </h3>
+              <p style={{ color: '#546e7a', lineHeight: '1.4', fontSize: '0.9rem' }}>
+                Personalized treatment recommendations and clinical trial matching
+              </p>
             </div>
           </div>
         </div>
@@ -195,7 +339,7 @@ export default function Home() {
       </section>
 
       {/* Clinical Trial Matching Section */}
-      <section style={{
+      <section className="clinical-trial-matching-section" style={{
         backgroundColor: '#f8fdfc',
         padding: '4rem 0',
         borderTop: '2px solid rgba(0, 150, 136, 0.2)'

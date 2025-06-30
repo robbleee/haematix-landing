@@ -1,0 +1,627 @@
+.container {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  padding: 2rem 0;
+}
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.warningBanner {
+  background-color: #dc2626;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.mainLayout {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.sideNav {
+  position: sticky;
+  top: 2rem;
+  width: 280px;
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.navTitle {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #dc2626;
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navList > li {
+  margin-bottom: 0.5rem;
+}
+
+.navLink {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  color: #374151;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.navLink:hover {
+  background-color: #f3f4f6;
+  color: #dc2626;
+}
+
+.navSubList {
+  margin-left: 0;
+  margin-top: 0.25rem;
+}
+
+.navSubList ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-left: 1rem;
+}
+
+.navSubList li {
+  margin-bottom: 0.25rem;
+}
+
+.navSubLink {
+  display: block;
+  padding: 0.375rem 0.75rem;
+  color: #6b7280;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+.navSubLink:hover {
+  background-color: #f9fafb;
+  color: #dc2626;
+}
+
+.content {
+  flex: 1;
+  background-color: white;
+  border-radius: 12px;
+  padding: 3rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  line-height: 1.6;
+  min-width: 0;
+}
+
+.mainTitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 2rem;
+  border-bottom: 3px solid #dc2626;
+  padding-bottom: 1rem;
+}
+
+.section {
+  margin-bottom: 3rem;
+}
+
+.sectionTitle {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: #374151;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #dc2626;
+  padding-left: 1rem;
+}
+
+.subsection {
+  margin-bottom: 2rem;
+}
+
+.subsectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #4b5563;
+  margin-bottom: 1rem;
+}
+
+.paragraph {
+  margin-bottom: 1.5rem;
+  color: #374151;
+  font-size: 1rem;
+}
+
+.keyPoints {
+  background-color: #f3f4f6;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.keyPoint {
+  margin-bottom: 0.75rem;
+  padding: 0.5rem 0;
+  color: #374151;
+}
+
+.keyPoint:last-child {
+  margin-bottom: 0;
+}
+
+.fundingPhases {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.fundingPhase {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.fundingPhase.primaryFocus {
+  background-color: #fef2f2;
+  border-color: #fecaca;
+}
+
+.phaseTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 1rem;
+}
+
+.phaseDetails {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.phaseDetails li {
+  margin-bottom: 0.5rem;
+  color: #4b5563;
+}
+
+.fundingDetails {
+  background-color: #f0f9ff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.fundingAmount {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.strategicFocus {
+  color: #1e40af;
+  font-weight: 500;
+}
+
+.subheading {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 1.5rem 0 1rem 0;
+}
+
+.fundingBreakdown {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.fundingBreakdown li {
+  margin-bottom: 0.5rem;
+  color: #4b5563;
+}
+
+.highlight {
+  background-color: #fef3c7;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.actionsList {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.action {
+  display: flex;
+  align-items: flex-start;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  padding: 1rem;
+  border-left: 4px solid #dc2626;
+}
+
+.actionNumber {
+  background-color: #dc2626;
+  color: white;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.actionContent {
+  flex: 1;
+  color: #374151;
+}
+
+.milestonesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.milestoneCard {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.milestoneTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #dc2626;
+  padding-bottom: 0.5rem;
+}
+
+.milestoneCategory {
+  margin-bottom: 1rem;
+}
+
+.milestoneCategory h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #4b5563;
+  margin-bottom: 0.5rem;
+}
+
+.milestoneCategory ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+.milestoneCategory li {
+  margin-bottom: 0.25rem;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.riskCards {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.riskCard {
+  background-color: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.riskTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #92400e;
+  margin-bottom: 0.75rem;
+}
+
+.riskDescription {
+  font-style: italic;
+  color: #78350f;
+  margin-bottom: 1rem;
+  background-color: #fef3c7;
+  padding: 0.75rem;
+  border-radius: 4px;
+}
+
+.riskAnswer {
+  color: #374151;
+}
+
+.riskAnswer ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.riskAnswer li {
+  margin-bottom: 0.5rem;
+}
+
+.fundingSummary {
+  background-color: #f0f9ff;
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 1.5rem 0;
+}
+
+.fundingItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e0e7ff;
+}
+
+.fundingItem:last-child {
+  border-bottom: none;
+}
+
+.fundingItem.totalFunding {
+  border-top: 2px solid #1e40af;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.fundingLabel {
+  color: #374151;
+  font-weight: 500;
+}
+
+.fundingAmount {
+  color: #1e40af;
+  font-weight: 600;
+}
+
+.keySuccessMetrics {
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.keySuccessMetrics h3 {
+  color: #166534;
+  margin-bottom: 1rem;
+  font-size: 1.125rem;
+}
+
+.keySuccessMetrics ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+.keySuccessMetrics li {
+  margin-bottom: 0.5rem;
+  color: #15803d;
+}
+
+.footerNote {
+  margin-top: 2rem;
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem 0;
+  }
+  
+  .wrapper {
+    padding: 0 1rem;
+  }
+  
+  .warningBanner {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .mainLayout {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  /* Hide side navigation completely on mobile */
+  .sideNav {
+    display: none;
+  }
+  
+  .content {
+    padding: 1.5rem;
+    margin: 0;
+    border-radius: 8px;
+  }
+  
+  .mainTitle {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    line-height: 1.3;
+  }
+  
+  /* Show only essential sections on mobile */
+  .section:not(#executive-summary):not(#funding-timeline):not(#immediate-actions) {
+    display: none;
+  }
+  
+  /* Simplify executive summary section */
+  #executive-summary .sectionTitle {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    border-left: none;
+    border-bottom: 2px solid #dc2626;
+    padding-left: 0;
+    padding-bottom: 0.5rem;
+  }
+  
+  #executive-summary .paragraph {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+  
+  /* Simplify key points */
+  .keyPoints {
+    padding: 1rem;
+    margin: 1rem 0;
+    background-color: #f8fafc;
+    border-left: 4px solid #dc2626;
+  }
+  
+  .keyPoint {
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+  }
+  
+  /* Simplify funding timeline */
+  #funding-timeline .sectionTitle {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    border-left: none;
+    border-bottom: 2px solid #dc2626;
+    padding-left: 0;
+    padding-bottom: 0.5rem;
+  }
+  
+  .fundingPhases {
+    gap: 1rem;
+  }
+  
+  .fundingPhase {
+    padding: 1rem;
+    background-color: #f9fafb;
+  }
+  
+  .phaseTitle {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    color: #dc2626;
+  }
+  
+  .fundingPhase.primaryFocus {
+    background-color: #fef2f2;
+    border: 2px solid #dc2626;
+  }
+  
+  .phaseDetails {
+    font-size: 0.85rem;
+  }
+  
+  .phaseDetails li {
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+  
+  /* Simplify immediate actions */
+  #immediate-actions .sectionTitle {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    border-left: none;
+    border-bottom: 2px solid #dc2626;
+    padding-left: 0;
+    padding-bottom: 0.5rem;
+  }
+  
+  .actionsList {
+    gap: 0.75rem;
+  }
+  
+  .action {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 1rem;
+    background-color: #f8fafc;
+    border-radius: 8px;
+    border-left: 4px solid #dc2626;
+  }
+  
+  .actionNumber {
+    margin-right: 1rem;
+    margin-bottom: 0;
+    min-width: 2rem;
+    height: 2rem;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+  
+  .actionContent {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-align: left;
+  }
+  
+  /* Hide footer note on mobile */
+  .footerNote {
+    display: none;
+  }
+  
+  /* Ensure all other detailed sections are hidden */
+  #phase-1,
+  #phase-2,
+  #phase-3,
+  #phase-4,
+  #success-factors,
+  #funding-strategy-full,
+  #success-metrics,
+  #risk-mitigation,
+  #total-funding,
+  #investor-pitch,
+  #execution-timeline {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sideNav {
+    width: 240px;
+  }
+  
+  .mainLayout {
+    gap: 1.5rem;
+  }
+} 

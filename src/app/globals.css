@@ -58,9 +58,90 @@ button:hover, .button:hover {
   background-clip: text;
 }
 
+/* Mobile navigation fixes */
+.mobile-header {
+  padding: 1rem !important;
+}
+
+/* Mobile-only flow section - hidden on desktop */
+.mobile-flow-section {
+  display: none;
+}
+
+.mobile-nav {
+  display: none !important;
+}
+
+.mobile-nav.show {
+  display: flex !important;
+  flex-direction: column !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+  background: white !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  z-index: 1000 !important;
+}
+
+.mobile-nav ul {
+  flex-direction: column !important;
+  gap: 0 !important;
+  padding: 1rem !important;
+}
+
+.mobile-nav li {
+  padding: 0.75rem 0 !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+}
+
+.mobile-menu-button {
+  display: none !important;
+  background: none !important;
+  border: none !important;
+  font-size: 1.5rem !important;
+  cursor: pointer !important;
+  color: var(--primary-color) !important;
+  padding: 0.5rem !important;
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 0 1rem;
+  }
+  
+  /* Hide desktop navigation on mobile */
+  header nav {
+    display: none !important;
+  }
+  
+  /* Show mobile menu button */
+  .mobile-menu-button {
+    display: block !important;
+  }
+  
+  /* Make header flex for mobile */
+  header > div {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 1rem !important;
+  }
+  
+  /* Simplify header text */
+  header h1, header .text-gradient {
+    font-size: 1.2rem !important;
+  }
+  
+  /* Hide flow diagram and clinical trial matching section on mobile */
+  .flow-diagram-container,
+  .clinical-trial-matching-section {
+    display: none !important;
+  }
+  
+  /* Show mobile-only flow section on mobile devices */
+  .mobile-flow-section {
+    display: block !important;
   }
 }
 

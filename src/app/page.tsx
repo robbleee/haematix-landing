@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRight, Shield, Zap, Users, CheckCircle, Star } from 'lucide-react';
+import { ArrowRight, Shield, Zap, Users, CheckCircle } from 'lucide-react';
 import { useState } from 'react';
 import BetaSignupModal from '@/components/BetaSignupModal';
 

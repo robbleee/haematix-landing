@@ -86,7 +86,7 @@ export default function BetaSignupModal({ isOpen, onClose }: BetaSignupModalProp
           {submitStatus === 'success' && (
             <div className="mb-6 p-4 bg-green-100 border border-green-300 rounded-lg">
               <p className="text-green-800 font-medium">✅ Application submitted successfully!</p>
-              <p className="text-green-700 text-sm mt-1">We'll review your application and get back to you soon.</p>
+              <p className="text-green-700 text-sm mt-1">We&apos;ll review your application and get back to you soon.</p>
             </div>
           )}
 
@@ -211,7 +211,7 @@ export default function BetaSignupModal({ isOpen, onClose }: BetaSignupModalProp
 
             <div className="bg-teal-50 p-4 rounded-lg">
               <p className="text-sm text-teal-800">
-                <strong>What happens next?</strong> We'll review your application and send you beta access details within 48 hours. 
+                <strong>What happens next?</strong> We&apos;ll review your application and send you beta access details within 48 hours. 
                 The beta version includes AML/MDS classification, risk assessment, and treatment guidance features.
               </p>
             </div>

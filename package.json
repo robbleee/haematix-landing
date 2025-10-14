@@ -12,6 +12,7 @@
     "chart.js": "^4.4.9",
     "github-markdown-css": "^5.8.1",
     "html2canvas": "^1.4.1",
+    "html2pdf.js": "^0.12.1",
     "jspdf": "^3.0.1",
     "marked": "^15.0.12",
     "next": "15.2.4",

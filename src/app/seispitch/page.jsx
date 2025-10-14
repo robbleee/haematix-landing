@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import styles from './investors.module.css';
+import styles from './seispitch.module.css';
 import dynamic from 'next/dynamic';
 
 const pitchSlides = [
@@ -117,6 +117,65 @@ const pitchSlides = [
           <div className={styles.bottomStatement}>
             This isn't just an efficiency problem—it's a patient survival problem
           </div>
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 18,
+    title: "SWOT Analysis",
+    subtitle: "A Comprehensive Risk Assessment for SEIS Qualification",
+    content: (
+      <div className={styles.slideContent}>
+        <div className={styles.swotLayout}>
+          <div className={styles.swotQuadrant} data-type="strengths">
+            <h4>Strengths</h4>
+            <ul>
+              <li>Clinical co-founders with NHS access</li>
+              <li>Working prototype validated by KOLs</li>
+              <li>£7M grant inclusion demonstrates credibility</li>
+              <li>Hybrid AI approach differentiates from competitors</li>
+            </ul>
+          </div>
+          
+          <div className={styles.swotQuadrant} data-type="weaknesses">
+            <h4>Weaknesses</h4>
+            <ul>
+              <li><strong>Pre-revenue</strong>: No commercial contracts yet</li>
+              <li><strong>Regulatory uncertainty</strong>: UKCA pathway timing unpredictable (12-18 months)</li>
+              <li><strong>Small team</strong>: Heavy reliance on 2 clinical co-founders for domain expertise</li>
+              <li><strong>Limited runway</strong>: 18 months to achieve commercialization—tight timeline</li>
+              <li><strong>Technical complexity</strong>: Hybrid AI+logic requires constant refinement</li>
+              <li><strong>No sales track record</strong>: First-time founders in healthcare SaaS</li>
+            </ul>
+          </div>
+          
+          <div className={styles.swotQuadrant} data-type="opportunities">
+            <h4>Opportunities</h4>
+            <ul>
+              <li>£21M NHS AI Diagnostic Fund targeting cancer diagnostics</li>
+              <li>Global market expansion using WHO/ICC standards</li>
+              <li>Expand beyond haematology to solid tumors</li>
+              <li>Strategic acquisition target for larger health AI companies</li>
+            </ul>
+          </div>
+          
+          <div className={styles.swotQuadrant} data-type="threats">
+            <h4>Threats</h4>
+            <ul>
+              <li><strong>NHS procurement delays</strong>: 18-24 month sales cycles could burn through runway</li>
+              <li><strong>Regulatory rejection risk</strong>: UKCA denial would require expensive resubmission</li>
+              <li><strong>AI performance failures</strong>: Clinical errors could halt adoption permanently</li>
+              <li><strong>Well-funded competitors</strong>: SOPHiA GENETICS (€500M+ raised) entering UK market</li>
+              <li><strong>Data access constraints</strong>: NHS data governance could block pilot studies</li>
+              <li><strong>Clinical adoption resistance</strong>: Consultants may reject AI diagnostic support</li>
+              <li><strong>Liability exposure</strong>: Medical AI misdiagnosis could result in catastrophic legal costs</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div className={styles.swotSummary}>
+          <strong>Risk Assessment:</strong> Haem.io operates in a high-risk, high-reward space with significant technical, regulatory, and commercial uncertainties. Success depends on timely UKCA approval, clinical validation, and NHS adoption—all factors outside direct control. This makes the company a qualifying SEIS investment.
         </div>
       </div>
     )
@@ -881,7 +940,7 @@ export default function Pitch() {
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
         const slideTitle = pitchSlides[currentSlide].title || `Slide-${currentSlide + 1}`;
-        const filename = `Haemio-${slideTitle.replace(/[^a-z0-9]/gi, '-')}.png`;
+        const filename = `Haemio-SEIS-${slideTitle.replace(/[^a-z0-9]/gi, '-')}.png`;
         link.href = url;
         link.download = filename;
         link.click();
@@ -902,7 +961,7 @@ export default function Pitch() {
       const element = printViewRef.current;
       const opt = {
         margin: [0.5, 0.5],
-        filename: 'Haemio-Investor-Pitch.pdf',
+        filename: 'Haemio-SEIS-Pitch.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { 
           scale: 2,
@@ -1091,4 +1150,4 @@ export default function Pitch() {
       )}
     </div>
   );
-} 
+}

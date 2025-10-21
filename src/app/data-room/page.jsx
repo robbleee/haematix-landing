@@ -126,6 +126,7 @@ export default function DataRoom() {
   const [showNda, setShowNda] = useState(false);
   const [passwordError, setPasswordError] = useState('');
   const [ndaCheckboxChecked, setNdaCheckboxChecked] = useState(false);
+  const [showAllDocuments, setShowAllDocuments] = useState(false);
   const [showAccessRequest, setShowAccessRequest] = useState(false);
   const [requestEmail, setRequestEmail] = useState('');
   const [requestName, setRequestName] = useState('');
@@ -133,7 +134,6 @@ export default function DataRoom() {
   const [isSubmittingRequest, setIsSubmittingRequest] = useState(false);
   const [requestSuccess, setRequestSuccess] = useState(false);
   const [requestError, setRequestError] = useState('');
-  const [showAllDocuments, setShowAllDocuments] = useState(false);
 
   // Simple password - in production this should be more secure with server-side validation
   const CORRECT_PASSWORD = 'Haemio!2025$DataRoom';
@@ -168,16 +168,6 @@ export default function DataRoom() {
     setNdaAccepted(true);
     // Persist NDA acceptance to sessionStorage
     sessionStorage.setItem('dataroom_nda_accepted', 'true');
-  };
-
-  const handleDownloadPitch = () => {
-    // Create a link and trigger download
-    const link = document.createElement('a');
-    link.href = '/Haem.io-pitch.pdf';
-    link.download = 'Haemio-Investor-Pitch.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   };
 
   const handleAccessRequest = async (e, accessLevel = 'basic') => {
@@ -567,114 +557,9 @@ export default function DataRoom() {
                 </div>
               </div>
 
-              <div className={styles.fullAccessSection}>
-                <div className={styles.fullAccessCard}>
-                  <h3>Need Full Data Room Access?</h3>
-                  <p>Request access to additional materials including financial projections, clinical validation data, and more.</p>
-                  <button 
-                    onClick={() => setShowAccessRequest(true)}
-                    className={styles.fullAccessButton}
-                  >
-                    Request Full Data Room Access
-                  </button>
-                </div>
-              </div>
-
               <div className={styles.contactSection}>
                 <p>Questions? Contact us at <a href="mailto:robert.lee@haem.io">robert.lee@haem.io</a></p>
               </div>
-            </div>
-          </div>
-        )}
-
-        {/* Full Access Request Modal */}
-        {isPasswordCorrect && ndaAccepted && showAccessRequest && (
-          <div className={styles.modalOverlay} onClick={() => setShowAccessRequest(false)}>
-            <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-              <button 
-                className={styles.modalClose}
-                onClick={() => setShowAccessRequest(false)}
-              >
-                ×
-              </button>
-              
-              {!requestSuccess ? (
-                <>
-                  <h2>Request Full Data Room Access</h2>
-                  <p>Please provide your details and we'll get back to you with expanded access.</p>
-                  
-                  <form onSubmit={(e) => handleAccessRequest(e, 'full')} className={styles.accessRequestForm}>
-                    <div className={styles.formGroup}>
-                      <label htmlFor="requestNameModal">Full Name *</label>
-                      <input
-                        type="text"
-                        id="requestNameModal"
-                        value={requestName}
-                        onChange={(e) => setRequestName(e.target.value)}
-                        required
-                        className={styles.formInput}
-                        placeholder="John Smith"
-                        autoFocus
-                      />
-                    </div>
-
-                    <div className={styles.formGroup}>
-                      <label htmlFor="requestEmailModal">Email Address *</label>
-                      <input
-                        type="email"
-                        id="requestEmailModal"
-                        value={requestEmail}
-                        onChange={(e) => setRequestEmail(e.target.value)}
-                        required
-                        className={styles.formInput}
-                        placeholder="john@example.com"
-                      />
-                    </div>
-
-                    <div className={styles.formGroup}>
-                      <label htmlFor="requestMessageModal">Message (Optional)</label>
-                      <textarea
-                        id="requestMessageModal"
-                        value={requestMessage}
-                        onChange={(e) => setRequestMessage(e.target.value)}
-                        className={styles.formTextarea}
-                        placeholder="Tell us what additional materials you're interested in..."
-                        rows="4"
-                      />
-                    </div>
-
-                    {requestError && (
-                      <div className={styles.errorMessage}>{requestError}</div>
-                    )}
-
-                    <button 
-                      type="submit" 
-                      className={styles.submitButton}
-                      disabled={isSubmittingRequest}
-                    >
-                      {isSubmittingRequest ? 'Submitting...' : 'Submit Request'}
-                    </button>
-                  </form>
-                </>
-              ) : (
-                <div className={styles.successMessage}>
-                  <div className={styles.successIcon}>✓</div>
-                  <h3>Request Submitted!</h3>
-                  <p>Thank you! We'll review your request and get back to you at {requestEmail} shortly with full access details.</p>
-                  <button 
-                    onClick={() => {
-                      setRequestSuccess(false);
-                      setShowAccessRequest(false);
-                      setRequestName('');
-                      setRequestEmail('');
-                      setRequestMessage('');
-                    }}
-                    className={styles.closeButton}
-                  >
-                    Close
-                  </button>
-                </div>
-              )}
             </div>
           </div>
         )}

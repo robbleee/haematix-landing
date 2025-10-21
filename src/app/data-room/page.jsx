@@ -126,7 +126,6 @@ export default function DataRoom() {
   const [showNda, setShowNda] = useState(false);
   const [passwordError, setPasswordError] = useState('');
   const [ndaCheckboxChecked, setNdaCheckboxChecked] = useState(false);
-  const [showAllDocuments, setShowAllDocuments] = useState(false);
   const [showAccessRequest, setShowAccessRequest] = useState(false);
   const [requestEmail, setRequestEmail] = useState('');
   const [requestName, setRequestName] = useState('');
@@ -134,6 +133,7 @@ export default function DataRoom() {
   const [isSubmittingRequest, setIsSubmittingRequest] = useState(false);
   const [requestSuccess, setRequestSuccess] = useState(false);
   const [requestError, setRequestError] = useState('');
+  const [showAllDocuments, setShowAllDocuments] = useState(false);
 
   // Simple password - in production this should be more secure with server-side validation
   const CORRECT_PASSWORD = 'Haemio!2025$DataRoom';
@@ -168,6 +168,16 @@ export default function DataRoom() {
     setNdaAccepted(true);
     // Persist NDA acceptance to sessionStorage
     sessionStorage.setItem('dataroom_nda_accepted', 'true');
+  };
+
+  const handleDownloadPitch = () => {
+    // Create a link and trigger download
+    const link = document.createElement('a');
+    link.href = '/Haem.io-pitch.pdf';
+    link.download = 'Haemio-Investor-Pitch.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const handleAccessRequest = async (e, accessLevel = 'basic') => {

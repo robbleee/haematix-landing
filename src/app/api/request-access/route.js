@@ -61,7 +61,7 @@ export async function POST(request) {
       const accessBadgeColor = isFullAccess ? '#9333ea' : '#3b82f6';
       
       const result = await resend.emails.send({
-        from: 'dataroom@haem.io', // Change back to 'onboarding@resend.dev' if domain not verified
+        from: 'onboarding@resend.dev', // Test sender - works immediately without domain verification
         to: recipientEmail,
         replyTo: email, // Allows you to reply directly to the requester
         subject: `${accessType} Request from ${name}`,

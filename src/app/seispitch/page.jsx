@@ -15,6 +15,9 @@ const pitchSlides = [
               Haem.io
             </h1>
             <p className={styles.tagline}>Intelligent Diagnostics for Precision Haematology</p>
+            <p className={styles.companyDetails}>
+              Trading name for HAEMIO LTD | Company No. 16528517
+            </p>
           </div>
           
           <div className={styles.clinicalBackground}>
@@ -27,12 +30,12 @@ const pitchSlides = [
   {
     id: 1,
     title: "Our Story",
-    subtitle: "A New Year's Conversation That Changed Everything",
+    subtitle: "A New Year's conversation that changed everything",
     content: (
       <div className={styles.slideContent}>
         <div className={styles.compactStoryLayout}>
           <p className={styles.storyLead}>
-            At a New Year's gathering, Robert—a Burkitt lymphoma survivor—was showing his uncle John, a leading consultant haematologist involved in cutting edge research, an AI app he'd built. John said:
+            At a New Year's gathering, Robbie — an ex-lymphoma survivor — was talking to John, a consultant haematologist involved in cutting-edge research, about advances in AI. John said:
           </p>
           
           <div className={styles.conversationBox}>
@@ -52,10 +55,10 @@ const pitchSlides = [
   {
     id: 2,
     title: "The Diagnostic Pathway Crisis",
-    subtitle: "A Problem in Haematology Today, All of Oncology Tomorrow",
+    subtitle: "A problem in haematology today, all of oncology tomorrow",
     content: (
       <div className={styles.slideContent}>
-        <h3>Haematology leads the way in genetics-driven diagnosis—but all oncology is heading in this direction</h3>
+        <h3>Haematology leads the way in genetics-driven diagnosis — and all oncology is heading in this direction</h3>
         
         <div className={styles.diagnosticFlow}>
           <div className={styles.flowPanel}>
@@ -77,19 +80,26 @@ const pitchSlides = [
             <p>Diagnosis must follow WHO 2022 and ICC 2022 global guidelines. But these contain hundreds of interconnected diagnostic pathways with precise criteria, too complex for consistent and timely human application.</p>
           </div>
         </div>
+
+        <div className={styles.clinicalQuoteBox}>
+          <div className={styles.clinicalQuote}>
+            "Accurate diagnosis forms the absolute bedrock of effective therapy"
+          </div>
+          <div className={styles.clinicalQuoteSource}>— Dr. John Chadwick, The Christie NHS Foundation Trust</div>
+        </div>
       </div>
     )
   },
   {
     id: 17,
     title: "The Human Cost",
-    subtitle: "When Delays Mean Death",
+    subtitle: "When delays mean death",
     content: (
       <div className={styles.slideContent}>
         <div className={styles.humanCostLayout}>
           <div className={styles.centerQuote}>
             <div className={styles.bigQuote}>
-              "Blood cancer patients have no time to lose—they need a diagnosis fast"
+              "Blood cancer patients have no time to lose — they need a diagnosis fast"
             </div>
           </div>
           
@@ -115,67 +125,8 @@ const pitchSlides = [
           </div>
           
           <div className={styles.bottomStatement}>
-            This isn't just an efficiency problem—it's a patient survival problem
+            This isn't just an efficiency problem —  it's a patient survival problem
           </div>
-        </div>
-      </div>
-    )
-  },
-  {
-    id: 18,
-    title: "SWOT Analysis",
-    subtitle: "A Comprehensive Risk Assessment for SEIS Qualification",
-    content: (
-      <div className={styles.slideContent}>
-        <div className={styles.swotLayout}>
-          <div className={styles.swotQuadrant} data-type="strengths">
-            <h4>Strengths</h4>
-            <ul>
-              <li>Clinical co-founders with NHS access</li>
-              <li>Working prototype validated by KOLs</li>
-              <li>£7M grant inclusion demonstrates credibility</li>
-              <li>Hybrid AI approach differentiates from competitors</li>
-            </ul>
-          </div>
-          
-          <div className={styles.swotQuadrant} data-type="weaknesses">
-            <h4>Weaknesses</h4>
-            <ul>
-              <li><strong>Pre-revenue</strong>: No commercial contracts yet</li>
-              <li><strong>Regulatory uncertainty</strong>: UKCA pathway timing unpredictable (12-18 months)</li>
-              <li><strong>Small team</strong>: Heavy reliance on 2 clinical co-founders for domain expertise</li>
-              <li><strong>Limited runway</strong>: 18 months to achieve commercialization—tight timeline</li>
-              <li><strong>Technical complexity</strong>: Hybrid AI+logic requires constant refinement</li>
-              <li><strong>No sales track record</strong>: First-time founders in healthcare SaaS</li>
-            </ul>
-          </div>
-          
-          <div className={styles.swotQuadrant} data-type="opportunities">
-            <h4>Opportunities</h4>
-            <ul>
-              <li>£21M NHS AI Diagnostic Fund targeting cancer diagnostics</li>
-              <li>Global market expansion using WHO/ICC standards</li>
-              <li>Expand beyond haematology to solid tumors</li>
-              <li>Strategic acquisition target for larger health AI companies</li>
-            </ul>
-          </div>
-          
-          <div className={styles.swotQuadrant} data-type="threats">
-            <h4>Threats</h4>
-            <ul>
-              <li><strong>NHS procurement delays</strong>: 18-24 month sales cycles could burn through runway</li>
-              <li><strong>Regulatory rejection risk</strong>: UKCA denial would require expensive resubmission</li>
-              <li><strong>AI performance failures</strong>: Clinical errors could halt adoption permanently</li>
-              <li><strong>Well-funded competitors</strong>: SOPHiA GENETICS (€500M+ raised) entering UK market</li>
-              <li><strong>Data access constraints</strong>: NHS data governance could block pilot studies</li>
-              <li><strong>Clinical adoption resistance</strong>: Consultants may reject AI diagnostic support</li>
-              <li><strong>Liability exposure</strong>: Medical AI misdiagnosis could result in catastrophic legal costs</li>
-            </ul>
-          </div>
-        </div>
-        
-        <div className={styles.swotSummary}>
-          <strong>Risk Assessment:</strong> Haem.io operates in a high-risk, high-reward space with significant technical, regulatory, and commercial uncertainties. Success depends on timely UKCA approval, clinical validation, and NHS adoption—all factors outside direct control. This makes the company a qualifying SEIS investment.
         </div>
       </div>
     )
@@ -183,7 +134,7 @@ const pitchSlides = [
   {
     id: 15,
     title: "The Transformation",
-    subtitle: "Haem.io Offers the Only End-to-End Solution",
+    subtitle: "Haem.io offers the only end-to-end solution",
     content: (
       <div className={styles.slideContent}>
         <div className={styles.transformationGrid}>
@@ -235,7 +186,7 @@ const pitchSlides = [
   {
     id: 4,
     title: "The Scale of the Problem",
-    subtitle: "Blood Cancer Doesn't Discriminate",
+    subtitle: "Blood cancer doesn't discriminate",
     content: (
       <div className={styles.slideContent}>
         <div className={styles.compactScaleLayout}>
@@ -273,7 +224,7 @@ const pitchSlides = [
           </div>
           
           <div className={styles.scaleCallout}>
-            Every single diagnosis needs fast, accurate pathways—that's what Haem.io delivers
+            Every single diagnosis needs fast, accurate pathways — that's what Haem.io delivers
           </div>
         </div>
       </div>
@@ -282,7 +233,7 @@ const pitchSlides = [
   {
     id: 16,
     title: "From Idea to Breakthrough",
-    subtitle: "Building What Works",
+    subtitle: "Building what works",
     content: (
       <div className={styles.slideContent}>
         <div className={styles.threeStepLayout}>
@@ -291,7 +242,7 @@ const pitchSlides = [
             <div className={styles.stepContent}>
               <h4>Initial Approach: Pure AI</h4>
               <p>
-                We built a system using LLMs for end-to-end diagnosis—feeding complete lab reports directly into the model. After rigorous testing against real clinical cases, we found critical failures: inconsistent classifications, missed diagnostic criteria, and no explainable reasoning trail.
+                We built a system using LLMs for end-to-end diagnosis — feeding complete lab reports directly into the model. After rigorous testing against real clinical cases, we found critical failures: inconsistent classifications, missed diagnostic criteria, and no explainable reasoning trail.
               </p>
             </div>
           </div>
@@ -300,7 +251,7 @@ const pitchSlides = [
             <div className={styles.stepContent}>
               <h4>Second Attempt: Hybrid AI + Logic</h4>
               <p>
-                We used AI to extract structured parameters from reports, then applied formal logic engines with WHO/ICC diagnostic rules. This worked—but required too much upfront clinical input, making it impractical for real-world use.
+                We used AI to extract structured parameters from reports, then applied formal logic engines with WHO/ICC diagnostic rules. This worked — but required too much upfront clinical input, making it impractical for real-world use.
               </p>
             </div>
           </div>
@@ -321,101 +272,9 @@ const pitchSlides = [
     )
   },
   {
-    id: 3,
-    title: "What's Under the Hood",
-    subtitle: "Not a Black Box: Transparent, Explainable, Auditable",
-    content: (
-      <div className={styles.slideContent}>
-        <div className={styles.technicalFlow}>
-          <div className={styles.inputSection}>
-            <div className={styles.techStep}>
-              <div className={styles.techLabel}>Lab Report</div>
-              <div className={styles.techBox}>
-                <div className={styles.reportText}>
-                  "...cytogenetics normal karyotype...<br/>
-                  flow cytometry CD34+, CD117+, HLA-DR+...<br/>
-                  molecular NPM1 mutation detected..."
-                </div>
-              </div>
-            </div>
-            
-            <div className={styles.techStep}>
-              <div className={styles.techLabel}>Clinical Data</div>
-              <div className={styles.techBox}>
-                <div className={styles.reportText}>
-                  Age: 58<br/>
-                  WBC: 45.3<br/>
-                  Blasts: 72%
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div className={styles.techArrow}>→</div>
-          
-          <div className={styles.techStep}>
-            <div className={styles.techLabel}>AI Extraction</div>
-            <div className={styles.techBox}>
-              <div className={styles.jsonText}>
-                {`{\n  "karyotype": "normal",\n  "markers": ["CD34+", "CD117+", "HLA-DR+"],\n  "mutation": "NPM1+",\n  "age": 58,\n  "wbc": 45.3,\n  "blasts": 72\n}`}
-              </div>
-            </div>
-          </div>
-          
-          <div className={styles.techArrow}>→</div>
-          
-          <div className={styles.techStepWithDerivation}>
-            <div className={styles.techStep}>
-              <div className={styles.techLabel}>Logic Engine</div>
-              <div className={styles.techBox}>
-                <div className={styles.engineText}>
-                  WHO/ICC<br/>
-                  Diagnostic<br/>
-                  Pathways
-                </div>
-              </div>
-            </div>
-            
-            <div className={styles.derivationArrow}>↓</div>
-            
-            <div className={styles.derivationBox}>
-              <div className={styles.derivationLabel}>Full Derivation</div>
-              <div className={styles.derivationText}>
-                Complete reasoning chain:<br/>
-                criteria met, pathways followed
-              </div>
-            </div>
-          </div>
-          
-          <div className={styles.techArrow}>→</div>
-          
-          <div className={styles.techStep}>
-            <div className={styles.techLabel}>Diagnosis</div>
-            <div className={styles.techBox} style={{borderColor: 'var(--primary-color)', background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)'}}>
-              <div className={styles.diagnosisText}>
-                <strong>AML with NPM1</strong><br/>
-                Acute Myeloid Leukemia<br/>
-                NPM1-mutated
-              </div>
-            </div>
-          </div>
-          
-          <div className={styles.techArrow}>→</div>
-          
-          <div className={styles.outputsColumn}>
-            <div className={styles.outputBox}>Treatment Options</div>
-            <div className={styles.outputBox}>Clinical Trials</div>
-            <div className={styles.outputBox}>Risk Stratification</div>
-            <div className={styles.outputBox}>Follow-up</div>
-          </div>
-        </div>
-      </div>
-    )
-  },
-  {
     id: 5,
     title: "Why Is Haem.io Special?",
-    subtitle: "What Makes Us Hard to Replicate",
+    subtitle: "What makes us hard to replicate",
     content: (
       <div className={styles.slideContent}>
         <div className={styles.competitiveAdvantage}>
@@ -423,7 +282,7 @@ const pitchSlides = [
             <div className={styles.advantagePoint}>
               <div className={styles.pointNumber}>1</div>
               <h4>Zero Integration Friction</h4>
-              <p>Works with any report format—PDF, scanned documents, text files. No IT integration required. Hospitals can start using it immediately without changing their existing systems.</p>
+              <p>Works with any report format — PDF, scanned documents, text files. No IT integration required. Hospitals can start using it immediately without changing their existing systems.</p>
             </div>
             
             <div className={styles.advantagePoint}>
@@ -435,7 +294,7 @@ const pitchSlides = [
             <div className={styles.advantagePoint}>
               <div className={styles.pointNumber}>3</div>
               <h4>Full Diagnostic Pipeline</h4>
-              <p>Not just a diagnosis—we deliver treatment recommendations, clinical trial matching, risk stratification, and MRD monitoring. A complete decision support system, not a point solution.</p>
+              <p>Not just a diagnosis — we deliver treatment recommendations, clinical trial matching, risk stratification, and MRD monitoring. A complete decision support system, not a point solution.</p>
             </div>
             
             <div className={styles.advantagePoint}>
@@ -451,14 +310,14 @@ const pitchSlides = [
   {
     id: 6,
     title: "How Will Clinicians Use Haem.io?",
-    subtitle: "From Raw Data to Actionable Report in Minutes",
+    subtitle: "From raw data to actionable report in minutes",
     content: (
       <div className={styles.slideContent}>
         <div className={styles.howItWorksFlow}>
           <div className={styles.workflowStep}>
             <div className={styles.stepNumber}>01</div>
             <div className={styles.stepContent}>
-              <h4>UPLOAD</h4>
+              <h4>Upload</h4>
               <p>User uploads unstructured lab reports and adds clinical details</p>
               <div className={styles.stepTime}>~30 seconds</div>
             </div>
@@ -469,7 +328,7 @@ const pitchSlides = [
           <div className={styles.workflowStep}>
             <div className={styles.stepNumber}>02</div>
             <div className={styles.stepContent}>
-              <h4>ANALYSE</h4>
+              <h4>Analyse</h4>
               <p>Haem.io is the only system that combines AI extraction with formal logic to classify disease and assess risk</p>
               <div className={styles.stepTime}>~1 minute</div>
             </div>
@@ -480,7 +339,7 @@ const pitchSlides = [
           <div className={styles.workflowStep}>
             <div className={styles.stepNumber}>03</div>
             <div className={styles.stepContent}>
-              <h4>REPORT</h4>
+              <h4>Report</h4>
               <p>Comprehensive PDF report generated for clinical team</p>
               <div className={styles.stepTime}>~30 seconds</div>
             </div>
@@ -491,7 +350,7 @@ const pitchSlides = [
           <div className={styles.timeComparison}>
             <div className={styles.beforeAfter}>
               <div className={styles.beforeTime}>
-                <div className={styles.beforeLabel}>BEFORE</div>
+                <div className={styles.beforeLabel}>Before</div>
                 <div className={styles.beforeValue}>Hours to Weeks</div>
                 <div className={styles.beforeDescription}>Manual diagnosis process</div>
               </div>
@@ -499,7 +358,7 @@ const pitchSlides = [
               <div className={styles.comparisonArrow}>→</div>
               
               <div className={styles.afterTime}>
-                <div className={styles.afterLabel}>WITH HAEM.IO</div>
+                <div className={styles.afterLabel}>With Haem.io</div>
                 <div className={styles.afterValue}>3-5 Minutes</div>
                 <div className={styles.afterDescription}>Automated diagnostic report</div>
               </div>
@@ -511,36 +370,100 @@ const pitchSlides = [
   },
   {
     id: 8,
-    title: "Early Traction",
-    subtitle: "Clinical Validation with Leading NHS Trusts",
+    title: "Clinical Support",
+    subtitle: "Building relationships with key NHS clinicians",
     content: (
       <div className={styles.slideContent}>
         <div className={styles.compactTraction}>
-          <div className={styles.tractionHighlight}>
-            <div className={styles.bigStat}>£7M Grant Inclusion</div>
-            <p>Invited by Prof. Charles Craddock to integrate Haem.io into UK National AML Relapse Study</p>
-          </div>
-          
           <div className={styles.tractionColumns}>
             <div className={styles.tractionCol}>
-              <h4>Active Pilots</h4>
-              <ul>
-                <li><strong>Manchester Foundation Trust</strong> — In process of launching</li>
-                <li><strong>The Christie NHS</strong> — Launching with Prof. John Chadwick</li>
-              </ul>
-            </div>
-            
-            <div className={styles.tractionCol}>
-              <h4>Clinical Endorsements</h4>
+              <h4>Letters of Support</h4>
               <p className={styles.compactQuote}>
-                "I have been impressed with the platform... It represents a real step forward in what technology can offer."
+                "Haem.io offers the potential to standardise complicated cases and provide patients with a good quality diagnosis before commencing treatment."
               </p>
               <p className={styles.quoteSource}>— Dr. Tom Coats, Royal Devon & Exeter NHS Trust</p>
               <p className={styles.compactQuote}>
-                "Your work has such important implications for both the AML community and the broader NHS."
+                "I believe Haem.io has the potential to revolutionise the quality of care that patients receive."
+              </p>
+              <p className={styles.quoteSource}>— Dr. John Chadwick, The Christie NHS Foundation Trust</p>
+              <p className={styles.compactQuote}>
+                "The UK AML Research Network is committed to participate in a future pilot study to help validate the platform's clinical utility."
               </p>
               <p className={styles.quoteSource}>— Prof. Charles Craddock, Chair, UK AML Research Network</p>
             </div>
+            
+            <div className={styles.tractionCol}>
+              <h4>Current Stage</h4>
+              <ul>
+                <li>Platform in active development and testing</li>
+                <li>Engaging with NHS trusts for feedback</li>
+                <li>Preparing for regulatory submission (UKCA)</li>
+                <li>No commercial contracts yet</li>
+                <li>Pre-revenue stage</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 11,
+    title: "Our Expansion Path",
+    subtitle: "Starting with the hardest problem first",
+    content: (
+      <div className={styles.slideContent}>
+        <div className={styles.expansionPathLayout}>
+          <div className={styles.pathStagesRow}>
+            <div className={styles.pathStage} data-stage="current">
+              <div className={styles.stageHeader}>
+                <div className={styles.stageBadge} style={{background: '#10b981'}}>NOW</div>
+                <h3>Acute Myeloid Leukemia</h3>
+              </div>
+              <div className={styles.stageContent}>
+                <p className={styles.stageDescription}>
+                  Hundreds of AML subtypes — the most complex blood cancer requiring integration of cytogenetics, flow cytometry, and molecular data
+                </p>
+                <div className={styles.stageStatus}>
+                  <span className={styles.statusIcon}>⚙</span>
+                  <span className={styles.statusText}>Built and in Testing</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.pathArrowLarge}>→</div>
+
+            <div className={styles.pathStage} data-stage="next">
+              <div className={styles.stageHeader}>
+                <div className={styles.stageBadge} style={{background: '#0891b2'}}>NEXT</div>
+                <h3>All Blood Cancers</h3>
+              </div>
+              <div className={styles.stageContent}>
+                <p className={styles.stageDescription}>
+                  Myelodysplastic syndromes, lymphomas, multiple myeloma, and other haematological malignancies
+                </p>
+                <div className={styles.stageTimeline}>12-18 months</div>
+              </div>
+            </div>
+
+            <div className={styles.pathArrowLarge}>→</div>
+
+            <div className={styles.pathStage} data-stage="future">
+              <div className={styles.stageHeader}>
+                <div className={styles.stageBadge} style={{background: '#6366f1'}}>FUTURE</div>
+                <h3>All Cancers</h3>
+              </div>
+              <div className={styles.stageContent}>
+                <p className={styles.stageDescription}>
+                  Expanding our AI + logic framework to solid tumors and beyond
+                </p>
+                <div className={styles.stageTimeline}>24+ months</div>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.expansionFooter}>
+            <strong>Strategy:</strong> Master the most complex diagnosis first, then scale the framework
           </div>
         </div>
       </div>
@@ -549,7 +472,7 @@ const pitchSlides = [
   {
     id: 10,
     title: "Competitive Landscape",
-    subtitle: "Haem.io Is the Only End-to-End Solution for Modern Haematology",
+    subtitle: "Haem.io is the only end-to-end solution for modern haematology",
     content: (
       <div className={styles.slideContent}>
         <div className={styles.competitionLayout}>
@@ -602,25 +525,102 @@ const pitchSlides = [
     )
   },
   {
+    id: 13,
+    title: "SWOT Analysis",
+    subtitle: "Honest assessment of our position",
+    content: (
+      <div className={styles.slideContent}>
+        <div className={styles.swotTableContainer}>
+          <table className={styles.swotTable}>
+            <thead>
+              <tr>
+                <th className={styles.swotHeaderStrength}>Strengths</th>
+                <th className={styles.swotHeaderWeakness}>Weaknesses</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className={styles.swotCellStrength}>
+                  <ul>
+                    <li>Clinical expertise embedded in team</li>
+                    <li>Working prototype validated with real cases</li>
+                    <li>Strong NHS relationships and endorsements</li>
+                    <li>Unique hybrid AI + logic approach</li>
+                  </ul>
+                </td>
+                <td className={styles.swotCellWeakness}>
+                  <ul>
+                    <li>Pre-revenue with no established customer base</li>
+                    <li>Limited team size and capacity</li>
+                    <li>No regulatory approval yet (UKCA pending)</li>
+                    <li>Dependent on key clinical advisors</li>
+                    <li>Limited capital runway without funding</li>
+                    <li>Unproven scalability beyond AML</li>
+                    <li>No established brand recognition</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table className={styles.swotTable}>
+            <thead>
+              <tr>
+                <th className={styles.swotHeaderOpportunity}>Opportunities</th>
+                <th className={styles.swotHeaderThreat}>Threats</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className={styles.swotCellOpportunity}>
+                  <ul>
+                    <li>NHS digital transformation initiatives</li>
+                    <li>Growing AI in healthcare market (£120B by 2030)</li>
+                    <li>Expansion to all blood cancers, then solid tumors</li>
+                    <li>International markets (Middle East, Asia)</li>
+                    <li>Partnership potential with pharma companies</li>
+                  </ul>
+                </td>
+                <td className={styles.swotCellThreat}>
+                  <ul>
+                    <li>Well-funded competitors (e.g., SOPHiA GENETICS, PathAI)</li>
+                    <li>Regulatory delays or stringent new requirements</li>
+                    <li>NHS budget constraints and slow procurement</li>
+                    <li>Clinical resistance to AI-assisted diagnosis</li>
+                    <li>Data privacy regulations limiting access to training data</li>
+                    <li>Rapid changes in AI technology making approach obsolete</li>
+                    <li>Large tech companies (Google, Microsoft) entering space</li>
+                    <li>Clinical liability concerns deterring adoption</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    )
+  },
+  {
     id: 7,
     title: "Perfect Market Convergence",
-    subtitle: "Riding the Wave: Multi-Billion Dollar Market Transformation",
+    subtitle: "Riding the wave: multi-billion dollar market transformation",
     content: (
       <div className={styles.slideContent}>
         <div className={styles.cleanMarketLayout}>
           <div className={styles.marketHero}>
-            <div className={styles.heroNumber}>$164B</div>
+            <div className={styles.heroNumber}>£120B</div>
             <p className={styles.heroLabel}>AI in Healthcare Market by 2030</p>
             <p className={styles.heroGrowth}>49.1% CAGR</p>
             <p className={styles.heroReference}>
               <a href="https://www.globenewswire.com/news-release/2025/01/14/3009462/28124/en/164-Bn-Artificial-Intelligence-AI-in-Healthcare-Markets-Global-Forecast-to-2030-Market-to-Grow-at-a-CAGR-of-49-1-with-Koninklijke-Philips-Microsoft-Siemens-NVIDIA-and-Epic-Systems-.html" target="_blank" rel="noopener noreferrer">GlobeNewswire, 2025</a>
             </p>
           </div>
+
+          <p className={styles.currencyNote}>*Figures converted from USD to GBP using 16/10/2025 exchange rates and rounded down</p>
           
           <div className={styles.marketSegments}>
             <div className={styles.segment}>
               <h4>AI in Diagnostics</h4>
-              <p className={styles.segmentGrowth}>$1.92B → $46.59B by 2034</p>
+              <p className={styles.segmentGrowth}>£1B → £30B by 2034</p>
               <p className={styles.segmentCAGR}>37.6% CAGR</p>
               <p className={styles.segmentReference}>
                 <a href="https://www.globenewswire.com/news-release/2025/05/29/3090079/0/en/46-5-Bn-AI-in-Medical-Diagnostics-Market-Opportunities-and-Strategies-to-2034-Machine-Learning-and-Computer-Vision-Set-to-Transform-AI-Diagnostics-Landscape.html" target="_blank" rel="noopener noreferrer">GlobeNewswire, 2025</a>
@@ -628,7 +628,7 @@ const pitchSlides = [
             </div>
             <div className={styles.segment}>
               <h4>NHS AI Diagnostic Fund</h4>
-              <p className={styles.segmentGrowth}>£21M targeting AI diagnostics</p>
+              <p className={styles.segmentGrowth}>£20M targeting AI diagnostics</p>
               <p className={styles.segmentCAGR}>Cancer, stroke & heart disease focus</p>
               <p className={styles.segmentReference}>
                 <a href="https://www.gov.uk/government/news/21-million-to-roll-out-artificial-intelligence-across-the-nhs" target="_blank" rel="noopener noreferrer">Gov.uk, June 2023</a>
@@ -642,14 +642,14 @@ const pitchSlides = [
   {
     id: 9,
     title: "The Team",
-    subtitle: "World-Class Expertise in AI, Physics & Medicine",
+    subtitle: "World-class expertise in AI, physics & medicine",
     content: (
       <div className={styles.slideContent}>
         <div className={styles.teamLayout}>
           <div className={styles.teamGrid}>
             <div className={styles.teamMember}>
               <div className={styles.memberPhoto}>
-                <div className={styles.photoPlaceholder}>RL</div>
+                <img src="/profile-pics/robbie.png" alt="Robert Edward Lee" />
               </div>
               <div className={styles.memberInfo}>
                 <h3>Robert Edward Lee</h3>
@@ -660,7 +660,7 @@ const pitchSlides = [
             
             <div className={styles.teamMember}>
               <div className={styles.memberPhoto}>
-                <div className={styles.photoPlaceholder}>DC</div>
+                <img src="/profile-pics/danny.png" alt="Dr. Daniel Clarke" />
               </div>
               <div className={styles.memberInfo}>
                 <h3>Dr. Daniel Clarke</h3>
@@ -671,7 +671,7 @@ const pitchSlides = [
             
             <div className={styles.teamMember}>
               <div className={styles.memberPhoto}>
-                <div className={styles.photoPlaceholder}>JB</div>
+                <img src="/profile-pics/john.png" alt="Dr. John Burthem" />
               </div>
               <div className={styles.memberInfo}>
                 <h3>Dr. John Burthem</h3>
@@ -682,7 +682,7 @@ const pitchSlides = [
             
             <div className={styles.teamMember}>
               <div className={styles.memberPhoto}>
-                <div className={styles.photoPlaceholder}>LC</div>
+                <img src="/profile-pics/luke.png" alt="Dr. Luke Carter-Brzezinski" />
               </div>
               <div className={styles.memberInfo}>
                 <h3>Dr. Luke Carter-Brzezinski</h3>
@@ -697,71 +697,147 @@ const pitchSlides = [
   },
   {
     id: 12,
-    title: "£750k to Transform Haematology",
-    subtitle: "18 Months to Revenue & Series A",
+    title: "Use of Funds",
+    subtitle: "How the £750k S/EIS investment will be spent",
     content: (
       <div className={styles.slideContent}>
-        <div className={styles.runwayLayout}>
-          <div className={styles.runwayTotal}>
-            <div className={styles.totalAmount}>£750,000</div>
-            <p className={styles.totalLabel}>Seed Investment | 18-Month Runway</p>
-          </div>
-          
-          <div className={styles.runwayBreakdown}>
-            <div className={styles.runwaySection}>
-              <h4>Team (18 months)</h4>
-              <div className={styles.runwayItems}>
-                <div className={styles.runwayItem}>
-                  <span>Founder & Engineer</span>
-                  <span className={styles.runwayAmount}>£165k</span>
-                </div>
-                <div className={styles.runwayItem}>
-                  <span>Compliance Officer</span>
-                  <span className={styles.runwayAmount}>£105k</span>
-                </div>
-                <div className={styles.runwayItem}>
-                  <span>Clinical Validation Lead</span>
-                  <span className={styles.runwayAmount}>£90k</span>
-                </div>
-              </div>
-              <div className={styles.sectionTotal}>£360k</div>
-            </div>
-            
-            <div className={styles.runwaySection}>
-              <h4>Regulatory & Pilots</h4>
-              <div className={styles.runwayItems}>
-                <div className={styles.runwayItem}>
-                  <span>UKCA certification</span>
-                  <span className={styles.runwayAmount}>£30k</span>
-                </div>
-                <div className={styles.runwayItem}>
-                  <span>4 NHS pilot studies</span>
-                  <span className={styles.runwayAmount}>£120k</span>
-                </div>
-              </div>
-              <div className={styles.sectionTotal}>£150k</div>
-            </div>
-            
-            <div className={styles.runwaySection}>
-              <h4>Infrastructure & Buffer</h4>
-              <div className={styles.runwayItems}>
-                <div className={styles.runwayItem}>
-                  <span>Cloud & AI compute</span>
-                  <span className={styles.runwayAmount}>£15k</span>
-                </div>
-                <div className={styles.runwayItem}>
-                  <span>Contingency & ops</span>
-                  <span className={styles.runwayAmount}>£225k</span>
-                </div>
-              </div>
-              <div className={styles.sectionTotal}>£240k</div>
+        <div className={styles.useOfFundsLayout}>
+          <div className={styles.fundsHeader}>
+            <div className={styles.totalRaising}>
+              <div className={styles.raisingLabel}>Raising</div>
+              <div className={styles.raisingAmount}>£750k</div>
+              <div className={styles.raisingSubtext}>S/EIS (pending HMRC's approval)</div>
             </div>
           </div>
           
-          <div className={styles.runwayFooter}>
-            <div className={styles.runwayMilestone}>
-              <strong>Key Milestone:</strong> UKCA certification + 4 NHS pilot validations → Series A ready
+          <div className={styles.fundsContentGrid}>
+            <div className={styles.pieChartSection}>
+              <svg viewBox="0 0 200 200" className={styles.pieChart}>
+                {/* Development Team 48% */}
+                <circle r="80" cx="100" cy="100" fill="transparent" stroke="#4f46e5" strokeWidth="60" 
+                  strokeDasharray="241 502" transform="rotate(-90 100 100)" />
+                {/* UKCA Regulatory 13% */}
+                <circle r="80" cx="100" cy="100" fill="transparent" stroke="#06b6d4" strokeWidth="60" 
+                  strokeDasharray="65 502" strokeDashoffset="-241" transform="rotate(-90 100 100)" />
+                {/* Clinical Validation 11% */}
+                <circle r="80" cx="100" cy="100" fill="transparent" stroke="#10b981" strokeWidth="60" 
+                  strokeDasharray="55 502" strokeDashoffset="-306" transform="rotate(-90 100 100)" />
+                {/* Marketing 7% */}
+                <circle r="80" cx="100" cy="100" fill="transparent" stroke="#f59e0b" strokeWidth="60" 
+                  strokeDasharray="35 502" strokeDashoffset="-361" transform="rotate(-90 100 100)" />
+                {/* Legal 6% */}
+                <circle r="80" cx="100" cy="100" fill="transparent" stroke="#ec4899" strokeWidth="60" 
+                  strokeDasharray="30 502" strokeDashoffset="-396" transform="rotate(-90 100 100)" />
+                {/* Cloud Infrastructure 4% */}
+                <circle r="80" cx="100" cy="100" fill="transparent" stroke="#8b5cf6" strokeWidth="60" 
+                  strokeDasharray="20 502" strokeDashoffset="-426" transform="rotate(-90 100 100)" />
+                {/* Insurance 4% */}
+                <circle r="80" cx="100" cy="100" fill="transparent" stroke="#14b8a6" strokeWidth="60" 
+                  strokeDasharray="20 502" strokeDashoffset="-446" transform="rotate(-90 100 100)" />
+                {/* Office Equipment 5% */}
+                <circle r="80" cx="100" cy="100" fill="transparent" stroke="#f97316" strokeWidth="60" 
+                  strokeDasharray="25 502" strokeDashoffset="-466" transform="rotate(-90 100 100)" />
+                {/* Working Capital 2% */}
+                <circle r="80" cx="100" cy="100" fill="transparent" stroke="#a3a3a3" strokeWidth="60" 
+                  strokeDasharray="10 502" strokeDashoffset="-491" transform="rotate(-90 100 100)" />
+              </svg>
             </div>
+            
+            <div className={styles.fundsBreakdownList}>
+              <div className={styles.fundItem}>
+                <div className={styles.fundColor} style={{background: '#4f46e5'}}></div>
+                <div className={styles.fundDetails}>
+                  <div className={styles.fundName}>Development Team (18 months)</div>
+                  <div className={styles.fundDescription}>Founder/Engineer, Compliance Officer, Clinical Lead</div>
+                </div>
+                <div className={styles.fundAmount}>£360k</div>
+                <div className={styles.fundPercent}>48%</div>
+              </div>
+              
+              <div className={styles.fundItem}>
+                <div className={styles.fundColor} style={{background: '#06b6d4'}}></div>
+                <div className={styles.fundDetails}>
+                  <div className={styles.fundName}>UKCA Regulatory Approval</div>
+                  <div className={styles.fundDescription}>Medical device certification, quality management system</div>
+                </div>
+                <div className={styles.fundAmount}>£100k</div>
+                <div className={styles.fundPercent}>13%</div>
+              </div>
+              
+              <div className={styles.fundItem}>
+                <div className={styles.fundColor} style={{background: '#10b981'}}></div>
+                <div className={styles.fundDetails}>
+                  <div className={styles.fundName}>Clinical Validation & Pilots</div>
+                  <div className={styles.fundDescription}>NHS pilot studies, clinical data collection, validation</div>
+                </div>
+                <div className={styles.fundAmount}>£80k</div>
+                <div className={styles.fundPercent}>11%</div>
+              </div>
+              
+              <div className={styles.fundItem}>
+                <div className={styles.fundColor} style={{background: '#f59e0b'}}></div>
+                <div className={styles.fundDetails}>
+                  <div className={styles.fundName}>Marketing & Business Development</div>
+                  <div className={styles.fundDescription}>NHS outreach, conferences, sales materials, website</div>
+                </div>
+                <div className={styles.fundAmount}>£50k</div>
+                <div className={styles.fundPercent}>7%</div>
+              </div>
+              
+              <div className={styles.fundItem}>
+                <div className={styles.fundColor} style={{background: '#ec4899'}}></div>
+                <div className={styles.fundDetails}>
+                  <div className={styles.fundName}>Legal & Accounting</div>
+                  <div className={styles.fundDescription}>Corporate legal, IP protection, financial reporting</div>
+                </div>
+                <div className={styles.fundAmount}>£45k</div>
+                <div className={styles.fundPercent}>6%</div>
+              </div>
+              
+              <div className={styles.fundItem}>
+                <div className={styles.fundColor} style={{background: '#8b5cf6'}}></div>
+                <div className={styles.fundDetails}>
+                  <div className={styles.fundName}>Cloud Infrastructure & Software</div>
+                  <div className={styles.fundDescription}>AWS/Azure hosting, AI compute, development tools</div>
+                </div>
+                <div className={styles.fundAmount}>£30k</div>
+                <div className={styles.fundPercent}>4%</div>
+              </div>
+              
+              <div className={styles.fundItem}>
+                <div className={styles.fundColor} style={{background: '#14b8a6'}}></div>
+                <div className={styles.fundDetails}>
+                  <div className={styles.fundName}>Insurance & Professional Fees</div>
+                  <div className={styles.fundDescription}>Professional indemnity, cyber insurance, directors' insurance</div>
+                </div>
+                <div className={styles.fundAmount}>£30k</div>
+                <div className={styles.fundPercent}>4%</div>
+              </div>
+              
+              <div className={styles.fundItem}>
+                <div className={styles.fundColor} style={{background: '#f97316'}}></div>
+                <div className={styles.fundDetails}>
+                  <div className={styles.fundName}>Office Equipment & Setup</div>
+                  <div className={styles.fundDescription}>Laptops, secure workstations, office space</div>
+                </div>
+                <div className={styles.fundAmount}>£40k</div>
+                <div className={styles.fundPercent}>5%</div>
+              </div>
+              
+              <div className={styles.fundItem}>
+                <div className={styles.fundColor} style={{background: '#a3a3a3'}}></div>
+                <div className={styles.fundDetails}>
+                  <div className={styles.fundName}>Working Capital Buffer</div>
+                  <div className={styles.fundDescription}>Operational reserves for unexpected costs</div>
+                </div>
+                <div className={styles.fundAmount}>£15k</div>
+                <div className={styles.fundPercent}>2%</div>
+              </div>
+            </div>
+          </div>
+          
+          <div className={styles.fundsFooter}>
+            <strong>Focus:</strong> High-growth activities including team expansion, product development, regulatory approval, and market entry
           </div>
         </div>
       </div>
@@ -770,7 +846,7 @@ const pitchSlides = [
   {
     id: 14,
     title: "Revenue Model & Financial Projections",
-    subtitle: "Path to Profitability",
+    subtitle: "Path to profitability",
     content: (
       <div className={styles.slideContent}>
         <div className={styles.revenueTableLayout}>
@@ -817,21 +893,21 @@ const pitchSlides = [
                 </tr>
                 <tr>
                   <td>Year 3</td>
-                  <td>10 NHS + 2 UK private</td>
-                  <td>£700k</td>
-                  <td className={styles.profitCell}>+£150k</td>
+                  <td>5 NHS + 1 UK private</td>
+                  <td>£350k</td>
+                  <td className={styles.profitCell}>+£50k</td>
                 </tr>
                 <tr>
                   <td>Year 4</td>
-                  <td>15 NHS + Middle East + 3 labs</td>
-                  <td>£2.4M</td>
-                  <td className={styles.profitCell}>+£1.2M</td>
+                  <td>8 NHS + 2 private</td>
+                  <td>£650k</td>
+                  <td className={styles.profitCell}>+£200k</td>
                 </tr>
                 <tr>
                   <td>Year 5</td>
-                  <td>20 NHS + Malaysia + GCC</td>
-                  <td>£5.6M</td>
-                  <td className={styles.profitCell}>+£3.2M</td>
+                  <td>12 NHS + international pilot</td>
+                  <td>£1.1M</td>
+                  <td className={styles.profitCell}>+£500k</td>
                 </tr>
               </tbody>
             </table>
@@ -851,7 +927,7 @@ const pitchSlides = [
         <div className={styles.impactLayout}>
           <div className={styles.visionStatement}>
             <h3>Transforming Medical Guidelines into Engineering-Grade Logic Systems</h3>
-            <p>We're not building another AI diagnostic tool. We're creating the framework that makes complex medical decision-making as reliable as software engineering.</p>
+            <p>We're not just building another AI diagnostic tool. We're creating the framework for complex medical decision-making.</p>
           </div>
           
           
@@ -940,7 +1016,7 @@ export default function Pitch() {
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
         const slideTitle = pitchSlides[currentSlide].title || `Slide-${currentSlide + 1}`;
-        const filename = `Haemio-SEIS-${slideTitle.replace(/[^a-z0-9]/gi, '-')}.png`;
+        const filename = `Haemio-${slideTitle.replace(/[^a-z0-9]/gi, '-')}.png`;
         link.href = url;
         link.download = filename;
         link.click();
@@ -961,7 +1037,7 @@ export default function Pitch() {
       const element = printViewRef.current;
       const opt = {
         margin: [0.5, 0.5],
-        filename: 'Haemio-SEIS-Pitch.pdf',
+        filename: 'Haemio-Investor-Pitch.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { 
           scale: 2,

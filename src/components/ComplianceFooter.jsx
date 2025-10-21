@@ -49,8 +49,8 @@ export default function ComplianceFooter() {
             <div className={styles.contact}>
               <p>
                 <strong>Contact:</strong><br />
-                <a href="mailto:robbielee543@gmail.com" className={styles.link}>
-                  robbielee543@gmail.com
+                <a href="mailto:robert.lee@haem.io" className={styles.link}>
+                 robert.lee@haem.io
                 </a>
               </p>
             </div>

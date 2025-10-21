@@ -1,0 +1,674 @@
+.dataRoomContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 2rem;
+  position: relative;
+}
+
+.backButton {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  padding: 0.75rem 1.5rem;
+  background: white;
+  color: var(--primary-color);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.backButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dataRoomContent {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-top: 4rem;
+  min-height: 0;
+}
+
+/* Password Screen */
+.passwordScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.logoSection {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.logo {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.tagline {
+  font-size: 1.25rem;
+  color: #666;
+}
+
+.passwordCard {
+  background: white;
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+.passwordCard h2 {
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.passwordCard > p {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.passwordForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.passwordInput {
+  padding: 1rem;
+  font-size: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.passwordInput:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.errorMessage {
+  color: #dc2626;
+  font-size: 0.875rem;
+  padding: 0.5rem;
+  background: #fef2f2;
+  border-radius: 4px;
+  border-left: 3px solid #dc2626;
+}
+
+.submitButton {
+  padding: 1rem 2rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submitButton:hover {
+  background: #00897b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.helpText {
+  text-align: center;
+  color: #666;
+  font-size: 0.875rem;
+  margin-top: 1.5rem;
+}
+
+.helpText p {
+  margin-bottom: 0.75rem;
+}
+
+.helpText a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.helpText a:hover {
+  text-decoration: underline;
+}
+
+.requestAccessButton {
+  background: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.requestAccessButton:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Access Request Form */
+.accessRequestCard {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 1.5rem;
+  max-width: 500px;
+  width: 100%;
+}
+
+.accessRequestCard h3 {
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.accessRequestCard > p {
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.accessRequestForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formGroup label {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.formInput,
+.formTextarea {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+}
+
+.formInput:focus,
+.formTextarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.formTextarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Success Message */
+.successMessage {
+  text-align: center;
+  padding: 2rem;
+}
+
+.successIcon {
+  width: 60px;
+  height: 60px;
+  background: #10b981;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto 1rem;
+  font-weight: bold;
+}
+
+.successMessage h3 {
+  color: #10b981;
+  margin-bottom: 0.75rem;
+}
+
+.successMessage p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.closeButton {
+  background: #e0e0e0;
+  color: #333;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.closeButton:hover {
+  background: #d0d0d0;
+  transform: translateY(-2px);
+}
+
+/* NDA Screen */
+.ndaScreen {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1rem;
+  max-height: calc(100vh - 6rem);
+  overflow-y: auto;
+}
+
+.ndaCard {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+}
+
+.ndaCard h2 {
+  color: #333;
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+}
+
+.ndaIntro {
+  color: #666;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.ndaTextContainer {
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+}
+
+.ndaText {
+  white-space: pre-wrap;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: #333;
+  margin: 0;
+}
+
+/* Formatted NDA Styles */
+.ndaFormatted {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: #333;
+}
+
+.ndaHeader {
+  text-align: center;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.ndaHeader h3 {
+  color: var(--primary-color);
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.ndaDate {
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0.5rem 0;
+}
+
+.ndaTo {
+  font-size: 0.95rem;
+  color: #666;
+  font-style: italic;
+  margin: 0.5rem 0;
+}
+
+.ndaSection {
+  margin-bottom: 2rem;
+}
+
+.ndaSection h4 {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 0.5rem;
+}
+
+.ndaSection p {
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+.ndaSection ul,
+.ndaSection ol {
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.ndaSection li {
+  margin-bottom: 0.75rem;
+  text-align: justify;
+}
+
+.ndaSection ol ol {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.definition {
+  margin-bottom: 1.25rem;
+  padding-left: 1rem;
+  border-left: 3px solid var(--primary-color);
+  background: rgba(0, 150, 136, 0.03);
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+}
+
+.definition p {
+  margin-bottom: 0.5rem;
+}
+
+.definition:last-child {
+  margin-bottom: 0;
+}
+
+.ndaFooter {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--primary-color);
+  text-align: center;
+}
+
+.ndaFooter p {
+  margin: 0.25rem 0;
+  line-height: 1.6;
+}
+
+.ndaFooter strong {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+}
+
+.ndaActions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: sticky;
+  bottom: 0;
+  background: white;
+  padding-top: 1rem;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkboxLabel span {
+  line-height: 1.6;
+  color: #333;
+}
+
+.checkbox {
+  margin-top: 0.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.acceptButton {
+  padding: 1rem 2rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: flex-end;
+}
+
+.acceptButton:hover:not(:disabled) {
+  background: #00897b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.acceptButton:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Documents Screen */
+.documentsScreen {
+  padding: 1rem;
+}
+
+.documentsCard {
+  background: white;
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.documentsCard h1 {
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+
+.welcomeText {
+  color: #666;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  font-size: 1.125rem;
+}
+
+.documentsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.documentCard {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 2px solid #e0e0e0;
+  transition: all 0.3s ease;
+  max-width: 500px;
+  margin: 0 auto 2rem auto;
+}
+
+.documentCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-color);
+}
+
+.documentIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.documentCard h3 {
+  color: #333;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+}
+
+.documentCard p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.downloadButton {
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.downloadButton:hover:not(:disabled) {
+  background: #00897b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.downloadButton:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.reminderBox {
+  background: #fff3cd;
+  border-left: 4px solid #ffc107;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  color: #856404;
+}
+
+.reminderBox strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #856404;
+}
+
+.contactSection {
+  text-align: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e0e0e0;
+  color: #666;
+}
+
+.contactSection a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contactSection a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dataRoomContainer {
+    padding: 1rem;
+  }
+
+  .backButton {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .dataRoomContent {
+    padding-top: 3rem;
+  }
+
+  .passwordCard,
+  .ndaCard,
+  .documentsCard {
+    padding: 1.5rem;
+  }
+
+  .logo {
+    font-size: 2rem;
+  }
+
+  .documentsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .ndaTextContainer {
+    max-height: 300px;
+  }
+  
+  .ndaCard {
+    padding: 1.5rem;
+  }
+  
+  .ndaScreen {
+    max-height: calc(100vh - 4rem);
+  }
+}
+
+/* Scrollbar Styling for NDA Container */
+.ndaTextContainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.ndaTextContainer::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.ndaTextContainer::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.ndaTextContainer::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+

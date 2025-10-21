@@ -3353,6 +3353,15 @@ body:has(.pitchDeck) main {
   flex-shrink: 0;
 }
 
+.memberPhoto img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 15px rgba(0, 150, 136, 0.3);
+  border: 3px solid white;
+}
+
 .photoPlaceholder {
   width: 80px;
   height: 80px;
@@ -5069,7 +5078,7 @@ body:has(.pitchDeck) main {
   }
   
   .bigStat {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 }
 
@@ -5513,6 +5522,14 @@ body:has(.pitchDeck) main {
   line-height: 1.4;
 }
 
+.financialNote {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #64748b;
+  font-style: italic;
+  margin-top: 1rem;
+}
+
 @media (max-width: 900px) {
   .runwayBreakdown {
     grid-template-columns: 1fr;
@@ -5612,12 +5629,12 @@ body:has(.pitchDeck) main {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 1.5rem;
 }
 
 .marketHero {
   text-align: center;
-  padding: 2rem;
+  padding: 1.5rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 16px;
   color: white !important;
@@ -5625,31 +5642,31 @@ body:has(.pitchDeck) main {
 }
 
 .heroNumber {
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: 800;
   line-height: 1;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   color: white !important;
 }
 
 .heroLabel {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 500;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
   color: white !important;
   opacity: 1;
 }
 
 .heroGrowth {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: white !important;
   opacity: 1;
 }
 
 .heroReference {
-  margin-top: 1rem;
-  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
   opacity: 0.9;
 }
 
@@ -5663,17 +5680,25 @@ body:has(.pitchDeck) main {
   opacity: 0.8;
 }
 
+.currencyNote {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #64748b;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
 .marketSegments {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .segment {
   background: white;
   border: 2px solid #e2e8f0;
   border-radius: 12px;
-  padding: 2rem;
+  padding: 1.5rem;
   text-align: center;
   transition: all 0.3s ease;
 }
@@ -5685,28 +5710,28 @@ body:has(.pitchDeck) main {
 }
 
 .segment h4 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #1e293b;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
   font-weight: 600;
 }
 
 .segmentGrowth {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #475569;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   font-weight: 500;
 }
 
 .segmentCAGR {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--primary-color);
   font-weight: 600;
 }
 
 .segmentReference {
-  margin-top: 0.75rem;
-  padding-top: 0.75rem;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
   border-top: 1px solid #e2e8f0;
   font-size: 0.8rem;
 }
@@ -6378,6 +6403,27 @@ body:has(.pitchDeck) main {
   background: linear-gradient(180deg, transparent, #fca5a5, transparent);
 }
 
+.clinicalQuoteBox {
+  margin: 2rem auto;
+  max-width: 800px;
+  text-align: center;
+}
+
+.clinicalQuote {
+  font-size: 1.3rem;
+  color: #1e40af;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.clinicalQuoteSource {
+  font-size: 0.95rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
 .bottomStatement {
   text-align: center;
   font-size: 1.4rem;
@@ -6904,7 +6950,6 @@ body:has(.pitchDeck) main {
   font-weight: 700;
   color: #1e40af;
   margin-bottom: 0.25rem;
-  text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
@@ -7626,5 +7671,168 @@ body:has(.pitchDeck) main {
   
   .financialTable {
     font-size: 0.85rem;
+  }
+}
+
+/* Expansion Path Styles */
+.expansionPathLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.pathStage {
+  flex: 1;
+  max-width: 320px;
+  background: white;
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.pathStage[data-stage="current"] {
+  border: 3px solid #10b981;
+  background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+}
+
+.pathStage[data-stage="next"] {
+  border: 3px solid #0891b2;
+  background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
+}
+
+.pathStage[data-stage="future"] {
+  border: 3px solid #6366f1;
+  background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+}
+
+.stageHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.stageBadge {
+  padding: 0.35rem 0.9rem;
+  border-radius: 20px;
+  color: white;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  width: fit-content;
+}
+
+.stageHeader h3 {
+  margin: 0;
+  font-size: 1.35rem;
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.stageContent {
+  padding-left: 0;
+}
+
+.stageDescription {
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+.stageStatus {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #10b981;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  width: fit-content;
+}
+
+.statusIcon {
+  font-size: 1.2rem;
+}
+
+.stageTimeline {
+  font-size: 0.9rem;
+  color: #64748b;
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  background: rgba(100, 116, 139, 0.1);
+  border-radius: 6px;
+  width: fit-content;
+}
+
+.pathStagesRow {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.pathArrowLarge {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  font-weight: 300;
+  flex-shrink: 0;
+}
+
+.expansionFooter {
+  margin-top: 0.5rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  color: white;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.expansionFooter strong {
+  color: var(--primary-color);
+}
+
+@media (max-width: 1024px) {
+  .pathStagesRow {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .pathStage {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .pathArrowLarge {
+    transform: rotate(90deg);
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .pathStage {
+    padding: 1rem;
+  }
+
+  .stageHeader h3 {
+    font-size: 1.1rem;
+  }
+
+  .stageDescription {
+    font-size: 0.85rem;
+  }
+
+  .pathArrowLarge {
+    font-size: 1.5rem;
   }
 }

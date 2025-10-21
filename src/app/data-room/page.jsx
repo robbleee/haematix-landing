@@ -381,93 +381,6 @@ export default function DataRoom() {
                 Welcome to the Haemio investor data room. You have successfully authenticated and accepted the NDA. You currently have <strong>basic access</strong> to our investor pitch deck. Request full access below for additional materials including financial projections and clinical validation data.
               </p>
 
-              <div className={styles.documentsGrid}>
-                <div className={styles.documentCard}>
-                  <div className={styles.documentIcon}>📄</div>
-                  <h3>Investor Pitch Deck</h3>
-                  <p>Complete investor presentation including market analysis, product overview, and financial projections.</p>
-                  <button 
-                    onClick={handleDownloadPitch}
-                    className={styles.downloadButton}
-                  >
-                    Download PDF
-                  </button>
-                </div>
-
-                <div className={styles.documentCard}>
-                  <div className={styles.documentIcon}>📋</div>
-                  <h3>Investment Summary</h3>
-                  <p>One-page overview of the investment opportunity, use of funds, and key milestones.</p>
-                  <a 
-                    href="/investment-summary.pdf"
-                    download
-                    className={styles.downloadButton}
-                  >
-                    Download PDF
-                  </a>
-                </div>
-              </div>
-
-              <div className={styles.lettersSectionTitle}>
-                <h3>Letters of Support & Intent</h3>
-                <p>Clinical endorsements from leading NHS consultants and research networks</p>
-              </div>
-
-              <div className={styles.lettersGrid}>
-                <div className={styles.letterCard}>
-                  <div className={styles.letterIcon}>📝</div>
-                  <h4>Prof. Charles Craddock</h4>
-                  <p className={styles.letterAffiliation}>Chair, UK AML Research Network</p>
-                  <a 
-                    href="/Charles-craddock-LOI.pdf"
-                    download
-                    className={styles.letterDownloadButton}
-                  >
-                    Download Letter
-                  </a>
-                </div>
-
-                <div className={styles.letterCard}>
-                  <div className={styles.letterIcon}>📝</div>
-                  <h4>Dr. John Chadwick</h4>
-                  <p className={styles.letterAffiliation}>The Christie NHS Foundation Trust</p>
-                  <a 
-                    href="/John-chadwick-LOS-christie.pdf"
-                    download
-                    className={styles.letterDownloadButton}
-                  >
-                    Download Letter
-                  </a>
-                </div>
-
-                <div className={styles.letterCard}>
-                  <div className={styles.letterIcon}>📝</div>
-                  <h4>Dr. Tom Coats</h4>
-                  <p className={styles.letterAffiliation}>Royal Devon NHS Trust</p>
-                  <a 
-                    href="/Tom-coates-LOS-royal-devon.pdf"
-                    download
-                    className={styles.letterDownloadButton}
-                  >
-                    Download Letter
-                  </a>
-                </div>
-
-                <div className={styles.letterCard}>
-                  <div className={styles.letterIcon}>📝</div>
-                  <h4>Dr. Cahalin</h4>
-                  <p className={styles.letterAffiliation}>Blackpool Teaching Hospitals</p>
-                  <a 
-                    href="/cahalin-LOS-blackpool.pdf"
-                    download
-                    className={styles.letterDownloadButton}
-                  >
-                    Download Letter
-                  </a>
-                </div>
-              </div>
-
-
               <div className={styles.teamCallout}>
                 <div className={styles.teamCalloutContent}>
                   <div className={styles.teamPhotos}>
@@ -481,6 +394,152 @@ export default function DataRoom() {
                     <p>World-class expertise in AI, clinical haematology, and healthcare technology</p>
                     <a href="/data-room/team" className={styles.teamButton}>
                       View Team Profiles →
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.documentsGrid}>
+                <div className={styles.documentCard}>
+                  <div className={styles.documentIcon}>📄</div>
+                  <h3>Investor Pitch Deck</h3>
+                  <p>Complete investor presentation including market analysis, product overview, and financial projections.</p>
+                  <div className={styles.documentButtons}>
+                    <a 
+                      href="/Haem.io-pitch.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.viewButton}
+                    >
+                      👁️ View
+                    </a>
+                    <button 
+                      onClick={handleDownloadPitch}
+                      className={styles.downloadButton}
+                    >
+                      ⬇️ Download
+                    </button>
+                  </div>
+                </div>
+
+                <div className={styles.documentCard}>
+                  <div className={styles.documentIcon}>📋</div>
+                  <h3>Investment Summary</h3>
+                  <p>One-page overview of the investment opportunity, use of funds, and key milestones.</p>
+                  <div className={styles.documentButtons}>
+                    <a 
+                      href="/investment-summary.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.viewButton}
+                    >
+                      👁️ View
+                    </a>
+                    <a 
+                      href="/investment-summary.pdf"
+                      download
+                      className={styles.downloadButton}
+                    >
+                      ⬇️ Download
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.lettersSectionTitle}>
+                <h3>Letters of Support & Intent</h3>
+                <p>Clinical endorsements from leading NHS consultants and research networks</p>
+              </div>
+
+              <div className={styles.lettersGrid}>
+                <div className={styles.letterCard}>
+                  <div className={styles.letterIcon}>📝</div>
+                  <h4>Prof. Charles Craddock</h4>
+                  <p className={styles.letterAffiliation}>Chair, UK AML Research Network</p>
+                  <div className={styles.letterButtons}>
+                    <a 
+                      href="/Charles-craddock-LOI.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.letterViewButton}
+                    >
+                      👁️ View
+                    </a>
+                    <a 
+                      href="/Charles-craddock-LOI.pdf"
+                      download
+                      className={styles.letterDownloadButton}
+                    >
+                      ⬇️ Download
+                    </a>
+                  </div>
+                </div>
+
+                <div className={styles.letterCard}>
+                  <div className={styles.letterIcon}>📝</div>
+                  <h4>Dr. John Chadwick</h4>
+                  <p className={styles.letterAffiliation}>The Christie NHS Foundation Trust</p>
+                  <div className={styles.letterButtons}>
+                    <a 
+                      href="/John-chadwick-LOS-christie.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.letterViewButton}
+                    >
+                      👁️ View
+                    </a>
+                    <a 
+                      href="/John-chadwick-LOS-christie.pdf"
+                      download
+                      className={styles.letterDownloadButton}
+                    >
+                      ⬇️ Download
+                    </a>
+                  </div>
+                </div>
+
+                <div className={styles.letterCard}>
+                  <div className={styles.letterIcon}>📝</div>
+                  <h4>Dr. Tom Coats</h4>
+                  <p className={styles.letterAffiliation}>Royal Devon NHS Trust</p>
+                  <div className={styles.letterButtons}>
+                    <a 
+                      href="/Tom-coates-LOS-royal-devon.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.letterViewButton}
+                    >
+                      👁️ View
+                    </a>
+                    <a 
+                      href="/Tom-coates-LOS-royal-devon.pdf"
+                      download
+                      className={styles.letterDownloadButton}
+                    >
+                      ⬇️ Download
+                    </a>
+                  </div>
+                </div>
+
+                <div className={styles.letterCard}>
+                  <div className={styles.letterIcon}>📝</div>
+                  <h4>Dr. Cahalin</h4>
+                  <p className={styles.letterAffiliation}>Blackpool Teaching Hospitals</p>
+                  <div className={styles.letterButtons}>
+                    <a 
+                      href="/cahalin-LOS-blackpool.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.letterViewButton}
+                    >
+                      👁️ View
+                    </a>
+                    <a 
+                      href="/cahalin-LOS-blackpool.pdf"
+                      download
+                      className={styles.letterDownloadButton}
+                    >
+                      ⬇️ Download
                     </a>
                   </div>
                 </div>

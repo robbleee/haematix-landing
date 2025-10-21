@@ -593,17 +593,54 @@
   font-size: 0.9rem;
 }
 
-.downloadButton {
+.documentButtons {
+  display: flex;
+  gap: 0.75rem;
   width: 100%;
-  padding: 0.875rem 1.5rem;
+}
+
+.viewButton {
+  flex: 1;
+  padding: 0.875rem 1rem;
+  background: white;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.viewButton:hover {
+  background: rgba(0, 150, 136, 0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.downloadButton {
+  flex: 1;
+  padding: 0.875rem 1rem;
   background: var(--primary-color);
   color: white;
   border: none;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .downloadButton:hover:not(:disabled) {
@@ -992,9 +1029,15 @@
   min-height: 2.8em;
 }
 
-.letterDownloadButton {
-  display: inline-block;
-  padding: 0.6rem 1.2rem;
+.letterButtons {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.letterViewButton {
+  flex: 1;
+  padding: 0.6rem 0.75rem;
   background: white;
   color: var(--primary-color);
   border: 2px solid var(--primary-color);
@@ -1004,11 +1047,41 @@
   font-weight: 600;
   transition: all 0.3s ease;
   cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.letterViewButton:hover {
+  background: rgba(0, 150, 136, 0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 150, 136, 0.15);
+}
+
+.letterDownloadButton {
+  flex: 1;
+  padding: 0.6rem 0.75rem;
+  background: var(--primary-color);
+  color: white;
+  border: 2px solid var(--primary-color);
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
 }
 
 .letterDownloadButton:hover {
-  background: var(--primary-color);
-  color: white;
+  background: #00897b;
+  border-color: #00897b;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 150, 136, 0.2);
 }

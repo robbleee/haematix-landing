@@ -597,6 +597,9 @@
 .documentIcon {
   font-size: 3rem;
   margin-bottom: 1rem;
+  color: var(--primary-color);
+  opacity: 0.8;
+  font-weight: 300;
 }
 
 .documentCard h3 {

@@ -412,7 +412,7 @@ export default function DataRoom() {
                 className={styles.downloadAllButtonTopRight}
                 title="Download all documents as ZIP"
               >
-                📦 Download All
+                ⬇ Download All
               </button>
               <div className={styles.accessLevelBadge}>Basic Access</div>
               <h1>Haem.io Investor Data Room</h1>
@@ -503,7 +503,6 @@ export default function DataRoom() {
 
               <div className={styles.lettersGrid}>
                 <div className={styles.letterCard}>
-                  <div className={styles.letterIcon}>📝</div>
                   <h4>Prof. Charles Craddock</h4>
                   <p className={styles.letterAffiliation}>Chair, UK AML Research Network</p>
                   <a 
@@ -517,7 +516,6 @@ export default function DataRoom() {
                 </div>
 
                 <div className={styles.letterCard}>
-                  <div className={styles.letterIcon}>📝</div>
                   <h4>Dr. John Chadwick</h4>
                   <p className={styles.letterAffiliation}>The Christie NHS Foundation Trust</p>
                   <a 
@@ -531,7 +529,6 @@ export default function DataRoom() {
                 </div>
 
                 <div className={styles.letterCard}>
-                  <div className={styles.letterIcon}>📝</div>
                   <h4>Dr. Tom Coats</h4>
                   <p className={styles.letterAffiliation}>Royal Devon NHS Trust</p>
                   <a 
@@ -545,7 +542,6 @@ export default function DataRoom() {
                 </div>
 
                 <div className={styles.letterCard}>
-                  <div className={styles.letterIcon}>📝</div>
                   <h4>Dr. Cahalin</h4>
                   <p className={styles.letterAffiliation}>Blackpool Teaching Hospitals</p>
                   <a 

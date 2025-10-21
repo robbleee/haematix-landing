@@ -442,7 +442,7 @@ export default function DataRoom() {
 
               <div className={styles.documentsGrid}>
                 <div className={styles.documentCard}>
-                  <div className={styles.documentIcon}>▢</div>
+                  <div className={styles.documentIcon}>▭</div>
                   <h3>Investor Pitch Deck</h3>
                   <p>Complete investor presentation including market analysis, product overview, and financial projections.</p>
                   <a 
@@ -456,7 +456,7 @@ export default function DataRoom() {
                 </div>
 
                 <div className={styles.documentCard}>
-                  <div className={styles.documentIcon}>◫</div>
+                  <div className={styles.documentIcon}>◉</div>
                   <h3>Investment Summary</h3>
                   <p>One-page overview of the investment opportunity, use of funds, and key milestones.</p>
                   <a 
@@ -470,7 +470,7 @@ export default function DataRoom() {
                 </div>
 
                 <div className={styles.documentCard}>
-                  <div className={styles.documentIcon}>△</div>
+                  <div className={styles.documentIcon}>↗</div>
                   <h3>Traction & Market Opportunity</h3>
                   <p>Detailed overview of our clinical partnerships, £7M grant LOI, NHS pilot programmes, and market validation.</p>
                   <a 
@@ -486,7 +486,7 @@ export default function DataRoom() {
                 {showAllDocuments && (
                   <>
                     <div className={styles.documentCard}>
-                      <div className={styles.documentIcon}>◇</div>
+                      <div className={styles.documentIcon}>£</div>
                       <h3>Use of Funds</h3>
                       <p>Detailed breakdown of £750k seed investment allocation across team, regulatory, pilots, and infrastructure.</p>
                       <a 
@@ -499,7 +499,7 @@ export default function DataRoom() {
                       </a>
                     </div>
                     <div className={styles.documentCard}>
-                      <div className={styles.documentIcon}>⬡</div>
+                      <div className={styles.documentIcon}>✓</div>
                       <h3>Regulatory Strategy & Pathway</h3>
                       <p>Clear pathway to UKCA/CE marking as a Class IIa medical device, including MHRA engagement strategy.</p>
                       <a 

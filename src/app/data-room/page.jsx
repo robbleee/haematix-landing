@@ -483,19 +483,34 @@ export default function DataRoom() {
                 </div>
 
                 {showAllDocuments && (
-                  <div className={styles.documentCard}>
-                    <div className={styles.documentIcon}>⚖️</div>
-                    <h3>Regulatory Strategy & Pathway</h3>
-                    <p>Clear pathway to UKCA/CE marking as a Class IIa medical device, including MHRA engagement strategy.</p>
-                    <a 
-                      href="/regulatory-strategy-and-pathway.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.viewButtonPrimary}
-                    >
-                      View Document
-                    </a>
-                  </div>
+                  <>
+                    <div className={styles.documentCard}>
+                      <div className={styles.documentIcon}>💰</div>
+                      <h3>Use of Funds</h3>
+                      <p>Detailed breakdown of £750k seed investment allocation across team, regulatory, pilots, and infrastructure.</p>
+                      <a 
+                        href="/use-of-funds.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.viewButtonPrimary}
+                      >
+                        View Document
+                      </a>
+                    </div>
+                    <div className={styles.documentCard}>
+                      <div className={styles.documentIcon}>⚖️</div>
+                      <h3>Regulatory Strategy & Pathway</h3>
+                      <p>Clear pathway to UKCA/CE marking as a Class IIa medical device, including MHRA engagement strategy.</p>
+                      <a 
+                        href="/regulatory-strategy-and-pathway.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.viewButtonPrimary}
+                      >
+                        View Document
+                      </a>
+                    </div>
+                  </>
                 )}
               </div>
 

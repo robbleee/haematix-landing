@@ -273,6 +273,31 @@
   transform: translateY(-2px);
 }
 
+.formButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.backButtonForm {
+  background: transparent;
+  color: #666;
+  border: 2px solid #e0e0e0;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.backButtonForm:hover {
+  background: #f5f5f5;
+  border-color: #ccc;
+  transform: translateY(-2px);
+}
+
 /* NDA Screen */
 .ndaScreen {
   display: flex;
@@ -498,6 +523,19 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
+.accessLevelBadge {
+  display: inline-block;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  padding: 0.5rem 1.25rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+}
+
 .documentsCard h1 {
   color: #333;
   margin-bottom: 0.5rem;
@@ -509,6 +547,11 @@
   margin-bottom: 2rem;
   line-height: 1.6;
   font-size: 1.125rem;
+}
+
+.welcomeText strong {
+  color: #3b82f6;
+  font-weight: 600;
 }
 
 .documentsGrid {
@@ -609,6 +652,114 @@
   text-decoration: underline;
 }
 
+/* Full Data Room Access Section */
+.fullAccessSection {
+  margin: 2rem 0;
+}
+
+.fullAccessCard {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border: 2px solid var(--primary-color);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.fullAccessCard h3 {
+  color: var(--primary-color);
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+}
+
+.fullAccessCard p {
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.fullAccessButton {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.fullAccessButton:hover {
+  background: #00897b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  backdrop-filter: blur(4px);
+}
+
+.modalContent {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 550px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modalContent h2 {
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.modalContent > p {
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.modalClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #666;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  line-height: 1;
+}
+
+.modalClose:hover {
+  background: #f5f5f5;
+  color: #333;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .dataRoomContainer {
@@ -650,6 +801,24 @@
   
   .ndaScreen {
     max-height: calc(100vh - 4rem);
+  }
+
+  .formButtons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .backButtonForm,
+  .submitButton {
+    width: 100%;
+  }
+
+  .modalContent {
+    padding: 1.5rem;
+  }
+
+  .fullAccessCard {
+    padding: 1.5rem;
   }
 }
 

@@ -162,7 +162,7 @@ export default function DataRoom() {
     document.body.removeChild(link);
   };
 
-  const handleAccessRequest = async (e) => {
+  const handleAccessRequest = async (e, accessLevel = 'basic') => {
     e.preventDefault();
     setIsSubmittingRequest(true);
     setRequestError('');
@@ -177,6 +177,7 @@ export default function DataRoom() {
           name: requestName,
           email: requestEmail,
           message: requestMessage,
+          accessLevel: accessLevel,
         }),
       });
 
@@ -205,53 +206,57 @@ export default function DataRoom() {
 
       <div className={styles.dataRoomContent}>
         {!isPasswordCorrect ? (
-          // Password Entry Screen
+          // Password Entry Screen or Request Access Screen
           <div className={styles.passwordScreen}>
             <div className={styles.logoSection}>
               <h1 className={styles.logo}>Haem.io</h1>
               <p className={styles.tagline}>Investor Data Room</p>
             </div>
 
-            <div className={styles.passwordCard}>
-              <h2>Secure Access Required</h2>
-              <p>Please enter the password to access confidential materials</p>
-              
-              <form onSubmit={handlePasswordSubmit} className={styles.passwordForm}>
-                <input
-                  type="password"
-                  value={passwordEntered}
-                  onChange={(e) => setPasswordEntered(e.target.value)}
-                  placeholder="Enter password"
-                  className={styles.passwordInput}
-                  autoFocus
-                />
-                {passwordError && (
-                  <div className={styles.errorMessage}>{passwordError}</div>
-                )}
-                <button type="submit" className={styles.submitButton}>
-                  Access Data Room
-                </button>
-              </form>
-            </div>
+            {!showAccessRequest ? (
+              // Password Entry Form
+              <>
+                <div className={styles.passwordCard}>
+                  <h2>Secure Access Required</h2>
+                  <p>Please enter the password to access confidential materials</p>
+                  
+                  <form onSubmit={handlePasswordSubmit} className={styles.passwordForm}>
+                    <input
+                      type="password"
+                      value={passwordEntered}
+                      onChange={(e) => setPasswordEntered(e.target.value)}
+                      placeholder="Enter password"
+                      className={styles.passwordInput}
+                      autoFocus
+                    />
+                    {passwordError && (
+                      <div className={styles.errorMessage}>{passwordError}</div>
+                    )}
+                    <button type="submit" className={styles.submitButton}>
+                      Access Data Room
+                    </button>
+                  </form>
+                </div>
 
-            <div className={styles.helpText}>
-              <p>Don't have access?</p>
-              <button 
-                onClick={() => setShowAccessRequest(!showAccessRequest)}
-                className={styles.requestAccessButton}
-              >
-                {showAccessRequest ? 'Hide Request Form' : 'Request Access'}
-              </button>
-            </div>
-
-            {showAccessRequest && (
+                <div className={styles.helpText}>
+                  <p>Don't have access?</p>
+                  <button 
+                    onClick={() => setShowAccessRequest(true)}
+                    className={styles.requestAccessButton}
+                  >
+                    Request Access
+                  </button>
+                </div>
+              </>
+            ) : (
+              // Request Access Form
               <div className={styles.accessRequestCard}>
                 {!requestSuccess ? (
                   <>
                     <h3>Request Data Room Access</h3>
                     <p>Fill out the form below and we'll get back to you shortly.</p>
                     
-                    <form onSubmit={handleAccessRequest} className={styles.accessRequestForm}>
+                    <form onSubmit={(e) => handleAccessRequest(e, 'basic')} className={styles.accessRequestForm}>
                       <div className={styles.formGroup}>
                         <label htmlFor="requestName">Full Name *</label>
                         <input
@@ -262,6 +267,7 @@ export default function DataRoom() {
                           required
                           className={styles.formInput}
                           placeholder="John Smith"
+                          autoFocus
                         />
                       </div>
 
@@ -294,13 +300,22 @@ export default function DataRoom() {
                         <div className={styles.errorMessage}>{requestError}</div>
                       )}
 
-                      <button 
-                        type="submit" 
-                        className={styles.submitButton}
-                        disabled={isSubmittingRequest}
-                      >
-                        {isSubmittingRequest ? 'Submitting...' : 'Submit Request'}
-                      </button>
+                      <div className={styles.formButtons}>
+                        <button 
+                          type="button"
+                          onClick={() => setShowAccessRequest(false)}
+                          className={styles.backButtonForm}
+                        >
+                          ← Back to Login
+                        </button>
+                        <button 
+                          type="submit" 
+                          className={styles.submitButton}
+                          disabled={isSubmittingRequest}
+                        >
+                          {isSubmittingRequest ? 'Submitting...' : 'Submit Request'}
+                        </button>
+                      </div>
                     </form>
                   </>
                 ) : (
@@ -315,7 +330,7 @@ export default function DataRoom() {
                       }}
                       className={styles.closeButton}
                     >
-                      Close
+                      Back to Login
                     </button>
                   </div>
                 )}
@@ -360,9 +375,10 @@ export default function DataRoom() {
           // Document Access Screen
           <div className={styles.documentsScreen}>
             <div className={styles.documentsCard}>
+              <div className={styles.accessLevelBadge}>Basic Access</div>
               <h1>Haem.io Investor Data Room</h1>
               <p className={styles.welcomeText}>
-                Welcome to the Haemio investor data room. You have successfully authenticated and accepted the NDA.
+                Welcome to the Haemio investor data room. You have successfully authenticated and accepted the NDA. You currently have <strong>basic access</strong> to our investor pitch deck. Request full access below for additional materials including financial projections and clinical validation data.
               </p>
 
               <div className={styles.documentCard}>
@@ -378,9 +394,114 @@ export default function DataRoom() {
               </div>
 
 
+              <div className={styles.fullAccessSection}>
+                <div className={styles.fullAccessCard}>
+                  <h3>Need Full Data Room Access?</h3>
+                  <p>Request access to additional materials including financial projections, clinical validation data, and more.</p>
+                  <button 
+                    onClick={() => setShowAccessRequest(true)}
+                    className={styles.fullAccessButton}
+                  >
+                    Request Full Data Room Access
+                  </button>
+                </div>
+              </div>
+
               <div className={styles.contactSection}>
                 <p>Questions? Contact us at <a href="mailto:robert.lee@haem.io">robert.lee@haem.io</a></p>
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* Full Access Request Modal */}
+        {isPasswordCorrect && ndaAccepted && showAccessRequest && (
+          <div className={styles.modalOverlay} onClick={() => setShowAccessRequest(false)}>
+            <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+              <button 
+                className={styles.modalClose}
+                onClick={() => setShowAccessRequest(false)}
+              >
+                ×
+              </button>
+              
+              {!requestSuccess ? (
+                <>
+                  <h2>Request Full Data Room Access</h2>
+                  <p>Please provide your details and we'll get back to you with expanded access.</p>
+                  
+                  <form onSubmit={(e) => handleAccessRequest(e, 'full')} className={styles.accessRequestForm}>
+                    <div className={styles.formGroup}>
+                      <label htmlFor="requestNameModal">Full Name *</label>
+                      <input
+                        type="text"
+                        id="requestNameModal"
+                        value={requestName}
+                        onChange={(e) => setRequestName(e.target.value)}
+                        required
+                        className={styles.formInput}
+                        placeholder="John Smith"
+                        autoFocus
+                      />
+                    </div>
+
+                    <div className={styles.formGroup}>
+                      <label htmlFor="requestEmailModal">Email Address *</label>
+                      <input
+                        type="email"
+                        id="requestEmailModal"
+                        value={requestEmail}
+                        onChange={(e) => setRequestEmail(e.target.value)}
+                        required
+                        className={styles.formInput}
+                        placeholder="john@example.com"
+                      />
+                    </div>
+
+                    <div className={styles.formGroup}>
+                      <label htmlFor="requestMessageModal">Message (Optional)</label>
+                      <textarea
+                        id="requestMessageModal"
+                        value={requestMessage}
+                        onChange={(e) => setRequestMessage(e.target.value)}
+                        className={styles.formTextarea}
+                        placeholder="Tell us what additional materials you're interested in..."
+                        rows="4"
+                      />
+                    </div>
+
+                    {requestError && (
+                      <div className={styles.errorMessage}>{requestError}</div>
+                    )}
+
+                    <button 
+                      type="submit" 
+                      className={styles.submitButton}
+                      disabled={isSubmittingRequest}
+                    >
+                      {isSubmittingRequest ? 'Submitting...' : 'Submit Request'}
+                    </button>
+                  </form>
+                </>
+              ) : (
+                <div className={styles.successMessage}>
+                  <div className={styles.successIcon}>✓</div>
+                  <h3>Request Submitted!</h3>
+                  <p>Thank you! We'll review your request and get back to you at {requestEmail} shortly with full access details.</p>
+                  <button 
+                    onClick={() => {
+                      setRequestSuccess(false);
+                      setShowAccessRequest(false);
+                      setRequestName('');
+                      setRequestEmail('');
+                      setRequestMessage('');
+                    }}
+                    className={styles.closeButton}
+                  >
+                    Close
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         )}

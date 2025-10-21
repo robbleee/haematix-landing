@@ -415,15 +415,9 @@ export default function DataRoom() {
               >
                 ⬇ Download All
               </button>
-              <div className={styles.brandingHeader}>
-                <h1 className={styles.companyName}>Haem.io</h1>
-                <p className={styles.tagline}>Intelligent Diagnostics for Precision Haematology</p>
-              </div>
-              <div className={styles.dataRoomTitle}>
-                <h2>Investor Data Room</h2>
-                <p className={styles.welcomeText}>
-                  Welcome to the Haem.io investor data room. Browse our materials below or download the complete package.
-                </p>
+              <div className={styles.pageHeader}>
+                <h1 className={styles.mainTitle}>Haem.io Investor Data Room</h1>
+                <p className={styles.subtitle}>Intelligent Diagnostics for Precision Haematology</p>
               </div>
 
               <div className={styles.teamCallout}>

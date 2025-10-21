@@ -426,47 +426,28 @@ export default function DataRoom() {
                   <div className={styles.documentIcon}>📄</div>
                   <h3>Investor Pitch Deck</h3>
                   <p>Complete investor presentation including market analysis, product overview, and financial projections.</p>
-                  <div className={styles.documentButtons}>
-                    <a 
-                      href="/Haem.io-pitch.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.viewButtonPrimary}
-                    >
-                      View Document
-                    </a>
-                    <button 
-                      onClick={handleDownloadPitch}
-                      className={styles.downloadIconButton}
-                      title="Download PDF"
-                    >
-                      ⬇️
-                    </button>
-                  </div>
+                  <a 
+                    href="/Haem.io-pitch.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.viewButtonPrimary}
+                  >
+                    View Document
+                  </a>
                 </div>
 
                 <div className={styles.documentCard}>
                   <div className={styles.documentIcon}>📋</div>
                   <h3>Investment Summary</h3>
                   <p>One-page overview of the investment opportunity, use of funds, and key milestones.</p>
-                  <div className={styles.documentButtons}>
-                    <a 
-                      href="/investment-summary.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.viewButtonPrimary}
-                    >
-                      View Document
-                    </a>
-                    <a 
-                      href="/investment-summary.pdf"
-                      download
-                      className={styles.downloadIconButton}
-                      title="Download PDF"
-                    >
-                      ⬇️
-                    </a>
-                  </div>
+                  <a 
+                    href="/investment-summary.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.viewButtonPrimary}
+                  >
+                    View Document
+                  </a>
                 </div>
               </div>
 
@@ -480,96 +461,56 @@ export default function DataRoom() {
                   <div className={styles.letterIcon}>📝</div>
                   <h4>Prof. Charles Craddock</h4>
                   <p className={styles.letterAffiliation}>Chair, UK AML Research Network</p>
-                  <div className={styles.letterButtons}>
-                    <a 
-                      href="/Charles-craddock-LOI.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.letterViewButtonPrimary}
-                    >
-                      View Letter
-                    </a>
-                    <a 
-                      href="/Charles-craddock-LOI.pdf"
-                      download
-                      className={styles.letterDownloadIcon}
-                      title="Download PDF"
-                    >
-                      ⬇️
-                    </a>
-                  </div>
+                  <a 
+                    href="/Charles-craddock-LOI.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.letterViewButtonPrimary}
+                  >
+                    View Letter
+                  </a>
                 </div>
 
                 <div className={styles.letterCard}>
                   <div className={styles.letterIcon}>📝</div>
                   <h4>Dr. John Chadwick</h4>
                   <p className={styles.letterAffiliation}>The Christie NHS Foundation Trust</p>
-                  <div className={styles.letterButtons}>
-                    <a 
-                      href="/John-chadwick-LOS-christie.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.letterViewButtonPrimary}
-                    >
-                      View Letter
-                    </a>
-                    <a 
-                      href="/John-chadwick-LOS-christie.pdf"
-                      download
-                      className={styles.letterDownloadIcon}
-                      title="Download PDF"
-                    >
-                      ⬇️
-                    </a>
-                  </div>
+                  <a 
+                    href="/John-chadwick-LOS-christie.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.letterViewButtonPrimary}
+                  >
+                    View Letter
+                  </a>
                 </div>
 
                 <div className={styles.letterCard}>
                   <div className={styles.letterIcon}>📝</div>
                   <h4>Dr. Tom Coats</h4>
                   <p className={styles.letterAffiliation}>Royal Devon NHS Trust</p>
-                  <div className={styles.letterButtons}>
-                    <a 
-                      href="/Tom-coates-LOS-royal-devon.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.letterViewButtonPrimary}
-                    >
-                      View Letter
-                    </a>
-                    <a 
-                      href="/Tom-coates-LOS-royal-devon.pdf"
-                      download
-                      className={styles.letterDownloadIcon}
-                      title="Download PDF"
-                    >
-                      ⬇️
-                    </a>
-                  </div>
+                  <a 
+                    href="/Tom-coates-LOS-royal-devon.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.letterViewButtonPrimary}
+                  >
+                    View Letter
+                  </a>
                 </div>
 
                 <div className={styles.letterCard}>
                   <div className={styles.letterIcon}>📝</div>
                   <h4>Dr. Cahalin</h4>
                   <p className={styles.letterAffiliation}>Blackpool Teaching Hospitals</p>
-                  <div className={styles.letterButtons}>
-                    <a 
-                      href="/cahalin-LOS-blackpool.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.letterViewButtonPrimary}
-                    >
-                      View Letter
-                    </a>
-                    <a 
-                      href="/cahalin-LOS-blackpool.pdf"
-                      download
-                      className={styles.letterDownloadIcon}
-                      title="Download PDF"
-                    >
-                      ⬇️
-                    </a>
-                  </div>
+                  <a 
+                    href="/cahalin-LOS-blackpool.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.letterViewButtonPrimary}
+                  >
+                    View Letter
+                  </a>
                 </div>
               </div>
 

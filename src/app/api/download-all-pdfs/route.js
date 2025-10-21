@@ -4,19 +4,32 @@ import path from 'path';
 import archiver from 'archiver';
 import { Readable } from 'stream';
 
-export async function GET() {
+export async function GET(request) {
   try {
     const publicDir = path.join(process.cwd(), 'public');
     
-    // List of PDFs to include in the ZIP
+    // List of PDFs to include in the ZIP (organized by location)
     const pdfFiles = [
       { path: 'Haem.io-pitch.pdf', name: 'Haemio-Investor-Pitch.pdf' },
       { path: 'investment-summary.pdf', name: 'Investment-Summary.pdf' },
-      { path: 'Charles-craddock-LOI.pdf', name: 'Letter-Prof-Charles-Craddock.pdf' },
-      { path: 'John-chadwick-LOS-christie.pdf', name: 'Letter-Dr-John-Chadwick.pdf' },
-      { path: 'Tom-coates-LOS-royal-devon.pdf', name: 'Letter-Dr-Tom-Coats.pdf' },
-      { path: 'cahalin-LOS-blackpool.pdf', name: 'Letter-Dr-Cahalin.pdf' },
+      { path: 'Charles-craddock-LOI.pdf', name: 'Letters-of-Support/Letter-Prof-Charles-Craddock.pdf' },
+      { path: 'John-chadwick-LOS-christie.pdf', name: 'Letters-of-Support/Letter-Dr-John-Chadwick.pdf' },
+      { path: 'Tom-coates-LOS-royal-devon.pdf', name: 'Letters-of-Support/Letter-Dr-Tom-Coats.pdf' },
+      { path: 'cahalin-LOS-blackpool.pdf', name: 'Letters-of-Support/Letter-Dr-Cahalin.pdf' },
     ];
+    
+    // Generate team PDF dynamically
+    let teamPdfBuffer = null;
+    try {
+      const baseUrl = request.headers.get('host') || 'localhost:3000';
+      const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http';
+      const teamPdfResponse = await fetch(`${protocol}://${baseUrl}/api/generate-team-pdf`);
+      if (teamPdfResponse.ok) {
+        teamPdfBuffer = Buffer.from(await teamPdfResponse.arrayBuffer());
+      }
+    } catch (error) {
+      console.error('Error fetching team PDF:', error);
+    }
 
     // Create a new archiver instance
     const archive = archiver('zip', {
@@ -39,6 +52,11 @@ export async function GET() {
             console.warn(`File not found: ${fullPath}`);
           }
         });
+
+        // Add team PDF if generated successfully
+        if (teamPdfBuffer) {
+          archive.append(teamPdfBuffer, { name: 'Haemio-Founding-Team.pdf' });
+        }
 
         // Finalize the archive
         archive.finalize();

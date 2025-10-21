@@ -26,7 +26,7 @@
 }
 
 .dataRoomContent {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
   padding-top: 4rem;
   min-height: 0;
@@ -652,88 +652,78 @@
   text-decoration: underline;
 }
 
-/* Team Section */
-.teamSection {
-  margin: 3rem 0;
-  padding: 2rem 0;
-  border-top: 2px solid #e0e0e0;
+/* Team Callout Section */
+.teamCallout {
+  margin: 2rem 0;
 }
 
-.teamSection h2 {
-  color: #333;
-  text-align: center;
-  margin-bottom: 0.5rem;
-  font-size: 1.75rem;
-}
-
-.teamIntro {
-  text-align: center;
-  color: #666;
-  margin-bottom: 2.5rem;
-  font-size: 1.125rem;
-}
-
-.teamGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.teamMemberCard {
-  background: white;
+.teamCalloutContent {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   border: 2px solid #e0e0e0;
   border-radius: 12px;
   padding: 2rem;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
   transition: all 0.3s ease;
 }
 
-.teamMemberCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+.teamCalloutContent:hover {
   border-color: var(--primary-color);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
-.teamMemberPhoto {
-  width: 120px;
-  height: 120px;
+.teamPhotos {
+  display: flex;
+  margin-left: 1rem;
+}
+
+.teamPhotos img {
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  overflow: hidden;
-  margin: 0 auto 1.5rem;
-  border: 4px solid var(--primary-color);
-}
-
-.teamMemberPhoto img {
-  width: 100%;
-  height: 100%;
+  border: 3px solid white;
+  margin-left: -1rem;
   object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.teamMemberCard h3 {
+.teamPhotos img:first-child {
+  margin-left: 0;
+}
+
+.teamCalloutText {
+  flex: 1;
+}
+
+.teamCalloutText h3 {
   color: #333;
-  text-align: center;
-  margin-bottom: 0.25rem;
-  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
 }
 
-.teamMemberCard h4 {
-  color: var(--primary-color);
-  text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.teamMemberCard p {
+.teamCalloutText p {
   color: #666;
-  line-height: 1.7;
   margin-bottom: 1rem;
-  text-align: justify;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
-.teamMemberCard p:last-child {
-  margin-bottom: 0;
+.teamButton {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.teamButton:hover {
+  background: #00897b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Full Data Room Access Section */
@@ -905,17 +895,20 @@
     padding: 1.5rem;
   }
 
-  .teamGrid {
-    grid-template-columns: 1fr;
+  .teamCalloutContent {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
   }
 
-  .teamMemberPhoto {
-    width: 100px;
-    height: 100px;
+  .teamPhotos {
+    margin-left: 0;
+    justify-content: center;
   }
 
-  .teamSection {
-    margin: 2rem 0;
+  .teamPhotos img {
+    width: 50px;
+    height: 50px;
   }
 }
 

@@ -133,6 +133,7 @@ export default function DataRoom() {
   const [isSubmittingRequest, setIsSubmittingRequest] = useState(false);
   const [requestSuccess, setRequestSuccess] = useState(false);
   const [requestError, setRequestError] = useState('');
+  const [showAllDocuments, setShowAllDocuments] = useState(false);
 
   // Simple password - in production this should be more secure with server-side validation
   const CORRECT_PASSWORD = 'Haemio!2025$DataRoom';
@@ -481,19 +482,30 @@ export default function DataRoom() {
                   </a>
                 </div>
 
-                <div className={styles.documentCard}>
-                  <div className={styles.documentIcon}>⚖️</div>
-                  <h3>Regulatory Strategy & Pathway</h3>
-                  <p>Clear pathway to UKCA/CE marking as a Class IIa medical device, including MHRA engagement strategy.</p>
-                  <a 
-                    href="/regulatory-strategy-and-pathway.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.viewButtonPrimary}
-                  >
-                    View Document
-                  </a>
-                </div>
+                {showAllDocuments && (
+                  <div className={styles.documentCard}>
+                    <div className={styles.documentIcon}>⚖️</div>
+                    <h3>Regulatory Strategy & Pathway</h3>
+                    <p>Clear pathway to UKCA/CE marking as a Class IIa medical device, including MHRA engagement strategy.</p>
+                    <a 
+                      href="/regulatory-strategy-and-pathway.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.viewButtonPrimary}
+                    >
+                      View Document
+                    </a>
+                  </div>
+                )}
+              </div>
+
+              <div className={styles.viewAllButtonContainer}>
+                <button 
+                  onClick={() => setShowAllDocuments(!showAllDocuments)}
+                  className={styles.viewAllButton}
+                >
+                  {showAllDocuments ? '▲ Show Less' : '▼ View All Documents'}
+                </button>
               </div>
 
               <div className={styles.lettersSectionTitle}>

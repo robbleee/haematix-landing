@@ -69,7 +69,7 @@ export default function TeamPage() {
       <div className={styles.teamPageContent}>
         <div className={styles.teamHeader}>
           <h1>The Founding Team</h1>
-          <p className={styles.teamIntro}>World-class expertise in AI, clinical haematology, and healthcare technology.</p>
+          <p className={styles.teamIntro}>Expertise in AI, clinical haematology, and healthcare technology.</p>
         </div>
 
         <div className={styles.carouselContainer}>

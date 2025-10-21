@@ -432,7 +432,7 @@ export default function DataRoom() {
                   </div>
                   <div className={styles.teamCalloutText}>
                     <h3>Meet the Founding Team</h3>
-                    <p>World-class expertise in AI, clinical haematology, and healthcare technology</p>
+                    <p>Expertise in AI, clinical haematology, and healthcare technology</p>
                     <a href="/data-room/team" className={styles.teamButton}>
                       View Team Profiles →
                     </a>

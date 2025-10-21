@@ -659,7 +659,7 @@ const pitchSlides = [
   {
     id: 9,
     title: "The Team",
-    subtitle: "World-class expertise in AI, physics & medicine",
+    subtitle: "Expertise in AI, physics & medicine",
     content: (
       <div className={styles.slideContent}>
         <div className={styles.teamLayout}>

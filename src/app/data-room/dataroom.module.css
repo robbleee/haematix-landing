@@ -538,15 +538,8 @@
   margin: 0 0 0.5rem 0;
 }
 
-.mainTitle::before {
-  content: '';
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  background: var(--primary-color);
-  border-radius: 50%;
-  margin-right: 0.5rem;
-  vertical-align: middle;
+.brandName {
+  color: var(--primary-color);
 }
 
 .subtitle {

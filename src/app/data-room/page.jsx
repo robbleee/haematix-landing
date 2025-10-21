@@ -416,7 +416,9 @@ export default function DataRoom() {
                 ⬇ Download All
               </button>
               <div className={styles.pageHeader}>
-                <h1 className={styles.mainTitle}>Haem.io Investor Data Room</h1>
+                <h1 className={styles.mainTitle}>
+                  <span className={styles.brandName}>Haem.io</span> Investor Data Room
+                </h1>
                 <p className={styles.subtitle}>Intelligent Diagnostics for Precision Haematology</p>
               </div>
 

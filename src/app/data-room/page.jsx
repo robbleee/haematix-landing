@@ -415,11 +415,16 @@ export default function DataRoom() {
               >
                 ⬇ Download All
               </button>
-              <div className={styles.accessLevelBadge}>Basic Access</div>
-              <h1>Haem.io Investor Data Room</h1>
-              <p className={styles.welcomeText}>
-                Welcome to the Haemio investor data room. You have successfully authenticated and accepted the NDA. You currently have <strong>basic access</strong> to our investor pitch deck. Request full access below for additional materials including financial projections and clinical validation data.
-              </p>
+              <div className={styles.brandingHeader}>
+                <h1 className={styles.companyName}>Haem.io</h1>
+                <p className={styles.tagline}>Intelligent Diagnostics for Precision Haematology</p>
+              </div>
+              <div className={styles.dataRoomTitle}>
+                <h2>Investor Data Room</h2>
+                <p className={styles.welcomeText}>
+                  Welcome to the Haem.io investor data room. Browse our materials below or download the complete package.
+                </p>
+              </div>
 
               <div className={styles.teamCallout}>
                 <div className={styles.teamCalloutContent}>

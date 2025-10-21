@@ -524,35 +524,45 @@
   position: relative;
 }
 
-.accessLevelBadge {
-  display: inline-block;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  color: white;
-  padding: 0.5rem 1.25rem;
-  border-radius: 20px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 1rem;
+.brandingHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid #e0e0e0;
 }
 
-.documentsCard h1 {
+.companyName {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.5px;
+}
+
+.tagline {
+  font-size: 1.25rem;
+  color: #666;
+  margin: 0;
+  font-weight: 400;
+}
+
+.dataRoomTitle {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.dataRoomTitle h2 {
   color: #333;
-  margin-bottom: 0.5rem;
-  font-size: 2rem;
+  font-size: 1.75rem;
+  margin: 0 0 0.75rem 0;
+  font-weight: 600;
 }
 
 .welcomeText {
   color: #666;
-  margin-bottom: 2rem;
+  margin: 0;
   line-height: 1.6;
-  font-size: 1.125rem;
-}
-
-.welcomeText strong {
-  color: #3b82f6;
-  font-weight: 600;
+  font-size: 1rem;
 }
 
 .documentsGrid {

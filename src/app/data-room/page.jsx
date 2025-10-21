@@ -375,6 +375,28 @@ export default function DataRoom() {
           // Document Access Screen
           <div className={styles.documentsScreen}>
             <div className={styles.documentsCard}>
+              <button 
+                onClick={async () => {
+                  try {
+                    const response = await fetch('/api/download-all-pdfs');
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'Haemio-DataRoom-Documents.zip';
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    document.body.removeChild(a);
+                  } catch (error) {
+                    console.error('Error downloading ZIP:', error);
+                  }
+                }}
+                className={styles.downloadAllButtonTopRight}
+                title="Download all documents as ZIP"
+              >
+                📦 Download All
+              </button>
               <div className={styles.accessLevelBadge}>Basic Access</div>
               <h1>Haem.io Investor Data Room</h1>
               <p className={styles.welcomeText}>
@@ -397,30 +419,6 @@ export default function DataRoom() {
                     </a>
                   </div>
                 </div>
-              </div>
-
-              <div className={styles.downloadAllSection}>
-                <button 
-                  onClick={async () => {
-                    try {
-                      const response = await fetch('/api/download-all-pdfs');
-                      const blob = await response.blob();
-                      const url = window.URL.createObjectURL(blob);
-                      const a = document.createElement('a');
-                      a.href = url;
-                      a.download = 'Haemio-DataRoom-Documents.zip';
-                      document.body.appendChild(a);
-                      a.click();
-                      window.URL.revokeObjectURL(url);
-                      document.body.removeChild(a);
-                    } catch (error) {
-                      console.error('Error downloading ZIP:', error);
-                    }
-                  }}
-                  className={styles.downloadAllButton}
-                >
-                  📦 Download All Documents as ZIP
-                </button>
               </div>
 
               <div className={styles.documentsGrid}>

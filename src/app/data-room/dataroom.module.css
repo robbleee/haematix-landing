@@ -599,7 +599,7 @@
   top: 2rem;
   right: 2rem;
   padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, #00796B 100%);
   color: white;
   border: none;
   border-radius: 8px;
@@ -607,14 +607,14 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(147, 51, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 150, 136, 0.3);
   z-index: 10;
 }
 
 .downloadAllButtonTopRight:hover {
-  background: linear-gradient(135deg, #7e22ce 0%, #6b21a8 100%);
+  background: linear-gradient(135deg, #00897b 0%, #00695C 100%);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(147, 51, 234, 0.4);
+  box-shadow: 0 6px 16px rgba(0, 150, 136, 0.4);
 }
 
 .documentButtons {

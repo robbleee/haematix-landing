@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haem.io - Use of Funds</title>
+    <style>
+        @page {
+            margin: 1cm;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+            background: white;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #009688 0%, #00796B 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: 36px;
+            font-weight: 700;
+        }
+        
+        .header .tagline {
+            font-size: 18px;
+            opacity: 0.95;
+            margin: 0;
+        }
+        
+        .document-title {
+            font-size: 32px;
+            color: #009688;
+            margin: 40px 0 20px 0;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        
+        .total-section {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 3px solid #009688;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .total-amount {
+            font-size: 56px;
+            font-weight: 700;
+            color: #009688;
+            margin: 10px 0;
+        }
+        
+        .total-label {
+            font-size: 20px;
+            color: #666;
+            margin: 5px 0;
+        }
+        
+        .breakdown-section {
+            margin: 40px 0;
+            page-break-inside: avoid;
+        }
+        
+        .section-header {
+            background: #009688;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px 8px 0 0;
+            font-size: 22px;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-total {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .section-content {
+            border: 2px solid #009688;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            padding: 20px;
+            background: #fafafa;
+        }
+        
+        .line-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background: white;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            border-left: 4px solid #009688;
+        }
+        
+        .line-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .item-description {
+            font-size: 16px;
+            color: #333;
+            flex: 1;
+        }
+        
+        .item-amount {
+            font-size: 18px;
+            font-weight: 700;
+            color: #009688;
+            white-space: nowrap;
+            margin-left: 20px;
+        }
+        
+        .milestone-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 40px 0;
+        }
+        
+        .milestone-box strong {
+            color: #856404;
+            font-size: 18px;
+        }
+        
+        .milestone-box p {
+            margin: 10px 0 0 0;
+            color: #856404;
+            font-size: 16px;
+        }
+        
+        .footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .footer-note {
+            font-style: italic;
+            margin-top: 20px;
+            font-size: 13px;
+        }
+        
+        @media print {
+            body {
+                padding: 20px;
+            }
+            
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Haem.io</h1>
+        <p class="tagline">Intelligent Diagnostics for Precision Haematology</p>
+    </div>
+    
+    <h2 class="document-title">Use of Funds</h2>
+    <p class="subtitle">Seed Investment Breakdown | 18-Month Runway to Revenue</p>
+    
+    <div class="total-section">
+        <div class="total-amount">£750,000</div>
+        <p class="total-label">Total Seed Investment</p>
+        <p class="total-label">18-Month Runway to Series A Readiness</p>
+    </div>
+    
+    <div class="breakdown-section">
+        <div class="section-header">
+            <span>Team Development (18 months)</span>
+            <span class="section-total">£360,000</span>
+        </div>
+        <div class="section-content">
+            <div class="line-item">
+                <div class="item-description">
+                    <strong>Founder & Lead Engineer (Full-time)</strong><br>
+                    Platform development, AI/logic engine refinement, technical architecture
+                </div>
+                <div class="item-amount">£165,000</div>
+            </div>
+            <div class="line-item">
+                <div class="item-description">
+                    <strong>Regulatory & Compliance Officer (Full-time)</strong><br>
+                    UKCA/CE certification, ISO 13485 implementation, MHRA engagement
+                </div>
+                <div class="item-amount">£105,000</div>
+            </div>
+            <div class="line-item">
+                <div class="item-description">
+                    <strong>Clinical Validation Lead (Full-time)</strong><br>
+                    NHS pilot coordination, clinical study management, KOL engagement
+                </div>
+                <div class="item-amount">£90,000</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="breakdown-section">
+        <div class="section-header">
+            <span>Regulatory & Clinical Validation</span>
+            <span class="section-total">£180,000</span>
+        </div>
+        <div class="section-content">
+            <div class="line-item">
+                <div class="item-description">
+                    <strong>UKCA Certification (Class IIa Medical Device)</strong><br>
+                    Notified body fees, technical file preparation, quality management system, clinical evaluation report
+                </div>
+                <div class="item-amount">£100,000</div>
+            </div>
+            <div class="line-item">
+                <div class="item-description">
+                    <strong>NHS Pilot Studies (4 sites)</strong><br>
+                    Manchester Foundation Trust, The Christie, Royal Devon, Blackpool Teaching Hospitals
+                </div>
+                <div class="item-amount">£80,000</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="breakdown-section">
+        <div class="section-header">
+            <span>Infrastructure & Operations</span>
+            <span class="section-total">£210,000</span>
+        </div>
+        <div class="section-content">
+            <div class="line-item">
+                <div class="item-description">
+                    <strong>Cloud Infrastructure & AI Compute</strong><br>
+                    AWS/Azure hosting, LLM API costs, data storage, security infrastructure
+                </div>
+                <div class="item-amount">£15,000</div>
+            </div>
+            <div class="line-item">
+                <div class="item-description">
+                    <strong>Legal & Accounting</strong><br>
+                    Corporate legal, IP protection, financial audit, compliance advisory
+                </div>
+                <div class="item-amount">£25,000</div>
+            </div>
+            <div class="line-item">
+                <div class="item-description">
+                    <strong>Insurance & Professional Fees</strong><br>
+                    Professional indemnity, product liability, directors & officers insurance
+                </div>
+                <div class="item-amount">£15,000</div>
+            </div>
+            <div class="line-item">
+                <div class="item-description">
+                    <strong>Office & Equipment</strong><br>
+                    Co-working space, laptops, software licenses, collaboration tools
+                </div>
+                <div class="item-amount">£20,000</div>
+            </div>
+            <div class="line-item">
+                <div class="item-description">
+                    <strong>Marketing & Business Development</strong><br>
+                    Conference attendance, clinical demonstrations, marketing materials
+                </div>
+                <div class="item-amount">£15,000</div>
+            </div>
+            <div class="line-item">
+                <div class="item-description">
+                    <strong>Contingency Buffer (24%)</strong><br>
+                    Unforeseen regulatory requirements, scope expansion, risk mitigation
+                </div>
+                <div class="item-amount">£120,000</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="milestone-box">
+        <strong>Key Milestone:</strong>
+        <p>UKCA certification + 4 NHS pilot validations completed → Series A readiness with proven clinical efficacy and regulatory approval</p>
+    </div>
+    
+    <div class="footer">
+        <p><strong>Haem.io Ltd</strong> | Company Number 16528517</p>
+        <p>73 Meliden Road, Prestatyn, LL19 8RH, United Kingdom</p>
+        <p>robert.lee@haem.io | www.haem.io</p>
+        <p class="footer-note">This document is confidential and intended for authorized investors only.</p>
+    </div>
+</body>
+</html>
+

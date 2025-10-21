@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './dataroom.module.css';
 
 const NDAContent = () => (
@@ -137,12 +137,27 @@ export default function DataRoom() {
   // Simple password - in production this should be more secure with server-side validation
   const CORRECT_PASSWORD = 'Haemio!2025$DataRoom';
 
+  // Restore authentication state from sessionStorage on mount
+  useEffect(() => {
+    const storedPasswordCorrect = sessionStorage.getItem('dataroom_password_correct');
+    const storedNdaAccepted = sessionStorage.getItem('dataroom_nda_accepted');
+    
+    if (storedPasswordCorrect === 'true') {
+      setIsPasswordCorrect(true);
+    }
+    if (storedNdaAccepted === 'true') {
+      setNdaAccepted(true);
+    }
+  }, []);
+
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
     if (passwordEntered === CORRECT_PASSWORD) {
       setIsPasswordCorrect(true);
       setShowNda(true);
       setPasswordError('');
+      // Persist password authentication to sessionStorage
+      sessionStorage.setItem('dataroom_password_correct', 'true');
     } else {
       setPasswordError('Incorrect password. Please try again.');
     }
@@ -150,6 +165,8 @@ export default function DataRoom() {
 
   const handleNdaAccept = () => {
     setNdaAccepted(true);
+    // Persist NDA acceptance to sessionStorage
+    sessionStorage.setItem('dataroom_nda_accepted', 'true');
   };
 
   const handleDownloadPitch = () => {

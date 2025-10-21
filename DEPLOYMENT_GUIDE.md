@@ -26,7 +26,7 @@ Your data room code has been committed and pushed to GitHub! Follow these steps 
    
    **Variable 2:**
    - Name: `BETA_NOTIFICATION_EMAIL`
-   - Value: `robert.lee@lseg.com` (or your preferred email)
+   - Value: `robert.lee@haem.io` (or your preferred email)
 
 3. Make sure both are checked for "Production", "Preview", and "Development"
 

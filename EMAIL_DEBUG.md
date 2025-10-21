@@ -1,6 +1,6 @@
 # Email Not Working? Debug Steps
 
-## Issue: Email not received at robert.lee@lseg.com
+## Issue: Email not received at robert.lee@haem.io
 
 ### Step 1: Check Environment Variables
 
@@ -8,7 +8,7 @@ Make sure your `.env.local` file has:
 
 ```env
 RESEND_API_KEY=re_xxxxxxxxxxxxx
-BETA_NOTIFICATION_EMAIL=robert.lee@lseg.com
+BETA_NOTIFICATION_EMAIL=robert.lee@haem.io
 ```
 
 **Important:** After changing `.env.local`, you MUST restart your dev server:
@@ -25,9 +25,9 @@ When someone submits a request, check your terminal for:
 Environment check: {
   hasApiKey: true,
   apiKeyPrefix: 're_xxxx',
-  recipientEmail: 'robert.lee@lseg.com'
+  recipientEmail: 'robert.lee@haem.io'
 }
-Attempting to send email to: robert.lee@lseg.com
+Attempting to send email to: robert.lee@haem.io
 Data room access request email sent successfully: { id: '...' }
 ```
 
@@ -39,7 +39,7 @@ Data room access request email sent successfully: { id: '...' }
 
 2. **Wrong Email Address**
    - Check the `recipientEmail` in console logs
-   - Make sure it's `robert.lee@lseg.com` not `robert.lee@haem.io`
+   - Make sure it's `robert.lee@haem.io` not `robert.lee@haem.io`
 
 3. **Email in Spam**
    - Check your spam/junk folder
@@ -73,7 +73,7 @@ Try submitting a test request:
 
 - [ ] `.env.local` file exists in project root
 - [ ] File contains `RESEND_API_KEY=re_...`
-- [ ] File contains `BETA_NOTIFICATION_EMAIL=robert.lee@lseg.com`
+- [ ] File contains `BETA_NOTIFICATION_EMAIL=robert.lee@haem.io`
 - [ ] Dev server restarted after creating/editing `.env.local`
 - [ ] Console shows "email sent successfully"
 - [ ] Checked spam folder for emails from `onboarding@resend.dev`

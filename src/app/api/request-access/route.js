@@ -25,7 +25,7 @@ export async function POST(request) {
 
     // Initialize Resend with API key from environment
     const resend = new Resend(process.env.RESEND_API_KEY);
-    const recipientEmail = process.env.BETA_NOTIFICATION_EMAIL || 'robert.lee@lseg.com';
+    const recipientEmail = process.env.BETA_NOTIFICATION_EMAIL || 'robert.lee@haem.io';
 
     console.log('Environment check:', {
       hasApiKey: !!process.env.RESEND_API_KEY,

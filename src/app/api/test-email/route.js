@@ -7,7 +7,7 @@ export async function GET() {
     
     // Check environment variables
     const apiKey = process.env.RESEND_API_KEY;
-    const recipientEmail = process.env.BETA_NOTIFICATION_EMAIL || 'robert.lee@lseg.com';
+    const recipientEmail = process.env.BETA_NOTIFICATION_EMAIL || 'robert.lee@haem.io';
     
     console.log('Environment Variables:');
     console.log('- RESEND_API_KEY exists:', !!apiKey);

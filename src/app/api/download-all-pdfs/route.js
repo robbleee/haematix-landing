@@ -12,6 +12,7 @@ export async function GET(request) {
     const pdfFiles = [
       { path: 'Haem.io-pitch.pdf', name: 'Haemio-Investor-Pitch.pdf' },
       { path: 'investment-summary.pdf', name: 'Investment-Summary.pdf' },
+      { path: 'traction-and-market-opportunity.pdf', name: 'Traction-and-Market-Opportunity.pdf' },
       { path: 'Charles-craddock-LOI.pdf', name: 'Letters-of-Support/Letter-Prof-Charles-Craddock.pdf' },
       { path: 'John-chadwick-LOS-christie.pdf', name: 'Letters-of-Support/Letter-Dr-John-Chadwick.pdf' },
       { path: 'Tom-coates-LOS-royal-devon.pdf', name: 'Letters-of-Support/Letter-Dr-Tom-Coats.pdf' },

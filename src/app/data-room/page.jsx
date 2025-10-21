@@ -466,6 +466,20 @@ export default function DataRoom() {
                     View Document
                   </a>
                 </div>
+
+                <div className={styles.documentCard}>
+                  <div className={styles.documentIcon}>📈</div>
+                  <h3>Traction & Market Opportunity</h3>
+                  <p>Detailed overview of our clinical partnerships, £7M grant LOI, NHS pilot programmes, and market validation.</p>
+                  <a 
+                    href="/traction-and-market-opportunity.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.viewButtonPrimary}
+                  >
+                    View Document
+                  </a>
+                </div>
               </div>
 
               <div className={styles.lettersSectionTitle}>

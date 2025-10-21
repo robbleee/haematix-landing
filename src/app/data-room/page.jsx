@@ -399,6 +399,30 @@ export default function DataRoom() {
                 </div>
               </div>
 
+              <div className={styles.downloadAllSection}>
+                <button 
+                  onClick={async () => {
+                    try {
+                      const response = await fetch('/api/download-all-pdfs');
+                      const blob = await response.blob();
+                      const url = window.URL.createObjectURL(blob);
+                      const a = document.createElement('a');
+                      a.href = url;
+                      a.download = 'Haemio-DataRoom-Documents.zip';
+                      document.body.appendChild(a);
+                      a.click();
+                      window.URL.revokeObjectURL(url);
+                      document.body.removeChild(a);
+                    } catch (error) {
+                      console.error('Error downloading ZIP:', error);
+                    }
+                  }}
+                  className={styles.downloadAllButton}
+                >
+                  📦 Download All Documents as ZIP
+                </button>
+              </div>
+
               <div className={styles.documentsGrid}>
                 <div className={styles.documentCard}>
                   <div className={styles.documentIcon}>📄</div>
@@ -409,15 +433,16 @@ export default function DataRoom() {
                       href="/Haem.io-pitch.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={styles.viewButton}
+                      className={styles.viewButtonPrimary}
                     >
-                      👁️ View
+                      View Document
                     </a>
                     <button 
                       onClick={handleDownloadPitch}
-                      className={styles.downloadButton}
+                      className={styles.downloadIconButton}
+                      title="Download PDF"
                     >
-                      ⬇️ Download
+                      ⬇️
                     </button>
                   </div>
                 </div>
@@ -431,16 +456,17 @@ export default function DataRoom() {
                       href="/investment-summary.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={styles.viewButton}
+                      className={styles.viewButtonPrimary}
                     >
-                      👁️ View
+                      View Document
                     </a>
                     <a 
                       href="/investment-summary.pdf"
                       download
-                      className={styles.downloadButton}
+                      className={styles.downloadIconButton}
+                      title="Download PDF"
                     >
-                      ⬇️ Download
+                      ⬇️
                     </a>
                   </div>
                 </div>
@@ -461,16 +487,17 @@ export default function DataRoom() {
                       href="/Charles-craddock-LOI.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={styles.letterViewButton}
+                      className={styles.letterViewButtonPrimary}
                     >
-                      👁️ View
+                      View Letter
                     </a>
                     <a 
                       href="/Charles-craddock-LOI.pdf"
                       download
-                      className={styles.letterDownloadButton}
+                      className={styles.letterDownloadIcon}
+                      title="Download PDF"
                     >
-                      ⬇️ Download
+                      ⬇️
                     </a>
                   </div>
                 </div>
@@ -484,16 +511,17 @@ export default function DataRoom() {
                       href="/John-chadwick-LOS-christie.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={styles.letterViewButton}
+                      className={styles.letterViewButtonPrimary}
                     >
-                      👁️ View
+                      View Letter
                     </a>
                     <a 
                       href="/John-chadwick-LOS-christie.pdf"
                       download
-                      className={styles.letterDownloadButton}
+                      className={styles.letterDownloadIcon}
+                      title="Download PDF"
                     >
-                      ⬇️ Download
+                      ⬇️
                     </a>
                   </div>
                 </div>
@@ -507,16 +535,17 @@ export default function DataRoom() {
                       href="/Tom-coates-LOS-royal-devon.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={styles.letterViewButton}
+                      className={styles.letterViewButtonPrimary}
                     >
-                      👁️ View
+                      View Letter
                     </a>
                     <a 
                       href="/Tom-coates-LOS-royal-devon.pdf"
                       download
-                      className={styles.letterDownloadButton}
+                      className={styles.letterDownloadIcon}
+                      title="Download PDF"
                     >
-                      ⬇️ Download
+                      ⬇️
                     </a>
                   </div>
                 </div>
@@ -530,16 +559,17 @@ export default function DataRoom() {
                       href="/cahalin-LOS-blackpool.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={styles.letterViewButton}
+                      className={styles.letterViewButtonPrimary}
                     >
-                      👁️ View
+                      View Letter
                     </a>
                     <a 
                       href="/cahalin-LOS-blackpool.pdf"
                       download
-                      className={styles.letterDownloadButton}
+                      className={styles.letterDownloadIcon}
+                      title="Download PDF"
                     >
-                      ⬇️ Download
+                      ⬇️
                     </a>
                   </div>
                 </div>

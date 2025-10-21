@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "archiver": "^7.0.1",
     "chart.js": "^4.4.9",
     "github-markdown-css": "^5.8.1",
     "html2canvas": "^1.4.1",

@@ -154,8 +154,13 @@ export default function DataRoom() {
 
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
+    console.log('Password entered:', passwordEntered);
+    console.log('VIP password:', VIP_PASSWORD);
+    console.log('Match:', passwordEntered === VIP_PASSWORD);
+    
     if (passwordEntered === VIP_PASSWORD) {
       // VIP password - skip NDA entirely
+      console.log('VIP password matched - skipping NDA');
       setIsPasswordCorrect(true);
       setNdaAccepted(true);
       setPasswordError('');
@@ -163,12 +168,14 @@ export default function DataRoom() {
       sessionStorage.setItem('dataroom_password_correct', 'true');
       sessionStorage.setItem('dataroom_nda_accepted', 'true');
     } else if (passwordEntered === CORRECT_PASSWORD) {
+      console.log('Regular password matched - showing NDA');
       setIsPasswordCorrect(true);
       setShowNda(true);
       setPasswordError('');
       // Persist password authentication to sessionStorage
       sessionStorage.setItem('dataroom_password_correct', 'true');
     } else {
+      console.log('Password incorrect');
       setPasswordError('Incorrect password. Please try again.');
     }
   };

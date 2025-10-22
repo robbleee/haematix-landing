@@ -474,7 +474,7 @@ export default function DataRoom() {
                       rel="noopener noreferrer"
                       className={styles.viewButtonSecondary}
                     >
-                      Veiw PDF
+                      View PDF
                     </a>
                   </div>
                 </div>
@@ -608,7 +608,7 @@ export default function DataRoom() {
               </div>
 
               <div className={styles.contactSection}>
-                <p>Questions? Contact us at <a href="mailto:robert.lee@haem.io">robert.lee@haem.io</a></p>
+                <p>Questions? Contact me at <a href="mailto:robert.lee@haem.io">robert.lee@haem.io</a></p>
               </div>
             </div>
           </div>

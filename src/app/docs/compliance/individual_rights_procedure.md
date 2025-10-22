@@ -79,7 +79,7 @@ If we need additional information to verify your identity or clarify your reques
 If we need to extend the response period due to complexity, we will notify you within the initial 30-day period with reasons for the delay.
 
 CONTACT:
-If you have questions about your request, please contact us at robbielee543@gmail.com quoting reference [REF-YYYY-MM-DD-XXX].
+If you have questions about your request, please contact me at robbielee543@gmail.com quoting reference [REF-YYYY-MM-DD-XXX].
 
 Best regards,
 Robert Lee, Haem.io Ltd

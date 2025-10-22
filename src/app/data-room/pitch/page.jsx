@@ -27,6 +27,19 @@ export default function DataRoomPitchViewer() {
     setIsLoading(false);
   }, [router]);
 
+  // Hide body overflow when component mounts
+  useEffect(() => {
+    if (isAuthenticated) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      
+      return () => {
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+      };
+    }
+  }, [isAuthenticated]);
+
   const handleDownloadPDF = () => {
     const link = document.createElement('a');
     link.href = '/Haem.io-pitch.pdf';

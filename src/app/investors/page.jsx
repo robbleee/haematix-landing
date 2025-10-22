@@ -955,7 +955,7 @@ const pitchSlides = [
   }
 ];
 
-export default function Pitch() {
+export default function Pitch({ hideControls = false }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
@@ -1138,42 +1138,10 @@ export default function Pitch() {
   return (
     <div className={styles.pitchDeck} ref={containerRef}>
       {/* Back to Main Button */}
-      {!isCleanMode && (
+      {!isCleanMode && !hideControls && (
         <a href="/" className={styles.backButton}>
           ← Back
         </a>
-      )}
-
-      {/* Control Buttons */}
-      {!isCleanMode && (
-        <div style={{ position: 'fixed', top: '12px', right: '12px', zIndex: 1000, display: 'flex', gap: '0.5rem' }}>
-          <button 
-            onClick={() => setIsCleanMode(true)}
-            className={styles.navButton}
-            title="Clean Mode for Screenshots (Press P)"
-          >
-            📸 Screenshot Mode
-          </button>
-          <button 
-            onClick={downloadSlideAsPNG}
-            className={styles.navButton}
-          >
-            📸 Download PNG
-          </button>
-          <button 
-            onClick={generatePDF}
-            className={styles.navButton}
-            disabled={isGeneratingPDF}
-          >
-            {isGeneratingPDF ? 'Generating PDF...' : '📄 Download PDF'}
-          </button>
-          <button 
-            onClick={toggleFullscreen}
-            className={styles.navButton}
-          >
-            {isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
-          </button>
-        </div>
       )}
 
 

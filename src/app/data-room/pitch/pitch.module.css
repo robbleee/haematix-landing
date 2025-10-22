@@ -28,7 +28,7 @@
 .pitchHeader {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 150;
   background: white;
   border-bottom: 2px solid #e5e7eb;
   padding: 1rem 2rem;
@@ -93,6 +93,12 @@
 .pitchContent {
   /* Let the investors page handle its own styling */
   background: white;
+  padding-right: 80px; /* Add space for navigation dots on the right */
+}
+
+/* Ensure navigation dots are visible and positioned properly */
+.pitchContent :global(.navigation) {
+  right: 20px !important;
 }
 
 @media (max-width: 768px) {

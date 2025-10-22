@@ -72,7 +72,7 @@ export default function DataRoomPitchViewer() {
       </div>
 
       <div className={styles.pitchContent}>
-        <InvestorsPage />
+        <InvestorsPage hideControls={true} />
       </div>
     </div>
   );

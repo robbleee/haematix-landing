@@ -1,16 +1,15 @@
 .pitchViewerContainer {
-  height: 100vh;
-  max-height: 100vh;
-  overflow: hidden;
-  background: #f8f9fa;
-  display: flex;
-  flex-direction: column;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #f8f9fa;
+  display: flex;
+  flex-direction: column;
 }
 
 .loadingContainer {
@@ -127,11 +126,10 @@
   right: 10px !important;
   gap: 0.3rem !important;
   padding: 0.5rem 0.4rem !important;
-  max-height: 65vh !important;
+  max-height: 60vh !important;
   overflow-y: auto !important;
   top: 50% !important;
   transform: translateY(-50%) !important;
-  border-radius: 20px !important;
 }
 
 /* Make indicator dots very small */
@@ -142,10 +140,9 @@
 
 /* Make navigation buttons extremely compact */
 .pitchContent :global(.navButton) {
-  padding: 0.35rem 0.5rem !important;
+  padding: 0.3rem 0.5rem !important;
   font-size: 0.7rem !important;
   min-width: 45px !important;
-  border-radius: 6px !important;
 }
 
 @media (max-width: 768px) {

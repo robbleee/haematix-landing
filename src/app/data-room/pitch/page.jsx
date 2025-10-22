@@ -20,25 +20,19 @@ export default function DataRoomPitchViewer() {
     
     if (passwordCorrect === 'true' && ndaAccepted === 'true') {
       setIsAuthenticated(true);
+      // Prevent body scroll
+      document.body.style.overflow = 'hidden';
     } else {
       // Redirect back to data room login
       router.push('/data-room');
     }
     setIsLoading(false);
-  }, [router]);
 
-  // Hide body overflow when component mounts
-  useEffect(() => {
-    if (isAuthenticated) {
-      document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
-      
-      return () => {
-        document.body.style.overflow = '';
-        document.documentElement.style.overflow = '';
-      };
-    }
-  }, [isAuthenticated]);
+    // Cleanup: restore body scroll on unmount
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [router]);
 
   const handleDownloadPDF = () => {
     const link = document.createElement('a');

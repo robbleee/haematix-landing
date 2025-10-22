@@ -12,6 +12,8 @@ export default function DataRoomPitchViewer() {
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const totalSlides = 18; // Update this if you add/remove slides
 
   useEffect(() => {
     // Check if user is authenticated
@@ -35,6 +37,34 @@ export default function DataRoomPitchViewer() {
     link.click();
     document.body.removeChild(link);
   };
+
+  const handlePrevSlide = () => {
+    // Trigger left arrow key event to navigate
+    const event = new KeyboardEvent('keydown', { key: 'ArrowLeft' });
+    document.dispatchEvent(event);
+  };
+
+  const handleNextSlide = () => {
+    // Trigger right arrow key event to navigate
+    const event = new KeyboardEvent('keydown', { key: 'ArrowRight' });
+    document.dispatchEvent(event);
+  };
+
+  // Listen for slide changes from the investors page
+  useEffect(() => {
+    const updateSlideCounter = () => {
+      const indicators = document.querySelectorAll('.indicator');
+      indicators.forEach((indicator, index) => {
+        if (indicator.classList.contains('active')) {
+          setCurrentSlide(index);
+        }
+      });
+    };
+
+    // Poll for active indicator changes
+    const interval = setInterval(updateSlideCounter, 100);
+    return () => clearInterval(interval);
+  }, []);
 
   if (isLoading) {
     return (
@@ -73,6 +103,29 @@ export default function DataRoomPitchViewer() {
 
       <div className={styles.pitchContent}>
         <InvestorsPage hideControls={true} />
+        
+        {/* Custom Simple Navigation */}
+        <div className={styles.simpleNavigation}>
+          <button 
+            onClick={handlePrevSlide}
+            className={styles.navBtn}
+            disabled={currentSlide === 0}
+          >
+            ← Prev
+          </button>
+          
+          <div className={styles.slideCounter}>
+            {currentSlide + 1} / {totalSlides}
+          </div>
+          
+          <button 
+            onClick={handleNextSlide}
+            className={styles.navBtn}
+            disabled={currentSlide === totalSlides - 1}
+          >
+            Next →
+          </button>
+        </div>
       </div>
     </div>
   );

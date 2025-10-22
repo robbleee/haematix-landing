@@ -97,7 +97,6 @@
 .pitchContent {
   /* Let the investors page handle its own styling */
   background: white;
-  padding-right: 80px; /* Add space for navigation dots on the right */
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
@@ -116,29 +115,60 @@
   height: 100vh !important;
 }
 
-/* Make navigation dots EXTREMELY compact */
+/* Hide the original navigation completely */
 .pitchContent :global(.navigation) {
-  right: 10px !important;
-  gap: 0.25rem !important;
-  padding: 0.5rem 0.35rem !important;
-  max-height: 60vh !important;
-  overflow-y: auto !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
+  display: none !important;
 }
 
-/* Make indicator dots very small */
-.pitchContent :global(.indicator) {
-  width: 6px !important;
-  height: 6px !important;
+/* Custom Simple Navigation */
+.simpleNavigation {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+  z-index: 200;
+  border: 1px solid rgba(28, 166, 148, 0.2);
 }
 
-/* Make navigation buttons extremely compact */
-.pitchContent :global(.navButton) {
-  padding: 0.35rem 0.5rem !important;
-  font-size: 0.7rem !important;
-  min-width: 45px !important;
-  line-height: 1 !important;
+.navBtn {
+  padding: 0.5rem 1rem;
+  background: var(--primary-color, #1ca694);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.navBtn:hover:not(:disabled) {
+  background: #00897b;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(28, 166, 148, 0.3);
+}
+
+.navBtn:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.slideCounter {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  min-width: 60px;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
@@ -163,14 +193,20 @@
     font-size: 0.9rem;
   }
 
-  .pitchContent {
-    padding-right: 20px;
+  .simpleNavigation {
+    bottom: 1rem;
+    gap: 1rem;
+    padding: 0.6rem 1rem;
   }
 
-  .pitchContent :global(.navigation) {
-    right: 10px !important;
-    gap: 0.5rem !important;
-    padding: 0.75rem 0.5rem !important;
+  .navBtn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .slideCounter {
+    font-size: 0.9rem;
+    min-width: 50px;
   }
 }
 

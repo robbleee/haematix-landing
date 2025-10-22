@@ -766,17 +766,17 @@ body:has(.pitchDeck) main {
 
 /* Button Hover Animations Enhanced */
 .navButton {
-  padding: 0.5rem 0.75rem;
+  padding: 0.75rem 1rem;
   background: var(--primary-color);
   color: white;
   border: none;
-  border-radius: 15px;
+  border-radius: 25px;
   font-weight: 500;
   cursor: pointer;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   writing-mode: horizontal-tb;
   white-space: nowrap;
-  min-width: 60px;
+  min-width: 80px;
   position: relative;
   overflow: hidden;
 }
@@ -787,8 +787,8 @@ body:has(.pitchDeck) main {
 
 /* Slide Indicators - No animations */
 .indicator {
-  width: 8px;
-  height: 8px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   border: none;
   background: #cbd5e1;
@@ -1576,29 +1576,27 @@ body:has(.pitchDeck) main {
 .navigation {
   position: fixed;
   top: 50%;
-  right: 1rem;
+  right: 2rem;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1.5rem;
   background: rgba(255, 255, 255, 0.9);
-  padding: 0.75rem 0.5rem;
-  border-radius: 20px;
+  padding: 1.5rem 1rem;
+  border-radius: 30px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(20px);
   z-index: 100;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  max-height: 80vh;
-  overflow-y: auto;
 }
 
 /* Slide Indicators */
 .slideIndicators {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  margin: 0.25rem 0;
+  gap: 0.75rem;
+  margin: 0.5rem 0;
 }
 
 /* Split Layout for Visual Variety */

@@ -13,7 +13,7 @@ export default function DataRoomPitchViewer() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const totalSlides = 18; // Update this if you add/remove slides
+  const totalSlides = 19; // Total slides in the pitch (IDs 0-18 = 19 slides)
 
   useEffect(() => {
     // Check if user is authenticated
@@ -39,32 +39,61 @@ export default function DataRoomPitchViewer() {
   };
 
   const handlePrevSlide = () => {
-    // Trigger left arrow key event to navigate
-    const event = new KeyboardEvent('keydown', { key: 'ArrowLeft' });
-    document.dispatchEvent(event);
+    console.log('Previous button clicked, current slide:', currentSlide);
+    // Trigger left arrow key event to navigate - only dispatch once!
+    const event = new KeyboardEvent('keydown', { 
+      key: 'ArrowLeft',
+      keyCode: 37,
+      which: 37,
+      bubbles: true,
+      cancelable: true
+    });
+    window.dispatchEvent(event);
   };
 
   const handleNextSlide = () => {
-    // Trigger right arrow key event to navigate
-    const event = new KeyboardEvent('keydown', { key: 'ArrowRight' });
-    document.dispatchEvent(event);
+    console.log('Next button clicked, current slide:', currentSlide);
+    // Trigger right arrow key event to navigate - only dispatch once!
+    const event = new KeyboardEvent('keydown', { 
+      key: 'ArrowRight',
+      keyCode: 39,
+      which: 39,
+      bubbles: true,
+      cancelable: true
+    });
+    window.dispatchEvent(event);
   };
 
   // Listen for slide changes from the investors page
   useEffect(() => {
     const updateSlideCounter = () => {
-      const indicators = document.querySelectorAll('.indicator');
+      // Try multiple selectors to find the active indicator
+      const indicators = document.querySelectorAll('[class*="indicator"]');
+      let foundActive = false;
+      
       indicators.forEach((indicator, index) => {
-        if (indicator.classList.contains('active')) {
+        if (indicator.classList.contains('active') || 
+            Array.from(indicator.classList).some(c => c.includes('active'))) {
+          console.log('Active slide found:', index);
           setCurrentSlide(index);
+          foundActive = true;
         }
       });
+      
+      if (!foundActive && indicators.length > 0) {
+        // If no active indicator found, check the first one
+        console.log('No active indicator found, staying on slide:', currentSlide);
+      }
     };
 
     // Poll for active indicator changes
     const interval = setInterval(updateSlideCounter, 100);
+    
+    // Also update immediately
+    updateSlideCounter();
+    
     return () => clearInterval(interval);
-  }, []);
+  }, [currentSlide]);
 
   if (isLoading) {
     return (
@@ -80,50 +109,41 @@ export default function DataRoomPitchViewer() {
 
   return (
     <div className={styles.pitchViewerContainer}>
-      <div className={styles.pitchHeader}>
-        <button 
-          onClick={() => router.push('/data-room')}
-          className={styles.backButton}
-        >
-          ← Back to Data Room
-        </button>
-        
-        <div className={styles.headerTitle}>
-          <h1>Haem.io Investor Pitch</h1>
-          <p>Interactive presentation</p>
-        </div>
-
-        <button 
-          onClick={handleDownloadPDF}
-          className={styles.downloadButton}
-        >
-          ⬇ Download PDF
-        </button>
-      </div>
+      {/* Floating Back Button */}
+      <button 
+        onClick={() => router.push('/data-room')}
+        className={styles.floatingBackButton}
+      >
+        ← Back to Data Room
+      </button>
 
       <div className={styles.pitchContent}>
         <InvestorsPage hideControls={true} />
         
-        {/* Custom Simple Navigation */}
-        <div className={styles.simpleNavigation}>
+        {/* Vertical Navigation on the Right */}
+        <div className={styles.verticalNavigation}>
           <button 
             onClick={handlePrevSlide}
-            className={styles.navBtn}
+            className={styles.verticalNavBtn}
             disabled={currentSlide === 0}
+            title="Previous slide"
           >
-            ← Prev
+            ↑
           </button>
           
           <div className={styles.slideCounter}>
-            {currentSlide + 1} / {totalSlides}
+            <div className={styles.currentSlide}>{currentSlide + 1}</div>
+            <div className={styles.divider}></div>
+            <div className={styles.totalSlides}>{totalSlides}</div>
           </div>
           
           <button 
             onClick={handleNextSlide}
-            className={styles.navBtn}
+            className={styles.verticalNavBtn}
             disabled={currentSlide === totalSlides - 1}
+            title="Next slide"
           >
-            Next →
+            ↓
           </button>
         </div>
       </div>

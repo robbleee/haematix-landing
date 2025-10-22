@@ -474,7 +474,7 @@ export default function DataRoom() {
                       rel="noopener noreferrer"
                       className={styles.viewButtonSecondary}
                     >
-                      Download PDF
+                      Veiw PDF
                     </a>
                   </div>
                 </div>
@@ -489,7 +489,7 @@ export default function DataRoom() {
                     rel="noopener noreferrer"
                     className={styles.viewButtonPrimary}
                   >
-                    View Document
+                    View PDF
                   </a>
                 </div>
 
@@ -503,7 +503,7 @@ export default function DataRoom() {
                     rel="noopener noreferrer"
                     className={styles.viewButtonPrimary}
                   >
-                    View Document
+                    View PDF
                   </a>
                 </div>
 
@@ -519,7 +519,7 @@ export default function DataRoom() {
                         rel="noopener noreferrer"
                         className={styles.viewButtonPrimary}
                       >
-                        View Document
+                        View PDF
                       </a>
                     </div>
                     <div className={styles.documentCard}>
@@ -532,7 +532,7 @@ export default function DataRoom() {
                         rel="noopener noreferrer"
                         className={styles.viewButtonPrimary}
                       >
-                        View Document
+                        View PDF
                       </a>
                     </div>
                   </>

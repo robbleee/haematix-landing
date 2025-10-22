@@ -137,6 +137,7 @@ export default function DataRoom() {
 
   // Simple password - in production this should be more secure with server-side validation
   const CORRECT_PASSWORD = 'Haemio!2025$DataRoom';
+  const VIP_PASSWORD = 'Haemio!VIP$Direct2025';  // Skips NDA
 
   // Restore authentication state from sessionStorage on mount
   useEffect(() => {
@@ -153,7 +154,15 @@ export default function DataRoom() {
 
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
-    if (passwordEntered === CORRECT_PASSWORD) {
+    if (passwordEntered === VIP_PASSWORD) {
+      // VIP password - skip NDA entirely
+      setIsPasswordCorrect(true);
+      setNdaAccepted(true);
+      setPasswordError('');
+      // Persist both authentication states to sessionStorage
+      sessionStorage.setItem('dataroom_password_correct', 'true');
+      sessionStorage.setItem('dataroom_nda_accepted', 'true');
+    } else if (passwordEntered === CORRECT_PASSWORD) {
       setIsPasswordCorrect(true);
       setShowNda(true);
       setPasswordError('');

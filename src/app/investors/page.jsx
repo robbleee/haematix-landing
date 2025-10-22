@@ -32,7 +32,7 @@ const pitchSlides = [
       <div className={styles.slideContent}>
         <div className={styles.compactStoryLayout}>
           <p className={styles.storyLead}>
-            At a New Year's gathering, Robbie — an ex-lymphoma survivor — was talking to John, a consultant haematologist involved in cutting-edge research, about advances in AI. John said:
+            At a New Year's gathering, Robert — an ex-lymphoma survivor — was talking to John, a consultant haematologist involved in cutting-edge research, about advances in AI. John said:
           </p>
           
           <div className={styles.conversationBox}>

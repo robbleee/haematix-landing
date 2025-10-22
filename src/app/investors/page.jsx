@@ -109,8 +109,8 @@ const pitchSlides = [
             <div className={styles.statDivider}></div>
             
             <div className={styles.statBlock}>
-              <div className={styles.statNumber}>Days → Weeks</div>
-              <div className={styles.statLabel}>Current diagnostic delay</div>
+              <div className={styles.statNumber}>Days → Weeks delay</div>
+              <div className={styles.statLabel}>Current diagnosis time</div>
             </div>
             
             <div className={styles.statDivider}></div>
@@ -195,7 +195,7 @@ const pitchSlides = [
             </div>
             
             <div className={styles.scaleKeyFacts}>
-              <h3>Blood Cancer Reality</h3>
+              <h3 style={{ fontWeight: '700' }}>Blood Cancer Reality</h3>
               <ul className={styles.factList}>
                 <li>Not lifestyle-related</li>
                 <li>Any age, any gender</li>
@@ -248,7 +248,7 @@ const pitchSlides = [
             <div className={styles.stepContent}>
               <h4>Second Attempt: Hybrid AI + Logic</h4>
               <p>
-                We used AI to extract structured parameters from reports, then applied formal logic engines with WHO/ICC diagnostic rules. This worked — but required too much upfront clinical input, making it impractical for real-world use.
+                We used AI to extract structured parameters from reports, then applied formal logic engines with WHO/ICC diagnostic rules. This worked — but required too much upfront clinical input, making it impractical for real-world application.
               </p>
             </div>
           </div>
@@ -377,7 +377,7 @@ const pitchSlides = [
             <div className={styles.advantagePoint}>
               <div className={styles.pointNumber}>2</div>
               <h4>Clinical Expertise as Code</h4>
-              <p>Our in-house haematologists formalise WHO/ICC diagnostic logic into validated decision trees. Competitors can't replicate this without deep clinical domain knowledge embedded in the team.</p>
+              <p>Our in-house haematologists formalise WHO/ICC diagnostic logic into validated decision trees. Extremely difficult to replicate this without deep clinical domain knowledge embedded in the team.</p>
             </div>
             
             <div className={styles.advantagePoint}>
@@ -555,7 +555,7 @@ const pitchSlides = [
           </div>
 
           <div className={styles.expansionFooter}>
-            <strong>Strategy:</strong> Master the most complex diagnosis first, then scale the framework
+            Strategy: Master the most complex diagnosis first, then scale the framework
           </div>
         </div>
       </div>
@@ -619,7 +619,7 @@ const pitchSlides = [
   {
     id: 7,
     title: "Perfect Market Convergence",
-    subtitle: "Riding the wave: multi-billion dollar market transformation",
+    subtitle: "Riding the wave: multi-billion pund market transformation",
     content: (
       <div className={styles.slideContent}>
         <div className={styles.cleanMarketLayout}>
@@ -659,7 +659,7 @@ const pitchSlides = [
   {
     id: 9,
     title: "The Team",
-    subtitle: "Expertise in AI, physics & medicine",
+    subtitle: "Expertise in AI, advanced analytics & medicine",
     content: (
       <div className={styles.slideContent}>
         <div className={styles.teamLayout}>
@@ -682,7 +682,7 @@ const pitchSlides = [
               <div className={styles.memberInfo}>
                 <h3>Dr. Daniel Clarke</h3>
                 <h4>Founder & Data and Analytics Lead</h4>
-                <p>PhD in Nuclear Physics from CERN. Leading technology and platform architecture.</p>
+                <p>PhD in Nuclear Physics from University of Manchester and CERN. Leading technology and platform architecture.</p>
               </div>
             </div>
             
@@ -876,6 +876,61 @@ const pitchSlides = [
           
           <div className={styles.revenueFooter}>
             Built on WHO & ICC global standards—ready to scale worldwide
+          </div>
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 18,
+    title: "Alternative Revenue Stream",
+    subtitle: "Fast-track diagnostic service for underserved hospitals",
+    content: (
+      <div className={styles.slideContent}>
+        <div className={styles.alternativeRevenueLayout}>
+          <div className={styles.revenueStreamIntro}>
+            <p className={styles.leadText}>
+              While hospitals adopt our platform, we can immediately serve smaller and private hospitals 
+              with an <strong>outsourced diagnostic desk</strong>
+            </p>
+          </div>
+
+          <div className={styles.serviceModelGrid}>
+            <div className={styles.serviceColumn}>
+              <h3>🏥 The Problem</h3>
+              <ul className={styles.problemList}>
+                <li>Smaller NHS trusts lack specialist haematologists</li>
+                <li>Private hospitals want faster turnaround than NHS centers</li>
+                <li>Current outsourcing to 5 big centers = weeks of delay</li>
+                <li>High costs, long waits, patient anxiety</li>
+              </ul>
+            </div>
+
+            <div className={`${styles.serviceColumn} ${styles.solutionColumn}`}>
+              <h3>✓ Our Solution</h3>
+              <ul className={styles.solutionList}>
+                <li><strong>Expert team:</strong> Dr. Luke Carter-Brzezinski & Dr. John Burthem</li>
+                <li><strong>Haem.io-powered:</strong> Our platform enables rapid analysis</li>
+                <li><strong>48-hour turnaround:</strong> vs weeks at traditional centers</li>
+                <li><strong>Premium service:</strong> White-glove support for urgent cases</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className={styles.pricingHighlight}>
+            <div className={styles.priceBox}>
+              <div className={styles.priceAmount}>£1,000–£1,500</div>
+              <div className={styles.priceLabel}>per diagnostic case</div>
+            </div>
+            <div className={styles.priceDetails}>
+              <p>• Target: 10-20 cases/month initially</p>
+              <p>• Revenue potential: £120k-£360k/year</p>
+              <p>• Scalable with additional consultants</p>
+            </div>
+          </div>
+
+          <div className={styles.revenueStreamFooter}>
+            <strong>Strategic benefit:</strong> Generates immediate revenue while building platform adoption and demonstrating clinical value
           </div>
         </div>
       </div>

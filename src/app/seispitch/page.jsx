@@ -602,7 +602,7 @@ const pitchSlides = [
   {
     id: 7,
     title: "Perfect Market Convergence",
-    subtitle: "Riding the wave: multi-billion dollar market transformation",
+    subtitle: "Riding the wave: multi-billion pound market transformation",
     content: (
       <div className={styles.slideContent}>
         <div className={styles.cleanMarketLayout}>

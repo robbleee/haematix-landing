@@ -2459,7 +2459,7 @@ body:has(.pitchDeck) main {
 
 .flowPanel {
   background: white;
-  padding: 1.5rem;
+  padding: 2rem;
   border-radius: 16px;
   text-align: center;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -2468,6 +2468,10 @@ body:has(.pitchDeck) main {
   flex: 1;
   min-width: 280px;
   max-width: 320px;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .flowPanel:hover {
@@ -2493,14 +2497,18 @@ body:has(.pitchDeck) main {
 .diagnostician {
   background: linear-gradient(135deg, #fee2e2 0%, #fef2f2 100%);
   padding: 2rem;
-  border-radius: 20px;
+  border-radius: 16px;
   text-align: center;
   border: 3px solid #ef4444;
   box-shadow: 0 8px 30px rgba(239, 68, 68, 0.2);
   flex: 1;
   min-width: 280px;
   max-width: 320px;
+  min-height: 220px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .diagnostician::before {
@@ -2897,7 +2905,6 @@ body:has(.pitchDeck) main {
   padding: 2rem;
   text-align: center;
   margin-top: 2rem;
-  box-shadow: 0 10px 30px rgba(0, 150, 136, 0.2);
 }
 
 .timeComparison {
@@ -2932,6 +2939,7 @@ body:has(.pitchDeck) main {
   color: #ffcccb;
   margin-bottom: 0.3rem;
   line-height: 1.1;
+  word-spacing: 0.3em;
 }
 
 .afterValue {
@@ -6370,21 +6378,26 @@ body:has(.pitchDeck) main {
 
 .costStats {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  align-items: stretch;
+  justify-content: space-between;
   background: linear-gradient(135deg, #fef2f2 0%, white 100%);
   border: 2px solid #fca5a5;
   border-radius: 16px;
-  padding: 3rem 2rem;
+  padding: 3rem 3rem;
+  gap: 2rem;
 }
 
 .statBlock {
   text-align: center;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .statNumber {
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   font-weight: 800;
   color: #dc2626;
   margin-bottom: 0.5rem;
@@ -6401,6 +6414,8 @@ body:has(.pitchDeck) main {
   width: 2px;
   height: 80px;
   background: linear-gradient(180deg, transparent, #fca5a5, transparent);
+  flex-shrink: 0;
+  align-self: center;
 }
 
 .clinicalQuoteBox {
@@ -7200,20 +7215,27 @@ body:has(.pitchDeck) main {
 
 .transformLeft,
 .transformRight {
-  background: white;
+  background: #f1f5f9;
   border-radius: 10px;
   padding: 1.5rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  min-height: 450px;
+  max-height: 450px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .yearLabel {
   display: inline-block;
-  padding: 0.35rem 1rem;
-  border-radius: 15px;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
   color: white;
   font-weight: 700;
-  font-size: 0.9rem;
-  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  align-self: flex-start;
+  width: auto;
 }
 
 .transformLeft h3,
@@ -7286,6 +7308,7 @@ body:has(.pitchDeck) main {
   text-align: center;
   font-weight: 600;
   font-size: 0.95rem;
+  margin-top: auto;
 }
 
 .transformArrow {
@@ -7662,6 +7685,178 @@ body:has(.pitchDeck) main {
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--primary-color);
+}
+
+/* Alternative Revenue Stream Slide */
+.alternativeRevenueLayout {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.revenueStreamIntro {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.revenueStreamIntro .leadText {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  color: #1e293b;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.serviceModelGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 1rem 0;
+}
+
+.serviceColumn {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 2px solid #e5e7eb;
+}
+
+.serviceColumn h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.solutionColumn {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border-color: var(--primary-color);
+}
+
+.solutionColumn h3 {
+  color: var(--primary-color);
+}
+
+.problemList,
+.solutionList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.problemList li {
+  padding-left: 1.5rem;
+  position: relative;
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.4;
+}
+
+.problemList li:before {
+  content: "×";
+  position: absolute;
+  left: 0;
+  color: #dc2626;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.solutionList li {
+  padding-left: 1.5rem;
+  position: relative;
+  font-size: 0.95rem;
+  color: #166534;
+  line-height: 1.4;
+}
+
+.solutionList li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.pricingHighlight {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #fef3c7 0%, #fef9c3 100%);
+  border: 3px solid #eab308;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin: 1rem 0 0.75rem 0;
+  gap: 1.5rem;
+}
+
+.priceBox {
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.priceAmount {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #854d0e;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.priceLabel {
+  font-size: 0.9rem;
+  color: #92400e;
+  font-weight: 600;
+}
+
+.priceDetails {
+  flex: 1;
+}
+
+.priceDetails p {
+  margin: 0.25rem 0;
+  font-size: 1rem;
+  color: #713f12;
+  font-weight: 500;
+}
+
+.revenueStreamFooter {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border: 2px solid #3b82f6;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  color: #1e40af;
+  line-height: 1.5;
+}
+
+.revenueStreamFooter strong {
+  color: #1e3a8a;
+}
+
+@media (max-width: 1024px) {
+  .serviceModelGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .pricingHighlight {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .priceAmount {
+    font-size: 2.5rem;
+  }
 }
 
 @media (max-width: 1024px) {

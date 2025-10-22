@@ -461,14 +461,22 @@ export default function DataRoom() {
                   <div className={styles.documentIcon}>▭</div>
                   <h3>Investor Pitch Deck</h3>
                   <p>Complete investor presentation including market analysis, product overview, and financial projections.</p>
-                  <a 
-                    href="/Haem.io-pitch.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.viewButtonPrimary}
-                  >
-                    View Document
-                  </a>
+                  <div className={styles.documentActions}>
+                    <a 
+                      href="/data-room/pitch"
+                      className={styles.viewButtonPrimary}
+                    >
+                      View Interactive Pitch
+                    </a>
+                    <a 
+                      href="/Haem.io-pitch.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.viewButtonSecondary}
+                    >
+                      Download PDF
+                    </a>
+                  </div>
                 </div>
 
                 <div className={styles.documentCard}>

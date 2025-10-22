@@ -20,18 +20,11 @@ export default function DataRoomPitchViewer() {
     
     if (passwordCorrect === 'true' && ndaAccepted === 'true') {
       setIsAuthenticated(true);
-      // Prevent body scroll
-      document.body.style.overflow = 'hidden';
     } else {
       // Redirect back to data room login
       router.push('/data-room');
     }
     setIsLoading(false);
-
-    // Cleanup: restore body scroll on unmount
-    return () => {
-      document.body.style.overflow = '';
-    };
   }, [router]);
 
   const handleDownloadPDF = () => {

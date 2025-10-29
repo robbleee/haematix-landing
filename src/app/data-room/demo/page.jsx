@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import styles from './demo.module.css';
 
 export default function DemoPage() {
@@ -194,12 +195,9 @@ CD19/CD56: Negative`
 
   return (
     <div className={styles.demoContainer}>
-      <button 
-        onClick={() => router.push('/data-room')}
-        className={styles.backButton}
-      >
+      <Link href="/data-room" className={styles.backButton}>
         ← Back to Data Room
-      </button>
+      </Link>
 
       <div className={styles.demoContent}>
         {/* Copy Notification Toast */}
@@ -222,7 +220,12 @@ CD19/CD56: Negative`
               <p className={styles.headerNote}>Click a sample report below to copy and paste into the demo, or use your own anonymized patient reports to see instant AI-powered diagnosis with full guideline derivations.</p>
             </div>
             <div className={styles.sampleReportsCompact}>
-              <div className={styles.reportsLabel}>Sample Reports:</div>
+              <div className={styles.reportsHeader}>
+                <div className={styles.reportsLabel}>Sample Reports:</div>
+                <Link href="/data-room/demo/how-it-works" className={styles.howItWorksLink}>
+                  How It Works →
+                </Link>
+              </div>
               <div className={styles.reportsGrid}>
                 {sampleReports.map((report, index) => (
                   <button

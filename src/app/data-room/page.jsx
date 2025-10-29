@@ -464,7 +464,7 @@ export default function DataRoom() {
                 <div className={styles.documentCard}>
                   <div className={styles.documentIcon}>⚡</div>
                   <h3>Live Product Demo</h3>
-                  <p>Experience Haem.io in action with our production-grade AI diagnostic platform</p>
+                  <p>Interactive demo of our AML/MDS diagnostic tool — experience our production-grade platform in action</p>
                   <a 
                     href="/data-room/demo"
                     className={styles.viewButtonPrimary}
@@ -513,31 +513,23 @@ export default function DataRoom() {
                   <div className={styles.documentIcon}>≡</div>
                   <h3>Financial Projections & Cash Flow</h3>
                   <p>Detailed quarterly cash flow analysis, burn rate projections, revenue timeline with specific dates, and 5-year financial roadmap.</p>
-                  <div className={styles.documentActions}>
-                    <a 
-                      href="/data-room/financials"
-                      className={styles.viewButtonPrimary}
-                    >
-                      View Interactive
-                    </a>
-                    <button 
-                      onClick={async () => {
-                        try {
-                          const response = await fetch('/api/generate-financials-pdf');
-                          const blob = await response.blob();
-                          const url = window.URL.createObjectURL(blob);
-                          window.open(url, '_blank');
-                          // Clean up after a delay to allow the PDF to load
-                          setTimeout(() => window.URL.revokeObjectURL(url), 1000);
-                        } catch (error) {
-                          console.error('Error opening PDF:', error);
-                        }
-                      }}
-                      className={styles.viewButtonSecondary}
-                    >
-                      View PDF
-                    </button>
-                  </div>
+                  <button 
+                    onClick={async () => {
+                      try {
+                        const response = await fetch('/api/generate-financials-pdf');
+                        const blob = await response.blob();
+                        const url = window.URL.createObjectURL(blob);
+                        window.open(url, '_blank');
+                        // Clean up after a delay to allow the PDF to load
+                        setTimeout(() => window.URL.revokeObjectURL(url), 1000);
+                      } catch (error) {
+                        console.error('Error opening PDF:', error);
+                      }
+                    }}
+                    className={styles.viewButtonSecondary}
+                  >
+                    View PDF
+                  </button>
                 </div>
 
                 <div className={styles.documentCard}>

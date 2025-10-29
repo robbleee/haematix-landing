@@ -34,6 +34,19 @@ export async function GET(request) {
       console.error('Error fetching team PDF:', error);
     }
 
+    // Generate financial projections PDF dynamically
+    let financialsPdfBuffer = null;
+    try {
+      const baseUrl = request.headers.get('host') || 'localhost:3000';
+      const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http';
+      const financialsPdfResponse = await fetch(`${protocol}://${baseUrl}/api/generate-financials-pdf`);
+      if (financialsPdfResponse.ok) {
+        financialsPdfBuffer = Buffer.from(await financialsPdfResponse.arrayBuffer());
+      }
+    } catch (error) {
+      console.error('Error fetching financials PDF:', error);
+    }
+
     // Create a new archiver instance
     const archive = archiver('zip', {
       zlib: { level: 9 } // Maximum compression
@@ -59,6 +72,11 @@ export async function GET(request) {
         // Add team PDF if generated successfully
         if (teamPdfBuffer) {
           archive.append(teamPdfBuffer, { name: 'Haemio-Founding-Team.pdf' });
+        }
+
+        // Add financial projections PDF if generated successfully
+        if (financialsPdfBuffer) {
+          archive.append(financialsPdfBuffer, { name: 'Haemio-Financial-Projections.pdf' });
         }
 
         // Finalize the archive

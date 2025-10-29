@@ -133,7 +133,6 @@ export default function DataRoom() {
   const [isSubmittingRequest, setIsSubmittingRequest] = useState(false);
   const [requestSuccess, setRequestSuccess] = useState(false);
   const [requestError, setRequestError] = useState('');
-  const [showAllDocuments, setShowAllDocuments] = useState(false);
 
   // Simple password - in production this should be more secure with server-side validation
   const CORRECT_PASSWORD = 'Haemio!2025$DataRoom';
@@ -456,7 +455,24 @@ export default function DataRoom() {
                 </div>
               </div>
 
+              <div className={styles.sectionHeader}>
+                <h2>Core Materials</h2>
+                <p>Essential investment documents and market validation</p>
+              </div>
+
               <div className={styles.documentsGrid}>
+                <div className={styles.documentCard}>
+                  <div className={styles.documentIcon}>⚡</div>
+                  <h3>Live Product Demo</h3>
+                  <p>Experience Haem.io in action with our production-grade AI diagnostic platform</p>
+                  <a 
+                    href="/data-room/demo"
+                    className={styles.viewButtonPrimary}
+                  >
+                    Launch Interactive Demo →
+                  </a>
+                </div>
+
                 <div className={styles.documentCard}>
                   <div className={styles.documentIcon}>▭</div>
                   <h3>Investor Pitch Deck</h3>
@@ -487,10 +503,41 @@ export default function DataRoom() {
                     href="/investment-summary.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={styles.viewButtonPrimary}
+                    className={styles.viewButtonSecondary}
                   >
                     View PDF
                   </a>
+                </div>
+
+                <div className={styles.documentCard}>
+                  <div className={styles.documentIcon}>≡</div>
+                  <h3>Financial Projections & Cash Flow</h3>
+                  <p>Detailed quarterly cash flow analysis, burn rate projections, revenue timeline with specific dates, and 5-year financial roadmap.</p>
+                  <div className={styles.documentActions}>
+                    <a 
+                      href="/data-room/financials"
+                      className={styles.viewButtonPrimary}
+                    >
+                      View Interactive
+                    </a>
+                    <button 
+                      onClick={async () => {
+                        try {
+                          const response = await fetch('/api/generate-financials-pdf');
+                          const blob = await response.blob();
+                          const url = window.URL.createObjectURL(blob);
+                          window.open(url, '_blank');
+                          // Clean up after a delay to allow the PDF to load
+                          setTimeout(() => window.URL.revokeObjectURL(url), 1000);
+                        } catch (error) {
+                          console.error('Error opening PDF:', error);
+                        }
+                      }}
+                      className={styles.viewButtonSecondary}
+                    >
+                      View PDF
+                    </button>
+                  </div>
                 </div>
 
                 <div className={styles.documentCard}>
@@ -501,55 +548,29 @@ export default function DataRoom() {
                     href="/traction-and-market-opportunity.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={styles.viewButtonPrimary}
+                    className={styles.viewButtonSecondary}
                   >
                     View PDF
                   </a>
                 </div>
 
-                {showAllDocuments && (
-                  <>
-                    <div className={styles.documentCard}>
-                      <div className={styles.documentIcon}>£</div>
-                      <h3>Use of Funds</h3>
-                      <p>Detailed breakdown of £750k seed investment allocation across team, regulatory, pilots, and infrastructure.</p>
-                      <a 
-                        href="/use-of-funds.pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.viewButtonPrimary}
-                      >
-                        View PDF
-                      </a>
-                    </div>
-                    <div className={styles.documentCard}>
-                      <div className={styles.documentIcon}>✓</div>
-                      <h3>Regulatory Strategy & Pathway</h3>
-                      <p>Clear pathway to UKCA/CE marking as a Class IIa medical device, including MHRA engagement strategy.</p>
-                      <a 
-                        href="/regulatory-strategy-and-pathway.pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.viewButtonPrimary}
-                      >
-                        View PDF
-                      </a>
-                    </div>
-                  </>
-                )}
+                <div className={styles.documentCard}>
+                  <div className={styles.documentIcon}>✓</div>
+                  <h3>Regulatory Strategy & Pathway</h3>
+                  <p>Clear pathway to UKCA/CE marking as a Class IIa medical device, including MHRA engagement strategy.</p>
+                  <a 
+                    href="/regulatory-strategy-and-pathway.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.viewButtonSecondary}
+                  >
+                    View PDF
+                  </a>
+                </div>
               </div>
 
-              <div className={styles.viewAllButtonContainer}>
-                <button 
-                  onClick={() => setShowAllDocuments(!showAllDocuments)}
-                  className={styles.viewAllButton}
-                >
-                  {showAllDocuments ? '▲ Show Less' : '▼ View All Documents'}
-                </button>
-              </div>
-
-              <div className={styles.lettersSectionTitle}>
-                <h3>Letters of Support & Intent</h3>
+              <div className={styles.sectionHeader}>
+                <h2>Letters of Support & Intent</h2>
                 <p>Clinical endorsements from leading NHS consultants and research networks</p>
               </div>
 

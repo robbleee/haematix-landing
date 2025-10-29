@@ -586,12 +586,39 @@
   border-radius: 12px;
   border: 2px solid #e0e0e0;
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .documentCard:hover {
   transform: translateY(-4px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
   border-color: var(--primary-color);
+}
+
+.featuredBadge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.4rem 0.8rem;
+  background: linear-gradient(135deg, var(--primary-color) 0%, #00796B 100%);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 150, 136, 0.3);
+}
+
+/* Traction Section */
+.tractionSection {
+  margin-bottom: 2rem;
+}
+
+.tractionSection .documentCard {
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .documentIcon {
@@ -613,6 +640,8 @@
   line-height: 1.6;
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
+  min-height: 4.8em;
+  flex-grow: 1;
 }
 
 .downloadAllButtonTopRight {
@@ -676,6 +705,7 @@
   flex-direction: column;
   gap: 0.75rem;
   width: 100%;
+  margin-top: auto;
 }
 
 .viewButtonPrimary {
@@ -778,6 +808,38 @@
 
 .contactSection a:hover {
   text-decoration: underline;
+}
+
+/* Section Headers */
+.sectionHeader {
+  margin: 3rem 0 1.5rem 0;
+  text-align: left;
+}
+
+.sectionHeader h2 {
+  font-size: 1.75rem;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+}
+
+.sectionHeader h2::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color) 0%, #00796B 100%);
+  border-radius: 2px;
+}
+
+.sectionHeader p {
+  color: #64748b;
+  font-size: 0.9375rem;
+  margin-top: 1rem;
 }
 
 /* Team Callout Section */
@@ -993,6 +1055,18 @@
     grid-template-columns: 1fr;
   }
 
+  .sectionHeader {
+    margin: 2rem 0 1rem 0;
+  }
+
+  .sectionHeader h2 {
+    font-size: 1.5rem;
+  }
+
+  .sectionHeader p {
+    font-size: 0.875rem;
+  }
+
   .ndaTextContainer {
     max-height: 300px;
   }
@@ -1070,21 +1144,14 @@
 /* Letters of Support Section */
 .lettersSectionTitle {
   text-align: center;
-  margin: 3rem 0 2rem 0;
-  padding-top: 2rem;
-  border-top: 2px solid #e5e7eb;
+  margin: 1.5rem 0 1.5rem 0;
 }
 
 .lettersSectionTitle h3 {
-  color: var(--primary-color);
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  font-weight: 700;
-}
-
-.lettersSectionTitle p {
-  color: #6b7280;
-  font-size: 0.95rem;
+  color: #475569;
+  font-size: 1.125rem;
+  margin-bottom: 0;
+  font-weight: 600;
 }
 
 .lettersGrid {

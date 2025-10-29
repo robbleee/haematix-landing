@@ -1,0 +1,571 @@
+.financialsContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  padding: 2rem;
+}
+
+.backButton {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  padding: 0.75rem 1.5rem;
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  z-index: 100;
+}
+
+.backButton:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  transform: translateX(-4px);
+}
+
+.downloadButton {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  z-index: 100;
+  box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3);
+}
+
+.downloadButton:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(59, 130, 246, 0.4);
+}
+
+.financialsContent {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-top: 4rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: #64748b;
+}
+
+/* Executive Summary */
+.executiveSummary {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.executiveSummary h2 {
+  font-size: 1.75rem;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.summaryCard {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.summaryLabel {
+  font-size: 0.875rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.summaryValue {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.summaryDetail {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+/* Callout Box */
+.calloutBox {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border-left: 4px solid #3b82f6;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.calloutBox h3 {
+  font-size: 1.25rem;
+  color: #1e40af;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.calloutBox p {
+  font-size: 1rem;
+  color: #1e293b;
+  line-height: 1.6;
+}
+
+/* Year Sections */
+.yearSection {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.yearHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.yearHeader h2 {
+  font-size: 1.75rem;
+  color: #1e293b;
+  font-weight: 700;
+  margin: 0;
+}
+
+.yearBadge {
+  padding: 0.5rem 1rem;
+  background: #10b981;
+  color: white;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Quarter Grid */
+.quarterGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.quarterCard {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.2s;
+}
+
+.quarterCard:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.quarterCard h4 {
+  font-size: 1.25rem;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.quarterMilestones {
+  margin-bottom: 1.5rem;
+  min-height: 120px;
+}
+
+.milestone {
+  font-size: 0.875rem;
+  color: #475569;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.quarterFinancials {
+  border-top: 2px solid #e2e8f0;
+  padding-top: 1rem;
+}
+
+.finRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.finRow span:first-child {
+  color: #64748b;
+  font-weight: 600;
+}
+
+.burnAmount {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+.cashBalance {
+  color: #10b981;
+  font-weight: 700;
+}
+
+.revenueAmount {
+  color: #10b981;
+  font-weight: 700;
+}
+
+.contractsAmount {
+  color: #3b82f6;
+  font-weight: 700;
+}
+
+.profitAmount {
+  color: #10b981;
+  font-weight: 700;
+}
+
+.lossAmount {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+.seriesANote {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  color: #15803d;
+  font-weight: 600;
+}
+
+.revenueNote {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #64748b;
+  font-style: italic;
+}
+
+/* Year Summary */
+.yearSummary {
+  background: #f1f5f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.summaryRow:last-child {
+  margin-bottom: 0;
+  padding-top: 0.75rem;
+  border-top: 2px solid #cbd5e1;
+  font-weight: 700;
+}
+
+.totalSpend {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+.runwayAmount {
+  color: #3b82f6;
+  font-weight: 700;
+}
+
+/* Annual Summary */
+.annualSummary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.annualMilestones h4 {
+  font-size: 1.125rem;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.annualMilestones ul {
+  list-style: none;
+  padding: 0;
+}
+
+.annualMilestones li {
+  margin-bottom: 0.75rem;
+  font-size: 0.9375rem;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.annualFinancials {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.annualMetric {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  border: 2px solid #e2e8f0;
+}
+
+.metricLabel {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.metricValue {
+  font-size: 1.75rem;
+  color: #1e293b;
+  font-weight: 700;
+}
+
+/* Assumptions */
+.assumptionsSection {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.assumptionsSection h2 {
+  font-size: 1.75rem;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.assumptionsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.assumptionCard {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.assumptionCard h4 {
+  font-size: 1.125rem;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.assumptionCard ul {
+  list-style: none;
+  padding: 0;
+}
+
+.assumptionCard li {
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  color: #475569;
+  line-height: 1.6;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.assumptionCard li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #3b82f6;
+  font-weight: bold;
+}
+
+/* Summary Table */
+.summaryTable {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+}
+
+.summaryTable h2 {
+  font-size: 1.75rem;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.summaryTable table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.summaryTable thead {
+  background: #f1f5f9;
+}
+
+.summaryTable th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 700;
+  color: #1e293b;
+  border-bottom: 2px solid #cbd5e1;
+}
+
+.summaryTable td {
+  padding: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #475569;
+}
+
+.summaryTable tbody tr:hover {
+  background: #f8fafc;
+}
+
+.negativeCell {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+.positiveCell {
+  color: #10b981;
+  font-weight: 700;
+}
+
+/* Footer Note */
+.footerNote {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-left: 4px solid #f59e0b;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.footerNote p {
+  font-size: 0.9375rem;
+  color: #1e293b;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Loading */
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.loader {
+  border: 4px solid #e2e8f0;
+  border-top: 4px solid #3b82f6;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .financialsContainer {
+    padding: 1rem;
+  }
+
+  .header h1 {
+    font-size: 1.75rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .quarterGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .annualSummary {
+    grid-template-columns: 1fr;
+  }
+
+  .summaryTable {
+    font-size: 0.8125rem;
+  }
+
+  .summaryTable th,
+  .summaryTable td {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .backButton {
+    position: static;
+    margin-bottom: 0.5rem;
+    width: 100%;
+  }
+
+  .downloadButton {
+    position: static;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  .financialsContent {
+    padding-top: 1rem;
+  }
+}
+

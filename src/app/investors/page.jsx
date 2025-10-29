@@ -834,7 +834,9 @@ const pitchSlides = [
               <thead>
                 <tr>
                   <th>Year</th>
+                  <th>Period</th>
                   <th>Customers</th>
+                  <th>Contracts Signed</th>
                   <th>Revenue</th>
                   <th>Net P/L</th>
                 </tr>
@@ -842,31 +844,41 @@ const pitchSlides = [
               <tbody>
                 <tr>
                   <td>Year 1</td>
+                  <td>2026</td>
                   <td>Pilots & validation</td>
+                  <td>—</td>
                   <td>£0</td>
-                  <td className={styles.lossCell}>-£450k</td>
+                  <td className={styles.lossCell}>-£540k</td>
                 </tr>
                 <tr>
                   <td>Year 2</td>
+                  <td>2027</td>
                   <td>UKCA approval, first sales</td>
+                  <td><strong>Q4: 2-3 trusts</strong></td>
                   <td>£0</td>
                   <td className={styles.lossCell}>-£300k</td>
                 </tr>
                 <tr>
                   <td>Year 3</td>
+                  <td>2028</td>
                   <td>10 NHS + 2 UK private</td>
+                  <td>10 additional</td>
                   <td>£700k</td>
-                  <td className={styles.profitCell}>+£150k</td>
+                  <td className={styles.profitCell}>+£40k</td>
                 </tr>
                 <tr>
                   <td>Year 4</td>
+                  <td>2029</td>
                   <td>15 NHS + Middle East + 3 labs</td>
+                  <td>18 total active</td>
                   <td>£2.4M</td>
                   <td className={styles.profitCell}>+£1.2M</td>
                 </tr>
                 <tr>
                   <td>Year 5</td>
+                  <td>2030</td>
                   <td>20 NHS + Malaysia + GCC</td>
+                  <td>25+ total active</td>
                   <td>£5.6M</td>
                   <td className={styles.profitCell}>+£3.2M</td>
                 </tr>
@@ -875,6 +887,10 @@ const pitchSlides = [
           </div>
           
           <div className={styles.revenueFooter}>
+            <strong>Note:</strong> First contracts signed Q4 2027. Revenue recognized Q1 2028+ per accounting standards and NHS payment cycles.
+          </div>
+          
+          <div className={styles.revenueFooter} style={{marginTop: '0.5rem', fontStyle: 'normal'}}>
             Built on WHO & ICC global standards—ready to scale worldwide
           </div>
         </div>

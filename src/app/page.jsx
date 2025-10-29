@@ -40,19 +40,7 @@ export default function Home() {
                 {/* Add :hover styles in CSS */}
 
                 {/* Link to document section */}
-                <a 
-                  href="#documentation" 
-                  className="button" 
-                  style={{
-                    backgroundColor: 'var(--secondary-background-color)',
-                    color: 'var(--text-color)',
-                    transition: 'all 0.2s ease',
-                    textDecoration: 'none',
-                    display: 'inline-block'
-                  }}
-                >
-                  Learn More
-                </a>
+
               </div>
             </div>
 

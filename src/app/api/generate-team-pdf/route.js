@@ -6,9 +6,8 @@ const teamMembers = [
     name: "Robert Lee",
     title: "CEO & Co-Founder",
     bio: [
-      "Robert is the architect of Haem.io's core technology and leads the company's strategy. His mission is deeply personal, born from his experience as a Burkitt's Lymphoma survivor diagnosed at 19, which instilled in him the critical importance of rapid, accurate diagnostics.",
-      "After graduating from the University of Manchester with a BSc in Computer Science, Robert worked in FinTech at the London Stock Exchange Group and FlexTrade, specialising in building and testing high-frequency algorithmic trading platforms. He applied the rigour of this environment to healthcare, developing a novel hybrid AI framework that combines AI-driven data extraction with a deterministic logic engine.",
-      "He brought this concept to Dr. John Burthem, and together with Dr. Luke Carter-Brzezinski, they co-developed the platform. As the sole author of the core codebase, Robert leads all technical development and fundraising efforts, driven by his personal commitment to improving the diagnostic journey for cancer patients."
+      "Robert leads company strategy, IP, and regulatory affairs. A Burkitt's Lymphoma survivor diagnosed at 19, he holds a BSc in Computer Science from the University of Manchester and worked in FinTech at the London Stock Exchange Group and FlexTrade, specialising in high-frequency algorithmic trading platforms.",
+      "He developed the initial concept for Haem.io's hybrid AI framework that combines AI-driven data extraction with deterministic logic. Working with Dr. John Burthem, Dr. Luke Carter-Brzezinski, and the technical team, they developed the platform into the production-grade system it is today."
     ]
   },
   {

@@ -462,18 +462,6 @@ export default function DataRoom() {
 
               <div className={styles.documentsGrid}>
                 <div className={styles.documentCard}>
-                  <div className={styles.documentIcon}>⚡</div>
-                  <h3>Live Product Demo</h3>
-                  <p>Interactive demo of our AML/MDS diagnostic tool — experience our production-grade platform in action</p>
-                  <a 
-                    href="/data-room/demo"
-                    className={styles.viewButtonPrimary}
-                  >
-                    Launch Interactive Demo →
-                  </a>
-                </div>
-
-                <div className={styles.documentCard}>
                   <div className={styles.documentIcon}>▭</div>
                   <h3>Investor Pitch Deck</h3>
                   <p>Complete investor presentation including market analysis, product overview, and financial projections.</p>

@@ -325,6 +325,7 @@ const htmlContent = `
     <div class="callout">
       <h3>Understanding Our Revenue Timeline</h3>
       <p>We anticipate closing first sales contracts in <strong>Q4 2027</strong> (Year 2). However, following standard SaaS accounting practices, revenue is recognized upon service delivery. With typical NHS procurement and onboarding cycles (3-6 months), revenue recognition begins in <strong>Q1 2028</strong> (Year 3). This is why Year 2 shows contracts signed but £0 revenue — it's an accounting timing difference, not a lack of sales activity.</p>
+      <p style="margin-top: 12px;"><strong>Ancillary Revenue Streams:</strong> While the main diagnostic platform completes regulatory approval, we are generating revenue through ancillary services: (1) Outsourced diagnostic desk service (£1,000-£1,500 per case), (2) Treatment response tool (POC with The Christie), and (3) Treatment options calculator (POC with Royal Devon). These tools provide faster time-to-revenue and revenue diversification starting Q3 2027.</p>
     </div>
   </div>
 
@@ -389,9 +390,10 @@ const htmlContent = `
     
     <h3>Q3 2027</h3>
     <ul>
-      <li>Sales activities begin</li>
+      <li>Sales activities begin for main diagnostic platform</li>
       <li>NHS trust demos & presentations</li>
       <li>Contract negotiations start</li>
+      <li><strong>Ancillary revenue streams launch:</strong> Outsourced diagnostic desk service begins (target: 10-20 cases/month), Treatment response tool POC completion with The Christie</li>
       <li>Contracts Signed: 0 | Revenue: £0</li>
     </ul>
     
@@ -400,6 +402,8 @@ const htmlContent = `
       <li><strong>First contracts signed: 2-3 NHS trusts</strong></li>
       <li>Implementation planning begins</li>
       <li>Contract Value: £150k-£200k</li>
+      <li><strong>Treatment options calculator POC completion with Royal Devon</strong></li>
+      <li>Ancillary revenue streams: Diagnostic desk scaling, treatment tools in final POC phase</li>
       <li>Revenue Recognized: £0 (Revenue starts Q1 2028)</li>
     </ul>
     
@@ -619,6 +623,15 @@ const htmlContent = `
       <li>Diagnostic Labs: £100k-£200k/year</li>
       <li>Based on case volume & complexity</li>
     </ul>
+    
+    <h3>Ancillary Revenue Streams</h3>
+    <p style="margin-bottom: 12px;">While our core platform (main diagnostic tool) drives primary revenue, we are actively developing additional revenue streams through specialized tools and services:</p>
+    <ul>
+      <li><strong>Outsourced Diagnostic Desk:</strong> Premium diagnostic service for smaller NHS trusts and private hospitals. £1,000-£1,500 per case with 48-hour turnaround (vs. weeks at traditional centers). Target: 10-20 cases/month initially, scaling to £120k-£360k/year.</li>
+      <li><strong>Treatment Response Tool:</strong> Currently building POC for The Christie NHS Foundation Trust. Post-POC, this specialized tool will be licensed to NHS trusts for monitoring treatment efficacy. Expected launch: Q3-Q4 2027.</li>
+      <li><strong>Treatment Options Calculator:</strong> POC development for Royal Devon & Exeter NHS Trust. This decision-support tool helps clinicians evaluate treatment pathways. Expected launch: Q4 2027-Q1 2028.</li>
+    </ul>
+    <p style="margin-top: 12px; font-style: italic; color: #666666;">These ancillary revenue streams provide diversification and faster time-to-revenue while the main platform completes regulatory approval. Revenue from these tools is included in our projections from Q3 2027 onwards.</p>
   </div>
 
   <div class="footer">

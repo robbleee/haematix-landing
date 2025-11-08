@@ -501,23 +501,14 @@ export default function DataRoom() {
                   <div className={styles.documentIcon}>≡</div>
                   <h3>Financial Projections & Cash Flow</h3>
                   <p>Detailed quarterly cash flow analysis, burn rate projections, revenue timeline with specific dates, and 5-year financial roadmap.</p>
-                  <button 
-                    onClick={async () => {
-                      try {
-                        const response = await fetch('/api/generate-financials-pdf');
-                        const blob = await response.blob();
-                        const url = window.URL.createObjectURL(blob);
-                        window.open(url, '_blank');
-                        // Clean up after a delay to allow the PDF to load
-                        setTimeout(() => window.URL.revokeObjectURL(url), 1000);
-                      } catch (error) {
-                        console.error('Error opening PDF:', error);
-                      }
-                    }}
+                  <a 
+                    href="/Haemio-Financial-Projections.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={styles.viewButtonSecondary}
                   >
                     View PDF
-                  </button>
+                  </a>
                 </div>
 
                 <div className={styles.documentCard}>

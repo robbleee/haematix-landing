@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "src/app/api/generate-financials-pdf/route.js": {
+      "maxDuration": 30
+    }
+  }
+}
+

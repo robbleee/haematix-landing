@@ -2,13 +2,41 @@ import { NextResponse } from 'next/server';
 import puppeteer from 'puppeteer';
 
 export async function GET(request) {
+  let browser = null;
+  
   try {
-    const browser = await puppeteer.launch({
+    // Production-friendly Puppeteer configuration
+    const launchOptions = {
       headless: 'new',
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
-    });
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-accelerated-2d-canvas',
+        '--no-first-run',
+        '--no-zygote',
+        '--single-process', // Required for some serverless environments
+        '--disable-gpu'
+      ]
+    };
+
+    // Try to get Chrome executable path (works if Chrome was installed)
+    try {
+      const executablePath = puppeteer.executablePath();
+      if (executablePath) {
+        launchOptions.executablePath = executablePath;
+      }
+    } catch (e) {
+      // Chrome not found in default location, will try system Chrome
+      console.log('Chrome not found in Puppeteer cache, trying system Chrome...');
+    }
+
+    // Launch browser with production-friendly options
+    browser = await puppeteer.launch(launchOptions);
     
-    const page = await browser.newPage();
+    let page;
+    try {
+      page = await browser.newPage();
     
     // Set viewport for better rendering
     await page.setViewport({
@@ -658,19 +686,38 @@ export async function GET(request) {
       }
     });
 
-    await browser.close();
+      await browser.close();
 
-    return new NextResponse(pdfBuffer, {
-      headers: {
-        'Content-Type': 'application/pdf',
-        'Content-Disposition': 'attachment; filename="Haemio-Financial-Projections.pdf"',
-      },
-    });
+      return new NextResponse(pdfBuffer, {
+        headers: {
+          'Content-Type': 'application/pdf',
+          'Content-Disposition': 'attachment; filename="Haemio-Financial-Projections.pdf"',
+        },
+      });
+    } finally {
+      // Ensure browser is closed even if there's an error
+      if (browser) {
+        await browser.close().catch(() => {
+          // Ignore errors when closing
+        });
+      }
+    }
 
   } catch (error) {
     console.error('Error generating financial projections PDF:', error);
+    
+    // Provide helpful error message for Chrome installation issues
+    let errorMessage = error.message;
+    if (errorMessage.includes('Could not find Chrome') || errorMessage.includes('Chrome')) {
+      errorMessage = `Chrome browser not found. Please install Chrome in your production environment by running: npx puppeteer browsers install chrome. Original error: ${error.message}`;
+    }
+    
     return NextResponse.json(
-      { error: 'Failed to generate PDF', details: error.message },
+      { 
+        error: 'Failed to generate PDF', 
+        details: errorMessage,
+        hint: 'If deploying to Vercel/Railway/etc., you may need to install Chrome during build or use a different PDF generation method.'
+      },
       { status: 500 }
     );
   }

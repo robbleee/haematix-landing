@@ -196,7 +196,7 @@ const FlowchartDiagram = () => {
   return (
     <div className="diagramContainer" ref={diagramRef}>
 
-      <svg className="diagram" width="1500" height="620" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1500 620">
+      <svg className="diagram" width="1500" height="620" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1800 750">
         <defs>
           <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="8" refY="3.5" orient="auto" markerUnits="strokeWidth">
             <polygon points="0 0, 10 3.5, 0 7" className="arrowHead" />
@@ -253,7 +253,7 @@ const FlowchartDiagram = () => {
         /* Same CSS as before */
         .diagramContainer { position: relative; width: 100%; margin: 0 auto; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; padding-top: 10px; background-color: #f8f9fa; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.08), 0 0 15px rgba(0, 150, 136, 0.1); border: 1px solid rgba(0, 150, 136, 0.1); padding: 25px; overflow: auto; height: 85vh; }
         .diagramTitle { font-size: 18px; font-weight: 500; text-align: left; color: #00796b; margin: 0 0 20px; padding-bottom: 15px; border-bottom: 1px solid rgba(0, 150, 136, 0.15); }
-        .diagram { width: 100%; height: auto; display: block; min-width: 1500px; }
+        .diagram { width: 100%; height: auto; display: block; min-width: 1200px; }
         .node { cursor: pointer; transition: filter 0.2s ease-out; }
         .nodeRect { fill: white; stroke: #009688; stroke-width: 1.5; filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.1)); transition: fill 0.2s ease, stroke-width 0.2s ease, filter 0.2s ease, stroke 0.2s ease; }
         .hoverNode .nodeRect { fill: #e0f2f1; stroke: #00796b; stroke-width: 2; filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.15)) brightness(1.03); }

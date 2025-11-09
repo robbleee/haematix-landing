@@ -552,6 +552,20 @@ export default function DataRoom() {
                     View PDF
                   </a>
                 </div>
+
+                <div className={styles.documentCard}>
+                  <div className={styles.documentIcon}>▶</div>
+                  <h3>Live Platform Demo</h3>
+                  <p>Interactive demonstration of our MVP platform. Try sample patient reports or use your own anonymized data to see instant AI-powered diagnosis.</p>
+                  <div className={styles.documentActions}>
+                    <a 
+                      href="/data-room/demo"
+                      className={styles.viewButtonPrimary}
+                    >
+                      Try Live Demo
+                    </a>
+                  </div>
+                </div>
               </div>
 
               <div className={styles.sectionHeader}>

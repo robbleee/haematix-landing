@@ -11,9 +11,8 @@ export default function DemoPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [showCopyNotification, setShowCopyNotification] = useState(false);
 
-  // Demo token from environment variable
-  const DEMO_TOKEN = process.env.NEXT_PUBLIC_DEMO_TOKEN || 'haemio_investor_demo_2025_secure_key';
-  const DEMO_URL = process.env.NEXT_PUBLIC_DEMO_URL || 'https://haemio-demo-9496d49bba7c.herokuapp.com';
+  // Demo URL - updated to new Heroku deployment
+  const DEMO_URL = process.env.NEXT_PUBLIC_DEMO_URL || 'https://haem-io-frontend-e57ae17d6654.herokuapp.com';
 
   // Sample report data - real test cases
   const sampleReports = [
@@ -265,7 +264,7 @@ CD19/CD56: Negative`
           
           <div className={styles.iframeContainer}>
             <iframe
-              src={`${DEMO_URL}?token=${DEMO_TOKEN}&embed=true`}
+              src={`${DEMO_URL}?key=demo-key&embed=true`}
               className={styles.demoIframe}
               title="Haem.io Interactive Demo"
               sandbox="allow-scripts allow-same-origin allow-forms allow-downloads"

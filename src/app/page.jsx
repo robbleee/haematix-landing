@@ -47,9 +47,9 @@ export default function Home() {
             {/* Flow Diagram - Bottom */}
             <div className="flow-diagram-container" style={{
               width: '100%',
-              maxWidth: '1200px', // Increased to allow more space
+              maxWidth: '1000px', // Reduced from 1300px to 1000px
               margin: '0 auto',
-              transform: 'scale(0.6)', // Further reduced scale to zoom out and show more of the diagram
+              transform: 'scale(0.95)', // Reduced from 1.1 to 0.95
               transformOrigin: 'center top'
             }}>
               <InteractiveFlowDiagram />

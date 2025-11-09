@@ -460,13 +460,18 @@
   height: 700px;
   background: #f8f9fa;
   overflow: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .demoIframe {
-  width: 100%;
-  height: 100%;
+  width: 125%;
+  height: 125%;
   border: none;
   display: block;
+  transform: scale(0.8);
+  transform-origin: top center;
 }
 
 .iframeLoader {

@@ -498,6 +498,20 @@ export default function DataRoom() {
                 </div>
 
                 <div className={styles.documentCard}>
+                  <div className={styles.documentIcon}>£</div>
+                  <h3>Use of Funds</h3>
+                  <p>Detailed allocation of £750k seed investment across team, regulatory, pilots, and operations with 18-month timeline and milestone breakdown.</p>
+                  <a 
+                    href="/use-of-funds.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.viewButtonSecondary}
+                  >
+                    View PDF
+                  </a>
+                </div>
+
+                <div className={styles.documentCard}>
                   <div className={styles.documentIcon}>≡</div>
                   <h3>Financial Projections & Cash Flow</h3>
                   <p>Detailed quarterly cash flow analysis, burn rate projections, revenue timeline with specific dates, and 5-year financial roadmap.</p>
@@ -597,6 +611,15 @@ export default function DataRoom() {
                     View Letter
                   </a>
                 </div>
+              </div>
+
+              <div className={styles.lastUpdatedSection}>
+                <p className={styles.lastUpdatedText}>
+                  <strong>Last Updated:</strong> November 8, 2025
+                </p>
+                <p className={styles.lastUpdatedNote}>
+                  This data room is regularly updated with the latest materials. Documents reflect current company status, financial projections, and clinical partnerships.
+                </p>
               </div>
 
               <div className={styles.contactSection}>

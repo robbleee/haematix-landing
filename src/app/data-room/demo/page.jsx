@@ -274,18 +274,8 @@ CD19/CD56: Negative`
               <span className={styles.liveIndicator}></span>
               <span>Live Platform Demo (MVP)</span>
             </div>
-            <div className={styles.demoFrameActions}>
-              <a 
-                href={DEMO_FULL_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.openNewWindowButton}
-              >
-                Open in New Window ↗
-              </a>
-              <div className={styles.demoFrameInfo}>
-                MVP Version | Anonymized Data | Secure
-              </div>
+            <div className={styles.demoFrameInfo}>
+              MVP Version | Anonymized Data | Secure
             </div>
           </div>
           

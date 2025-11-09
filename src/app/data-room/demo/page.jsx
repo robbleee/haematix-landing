@@ -231,8 +231,8 @@ CD19/CD56: Negative`
         <div className={styles.demoHeader}>
           <div className={styles.headerContent}>
             <div className={styles.headerText}>
-              <h1>Live Platform Demo <span className={styles.mvpBadge}>MVP</span></h1>
-              <p><strong>This is our Minimum Viable Product (MVP)</strong> — a functional demonstration of our core technology, not the final product. Our acute myeloid leukemia and myelodysplasia diagnostic tool uses genetics and laboratory reports to accurately diagnose across WHO's 29 baseline AML subtypes (2,088 with essential qualifiers) and ICC's 52 subtypes (3,744 with qualifiers).</p>
+              <h1>Live Platform Demo <span className={styles.mvpBadge}>Production Alpha</span></h1>
+              <p><strong>This is our Production Alpha version</strong> — a fully functional diagnostic platform that diagnoses all subtypes of Acute Myeloid Leukemia (AML) and Myelodysplastic Syndromes (MDS) using over 100 genetic and clinical data points. Our platform integrates morphology, flow cytometry, cytogenetics, and molecular/genomic data to provide accurate diagnoses across WHO's 29 baseline AML subtypes (2,088 with essential qualifiers) and ICC's 52 subtypes (3,744 with qualifiers).</p>
               <p className={styles.headerNote}>Click a sample report below to copy and paste into the demo, or use your own anonymized patient reports to see instant AI-powered diagnosis with full guideline derivations.</p>
             </div>
             <div className={styles.sampleReportsCompact}>
@@ -272,10 +272,10 @@ CD19/CD56: Negative`
           <div className={styles.demoFrameHeader}>
             <div className={styles.demoFrameTitle}>
               <span className={styles.liveIndicator}></span>
-              <span>Live Platform Demo (MVP)</span>
+              <span>Live Platform Demo (Production Alpha)</span>
             </div>
             <div className={styles.demoFrameInfo}>
-              MVP Version | Anonymized Data | Secure
+              Production Alpha | All AML & MDS Subtypes | 100+ Data Points
             </div>
           </div>
           

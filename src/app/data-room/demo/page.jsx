@@ -15,7 +15,7 @@ export default function DemoPage() {
 
   // Demo URL - updated to new Heroku deployment
   const DEMO_URL = process.env.NEXT_PUBLIC_DEMO_URL || 'https://haem-io-frontend-e57ae17d6654.herokuapp.com';
-  const DEMO_FULL_URL = `${DEMO_URL}/data-entry`;
+  const DEMO_FULL_URL = `${DEMO_URL}/data-entry?key=demo-key`;
 
   // Sample report data - real test cases
   const sampleReports = [

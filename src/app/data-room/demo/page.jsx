@@ -10,9 +10,12 @@ export default function DemoPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [showCopyNotification, setShowCopyNotification] = useState(false);
+  const [iframeError, setIframeError] = useState(false);
+  const [iframeLoaded, setIframeLoaded] = useState(false);
 
   // Demo URL - updated to new Heroku deployment
   const DEMO_URL = process.env.NEXT_PUBLIC_DEMO_URL || 'https://haem-io-frontend-e57ae17d6654.herokuapp.com';
+  const DEMO_FULL_URL = `${DEMO_URL}/data-entry`;
 
   // Sample report data - real test cases
   const sampleReports = [
@@ -180,6 +183,20 @@ CD19/CD56: Negative`
     setIsLoading(false);
   }, [router]);
 
+  // Detect iframe load failures with timeout
+  useEffect(() => {
+    if (!isAuthenticated) return;
+    
+    const timeout = setTimeout(() => {
+      if (!iframeLoaded && !iframeError) {
+        // If iframe hasn't loaded after 10 seconds, show error
+        setIframeError(true);
+      }
+    }, 10000);
+
+    return () => clearTimeout(timeout);
+  }, [isAuthenticated, iframeLoaded, iframeError]);
+
   if (isLoading) {
     return (
       <div className={styles.loadingContainer}>
@@ -257,23 +274,72 @@ CD19/CD56: Negative`
               <span className={styles.liveIndicator}></span>
               <span>Live Platform Demo (MVP)</span>
             </div>
-            <div className={styles.demoFrameInfo}>
-              MVP Version | Anonymized Data | Secure
+            <div className={styles.demoFrameActions}>
+              <a 
+                href={DEMO_FULL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.openNewWindowButton}
+              >
+                Open in New Window ↗
+              </a>
+              <div className={styles.demoFrameInfo}>
+                MVP Version | Anonymized Data | Secure
+              </div>
             </div>
           </div>
           
           <div className={styles.iframeContainer}>
-            <iframe
-              src={`${DEMO_URL}?key=demo-key&embed=true`}
-              className={styles.demoIframe}
-              title="Haem.io Interactive Demo"
-              sandbox="allow-scripts allow-same-origin allow-forms allow-downloads"
-              loading="lazy"
-            />
-            <div className={styles.iframeLoader}>
-              <div className={styles.loader}></div>
-              <p>Loading demo environment...</p>
-            </div>
+            {iframeError ? (
+              <div className={styles.iframeError}>
+                <div className={styles.errorIcon}>⚠️</div>
+                <h3>Unable to load demo in embedded view</h3>
+                <p>The demo application cannot be embedded due to security restrictions. Please open it in a new window.</p>
+                <a 
+                  href={DEMO_FULL_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.openDemoButton}
+                >
+                  Open Demo in New Window →
+                </a>
+              </div>
+            ) : (
+              <>
+                <iframe
+                  src={DEMO_FULL_URL}
+                  className={styles.demoIframe}
+                  title="Haem.io Interactive Demo"
+                  sandbox="allow-scripts allow-same-origin allow-forms allow-downloads allow-popups allow-popups-to-escape-sandbox"
+                  loading="lazy"
+                  onLoad={() => {
+                    setIframeLoaded(true);
+                    setIframeError(false);
+                  }}
+                  onError={() => {
+                    setIframeError(true);
+                    setIframeLoaded(false);
+                  }}
+                />
+                {!iframeLoaded && !iframeError && (
+                  <div className={styles.iframeLoader}>
+                    <div className={styles.loader}></div>
+                    <p>Loading demo environment...</p>
+                    <p className={styles.loaderFallback}>
+                      Having trouble?{' '}
+                      <a 
+                        href={DEMO_FULL_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.loaderLink}
+                      >
+                        Open in new window
+                      </a>
+                    </p>
+                  </div>
+                )}
+              </>
+            )}
           </div>
         </div>
 

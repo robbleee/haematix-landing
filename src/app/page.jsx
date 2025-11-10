@@ -26,21 +26,144 @@ export default function Home() {
             {/* Hero Content - Top */}
             <div className={styles.heroContent} style={{
               width: '100%',
-              maxWidth: '700px',
+              maxWidth: '900px',
               textAlign: 'center'
             }}>
-              <h1 style={{ fontSize: '2.8rem', fontWeight: 'bold', marginBottom: '1rem' }}>
-                {/* Ensure .text-gradient class is defined in your CSS */}
-                <span className="text-gradient">Haem.io</span>
+              <h1 style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '1rem', lineHeight: '1.2' }}>
+                Diagnose All AML & MDS Subtypes<br />
+                <span className="text-gradient" style={{ fontSize: '2.5rem' }}>in Minutes, Not Days</span>
               </h1>
-              <p style={{ fontSize: '1.2rem', margin: '0 auto 1.5rem', lineHeight: '1.6', maxWidth: '42rem', color: '#4a5568' }}>
-                AI-powered diagnostic system for precise classification of haematologic disorders according to WHO 2022 and ICC 2022 guidelines, enabling more accurate treatment decisions.
+              <p style={{ fontSize: '1.3rem', margin: '0 auto 1.5rem', lineHeight: '1.7', maxWidth: '48rem', color: '#4a5568', fontWeight: '400' }}>
+                AI-powered platform integrating <strong>100+ genetic and clinical data points</strong> for WHO 2022 & ICC 2022 compliant diagnosis. Production Alpha version now deployed with NHS validation.
               </p>
-              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginBottom: '0.5rem' }}>
-                {/* Add :hover styles in CSS */}
+              
+              {/* Trust Badges */}
+              <div style={{ 
+                display: 'flex', 
+                gap: '1rem', 
+                justifyContent: 'center', 
+                flexWrap: 'wrap',
+                marginBottom: '2rem'
+              }}>
+                <div style={{
+                  padding: '0.5rem 1rem',
+                  backgroundColor: '#e8f5e9',
+                  borderRadius: '20px',
+                  fontSize: '0.875rem',
+                  fontWeight: '600',
+                  color: '#2e7d32',
+                  border: '1px solid #c8e6c9'
+                }}>
+                  ✓ NHS Validated
+                </div>
+                <div style={{
+                  padding: '0.5rem 1rem',
+                  backgroundColor: '#e3f2fd',
+                  borderRadius: '20px',
+                  fontSize: '0.875rem',
+                  fontWeight: '600',
+                  color: '#1976d2',
+                  border: '1px solid #bbdefb'
+                }}>
+                  Production Alpha
+                </div>
+                <div style={{
+                  padding: '0.5rem 1rem',
+                  backgroundColor: '#fff3e0',
+                  borderRadius: '20px',
+                  fontSize: '0.875rem',
+                  fontWeight: '600',
+                  color: '#f57c00',
+                  border: '1px solid #ffe0b2'
+                }}>
+                  UKCA Pending
+                </div>
+              </div>
 
-                {/* Link to document section */}
+              {/* Key Metrics */}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+                gap: '1.5rem',
+                maxWidth: '600px',
+                margin: '0 auto 2rem',
+                padding: '1.5rem',
+                backgroundColor: 'white',
+                borderRadius: '12px',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.08)'
+              }}>
+                <div>
+                  <div style={{ fontSize: '1.75rem', fontWeight: '700', color: '#009688', marginBottom: '0.25rem' }}>
+                    All AML & MDS
+                  </div>
+                  <div style={{ fontSize: '0.875rem', color: '#666' }}>Subtypes</div>
+                </div>
+                <div>
+                  <div style={{ fontSize: '1.75rem', fontWeight: '700', color: '#009688', marginBottom: '0.25rem' }}>
+                    100+
+                  </div>
+                  <div style={{ fontSize: '0.875rem', color: '#666' }}>Data Points</div>
+                </div>
+                <div>
+                  <div style={{ fontSize: '1.75rem', fontWeight: '700', color: '#009688', marginBottom: '0.25rem' }}>
+                    4 NHS
+                  </div>
+                  <div style={{ fontSize: '0.875rem', color: '#666' }}>Pilot Sites</div>
+                </div>
+              </div>
 
+              {/* CTA Buttons */}
+              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '1rem' }}>
+                <a 
+                  href="/contact" 
+                  className="button"
+                  style={{
+                    padding: '1rem 2rem',
+                    fontSize: '1.1rem',
+                    fontWeight: '600',
+                    backgroundColor: '#009688',
+                    color: 'white',
+                    borderRadius: '8px',
+                    textDecoration: 'none',
+                    transition: 'all 0.3s ease',
+                    boxShadow: '0 4px 12px rgba(0, 150, 136, 0.3)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 150, 136, 0.4)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 150, 136, 0.3)';
+                  }}
+                >
+                  Request Demo
+                </a>
+                <a 
+                  href="/data-room" 
+                  className="button"
+                  style={{
+                    padding: '1rem 2rem',
+                    fontSize: '1.1rem',
+                    fontWeight: '600',
+                    backgroundColor: 'white',
+                    color: '#009688',
+                    borderRadius: '8px',
+                    textDecoration: 'none',
+                    border: '2px solid #009688',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#f0fdf4';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'white';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                  }}
+                >
+                  Investor Access
+                </a>
               </div>
             </div>
 
@@ -54,6 +177,144 @@ export default function Home() {
             }}>
               <InteractiveFlowDiagram />
               {/* Removed the redundant "View Detailed Flow Diagram" button */}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Social Proof Section */}
+      <section style={{
+        backgroundColor: 'white',
+        padding: '4rem 0',
+        borderTop: '1px solid rgba(0, 150, 136, 0.1)'
+      }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <h2 style={{
+              fontSize: '2rem',
+              fontWeight: '700',
+              marginBottom: '1rem',
+              color: '#00695c'
+            }}>
+              Trusted by Leading NHS Trusts
+            </h2>
+            <p style={{ fontSize: '1.1rem', color: '#666', maxWidth: '700px', margin: '0 auto' }}>
+              Validated through clinical partnerships and pilot programmes across the UK
+            </p>
+          </div>
+
+          {/* NHS Partners */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '2rem',
+            marginBottom: '3rem',
+            maxWidth: '900px',
+            marginLeft: 'auto',
+            marginRight: 'auto'
+          }}>
+            <div style={{
+              padding: '1.5rem',
+              backgroundColor: '#f8f9fa',
+              borderRadius: '12px',
+              textAlign: 'center',
+              border: '1px solid #e0e0e0'
+            }}>
+              <div style={{ fontSize: '1.1rem', fontWeight: '600', color: '#00695c', marginBottom: '0.5rem' }}>
+                The Christie NHS
+              </div>
+              <div style={{ fontSize: '0.875rem', color: '#666' }}>Foundation Trust</div>
+            </div>
+            <div style={{
+              padding: '1.5rem',
+              backgroundColor: '#f8f9fa',
+              borderRadius: '12px',
+              textAlign: 'center',
+              border: '1px solid #e0e0e0'
+            }}>
+              <div style={{ fontSize: '1.1rem', fontWeight: '600', color: '#00695c', marginBottom: '0.5rem' }}>
+                Royal Devon & Exeter
+              </div>
+              <div style={{ fontSize: '0.875rem', color: '#666' }}>NHS Foundation Trust</div>
+            </div>
+            <div style={{
+              padding: '1.5rem',
+              backgroundColor: '#f8f9fa',
+              borderRadius: '12px',
+              textAlign: 'center',
+              border: '1px solid #e0e0e0'
+            }}>
+              <div style={{ fontSize: '1.1rem', fontWeight: '600', color: '#00695c', marginBottom: '0.5rem' }}>
+                Manchester Foundation
+              </div>
+              <div style={{ fontSize: '0.875rem', color: '#666' }}>NHS Trust</div>
+            </div>
+            <div style={{
+              padding: '1.5rem',
+              backgroundColor: '#f8f9fa',
+              borderRadius: '12px',
+              textAlign: 'center',
+              border: '1px solid #e0e0e0'
+            }}>
+              <div style={{ fontSize: '1.1rem', fontWeight: '600', color: '#00695c', marginBottom: '0.5rem' }}>
+                UK AML Research
+              </div>
+              <div style={{ fontSize: '0.875rem', color: '#666' }}>Network</div>
+            </div>
+          </div>
+
+          {/* Key Statistics */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+            gap: '2rem',
+            maxWidth: '1000px',
+            margin: '0 auto'
+          }}>
+            <div style={{
+              padding: '2rem',
+              backgroundColor: '#e8f5e9',
+              borderRadius: '12px',
+              textAlign: 'center',
+              border: '2px solid #c8e6c9'
+            }}>
+              <div style={{ fontSize: '2.5rem', fontWeight: '700', color: '#2e7d32', marginBottom: '0.5rem' }}>
+                4 NHS
+              </div>
+              <div style={{ fontSize: '1.1rem', fontWeight: '600', color: '#00695c', marginBottom: '0.25rem' }}>
+                Pilot Sites
+              </div>
+              <div style={{ fontSize: '0.9rem', color: '#666' }}>Active clinical validation</div>
+            </div>
+            <div style={{
+              padding: '2rem',
+              backgroundColor: '#e3f2fd',
+              borderRadius: '12px',
+              textAlign: 'center',
+              border: '2px solid #bbdefb'
+            }}>
+              <div style={{ fontSize: '2.5rem', fontWeight: '700', color: '#1976d2', marginBottom: '0.5rem' }}>
+                £7M
+              </div>
+              <div style={{ fontSize: '1.1rem', fontWeight: '600', color: '#00695c', marginBottom: '0.25rem' }}>
+                Grant LOI
+              </div>
+              <div style={{ fontSize: '0.9rem', color: '#666' }}>Research funding secured</div>
+            </div>
+            <div style={{
+              padding: '2rem',
+              backgroundColor: '#fff3e0',
+              borderRadius: '12px',
+              textAlign: 'center',
+              border: '2px solid #ffe0b2'
+            }}>
+              <div style={{ fontSize: '2.5rem', fontWeight: '700', color: '#f57c00', marginBottom: '0.5rem' }}>
+                Production
+              </div>
+              <div style={{ fontSize: '1.1rem', fontWeight: '600', color: '#00695c', marginBottom: '0.25rem' }}>
+                Alpha Deployed
+              </div>
+              <div style={{ fontSize: '0.9rem', color: '#666' }}>Fully functional platform</div>
             </div>
           </div>
         </div>
@@ -206,11 +467,59 @@ export default function Home() {
       {/* Features Section */}
       <section id="features" style={{
         backgroundColor: 'white',
-        padding: '5rem 0 3rem', // Keep reduced bottom padding
+        padding: '5rem 0 3rem',
         position: 'relative',
         borderTop: '1px solid rgba(0, 150, 136, 0.1)'
       }}>
         <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <h2 style={{
+              fontSize: '2.25rem',
+              fontWeight: 'bold',
+              marginBottom: '1rem',
+              color: '#009688'
+            }}>Why Haem.io?</h2>
+
+            <div style={{
+              maxWidth: '800px',
+              margin: '0 auto 2rem',
+              padding: '2rem',
+              backgroundColor: '#fff3e0',
+              borderRadius: '12px',
+              borderLeft: '4px solid #f57c00',
+              textAlign: 'left'
+            }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '1rem', color: '#f57c00' }}>
+                The Problem
+              </h3>
+              <p style={{ fontSize: '1rem', lineHeight: '1.7', color: '#333', marginBottom: '0' }}>
+                Current diagnostic processes take <strong>weeks</strong>, require multiple specialists, 
+                and risk misclassification due to the complexity of integrating genetics, cytogenetics, 
+                morphology, and flow cytometry data. Clinicians struggle to keep up with rapidly evolving 
+                WHO 2022 and ICC 2022 classification guidelines.
+              </p>
+            </div>
+
+            <div style={{
+              maxWidth: '800px',
+              margin: '0 auto 2rem',
+              padding: '2rem',
+              backgroundColor: '#e8f5e9',
+              borderRadius: '12px',
+              borderLeft: '4px solid #2e7d32',
+              textAlign: 'left'
+            }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '1rem', color: '#2e7d32' }}>
+                Our Solution
+              </h3>
+              <p style={{ fontSize: '1rem', lineHeight: '1.7', color: '#333', marginBottom: '0' }}>
+                Haem.io integrates <strong>all data sources</strong> for instant, accurate diagnosis. 
+                Our AI-powered platform reduces diagnosis time from weeks to minutes, eliminates classification 
+                errors with automated validation, and ensures compliance with the latest WHO 2022 & ICC 2022 guidelines.
+              </p>
+            </div>
+          </div>
+
           <h2 style={{
             fontSize: '2.25rem',
             fontWeight: 'bold',
@@ -223,7 +532,7 @@ export default function Home() {
             fontSize: '1.1rem',
             textAlign: 'center',
             maxWidth: '650px',
-            margin: '0 auto 3.5rem', // Space below subheading
+            margin: '0 auto 3.5rem',
             color: '#4a5568',
             lineHeight: '1.6'
           }}>
@@ -605,6 +914,223 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Statistics Section */}
+      <section style={{
+        backgroundColor: '#f8f9fa',
+        padding: '4rem 0',
+        borderTop: '1px solid rgba(0, 150, 136, 0.1)'
+      }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <h2 style={{
+              fontSize: '2.25rem',
+              fontWeight: '700',
+              marginBottom: '1rem',
+              color: '#00695c'
+            }}>
+              Platform Capabilities
+            </h2>
+            <p style={{ fontSize: '1.1rem', color: '#666', maxWidth: '700px', margin: '0 auto' }}>
+              Comprehensive coverage of haematologic malignancies with advanced diagnostic capabilities
+            </p>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '2rem',
+            maxWidth: '1000px',
+            margin: '0 auto'
+          }}>
+            <div style={{
+              padding: '2rem',
+              backgroundColor: 'white',
+              borderRadius: '12px',
+              border: '2px solid #009688',
+              textAlign: 'center'
+            }}>
+              <div style={{ fontSize: '2.5rem', fontWeight: '700', color: '#009688', marginBottom: '0.5rem' }}>
+                All 29 WHO
+              </div>
+              <div style={{ fontSize: '1.1rem', fontWeight: '600', color: '#00695c', marginBottom: '0.5rem' }}>
+                AML Subtypes
+              </div>
+              <div style={{ fontSize: '0.9rem', color: '#666' }}>
+                2,088 with essential qualifiers
+              </div>
+            </div>
+            <div style={{
+              padding: '2rem',
+              backgroundColor: 'white',
+              borderRadius: '12px',
+              border: '2px solid #009688',
+              textAlign: 'center'
+            }}>
+              <div style={{ fontSize: '2.5rem', fontWeight: '700', color: '#009688', marginBottom: '0.5rem' }}>
+                52 ICC
+              </div>
+              <div style={{ fontSize: '1.1rem', fontWeight: '600', color: '#00695c', marginBottom: '0.5rem' }}>
+                MDS Subtypes
+              </div>
+              <div style={{ fontSize: '0.9rem', color: '#666' }}>
+                3,744 with qualifiers
+              </div>
+            </div>
+            <div style={{
+              padding: '2rem',
+              backgroundColor: 'white',
+              borderRadius: '12px',
+              border: '2px solid #009688',
+              textAlign: 'center'
+            }}>
+              <div style={{ fontSize: '2.5rem', fontWeight: '700', color: '#009688', marginBottom: '0.5rem' }}>
+                100+
+              </div>
+              <div style={{ fontSize: '1.1rem', fontWeight: '600', color: '#00695c', marginBottom: '0.5rem' }}>
+                Data Points
+              </div>
+              <div style={{ fontSize: '0.9rem', color: '#666' }}>
+                Genetic & clinical integration
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Investor Path Section */}
+      <section style={{
+        backgroundColor: '#f0fdf4',
+        padding: '4rem 0',
+        borderTop: '2px solid #009688',
+        borderBottom: '2px solid #009688'
+      }}>
+        <div className="container">
+          <div style={{
+            maxWidth: '900px',
+            margin: '0 auto',
+            textAlign: 'center'
+          }}>
+            <h2 style={{
+              fontSize: '2.5rem',
+              fontWeight: '700',
+              marginBottom: '1rem',
+              color: '#00695c'
+            }}>
+              For Investors
+            </h2>
+            <p style={{
+              fontSize: '1.2rem',
+              color: '#37474f',
+              lineHeight: '1.7',
+              marginBottom: '2rem'
+            }}>
+              Join us in transforming haematology diagnostics. We're raising £750k seed round to reach UKCA certification and first NHS sales.
+            </p>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+              gap: '2rem',
+              marginBottom: '2.5rem'
+            }}>
+              <div style={{
+                padding: '1.5rem',
+                backgroundColor: 'white',
+                borderRadius: '12px',
+                border: '2px solid #009688'
+              }}>
+                <div style={{ fontSize: '1.5rem', fontWeight: '700', color: '#009688', marginBottom: '0.5rem' }}>
+                  £750k
+                </div>
+                <div style={{ fontSize: '1rem', fontWeight: '600', color: '#00695c', marginBottom: '0.25rem' }}>
+                  Seed Round
+                </div>
+                <div style={{ fontSize: '0.9rem', color: '#666' }}>18-month runway</div>
+              </div>
+              <div style={{
+                padding: '1.5rem',
+                backgroundColor: 'white',
+                borderRadius: '12px',
+                border: '2px solid #009688'
+              }}>
+                <div style={{ fontSize: '1.5rem', fontWeight: '700', color: '#009688', marginBottom: '0.5rem' }}>
+                  Q2 2027
+                </div>
+                <div style={{ fontSize: '1rem', fontWeight: '600', color: '#00695c', marginBottom: '0.25rem' }}>
+                  Series A Ready
+                </div>
+                <div style={{ fontSize: '0.9rem', color: '#666' }}>Post-UKCA certification</div>
+              </div>
+              <div style={{
+                padding: '1.5rem',
+                backgroundColor: 'white',
+                borderRadius: '12px',
+                border: '2px solid #009688'
+              }}>
+                <div style={{ fontSize: '1.5rem', fontWeight: '700', color: '#009688', marginBottom: '0.5rem' }}>
+                  4 NHS
+                </div>
+                <div style={{ fontSize: '1rem', fontWeight: '600', color: '#00695c', marginBottom: '0.25rem' }}>
+                  Pilot Sites
+                </div>
+                <div style={{ fontSize: '0.9rem', color: '#666' }}>Clinical validation</div>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <a 
+                href="/data-room"
+                style={{
+                  padding: '1rem 2rem',
+                  fontSize: '1.1rem',
+                  fontWeight: '600',
+                  backgroundColor: '#009688',
+                  color: 'white',
+                  borderRadius: '8px',
+                  textDecoration: 'none',
+                  transition: 'all 0.3s ease',
+                  boxShadow: '0 4px 12px rgba(0, 150, 136, 0.3)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 150, 136, 0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 150, 136, 0.3)';
+                }}
+              >
+                Access Data Room
+              </a>
+              <a 
+                href="/investors"
+                style={{
+                  padding: '1rem 2rem',
+                  fontSize: '1.1rem',
+                  fontWeight: '600',
+                  backgroundColor: 'white',
+                  color: '#009688',
+                  borderRadius: '8px',
+                  textDecoration: 'none',
+                  border: '2px solid #009688',
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#f0fdf4';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'white';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                View Pitch Deck
+              </a>
             </div>
           </div>
         </div>

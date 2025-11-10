@@ -36,11 +36,14 @@ export default function RootLayout({ children }) {
             
             {/* Desktop Navigation */}
             <nav>
-              <ul style={{ display: 'flex', gap: '1.5rem', listStyle: 'none', margin: 0, padding: 0 }}>
-                <li><Link href="/" style={{ textDecoration: 'none' }}>Home</Link></li>
-                <li><Link href="/vision" style={{ textDecoration: 'none' }}>Our Vision</Link></li>
-                <li><Link href="/roadmap" style={{ textDecoration: 'none' }}>Roadmap</Link></li>
-                <li><a className="button" href="https://app.haem.io/" target="_blank" rel="noopener noreferrer">Login</a></li>
+              <ul style={{ display: 'flex', gap: '1.5rem', listStyle: 'none', margin: 0, padding: 0, alignItems: 'center' }}>
+                <li><Link href="/" style={{ textDecoration: 'none', color: '#333', fontWeight: '500' }}>Home</Link></li>
+                <li><Link href="/vision" style={{ textDecoration: 'none', color: '#333', fontWeight: '500' }}>Our Vision</Link></li>
+                <li><Link href="/roadmap" style={{ textDecoration: 'none', color: '#333', fontWeight: '500' }}>Roadmap</Link></li>
+                <li><Link href="/about" style={{ textDecoration: 'none', color: '#333', fontWeight: '500' }}>About</Link></li>
+                <li><Link href="/contact" style={{ textDecoration: 'none', color: '#333', fontWeight: '500' }}>Contact</Link></li>
+                <li><Link href="/data-room" style={{ textDecoration: 'none', color: '#009688', fontWeight: '600' }}>For Investors</Link></li>
+                <li><a className="button" href="https://app.haem.io/" target="_blank" rel="noopener noreferrer" style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}>Login</a></li>
               </ul>
             </nav>
 

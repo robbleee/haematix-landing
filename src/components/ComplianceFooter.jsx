@@ -31,7 +31,9 @@ export default function ComplianceFooter() {
     { title: 'Home', href: '/' },
     { title: 'Our Vision', href: '/vision' },
     { title: 'Roadmap', href: '/roadmap' },
-    { title: 'Testing Suite', href: '/testing-stats' },
+    { title: 'About', href: '/about' },
+    { title: 'Contact', href: '/contact' },
+    { title: 'For Investors', href: '/data-room' },
     { title: 'App Login', href: 'https://app.haem.io/', external: true }
   ];
 
@@ -52,6 +54,13 @@ export default function ComplianceFooter() {
                 <a href="mailto:robert.lee@haem.io" className={styles.link}>
                  robert.lee@haem.io
                 </a>
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>Company:</strong><br />
+                HAEMIO LTD<br />
+                Company Number: 16528517<br />
+                73 Meliden Road, Prestatyn<br />
+                LL19 8RH, United Kingdom
               </p>
             </div>
           </div>

@@ -489,6 +489,28 @@ export default function Home() {
               </p>
             </div>
           </div>
+
+          {/* Framework Statement */}
+          <div style={{
+            maxWidth: '900px',
+            margin: '4rem auto 0',
+            padding: '2.5rem',
+            background: 'linear-gradient(135deg, #ffffff 0%, #e0f2f1 100%)',
+            borderRadius: '20px',
+            border: '2px solid #009688',
+            boxShadow: '0 8px 30px rgba(0, 150, 136, 0.15)',
+            textAlign: 'center'
+          }}>
+            <p style={{
+              fontSize: '1.25rem',
+              color: '#00695c',
+              lineHeight: '1.8',
+              fontWeight: '500',
+              margin: 0
+            }}>
+              AI-powered diagnostic system for precise classification of haematologic disorders according to WHO 2022 and ICC 2022 guidelines, enabling more accurate treatment decisions.
+            </p>
+          </div>
         </div>
       </section>
     </>

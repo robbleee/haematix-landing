@@ -143,29 +143,6 @@ button:hover, .button:hover {
   .mobile-flow-section {
     display: block !important;
   }
-
-  /* Mobile hero optimizations */
-  h1 {
-    font-size: 2rem !important;
-    line-height: 1.2 !important;
-  }
-
-  /* Mobile CTA buttons */
-  .button {
-    width: 100%;
-    margin-bottom: 0.5rem;
-  }
-
-  /* Mobile trust badges */
-  .trust-badges {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* Mobile metrics grid */
-  .metrics-grid {
-    grid-template-columns: 1fr !important;
-  }
 }
 
 section {

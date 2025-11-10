@@ -37,15 +37,6 @@ export default function MobileNav() {
           <li style={{ padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
             <Link href="/roadmap" style={{ textDecoration: 'none', display: 'block' }} onClick={closeMenu}>Roadmap</Link>
           </li>
-          <li style={{ padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
-            <Link href="/about" style={{ textDecoration: 'none', display: 'block' }} onClick={closeMenu}>About</Link>
-          </li>
-          <li style={{ padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
-            <Link href="/contact" style={{ textDecoration: 'none', display: 'block' }} onClick={closeMenu}>Contact</Link>
-          </li>
-          <li style={{ padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
-            <Link href="/data-room" style={{ textDecoration: 'none', display: 'block', color: '#009688', fontWeight: '600' }} onClick={closeMenu}>For Investors</Link>
-          </li>
           <li style={{ padding: '0.75rem 0' }}>
             <a className="button" href="https://app.haem.io/" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', width: '100%', textAlign: 'center' }}>Login</a>
           </li>

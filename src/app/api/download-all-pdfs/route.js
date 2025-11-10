@@ -15,6 +15,7 @@ export async function GET(request) {
       { path: 'traction-and-market-opportunity.pdf', name: 'Traction-and-Market-Opportunity.pdf' },
       { path: 'use-of-funds.pdf', name: 'Use-of-Funds.pdf' },
       { path: 'regulatory-strategy-and-pathway.pdf', name: 'Regulatory-Strategy-and-Pathway.pdf' },
+      { path: 'ppie-strategy.pdf', name: 'PPIE-Strategy.pdf' },
       { path: 'Haemio-Financial-Projections.pdf', name: 'Haemio-Financial-Projections.pdf' },
       { path: 'Charles-craddock-LOI.pdf', name: 'Letters-of-Support/Letter-Prof-Charles-Craddock.pdf' },
       { path: 'John-chadwick-LOS-christie.pdf', name: 'Letters-of-Support/Letter-Dr-John-Chadwick.pdf' },

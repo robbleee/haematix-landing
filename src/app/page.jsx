@@ -1,61 +1,60 @@
 'use client';
 
-import { Suspense } from 'react';
-import dynamic from 'next/dynamic';
+// Keep your original import
 import InteractiveFlowDiagram from '../components/InteractiveFlowDiagram';
 import styles from './page.module.css';
-
-// Dynamically import HeroAnimation to avoid SSR issues
-const HeroAnimation = dynamic(() => import('../components/HeroAnimation'), {
-  ssr: false,
-  loading: () => <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, #004d40 0%, #00251a 100%)' }} />
-});
 
 export default function Home() {
   return (
     <>
-      {/* New Three.js Animated Hero Section */}
-      <section className={styles.heroContainer}>
-        {/* Three.js Animation Background */}
-        <div className={styles.heroAnimation}>
-          <Suspense fallback={<div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, #004d40 0%, #00251a 100%)' }} />}>
-            <HeroAnimation />
-          </Suspense>
-        </div>
-
-        {/* Hero Text Overlay */}
-        <div className={styles.heroOverlay}>
-          <div className={styles.heroText}>
-            <h1 className={styles.heroTitle}>
-              The Future Framework of Complex Medical Decision Making
-            </h1>
-            <div className={styles.conceptBadges}>
-              <span className={styles.badge}>Hybrid AI</span>
-              <span className={styles.badge}>Human-in-the-Loop</span>
-              <span className={styles.badge}>Just-in-Time Information</span>
-            </div>
-            <p className={styles.heroDescription}>
-              Transforming haematology diagnosis through intelligent synthesis of over 100 genetic and clinical data points. Our production alpha platform seamlessly integrates AI-powered analysis with expert clinical validation, delivering precise WHO 2022 and ICC 2022 compliant classifications exactly when they're needed—enabling faster, more accurate treatment decisions for all AML and MDS subtypes.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Flow Diagram Section - Moved Down */}
-      <section className={styles.flowDiagramSection}>
+      {/* Hero Section with Flow Diagram */}
+      <section className={styles.hero} style={{
+        paddingTop: '6.5rem',
+        paddingBottom: '3rem',
+        backgroundColor: '#f8f9fa', // Source Background Color
+        boxShadow: '0 4px 12px -6px rgba(0,0,0,0.1)',
+        position: 'relative',
+        zIndex: 1
+      }}>
         <div className="container">
-          <h2 className={styles.flowDiagramTitle}>How It Works: End-to-End Diagnostic Flow</h2>
-          <p className={styles.flowDiagramSubtitle}>
-            Comprehensive workflow from data input to clinical decision support
-          </p>
-          <div className="flow-diagram-container" style={{
-            width: '100%',
-            maxWidth: '1200px',
-            margin: '0 auto',
-            transform: 'scale(0.6)',
-            transformOrigin: 'center top'
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '4.5rem'
           }}>
-            <InteractiveFlowDiagram />
+            {/* Hero Content - Top */}
+            <div className={styles.heroContent} style={{
+              width: '100%',
+              maxWidth: '700px',
+              textAlign: 'center'
+            }}>
+              <h1 style={{ fontSize: '2.8rem', fontWeight: 'bold', marginBottom: '1rem' }}>
+                {/* Ensure .text-gradient class is defined in your CSS */}
+                <span className="text-gradient">Haem.io</span>
+              </h1>
+              <p style={{ fontSize: '1.2rem', margin: '0 auto 1.5rem', lineHeight: '1.6', maxWidth: '42rem', color: '#4a5568' }}>
+                AI-powered diagnostic system for precise classification of haematologic disorders according to WHO 2022 and ICC 2022 guidelines, enabling more accurate treatment decisions.
+              </p>
+              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginBottom: '0.5rem' }}>
+                {/* Add :hover styles in CSS */}
+
+                {/* Link to document section */}
+
+              </div>
+            </div>
+
+            {/* Flow Diagram - Bottom */}
+            <div className="flow-diagram-container" style={{
+              width: '100%',
+              maxWidth: '1000px', // Reduced from 1300px to 1000px
+              margin: '0 auto',
+              transform: 'scale(0.95)', // Reduced from 1.1 to 0.95
+              transformOrigin: 'center top'
+            }}>
+              <InteractiveFlowDiagram />
+              {/* Removed the redundant "View Detailed Flow Diagram" button */}
+            </div>
           </div>
         </div>
       </section>

@@ -501,6 +501,15 @@ export default function Home() {
             boxShadow: '0 8px 30px rgba(0, 150, 136, 0.15)',
             textAlign: 'center'
           }}>
+            <h3 style={{
+              fontSize: '1.75rem',
+              fontWeight: '700',
+              color: '#009688',
+              marginBottom: '1rem',
+              marginTop: 0
+            }}>
+              Haem.io
+            </h3>
             <p style={{
               fontSize: '1.25rem',
               color: '#00695c',
@@ -508,7 +517,7 @@ export default function Home() {
               fontWeight: '500',
               margin: 0
             }}>
-              AI-powered diagnostic system for precise classification of haematologic disorders according to WHO and ICC guidelines, enabling more accurate treatment decisions.
+              AI-powered diagnostic system for precise classification of haematologic disorders, enabling more accurate treatment decisions.
             </p>
           </div>
         </div>

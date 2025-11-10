@@ -508,7 +508,7 @@ export default function Home() {
               fontWeight: '500',
               margin: 0
             }}>
-              AI-powered diagnostic system for precise classification of haematologic disorders according to WHO 2022 and ICC 2022 guidelines, enabling more accurate treatment decisions.
+              AI-powered diagnostic system for precise classification of haematologic disorders according to WHO and ICC guidelines, enabling more accurate treatment decisions.
             </p>
           </div>
         </div>

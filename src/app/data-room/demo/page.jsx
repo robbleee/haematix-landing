@@ -12,6 +12,7 @@ export default function DemoPage() {
   const [showCopyNotification, setShowCopyNotification] = useState(false);
   const [iframeError, setIframeError] = useState(false);
   const [iframeLoaded, setIframeLoaded] = useState(false);
+  const [dataRoomSource, setDataRoomSource] = useState('/data-room'); // Track which data room user came from
 
   // Demo URL - updated to new Heroku deployment
   const DEMO_URL = process.env.NEXT_PUBLIC_DEMO_URL || 'https://haem-io-frontend-e57ae17d6654.herokuapp.com';
@@ -170,15 +171,31 @@ CD19/CD56: Negative`
   };
 
   useEffect(() => {
-    // Check if user is authenticated
-    const passwordCorrect = sessionStorage.getItem('dataroom_password_correct');
-    const ndaAccepted = sessionStorage.getItem('dataroom_nda_accepted');
+    // Check if user is authenticated from either data room
+    const investorPasswordCorrect = sessionStorage.getItem('dataroom_password_correct');
+    const investorNdaAccepted = sessionStorage.getItem('dataroom_nda_accepted');
+    const lhsPasswordCorrect = sessionStorage.getItem('lhs_password_correct');
+    const lhsNdaAccepted = sessionStorage.getItem('lhs_nda_accepted');
     
-    if (passwordCorrect === 'true' && ndaAccepted === 'true') {
+    const isInvestorAuthenticated = investorPasswordCorrect === 'true' && investorNdaAccepted === 'true';
+    const isLhsAuthenticated = lhsPasswordCorrect === 'true' && lhsNdaAccepted === 'true';
+    
+    if (isInvestorAuthenticated || isLhsAuthenticated) {
       setIsAuthenticated(true);
+      // Set the back button destination based on which data room authenticated
+      if (isLhsAuthenticated) {
+        setDataRoomSource('/global-access-initiative');
+      } else {
+        setDataRoomSource('/data-room');
+      }
     } else {
-      // Redirect back to data room login
-      router.push('/data-room');
+      // Redirect back to appropriate data room login
+      // Try to determine which one they might have been using
+      if (lhsPasswordCorrect === 'true' || lhsNdaAccepted === 'true') {
+        router.push('/global-access-initiative');
+      } else {
+        router.push('/data-room');
+      }
     }
     setIsLoading(false);
   }, [router]);
@@ -211,8 +228,8 @@ CD19/CD56: Negative`
 
   return (
     <div className={styles.demoContainer}>
-      <Link href="/data-room" className={styles.backButton}>
-        ← Back to Data Room
+      <Link href={dataRoomSource} className={styles.backButton}>
+        ← Back to {dataRoomSource === '/global-access-initiative' ? 'Global Access Initiative' : 'Data Room'}
       </Link>
 
       <div className={styles.demoContent}>

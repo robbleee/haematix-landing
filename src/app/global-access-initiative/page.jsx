@@ -471,7 +471,7 @@ export default function GlobalAccessInitiative() {
                   <h3>Impact Strategy</h3>
                   <p>Detailed plan for LME country validation studies, impact metrics, and scaling model. Includes proposed geographic priorities and timeline.</p>
                   <a 
-                    href="/traction-and-market-opportunity.pdf"
+                    href="/global-access-impact-strategy.pdf?v=2025"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={styles.viewButtonSecondary}
@@ -485,7 +485,7 @@ export default function GlobalAccessInitiative() {
                   <h3>Platform Overview</h3>
                   <p>Technical overview of the Haem.io diagnostic platform, including AI extraction capabilities, classification systems, and regulatory pathway.</p>
                   <a 
-                    href="/regulatory-strategy-and-pathway.pdf"
+                    href="/global-access-platform-overview.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={styles.viewButtonSecondary}
@@ -520,20 +520,6 @@ export default function GlobalAccessInitiative() {
                       Try Live Demo
                     </a>
                   </div>
-                </div>
-
-                <div className={styles.documentCard}>
-                  <div className={styles.documentIcon}>📈</div>
-                  <h3>Market Opportunity</h3>
-                  <p>Overview of global blood cancer diagnosis challenges, with particular focus on LME countries where specialist expertise is limited or unavailable.</p>
-                  <a 
-                    href="/traction-and-market-opportunity.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.viewButtonSecondary}
-                  >
-                    View PDF
-                  </a>
                 </div>
               </div>
 
@@ -602,6 +588,10 @@ export default function GlobalAccessInitiative() {
                   <div className={styles.partnershipItem}>
                     <h4>Founding Partner Recognition</h4>
                     <p>Love Hope Strength will be permanently recognized as the Founding Partner of the Haem.io Global Access Initiative, with prominent acknowledgment in all materials, reports, and communications.</p>
+                  </div>
+                  <div className={styles.partnershipItem}>
+                    <h4>Governance & Board Representation</h4>
+                    <p>As Founding Partner, Love Hope Strength will have a full board seat on the Global Access Initiative CIC, ensuring direct governance and strategic input into the initiative's direction and impact.</p>
                   </div>
                   <div className={styles.partnershipItem}>
                     <h4>Legacy Elements</h4>

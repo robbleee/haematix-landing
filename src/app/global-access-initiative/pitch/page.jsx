@@ -74,6 +74,14 @@ export default function PartnershipPitchPage() {
               </p>
             </div>
             <div className={styles.structureCard}>
+              <h4>Governance & Board Representation</h4>
+              <p>
+                As Founding Partner, Love Hope Strength will have a full board seat on the Global Access Initiative 
+                CIC, ensuring direct governance and strategic input into the initiative's direction and impact. 
+                This provides meaningful, lasting involvement in shaping the legacy you're helping to create.
+              </p>
+            </div>
+            <div className={styles.structureCard}>
               <h4>Legacy Elements</h4>
               <p>
                 The initiative will include named elements honoring Love Hope Strength's contribution, including 
@@ -128,7 +136,7 @@ export default function PartnershipPitchPage() {
           <p>
             We're excited to discuss how Love Hope Strength can create a lasting legacy through the Haem.io 
             Global Access Initiative. Your founding gift would establish a permanent fund that grows with our 
-            commercial success, ensuring ongoing impact long after your active fundraising winds down.
+            commercial success, ensuring ongoing impact for years to come.
           </p>
           <div className={styles.contactBox}>
             <p><strong>Contact:</strong> <a href="mailto:robert.lee@haem.io">robert.lee@haem.io</a></p>

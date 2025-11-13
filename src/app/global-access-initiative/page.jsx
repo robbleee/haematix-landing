@@ -226,14 +226,6 @@ export default function GlobalAccessInitiative() {
                 <h1 className={styles.logo}>Haem.io</h1>
                 <p className={styles.tagline}>Global Access Initiative</p>
               </div>
-              <div className={styles.foundingPartnerSection}>
-                <img 
-                  src="/LoveHopeStrength-3255431655.png" 
-                  alt="Love Hope Strength" 
-                  className={styles.lhsLogo}
-                />
-                <p className={styles.foundingPartner}>Founding Partner</p>
-              </div>
             </div>
 
             {!showAccessRequest ? (

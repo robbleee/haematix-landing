@@ -483,6 +483,20 @@ export default function DataRoom() {
                   </div>
                 </div>
 
+                <div className={`${styles.documentCard} ${styles.featuredCard}`}>
+                  <div className={styles.documentIcon}>▶</div>
+                  <h3>Live Platform Demo</h3>
+                  <p>Interactive demonstration of our MVP platform. Try sample patient reports or use your own anonymized data to see instant AI-powered diagnosis.</p>
+                  <div className={styles.documentActions}>
+                    <a 
+                      href="/data-room/demo"
+                      className={styles.viewButtonPrimary}
+                    >
+                      Try Live Demo
+                    </a>
+                  </div>
+                </div>
+
                 <div className={styles.documentCard}>
                   <div className={styles.documentIcon}>◉</div>
                   <h3>Investment Summary</h3>
@@ -554,6 +568,20 @@ export default function DataRoom() {
                 </div>
 
                 <div className={styles.documentCard}>
+                  <div className={styles.documentIcon}>⚙</div>
+                  <h3>Technical Overview</h3>
+                  <p>Comprehensive technical documentation of the haem.io AML/MDS classifier, including AI components, classification algorithms, safety features, and regulatory positioning for Class 1 medical device registration.</p>
+                  <a 
+                    href="/technical-overview.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.viewButtonSecondary}
+                  >
+                    View PDF
+                  </a>
+                </div>
+
+                <div className={styles.documentCard}>
                   <div className={styles.documentIcon}>👥</div>
                   <h3>PPIE Strategy</h3>
                   <p>Patient and Public Involvement strategy outlining our approach to engaging patients, public, and charities in research design and delivery.</p>
@@ -565,20 +593,6 @@ export default function DataRoom() {
                   >
                     View PDF
                   </a>
-                </div>
-
-                <div className={styles.documentCard}>
-                  <div className={styles.documentIcon}>▶</div>
-                  <h3>Live Platform Demo</h3>
-                  <p>Interactive demonstration of our MVP platform. Try sample patient reports or use your own anonymized data to see instant AI-powered diagnosis.</p>
-                  <div className={styles.documentActions}>
-                    <a 
-                      href="/data-room/demo"
-                      className={styles.viewButtonPrimary}
-                    >
-                      Try Live Demo
-                    </a>
-                  </div>
                 </div>
               </div>
 

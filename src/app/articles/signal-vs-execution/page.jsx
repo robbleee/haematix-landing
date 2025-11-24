@@ -2,6 +2,7 @@ import styles from './article.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import ArchitectureFlowchart from '../../../components/ArchitectureFlowchart';
+import ClinicalFlowDiagram from '../../../components/ClinicalFlowDiagram';
 
 export const metadata = {
   title: 'The Architecture of Certainty | Haem.io',
@@ -179,6 +180,9 @@ export default function SignalVsExecutionPage() {
               We are building this architecture at <span className="text-gradient">Haem.io</span>.
             </p>
           </div>
+
+          {/* Clinical Flow Diagram */}
+          <ClinicalFlowDiagram />
 
         </article>
       </div>

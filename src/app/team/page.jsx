@@ -10,8 +10,8 @@ const teamMembers = [
     title: 'CEO & Co-Founder',
     image: '/profile-pics/robbie.png',
     bio: [
-      "Robert graduated from the University of Manchester with a BSc in Computer Science and has a background in FinTech, working on algorithmic trading platforms at the London Stock Exchange Group and FlexTrade.",
-      "He co-founded Haem.io with Dr. John Burthem and Dr. Luke Carter-Brzezinski, contributing to the initial concept for the platform's hybrid AI framework."
+      "Robert graduated from the University of Manchester with a BSc in Computer Science. After being diagnosed with Burkitt's Lymphoma at 19, he built his career in FinTech at the London Stock Exchange Group and FlexTrade, where he worked on managing and integrating algorithmic trading systems.",
+      "Drawing on this technical background, Robert developed the initial concept for Haem.io's hybrid AI framework that combines AI-driven data extraction with a deterministic logic engine. He co-developed the platform with Dr. John Burthem."
     ]
   },
   {

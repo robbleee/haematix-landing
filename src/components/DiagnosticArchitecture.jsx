@@ -89,3 +89,4 @@ const DiagnosticArchitecture = () => {
 
 export default DiagnosticArchitecture;
 
+

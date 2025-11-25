@@ -9,6 +9,16 @@ export const metadata = {
 
 const articles = [
   {
+    id: 'version-control-of-medicine',
+    category: 'Clinical Systems',
+    title: 'The Version Control of Medicine',
+    excerpt: 'The Complexity Crisis in Haematological Classification and the Case for Executable Diagnostic Logic.',
+    author: 'Robert Lee',
+    authorImage: '/profile-pics/robbie.png',
+    date: 'November 25, 2025',
+    slug: '/articles/version-control-of-medicine'
+  },
+  {
     id: 'signal-vs-execution',
     category: 'Engineering Architecture',
     title: 'The Architecture of Certainty',

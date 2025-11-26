@@ -55,7 +55,7 @@ export default function VersionControlOfMedicinePage() {
             <h3 id="architecture-of-diagnosis">The Architecture of Diagnosis</h3>
 
             <p>
-              The practice of modern haematology stands at a precipice. For decades, the discipline operated on a traditional framework of morphological observation—defining disease by what cells looked like under a microscope. This system was stable, visually intuitive, and compatible with the limits of human cognition. However, the genomic revolution has forced a fundamental restructuring of this entire architecture. We have transitioned from a phenotype-based system to a genotype-based system, where the definition of a leukemia is no longer determined solely by the percentage of blast cells in the marrow, but by the presence of specific driver mutations, translocations, and molecular signatures.<sup><a href="#ref1" className={styles.citation}>1</a></sup>
+              The practice of modern haematology stands at a precipice. For decades, the discipline operated on a traditional framework of morphological observation—defining disease by what cells looked like under a microscope. This system was stable, visually intuitive, and compatible with the limits of human cognition. However, the genomic revolution has forced a fundamental restructuring of this entire architecture. We have transitioned from a phenotype-based system to a genotype-based system, where the definition of a leukaemia is no longer determined solely by the percentage of blast cells in the marrow, but by the presence of specific driver mutations, translocations, and molecular signatures.<sup><a href="#ref1" className={styles.citation}>1</a></sup>
             </p>
 
             <p>

@@ -63,7 +63,7 @@ export default function VersionControlOfMedicinePage() {
             </p>
 
             <p>
-              This report argues that medical guidelines are no longer literature to be read; they are logic to be executed. The diagnostic criteria for Acute Myeloid Leukemia (AML) and Myelodysplastic Syndromes (MDS) have evolved into complex algorithmic decision trees. Yet, the healthcare system attempts to run these algorithms through the limited working memory of overwhelmed clinicians, leading to cognitive overload, diagnostic drift, and discordance.<sup><a href="#ref5" className={styles.citation}>5</a></sup>
+              This report argues that medical guidelines are no longer literature to be read; they are logic to be executed. The diagnostic criteria for Acute Myeloid Leukaemia (AML) and Myelodysplastic Syndromes (MDS) have evolved into complex algorithmic decision trees. Yet, the healthcare system attempts to run these algorithms through the limited working memory of overwhelmed clinicians, leading to cognitive overload, diagnostic drift, and discordance.<sup><a href="#ref5" className={styles.citation}>5</a></sup>
             </p>
 
             <p>
@@ -77,7 +77,7 @@ export default function VersionControlOfMedicinePage() {
             <h3 id="morphology-legacy">1.1 The Morphology Legacy: Visual Constants and Integer Logic</h3>
 
             <p>
-              Historically, the classification of myeloid neoplasms relied on a simple, integer-based constant: the blast count. The foundational logic, cemented in the French-American-British (FAB) classifications and early WHO editions, established a rigid threshold. If the bone marrow contained ≥20% myeloblasts, the system returned a diagnosis of Acute Myeloid Leukemia (AML). If the count was &lt;20%, the system returned Myelodysplastic Syndrome (MDS).<sup><a href="#ref1" className={styles.citation}>1</a></sup> This &quot;20% Rule&quot; acted as the primary conditional statement in the diagnostic algorithm. It was an arbitrary biological cutoff, but it served an essential function: it reduced dimensionality. A pathologist did not need to know the full genomic landscape to render a decision; they only needed to count cells. This system was robust because it was low-complexity. It relied on &quot;Morphology&quot;—the visual phenotype of the disease.<sup><a href="#ref1" className={styles.citation}>1</a></sup>
+              Historically, the classification of myeloid neoplasms relied on a simple, integer-based constant: the blast count. The foundational logic, cemented in the French-American-British (FAB) classifications and early WHO editions, established a rigid threshold. If the bone marrow contained ≥20% myeloblasts, the system returned a diagnosis of Acute Myeloid Leukaemia (AML). If the count was &lt;20%, the system returned Myelodysplastic Syndrome (MDS).<sup><a href="#ref1" className={styles.citation}>1</a></sup> This &quot;20% Rule&quot; acted as the primary conditional statement in the diagnostic algorithm. It was an arbitrary biological cutoff, but it served an essential function: it reduced dimensionality. A pathologist did not need to know the full genomic landscape to render a decision; they only needed to count cells. This system was robust because it was low-complexity. It relied on &quot;Morphology&quot;—the visual phenotype of the disease.<sup><a href="#ref1" className={styles.citation}>1</a></sup>
             </p>
 
             <p>
@@ -95,7 +95,7 @@ export default function VersionControlOfMedicinePage() {
             </p>
 
             <p>
-              The WHO 2022 classification explicitly eliminates the 20% blast requirement for AML diagnosis if specific &quot;defining genetic abnormalities&quot; are present.<sup><a href="#ref1" className={styles.citation}>1</a></sup> These include <em>PML::RARA</em> fusions (Acute Promyelocytic Leukemia), <em>RUNX1::RUNX1T1</em>, <em>CBFB::MYH11</em>, and crucially, <em>NPM1</em> mutations. If a patient harbors an <em>NPM1</em> mutation, the WHO 2022 logic dictates a diagnosis of AML regardless of whether the blast count is 5%, 12%, or 90%.<sup><a href="#ref3" className={styles.citation}>3</a></sup> The logic engine asserts that the presence of the driver mutation defines the entity, not the downstream cellular proliferation. This effectively renders the blast count variable obsolete for this specific subclass of patients.
+              The WHO 2022 classification explicitly eliminates the 20% blast requirement for AML diagnosis if specific &quot;defining genetic abnormalities&quot; are present.<sup><a href="#ref1" className={styles.citation}>1</a></sup> These include <em>PML::RARA</em> fusions (Acute Promyelocytic Leukaemia), <em>RUNX1::RUNX1T1</em>, <em>CBFB::MYH11</em>, and crucially, <em>NPM1</em> mutations. If a patient harbors an <em>NPM1</em> mutation, the WHO 2022 logic dictates a diagnosis of AML regardless of whether the blast count is 5%, 12%, or 90%.<sup><a href="#ref3" className={styles.citation}>3</a></sup> The logic engine asserts that the presence of the driver mutation defines the entity, not the downstream cellular proliferation. This effectively renders the blast count variable obsolete for this specific subclass of patients.
             </p>
 
             <p>
@@ -109,7 +109,7 @@ export default function VersionControlOfMedicinePage() {
             <h3 id="divergence">1.3 The Divergence: WHO 2022 vs. ICC 2022</h3>
 
             <p>
-              The simultaneous publication of the WHO 5th Edition and the ICC 2022 represents a &quot;Critical Divergence&quot; in the version control of haematology. Just as two standards might split, the definition of &quot;Leukemia&quot; has split. This divergence introduces significant &quot;clinical liability&quot; into the healthcare system. A patient presenting with 15% blasts and an <em>NPM1</em> mutation now exists in a state of diagnostic uncertainty.
+              The simultaneous publication of the WHO 5th Edition and the ICC 2022 represents a &quot;Critical Divergence&quot; in the version control of haematology. Just as two standards might split, the definition of &quot;Leukaemia&quot; has split. This divergence introduces significant &quot;clinical liability&quot; into the healthcare system. A patient presenting with 15% blasts and an <em>NPM1</em> mutation now exists in a state of diagnostic uncertainty.
             </p>
 
             <p>
@@ -176,7 +176,7 @@ export default function VersionControlOfMedicinePage() {
               <li><strong>Input:</strong> <em>NPM1</em> Mutation Positive.</li>
               <li><strong>Rule:</strong> AML with <em>NPM1</em> mutation is defined by the mutation, irrespective of blast count.</li>
               <li><strong>Logic:</strong> Override_Blast_Threshold = True.</li>
-              <li><strong>Output:</strong> <strong>Acute Myeloid Leukemia (AML) with NPM1 mutation</strong>.<sup><a href="#ref1" className={styles.citation}>1</a></sup></li>
+              <li><strong>Output:</strong> <strong>Acute Myeloid Leukaemia (AML) with NPM1 mutation</strong>.<sup><a href="#ref1" className={styles.citation}>1</a></sup></li>
             </ul>
 
             <p>
@@ -210,7 +210,7 @@ export default function VersionControlOfMedicinePage() {
             </ul>
 
             <p>
-              Here, the divergence is stark. The same biological entity is labeled &quot;Leukemia&quot; by one system and &quot;Syndrome&quot; by another. This is &quot;Diagnostic Drift&quot; in action. The ICC&apos;s refusal to fully abandon the blast count creates a &quot;border zone&quot; where classification is ambiguous. This ambiguity can delay treatment, confuse patients, and complicate clinical trial enrollment. A patient with 9% blasts might be excluded from an &quot;AML&quot; trial if the trial uses ICC criteria, even though they have the exact same <em>NPM1</em> mutation as a patient with 80% blasts.
+              Here, the divergence is stark. The same biological entity is labeled &quot;Leukaemia&quot; by one system and &quot;Syndrome&quot; by another. This is &quot;Diagnostic Drift&quot; in action. The ICC&apos;s refusal to fully abandon the blast count creates a &quot;border zone&quot; where classification is ambiguous. This ambiguity can delay treatment, confuse patients, and complicate clinical trial enrollment. A patient with 9% blasts might be excluded from an &quot;AML&quot; trial if the trial uses ICC criteria, even though they have the exact same <em>NPM1</em> mutation as a patient with 80% blasts.
             </p>
 
             <h3 id="logic-visualization">2.5 The Logic Visualization: A Comparative Table</h3>
@@ -267,7 +267,7 @@ export default function VersionControlOfMedicinePage() {
             </p>
 
             <p>
-              This discrepancy creates a massive data integrity problem. A patient diagnosed in a hospital using WHO 2022 guidelines is coded as a &quot;Leukemia&quot; patient. The same patient in a hospital using ICC guidelines might be coded as &quot;MDS.&quot; This affects cancer registry data, clinical trial eligibility, and insurance reimbursement codes.<sup><a href="#ref16" className={styles.citation}>16</a></sup> It fundamentally breaks the &quot;version control&quot; of medical data, making it impossible to compare cohorts across institutions without complex data normalization. This is where a Logic Engine becomes indispensable: it can act as a &quot;translator,&quot; mapping patients to the correct diagnostic bucket based on the specific ruleset required for a given purpose.
+              This discrepancy creates a massive data integrity problem. A patient diagnosed in a hospital using WHO 2022 guidelines is coded as a &quot;Leukaemia&quot; patient. The same patient in a hospital using ICC guidelines might be coded as &quot;MDS.&quot; This affects cancer registry data, clinical trial eligibility, and insurance reimbursement codes.<sup><a href="#ref16" className={styles.citation}>16</a></sup> It fundamentally breaks the &quot;version control&quot; of medical data, making it impossible to compare cohorts across institutions without complex data normalization. This is where a Logic Engine becomes indispensable: it can act as a &quot;translator,&quot; mapping patients to the correct diagnostic bucket based on the specific ruleset required for a given purpose.
             </p>
 
             <hr />

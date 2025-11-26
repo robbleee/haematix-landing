@@ -11,6 +11,7 @@ const articles = [
   {
     id: 'version-control-of-medicine',
     category: 'Clinical Systems',
+    categoryColor: '#10b981', // Emerald green
     title: 'The Version Control of Medicine',
     excerpt: 'The Complexity Crisis in Haematological Classification and the Case for Executable Diagnostic Logic.',
     author: 'Robert Lee',
@@ -21,6 +22,7 @@ const articles = [
   {
     id: 'signal-vs-execution',
     category: 'Engineering Architecture',
+    categoryColor: '#3b82f6', // Blue
     title: 'The Architecture of Certainty',
     excerpt: 'What Clinical AI can learn from Algorithmic Trading. Why probability is excellent for discovery, but dangerous for execution.',
     author: 'Robert Lee',
@@ -41,7 +43,10 @@ export default function ArticlesPage() {
         <div className={styles.timeline}>
           {articles.map((article) => (
             <Link key={article.id} href={article.slug} className={styles.articleLink}>
-              <div className={styles.articleCard}>
+              <div 
+                className={styles.articleCard}
+                style={{ borderLeftColor: article.categoryColor }}
+              >
                 <div className={styles.cardHeader}>
                   <Image 
                     src={article.authorImage} 
@@ -56,7 +61,12 @@ export default function ArticlesPage() {
                   </div>
                 </div>
 
-                <div className={styles.category}>{article.category}</div>
+                <div 
+                  className={styles.category}
+                  style={{ backgroundColor: article.categoryColor }}
+                >
+                  {article.category}
+                </div>
                 
                 <h2 className={styles.title}>{article.title}</h2>
                 

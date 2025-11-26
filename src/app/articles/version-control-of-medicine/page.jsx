@@ -2,6 +2,7 @@ import styles from './article.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import SidebarNav from './SidebarNav';
+import CitationHandler from './CitationHandler';
 
 export const metadata = {
   title: 'The Version Control of Medicine | Haem.io',
@@ -11,9 +12,7 @@ export const metadata = {
 export default function VersionControlOfMedicinePage() {
   return (
     <div className={styles.articleContainer}>
-      <Link href="/articles" className={styles.backButton}>
-        ← Back to Articles
-      </Link>
+      <CitationHandler />
 
       <div className={styles.articleContent}>
         <SidebarNav />
@@ -588,9 +587,9 @@ export default function VersionControlOfMedicinePage() {
               </tbody>
             </table>
 
-            <h3>Works cited</h3>
+            <h3 id="works-cited">Works cited</h3>
 
-            <ol style={{ fontSize: '0.9rem', lineHeight: '1.6' }}>
+            <ol style={{ fontSize: '0.9rem', lineHeight: '1.6' }} className={styles.bibliography}>
               <li id="ref1">Comparative Analysis of AML Classification Systems: Evaluating the WHO, ICC, and ELN Frameworks and Their Distinctions - NIH, accessed on November 24, 2025, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11352995/" target="_blank" rel="noopener noreferrer">https://pmc.ncbi.nlm.nih.gov/articles/PMC11352995/</a></li>
               <li id="ref2">What&apos;s new in AML Classification (WHO 2022 vs International Consensus… - College of American Pathologists, accessed on November 24, 2025, <a href="https://www.cap.org/member-resources/articles/whats-new-in-aml-classification-who-2022-vs-international-consensus-classification" target="_blank" rel="noopener noreferrer">https://www.cap.org/member-resources/articles/whats-new-in-aml-classification-who-2022-vs-international-consensus-classification</a></li>
               <li id="ref3">What is new in acute myeloid leukemia classification? - PMC - NIH, accessed on November 24, 2025, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11016528/" target="_blank" rel="noopener noreferrer">https://pmc.ncbi.nlm.nih.gov/articles/PMC11016528/</a></li>

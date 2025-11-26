@@ -4,13 +4,15 @@ import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
+import rehypeSlug from 'rehype-slug';
 import 'github-markdown-css/github-markdown-light.css';
 
 export default function MarkdownRenderer({ 
   documentPath, 
   title, 
   description,
-  loadingText = "Loading document..." 
+  loadingText = "Loading document...",
+  customComponents = {} 
 }) {
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(true);
@@ -85,8 +87,12 @@ export default function MarkdownRenderer({
     }}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
-        rehypePlugins={[rehypeRaw]}
+        rehypePlugins={[rehypeRaw, rehypeSlug]}
         components={{
+          h1: ({node, ...props}) => <h1 style={{ color: '#009688' }} {...props} />,
+          h2: ({node, ...props}) => <h2 style={{ color: '#009688' }} {...props} />,
+          h3: ({node, ...props}) => <h3 style={{ color: '#009688' }} {...props} />,
+          h4: ({node, ...props}) => <h4 style={{ color: '#009688' }} {...props} />,
           table: ({node, ...props}) => (
             <table style={{ 
               width: '100%', 
@@ -110,7 +116,8 @@ export default function MarkdownRenderer({
               borderBottom: '1px solid #d0d7de',
               verticalAlign: 'top'
             }} {...props} />
-          )
+          ),
+          ...customComponents
         }}
       >
         {content}
@@ -124,4 +131,4 @@ export default function MarkdownRenderer({
       `}</style>
     </div>
   );
-} 
+}

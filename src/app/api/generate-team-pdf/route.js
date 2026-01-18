@@ -4,15 +4,15 @@ import { jsPDF } from 'jspdf';
 const teamMembers = [
   {
     name: "Robert Lee",
-    title: "CEO & Co-Founder",
+    title: "Project Lead",
     bio: [
-      "Robert leads company strategy, IP, and regulatory affairs. After being diagnosed with Burkitt's Lymphoma at 19, he graduated from the University of Manchester with a BSc in Computer Science and built his career in FinTech at the London Stock Exchange Group and FlexTrade, where he specialised in building and testing high-frequency algorithmic trading platforms.",
-      "Drawing on this technical background, Robert developed the initial concept for Haem.io's novel hybrid AI framework that combines AI-driven data extraction with a deterministic logic engine. He brought this concept to Dr. John Burthem, and together with Dr. Luke Carter-Brzezinski and the technical team, they developed the platform into the production-grade system it is today. Robert manages the company's intellectual property portfolio and oversees the regulatory pathway to UKCA/CE marking as a Class IIa medical device."
+      "Robert leads software development, regulatory strategy, and research coordination. After being diagnosed with Burkitt's Lymphoma at 19, he graduated from the University of Manchester with a BSc in Computer Science and built his career in FinTech at the London Stock Exchange Group and FlexTrade, where he specialised in building and testing high-frequency algorithmic trading platforms.",
+      "Drawing on this technical background, Robert developed the initial concept for Haem.io's novel hybrid AI framework that combines AI-driven data extraction with a deterministic logic engine. He brought this concept to Dr. John Burthem, and together with Dr. Luke Carter-Brzezinski and the technical team, they developed the platform into the production-grade system it is today. Robert manages the project's intellectual property portfolio and oversees the regulatory pathway to UKCA/CE marking as a Class IIa medical device."
     ]
   },
   {
     name: "Dr. Daniel Clarke",
-    title: "CTO & Co-Founder",
+    title: "Technical Lead",
     bio: [
       "Dr. Clarke leads the technical architecture and data science strategy for Haem.io. He holds both a Master's degree and a PhD in Physics from the University of Manchester, where his research at CERN focused on analysing complex data from large-scale international experiments.",
       "Following his PhD, Dr. Clarke joined the UK Civil Service as a statistician, where he applied AI and data science to support high-frequency government decision-making. He has extensive experience in building scalable, production-ready solutions on cloud platforms to extract actionable insights from complex datasets.",
@@ -21,20 +21,20 @@ const teamMembers = [
   },
   {
     name: "Dr. John Burthem",
-    title: "Co-CMO & Co-Founder",
+    title: "Principal Clinical Investigator",
     bio: [
       "Dr. Burthem is a Fellow of the Royal College of Pathologists (UK) and a Fellow of the Royal College of Physicians (UK), bringing decades of clinical leadership as a senior NHS consultant at Manchester Foundation Trust (MFT).",
       "He leads the Regional Diagnostic Service for Haematological Malignancies in Manchester, one of the UK's foremost specialist centres. With over 50 peer-reviewed publications, he is a nationally recognised expert in the field.",
-      "Dr. Burthem has extensive experience in managing large research projects and IT-based commercial partnerships, including work with UK NEQAS, where he leads the digital Special Advisory Group. As a co-inventor of Haem.io's clinical logic, his deep domain expertise and extensive national network are foundational to the company's credibility and go-to-market strategy."
+      "Dr. Burthem has extensive experience in managing large research projects and IT-based partnerships, including work with UK NEQAS, where he leads the digital Special Advisory Group. As a co-inventor of Haem.io's clinical logic, his deep domain expertise and extensive national network are foundational to the project's clinical validation and dissemination strategy."
     ]
   },
   {
     name: "Dr. Luke Carter-Brzezinski",
-    title: "Co-CMO & Co-Founder",
+    title: "Clinical Co-Investigator",
     bio: [
       "Dr. Carter-Brzezinski is a Consultant Haematologist at MFT's Regional Diagnostic Service and a Fellow of the Royal College of Pathologists. His experience spans a Diagnostic Fellowship in Haematology at Manchester and clinical roles across the UK, giving him a deep, practical understanding of the day-to-day challenges of patient care and diagnostics.",
       "Dr. Carter-Brzezinski provides the critical link between Haem.io's technology and the end-user clinician. His active clinical practice ensures the platform is built to solve real-world workflow problems.",
-      "He has leveraged his national and international roles within the British Society of Haematology to lead the initial presentations of Haem.io to the UK's key opinion leaders, successfully establishing strong relationships with collaborators, industry partners, and funding bodies."
+      "He has leveraged his national and international roles within the British Society of Haematology to lead the initial presentations of Haem.io to the UK's key opinion leaders, establishing strong relationships with collaborators and research partners."
     ]
   }
 ];
@@ -59,7 +59,7 @@ export async function GET() {
     
     doc.setFontSize(14);
     doc.setFont(undefined, 'normal');
-    doc.text('The Founding Team', margin, 25);
+    doc.text('The Research Team', margin, 25);
 
     yPosition = 50;
 
@@ -118,7 +118,7 @@ export async function GET() {
     return new NextResponse(pdfBuffer, {
       headers: {
         'Content-Type': 'application/pdf',
-        'Content-Disposition': 'attachment; filename="Haemio-Founding-Team.pdf"',
+        'Content-Disposition': 'attachment; filename="Haemio-Research-Team.pdf"',
       },
     });
 

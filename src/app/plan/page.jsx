@@ -723,7 +723,7 @@ export default function PlanPage() {
             <h2 className={styles.sectionTitle}>Key Success Factors</h2>
             
             <div className={styles.subsection}>
-              <h3 className={styles.subsectionTitle}>Leverage Co-Founder Network</h3>
+              <h3 className={styles.subsectionTitle}>Leverage Research Network</h3>
               <ul className={styles.fundingBreakdown}>
                 <li><strong>Immediate Credibility:</strong> Use haematologist co-founders' reputations for initial NHS access</li>
                 <li><strong>Clinical Validation:</strong> Ensure clinical oversight of all validation studies</li>

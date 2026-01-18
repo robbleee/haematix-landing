@@ -653,8 +653,8 @@ const pitchSlides = [
               </div>
               <div className={styles.memberInfo}>
                 <h3>Robert Edward Lee</h3>
-                <h4>Founder</h4>
-                <p>Background in Computer Science & FinTech AI. Driving the business vision.</p>
+                <h4>Project Lead</h4>
+                <p>Background in Computer Science & FinTech AI. Leading research coordination.</p>
               </div>
             </div>
             
@@ -664,7 +664,7 @@ const pitchSlides = [
               </div>
               <div className={styles.memberInfo}>
                 <h3>Dr. Daniel Clarke</h3>
-                <h4>Data and analytics lead</h4>
+                <h4>Technical Lead</h4>
                 <p>PhD in Nuclear Physics from CERN. Leading technology and platform architecture.</p>
               </div>
             </div>
@@ -675,7 +675,7 @@ const pitchSlides = [
               </div>
               <div className={styles.memberInfo}>
                 <h3>Dr. John Burthem</h3>
-                <h4>Co-CMO</h4>
+                <h4>Principal Clinical Investigator</h4>
                 <p>Lead Haematology Diagnostician at Manchester Foundation Trust. Overseeing clinical validation and pilot deployment strategy.</p>
               </div>
             </div>
@@ -686,7 +686,7 @@ const pitchSlides = [
               </div>
               <div className={styles.memberInfo}>
                 <h3>Dr. Luke Carter-Brzezinski</h3>
-                <h4>Co-CMO</h4>
+                <h4>Clinical Co-Investigator</h4>
                 <p>Practising haematologist providing essential domain expertise and overseeing clinical strategy and validation.</p>
               </div>
             </div>
@@ -748,7 +748,7 @@ const pitchSlides = [
                 <div className={styles.fundColor} style={{background: '#4f46e5'}}></div>
                 <div className={styles.fundDetails}>
                   <div className={styles.fundName}>Development Team (18 months)</div>
-                  <div className={styles.fundDescription}>Founder/Engineer, Compliance Officer, Clinical Lead</div>
+                  <div className={styles.fundDescription}>Project Lead/Engineer, Compliance Officer, Clinical Lead</div>
                 </div>
                 <div className={styles.fundAmount}>£360k</div>
                 <div className={styles.fundPercent}>48%</div>

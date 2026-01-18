@@ -96,7 +96,7 @@ export default function FinancialsPage() {
             <div className={styles.quarterCard}>
               <h4>Q1 2026</h4>
               <div className={styles.quarterMilestones}>
-                <div className={styles.milestone}>• Founder salaries begin</div>
+                <div className={styles.milestone}>• Team salaries begin</div>
                 <div className={styles.milestone}>• Compliance Officer hiring</div>
                 <div className={styles.milestone}>• Regulatory strategy finalization</div>
               </div>

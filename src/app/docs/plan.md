@@ -404,7 +404,7 @@ This comprehensive action plan outlines the pathway from current development sta
 
 ## Key Success Factors
 
-### Leverage Co-Founder Network
+### Leverage Research Network
 1. **Immediate Credibility**: Use haematologist co-founders' reputations for initial NHS access
 2. **Clinical Validation**: Ensure clinical oversight of all validation studies
 3. **Peer Endorsement**: Facilitate peer-to-peer recommendations within haematology community

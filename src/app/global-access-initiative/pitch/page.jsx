@@ -124,7 +124,7 @@ export default function PartnershipPitchPage() {
             requiring no complex IT integration.
           </p>
           <p>
-            Dr. Luke Carter-Brzezinski, our Co-CMO, brings particular expertise in LME haematology with direct 
+            Dr. Luke Carter-Brzezinski, our Clinical Co-Investigator, brings particular expertise in LME haematology with direct 
             clinical experience working in Cambodia. His hands-on experience in resource-constrained settings, 
             combined with Love Hope Strength's established hospital relationships in Dar es Salaam, creates a 
             powerful foundation for launching the Global Access Initiative in real-world LME contexts.

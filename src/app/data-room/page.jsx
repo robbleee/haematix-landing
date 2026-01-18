@@ -446,7 +446,7 @@ export default function DataRoom() {
                     <img src="/profile-pics/luke.png" alt="Team" />
                   </div>
                   <div className={styles.teamCalloutText}>
-                    <h3>Meet the Founding Team</h3>
+                    <h3>Meet the Research Team</h3>
                     <p>Expertise in AI, clinical haematology, and healthcare technology</p>
                     <a href="/data-room/team" className={styles.teamButton}>
                       View Team Profiles →
@@ -660,7 +660,7 @@ export default function DataRoom() {
                   <strong>Last Updated:</strong> November 8, 2025
                 </p>
                 <p className={styles.lastUpdatedNote}>
-                  This data room is regularly updated with the latest materials. Documents reflect current company status, financial projections, and clinical partnerships.
+                  This data room is regularly updated with the latest materials. Documents reflect current project status, financial projections, and clinical partnerships.
                 </p>
               </div>
 

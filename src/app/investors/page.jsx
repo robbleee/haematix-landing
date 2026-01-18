@@ -670,8 +670,8 @@ const pitchSlides = [
               </div>
               <div className={styles.memberInfo}>
                 <h3>Robert Edward Lee</h3>
-                <h4>Founder & CEO</h4>
-                <p>Background in Computer Science & FinTech AI. Leading software development and driving the business vision.</p>
+                <h4>Project Lead</h4>
+                <p>Background in Computer Science & FinTech AI. Leading software development and research coordination.</p>
               </div>
             </div>
             
@@ -681,7 +681,7 @@ const pitchSlides = [
               </div>
               <div className={styles.memberInfo}>
                 <h3>Dr. Daniel Clarke</h3>
-                <h4>Founder & Data and Analytics Lead</h4>
+                <h4>Technical Lead</h4>
                 <p>PhD in Nuclear Physics from University of Manchester and CERN. Leading technology and platform architecture.</p>
               </div>
             </div>
@@ -692,7 +692,7 @@ const pitchSlides = [
               </div>
               <div className={styles.memberInfo}>
                 <h3>Dr. John Burthem</h3>
-                <h4>Founder & Co-CMO</h4>
+                <h4>Principal Clinical Investigator</h4>
                 <p>Lead Haematology Diagnostician at Manchester Foundation Trust. Focused on clinical logic development, validation, and pilot deployment strategy.</p>
               </div>
             </div>
@@ -703,7 +703,7 @@ const pitchSlides = [
               </div>
               <div className={styles.memberInfo}>
                 <h3>Dr. Luke Carter-Brzezinski</h3>
-                <h4>Founder & Co-CMO</h4>
+                <h4>Clinical Co-Investigator</h4>
                 <p>Practising haematologist focused on clinical outreach, demonstrations, and pilot studies. Overseeing clinical strategy and validation.</p>
               </div>
             </div>
@@ -729,7 +729,7 @@ const pitchSlides = [
               <h4>Team (18 months)</h4>
               <div className={styles.runwayItems}>
                 <div className={styles.runwayItem}>
-                  <span>Founder & Engineer</span>
+                  <span>Project Lead & Engineer</span>
                   <span className={styles.runwayAmount}>£165k</span>
                 </div>
                 <div className={styles.runwayItem}>

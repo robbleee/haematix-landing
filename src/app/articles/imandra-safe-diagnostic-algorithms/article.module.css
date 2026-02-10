@@ -1,0 +1,641 @@
+.articleContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f9fa 0%, #edf2f7 100%);
+  padding: 2rem;
+  position: relative;
+}
+
+.backButton {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  padding: 0.75rem 1.25rem;
+  background: #ffffff;
+  color: var(--primary-color);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+  z-index: 5;
+}
+
+.backButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.articleContent {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding-top: 4rem;
+}
+
+.articleCard {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.09);
+  padding: 3rem;
+}
+
+.header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.title {
+  font-size: 2.6rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--primary-color);
+  margin: 0 0 1rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0 0 1.75rem;
+}
+
+.authorSection {
+  display: flex;
+  align-items: center;
+}
+
+.authorInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.authorPhoto {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.authorName {
+  font-weight: 600;
+  color: #334155;
+}
+
+.publishDate {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.body {
+  font-size: 1.06rem;
+  line-height: 1.8;
+  color: #1f2937;
+}
+
+.body p {
+  margin: 0 0 1.4rem;
+}
+
+.body h2 {
+  margin: 2.6rem 0 1rem;
+  font-size: 1.7rem;
+  color: var(--primary-color);
+  line-height: 1.35;
+}
+
+.body h3 {
+  margin: 1.8rem 0 0.75rem;
+  font-size: 1.3rem;
+  color: #1e293b;
+}
+
+.body ul {
+  margin: 0 0 1.4rem;
+  padding-left: 1.25rem;
+}
+
+.body li {
+  margin-bottom: 0.5rem;
+}
+
+.body code {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 5px;
+  padding: 0.1rem 0.35rem;
+  font-size: 0.92em;
+  color: #0f766e;
+}
+
+.citation {
+  color: var(--primary-color);
+  text-decoration: none;
+  margin-left: 0.15rem;
+}
+
+.citation:hover {
+  text-decoration: underline;
+}
+
+.codeBlock {
+  margin: 0 0 1.5rem;
+  padding: 1rem 1.1rem;
+  border-radius: 10px;
+  background: #0f172a;
+  color: #e2e8f0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.figureBlock {
+  margin: 1.8rem 0 2rem;
+}
+
+.figureImage {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 3px 16px rgba(15, 23, 42, 0.08);
+}
+
+.figureImage img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.figureDiagram {
+  border: 1px solid #dbe4ef;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  padding: 1rem;
+}
+
+.diagramRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.7rem;
+}
+
+.diagramFork {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin-bottom: 0.7rem;
+}
+
+.diagramBranch {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.diagramNode {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0.45rem 0.55rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #0f172a;
+  text-align: center;
+}
+
+.diagramArrow {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #0f766e;
+}
+
+.taxonomyGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.taxonomyCard {
+  background: #ffffff;
+  border: 1px solid #dbe4ef;
+  border-radius: 8px;
+  padding: 0.65rem;
+}
+
+.taxonomyCard h4 {
+  margin: 0 0 0.25rem;
+  font-size: 0.93rem;
+  color: #0f766e;
+}
+
+.taxonomyCard p {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: #334155;
+}
+
+.severityStrip {
+  display: flex;
+  gap: 0.45rem;
+  justify-content: center;
+  margin-top: 0.75rem;
+}
+
+.severityCritical,
+.severityHigh,
+.severityMedium {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+}
+
+.severityCritical {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.severityHigh {
+  background: #fef3c7;
+  color: #a16207;
+}
+
+.severityMedium {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.figureCaption {
+  margin: 0.75rem 0 0;
+  color: #475569;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.figureNote {
+  margin: 0.3rem 0 0;
+  color: #64748b;
+  font-size: 0.84rem;
+}
+
+.metricGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin: 0.2rem 0 1rem;
+}
+
+.metricCard {
+  border: 1px solid #dbe4ef;
+  background: #f8fafc;
+  border-radius: 10px;
+  padding: 0.9rem;
+}
+
+.metricLabel {
+  font-size: 0.84rem;
+  line-height: 1.4;
+  color: #475569;
+}
+
+.metricLabel a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.metricLabel a:hover {
+  text-decoration: underline;
+}
+
+.metricValue {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.metricValue a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.metricValue a:hover {
+  text-decoration: underline;
+}
+
+.metricNote {
+  margin: 0;
+  font-size: 0.83rem;
+  line-height: 1.4;
+  color: #64748b;
+}
+
+.metricDisclaimer {
+  margin-top: 0.2rem;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.ctaBox {
+  margin: 1.8rem 0 0.6rem;
+  border: 1px solid #dbe4ef;
+  background: linear-gradient(135deg, #f0f9ff 0%, #eef2ff 100%);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+}
+
+.ctaBox p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Table of contents ────────────────────────────────── */
+
+.tocBox {
+  margin: 0 0 2rem;
+  border: 1px solid #dbe4ef;
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+}
+
+.tocTitle {
+  margin: 0 0 0.6rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #334155;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tocList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  columns: 2;
+  column-gap: 2rem;
+}
+
+.tocList li {
+  margin-bottom: 0.35rem;
+  break-inside: avoid;
+}
+
+.tocList a {
+  color: #475569;
+  text-decoration: none;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  transition: color 0.15s;
+}
+
+.tocList a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.tocList .tocNumber {
+  display: inline-block;
+  width: 1.6rem;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* ── Architecture diagram ────────────────────────────── */
+
+.archDiagram {
+  border: 1px solid #dbe4ef;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  padding: 1.5rem 1rem;
+  margin: 1.5rem 0 2rem;
+  overflow-x: auto;
+}
+
+/* Row: horizontal left-to-right flow */
+.archRow {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  min-width: max-content;
+}
+
+.archArrow {
+  flex: 0 0 auto;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #94a3b8;
+  padding: 0 0.3rem;
+}
+
+.archArrowPass {
+  composes: archArrow;
+  color: #16a34a;
+}
+
+.archArrowFail {
+  composes: archArrow;
+  color: #dc2626;
+}
+
+/* Base box */
+.archBox {
+  flex: 0 0 auto;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0.5rem 0.65rem;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: #0f172a;
+  text-align: center;
+}
+
+.archBoxIndigo {
+  composes: archBox;
+  border-color: #6366f1;
+  background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+}
+
+.archBoxCyan {
+  composes: archBox;
+  border-color: #0891b2;
+  background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
+}
+
+.archBoxGreen {
+  composes: archBox;
+  border-color: var(--primary-color);
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+}
+
+.archBoxRed {
+  composes: archBox;
+  border-color: #dc2626;
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+}
+
+/* Two-outcome stack on the right */
+.archOutcomes {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.archOutcomeRow {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+/* Output chips (stacked vertically after diagnosis) */
+.archOutputs {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.archOutputItem {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #334155;
+  white-space: nowrap;
+}
+
+.referencesList {
+  margin: 0 0 1.4rem;
+  padding-left: 1.2rem;
+}
+
+.referencesList li {
+  margin-bottom: 0.7rem;
+}
+
+.filterRow {
+  display: grid;
+  grid-template-columns: 2fr repeat(4, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin: 0.4rem 0 1rem;
+}
+
+.filterInput,
+.filterSelect {
+  width: 100%;
+  border: 1px solid #dbe4ef;
+  border-radius: 8px;
+  padding: 0.55rem 0.65rem;
+  font-size: 0.9rem;
+  background: #ffffff;
+  color: #1f2937;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  margin: 0.5rem 0 0.8rem;
+}
+
+.paginationRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin: 0.3rem 0 1.2rem;
+}
+
+.pageButton {
+  border: 1px solid #dbe4ef;
+  background: #ffffff;
+  color: #1f2937;
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+
+.pageButton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .articleContainer {
+    padding: 1rem;
+  }
+
+  .backButton {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.55rem 0.95rem;
+    font-size: 0.85rem;
+  }
+
+  .articleContent {
+    padding-top: 3rem;
+  }
+
+  .articleCard {
+    padding: 1.5rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+  }
+
+  .body {
+    font-size: 0.98rem;
+  }
+
+  .body h2 {
+    font-size: 1.45rem;
+  }
+
+  .diagramFork {
+    grid-template-columns: 1fr;
+  }
+
+  .taxonomyGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .metricGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .filterRow {
+    grid-template-columns: 1fr;
+  }
+
+  .paginationRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .figureCaption {
+    font-size: 0.88rem;
+  }
+
+  .tocList {
+    columns: 1;
+  }
+
+  .archDiagram {
+    padding: 1rem;
+  }
+}

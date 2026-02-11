@@ -3,9 +3,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export const metadata = {
-  title: 'Safe Diagnostic Algorithms with Imandra | Haem.io',
+  title: 'Neurosymbolic Diagnostic Algorithms with Imandra formal verification | Haem.io',
   description:
-    'How Haem.io implements Imandra guardrails for LLM-assisted AML/MDS classification, including parity testing, runtime diagnostics, and safety telemetry.',
+    'How we replaced our core diagnostic classifier with formally verified IML code, validated by parity testing and supported by runtime guardrails.',
 };
 
 export default function ImandraSafeDiagnosticAlgorithmsPage() {
@@ -18,10 +18,9 @@ export default function ImandraSafeDiagnosticAlgorithmsPage() {
       <div className={styles.articleContent}>
         <article className={styles.articleCard}>
           <header className={styles.header}>
-            <h1 className={styles.title}>Safe Diagnostic Algorithms with Imandra at Haem.io</h1>
+            <h1 className={styles.title}>Neurosymbolic Diagnostic Algorithms with Imandra formal verification at Haem.io</h1>
             <p className={styles.subtitle}>
-              How we combine LLM extraction, deterministic WHO/ICC classifier execution, and formal
-              Imandra guardrails to reduce silent failure modes in AML/MDS diagnostic software.
+              Diagnostics is becoming more complex. We need safe, intellligent systems that can handle the complexity.
             </p>
             <div className={styles.authorSection}>
               <div className={styles.authorInfo}>
@@ -46,18 +45,18 @@ export default function ImandraSafeDiagnosticAlgorithmsPage() {
               <div className={styles.tocTitle}>Contents</div>
               <ol className={styles.tocList}>
                 <li><a href="#genomic-state-space-problem"><span className={styles.tocNumber}>1.</span>The genomic state-space problem</a></li>
-                <li><a href="#architecture"><span className={styles.tocNumber}>2.</span>How we operationalise this in software</a></li>
-                <li><a href="#data-flow"><span className={styles.tocNumber}>3.</span>From unstructured report to typed diagnostic features</a></li>
+                <li><a href="#architecture"><span className={styles.tocNumber}>2.</span>How the system works</a></li>
+                <li><a href="#data-flow"><span className={styles.tocNumber}>3.</span>From reports to structured features</a></li>
                 <li><a href="#tp53-example"><span className={styles.tocNumber}>4.</span>Worked example: biallelic TP53 case</a></li>
-                <li><a href="#deep-dive"><span className={styles.tocNumber}>5.</span>Imandra deep dive: model and guardrail semantics</a></li>
+                <li><a href="#deep-dive"><span className={styles.tocNumber}>5.</span>Imandra: from digital twin to production</a></li>
                 <li><a href="#iml-implementation"><span className={styles.tocNumber}>6.</span>Our Imandra IML implementation</a></li>
-                <li><a href="#parity-strategy"><span className={styles.tocNumber}>7.</span>Parity strategy</a></li>
+                <li><a href="#parity-strategy"><span className={styles.tocNumber}>7.</span>Parity strategy: Python-to-IML migration</a></li>
                 <li><a href="#telemetry"><span className={styles.tocNumber}>8.</span>Telemetry, artifacts, and safety rollout</a></li>
                 <li><a href="#evidence"><span className={styles.tocNumber}>9.</span>Validation evidence</a></li>
                 <li><a href="#visualisation"><span className={styles.tocNumber}>10.</span>Diagnosis and decision path visualisation</a></li>
                 <li><a href="#how-this-helps"><span className={styles.tocNumber}>11.</span>How this helps Haem.io</a></li>
                 <li><a href="#limits"><span className={styles.tocNumber}>12.</span>What this does not claim</a></li>
-                <li><a href="#broader-relevance"><span className={styles.tocNumber}>13.</span>Broader relevance</a></li>
+                <li><a href="#broader-relevance"><span className={styles.tocNumber}>13.</span>Where else this approach works</a></li>
                 <li><a href="#closing"><span className={styles.tocNumber}>14.</span>Closing perspective</a></li>
                 <li><a href="#references"><span className={styles.tocNumber}>15.</span>References</a></li>
               </ol>
@@ -70,7 +69,7 @@ export default function ImandraSafeDiagnosticAlgorithmsPage() {
               With genomic-era diagnosis, myeloid disease classification is no longer a small checklist. It is a
               high-dimensional state space of genetic findings, cytogenetics, blast patterns, prior-treatment
               context, and clinical qualifiers, all evaluated through increasingly complex guideline logic. In
-              practice, this can produce thousands of possible pathway combinations before arriving at a final
+              practice, this can produce hundreds thousands of possible pathway combinations before arriving at a final
               subtype label.
             </p>
 
@@ -78,114 +77,95 @@ export default function ImandraSafeDiagnosticAlgorithmsPage() {
               Expecting clinicians to execute that full combinatorial logic by hand, repeatedly and consistently,
               is not realistic. We need algorithmic execution for reliability, and we need formal verification
               layers so those algorithms can be checked for drift, contradiction, and internal coherence as they
-              run in the real world.
+              run in the real world. Diagnosticians in the west (and increasingly in LMEs) are expected to do this,
+               though, hundreds of times per year, and these diagnoses are clinically critical. It can be the 
+               difference between being put on a chemotherapy regimen or not.
             </p>
+
 
             <p>
-              AML/MDS diagnosis is a chain of decisions under uncertainty. Modern standards have improved
-              scientific precision, but they also increased complexity for teams building clinical software.
-              The same patient profile can be interpreted through different guideline lenses, and that creates
-              real implementation risk if software logic is not deeply validated.<sup><a href="#ref1" className={styles.citation}>1</a></sup>
-              <sup><a href="#ref2" className={styles.citation}>2</a></sup>
-            </p>
+              
 
-            <p>
-              Recent research reinforces why pure LLM-based reasoning is insufficient for this kind of logic.
-              The Imandra CodeLogician study demonstrated that large language models, when asked to reason
-              precisely about program state spaces and control flow, exhibit a 41–47 percentage point accuracy
-              gap compared to the same models augmented with formal automated
-              reasoning.<sup><a href="#ref4" className={styles.citation}>4</a></sup> In clinical
-              software, where silent misclassification can alter treatment decisions, that gap is not acceptable.
             </p>
-
-            <p>
-              At Haem.io, we use Imandra as an independent safety layer around our diagnostic decision system.
-              The objective is not to replace clinicians. The objective is to make software behavior more
-              trustworthy, more explainable, and easier to monitor when uncertainty is unavoidable.
-            </p>
-
-            <h3>Three operational risks we designed for</h3>
-            <ul>
-              <li>
-                <strong>Extraction uncertainty:</strong> transforming narrative reports into structured inputs can
-                still miss nuance or overstate findings.
-              </li>
-              <li>
-                <strong>Implementation drift:</strong> systems can slowly diverge over time as models and rules evolve.
-              </li>
-              <li>
-                <strong>Internal contradictions:</strong> some combinations of findings are logically incompatible
-                and should be surfaced immediately.
-              </li>
-            </ul>
+          
 
             {/* ── 2. Architecture (with bridging text about the twin) ── */}
 
-            <h2 id="architecture">How we operationalise this in software</h2>
+            <h2 id="architecture">How Haemio works</h2>
             <p>
-              We use a three-layer <strong>neurosymbolic</strong> architecture — neural models handle
+              We use a three-layer <strong>neurosymbolic</strong> architecture. Neural models handle
               extraction, deterministic logic handles classification, and formal symbolic reasoning handles
-              verification — so each stage can be validated
+              verification. This lets us validate each stage
               independently:<sup><a href="#ref4" className={styles.citation}>4</a></sup>
             </p>
             <ul>
-              <li>A parsing layer (neural) that converts clinical narrative into structured findings.</li>
-              <li>A deterministic decision layer that applies guideline logic.</li>
-              <li>An independent formal reasoning layer (symbolic) that checks consistency and flags contradictions.</li>
+              <li>A parsing layer (neural) that converts clinical narrative (clinical notes, cytogenetics, molecular findings) into structured findings.</li>
+              <li>A deterministic decision layer, now written entirely in IML, that applies guideline logic.</li>
+              <li>A formal reasoning layer (symbolic), built into the same IML codebase, that checks consistency, proves safety properties, and flags contradictions.</li>
             </ul>
 
             <p>
-              The formal reasoning layer takes the form of what we call an <strong>IML digital twin</strong>: a
-              second, independent implementation of the clinical decision policy written in
-              Imandra&apos;s formal language. It serves a dual role — re-executing the same classification
-              logic for parity checking, and running contradiction analysis to detect internally impossible
-              clinical states. This means one system produces a decision, and an independent system both
-              replicates that decision and checks whether it remains coherent with the same clinical context.
+              This was not our starting point. We originally built our classifiers in Python. Later, in parallel,
+              we created an <strong>IML digital twin</strong>, a second independent
+              implementation of the clinical decision policy written in Imandra&apos;s formal language. The
+              twin served two roles: re-executing the same classification logic for parity checking, and
+              running contradiction analysis to detect internally impossible clinical states.
             </p>
 
             <p>
-              In practice, this means teams can ship with more confidence, because the architecture is designed
-              to detect silent inconsistencies before they become recurring operational debt.
+              Rather than maintaining both implementations indefinitely, we ran an extensive parity testing
+              program across curated scenarios, bounded-combination sweeps, randomized stress tests, and
+              regression fixtures. Once the IML twin matched the Python classifier across every test vector
+              (100% parity across 1888 classifier comparisons), we retired the Python classifier and
+              replaced it with the IML digital twin. 
+            </p>
+
+            <p>
+              This changes how we build and maintain the classifier. It is written in a language that supports
+              mathematical proof, impossibility detection, and counterexample generation. These are now features
+              of the production code and not an external wrapper.
             </p>
 
             {/* ── 3. Data flow (moved up, expanded) ────────────── */}
 
-            <h2 id="data-flow">From unstructured report to typed diagnostic features</h2>
+            <h2 id="data-flow">From reports to structured features</h2>
             <p>
               The core workflow starts by converting unstructured narrative reports into structured clinical
               context. The critical principle is preserving uncertainty instead of forcing binary certainty.
             </p>
 
             <p>
-              We break extraction into focused subtasks — morphology, cytogenetics, molecular findings,
-              and clinical context — and then merge outputs into one coherent clinical representation. Each
+              We break extraction into focused subtasks (morphology, cytogenetics, molecular findings, and
+              clinical context) and then merge outputs into one coherent clinical representation. Each
               subtask targets a specific report type, which reduces ambiguity in dense reports and improves
               consistency across case types. Where a finding is absent or ambiguous, the representation
               preserves that uncertainty rather than defaulting to a binary value.
             </p>
 
-            <h3>From structured context to decisions and checks</h3>
+     
             <p>
-              The structured context then flows to both decision execution and formal checking, so the system can
-              compare outcomes and surface potential contradictions in near real time. The next section walks
-              through a single case to make this pipeline concrete.
+              The structured context then flows to the IML classifier, which handles both guideline-driven
+              classification and formal safety checking in a single pass. Impossibility signals and safety
+              property violations are evaluated alongside the classification itself, so contradictions are
+              surfaced in near real time. The next section walks through a single case to make this pipeline
+              concrete.
             </p>
 
             {/* ── 4. Worked example: TP53 (moved up) ───────────── */}
 
             <h2 id="tp53-example">Worked example: biallelic TP53 case from report to diagnosis (and safety checks)</h2>
             <p>
-              Below is a single end-to-end example showing how one case moves through the system: short report
-              excerpts, a compact structured representation, and then two independent decision engines (production
-              classifier and IML twin) producing a diagnosis while guardrails check for contradictions. This
-              particular case also illustrates how WHO 2022 and ICC 2022 can reach different primary labels from
-              identical inputs — a real-world complexity that the system is designed to surface, not hide.
+              Below is a single end-to-end example showing a highly simplified example of how one case moves through the system: short report
+              excerpts, a compact structured representation, and then the IML classifier producing a diagnosis
+              while built-in guardrails check for contradictions. This particular case also illustrates how
+              WHO 2022 and ICC 2022 can reach different primary labels from identical inputs. That is a
+              real-world complexity that the system is designed to surface, not hide.
             </p>
 
             <h3>1) Short versions of the input reports</h3>
             <p>
-              In practice, the input is not one tidy document. It is a mixture of report styles that must be
-              reconciled: morphology, cytogenetics, molecular findings, and clinical context.
+              The input is rarely ever one tidy document. It is a mixture of report styles that must be
+              integrated: morphology, cytogenetics, molecular findings, and clinical context.
             </p>
 
             <pre className={styles.codeBlock}>
@@ -210,8 +190,8 @@ documented. Known DDX41 germline predisposition."`}
 
             <h3>2) Compact structured extraction (small JSON)</h3>
             <p>
-              We extract a compact, structured summary that preserves uncertainty (unknown stays unknown) and
-              keeps evidence grouped by clinical meaning rather than by report formatting.
+              We extract a compact, a JSON object that preserves uncertainty (unknown stays unknown) and
+              keeps evidence grouped by clinical meaning rather than by report formatting. In production we are looking for over 200 separate fields to parse, this poses its own challenges due in part to the ambiguities of English prose . 
             </p>
 
             <pre className={styles.codeBlock}>
@@ -233,13 +213,13 @@ documented. Known DDX41 germline predisposition."`}
 }`}
             </pre>
 
-            <h3>3) Two independent diagnosis engines — and guideline divergence</h3>
+            <h3>3) IML classifier output and guideline divergence</h3>
             <p>
-              The production classifier computes a diagnosis from the structured case summary. In parallel, the
-              IML digital twin computes the same diagnosis policy independently. In this case, both engines agree
-              within each guideline, but the two guidelines themselves reach different primary labels from
-              identical inputs. WHO 2022 prioritises the MDS-related cytogenetic pathway, while ICC 2022
-              prioritises the TP53 multi-hit pathway. Both acknowledge the DDX41 germline context as a qualifier.
+              The IML classifier computes a diagnosis from the structured case summary under both WHO 2022 and
+              ICC 2022 guidelines. In this case, the two guidelines reach different primary labels from identical
+              inputs. WHO 2022 prioritises the MDS-related cytogenetic pathway, while ICC 2022 prioritises the
+              TP53 multi-hit pathway. Both acknowledge the DDX41 germline context as a qualifier. We show that
+              divergence on purpose. Clinicians need to see where guidelines disagree.
             </p>
 
             <pre className={styles.codeBlock}>
@@ -257,80 +237,46 @@ ICC 2022 output:
 
             <h3>4) Guardrail outputs for the same case</h3>
             <p>
-              While both engines run, guardrails look for two classes of safety signals:
-              parity mismatches (the two engines disagree within a single guideline) and impossibility signals
-              (the case contains contradictory internal states). The WHO-vs-ICC label difference is expected
-              behaviour — it reflects a genuine guideline divergence, not a software error.
+              Alongside classification, the IML codebase evaluates guardrail rules that look for impossibility
+              signals (cases where the clinical context contains contradictory internal states). The WHO-vs-ICC
+              label difference is expected behaviour. It reflects a genuine guideline divergence, not a
+              software error.
             </p>
 
             <pre className={styles.codeBlock}>
 {`Guardrail signals:
-- Parity mismatch (WHO 2022): none (production and twin agree)
-- Parity mismatch (ICC 2022): none (production and twin agree)
 - Impossibility signals: none (no internal contradiction detected)
+- Safety property violations: none
 - ELN risk stratification: Adverse (both ELN 2022 and ELN 2024)`}
             </pre>
 
             <p>
               When a contradiction is present, the impossibility layer turns it into a concrete, reviewable
-              warning tied to specific conflicting evidence. When drift is present, the mismatch signal becomes a
-              regression candidate so the divergence is not reintroduced later.
+              error message tied to specific conflicting evidence. Because the classifier and the guardrails share
+              the same IML codebase, these checks are evaluated as part of the same execution. They are not a
+              separate system that might fall out of sync.
             </p>
 
             {/* ── 5. Deep dive (consolidated "running live") ──── */}
 
-            <h2 id="deep-dive">Imandra deep dive: model and guardrail semantics</h2>
-            <p>
-              With the end-to-end pipeline now concrete, this section explains how the IML digital twin is
-              built, validated, and operated as a continuously running safety
-              layer.<sup><a href="#ref3" className={styles.citation}>3</a></sup>
-            </p>
 
-            <h3>How we created the IML digital twin</h3>
-            <p>
-              We translated the decision structure of our production classifiers into formal model rules that
-              mirror the clinical guideline intent. This is not a loose approximation. It is a rule-for-rule
-              alignment process where each meaningful branch in production logic is represented in the twin and
-              then reviewed against expected guideline behavior.
-            </p>
 
-            <h3>How we validated twin fidelity before live use</h3>
-            <p>
-              We validated fidelity in four layers: curated scenario parity, broad bounded-combination parity,
-              randomized parity stress tests, and regression locking of historical failures. That gives us both
-              depth on known edge cases and breadth across combinatorial space.
-            </p>
 
-            <h3>How it runs live in parallel</h3>
-            <p>
-              For each live case, the production classifier makes a decision while the IML twin runs in parallel
-              on the same clinical context. If they agree, the case proceeds with a stronger confidence signal.
-              If they disagree, the event is flagged as a parity mismatch for immediate review. Independently,
-              the twin evaluates contradiction rules and records impossibility findings when present. These
-              outputs are non-blocking safety signals: they do not replace clinician judgment, but they do give
-              engineering and QA teams immediate visibility into drift and incoherence.
-            </p>
-
-            <h3>Why this matters for clinicians, founders, and Imandra teams</h3>
-            <p>
-              Clinicians gain clearer traceability when a decision is challenged. Founders gain measurable safety
-              governance rather than anecdotal quality claims. Imandra teams can see formal methods used as a
-              continuously operating assurance layer, not a one-off proof artifact.
-            </p>
 
             {/* ── 6. IML implementation and safety properties ──── */}
 
             <h2 id="iml-implementation">Our Imandra IML implementation</h2>
             <p>
-              Beyond parity testing and impossibility checks, we use Imandra to prove formal safety properties
-              about the classifier logic itself. These properties are not test cases — they are mathematical
+              Because the classifier is now written in IML, we can do more than run it. We can prove formal
+              safety properties about its logic. These properties are not test cases. They are mathematical
               guarantees that hold for every possible combination of inputs, not just the cases we happened
               to test.
             </p>
             <p>
-              The distinction matters. A test suite with 1888 passing cases shows that those specific inputs
-              produce correct outputs. A proved property shows that no input — out of the entire combinatorial
-              space — can violate the invariant. For clinical software, this is the difference between
+              That difference matters in clinical software. A test suite with 1888 passing cases shows that
+              those specific inputs produce correct outputs. A proved property shows that no input out of the
+              entire combinatorial space can violate the invariant. For clinical software, this is the
+              difference between
               &ldquo;we tested it thoroughly&rdquo; and &ldquo;we proved it cannot fail in this way.&rdquo;
             </p>
 
@@ -413,7 +359,7 @@ ICC 2022 output:
               </div>
               <figcaption className={styles.figureCaption}>
                 <strong>Figure: System architecture with IML logic engine and guardrails.</strong> The
-                IML logic engine executes WHO/ICC classification directly in Imandra. Before a diagnosis
+                IML logic engine executes WHO/ICC classification directly. Before a diagnosis
                 is returned, a guardrail gate checks for input contradictions, impossibility signals, and
                 safety property violations. If all guardrails pass, the diagnosis proceeds with full
                 derivation steps. If any guardrail fails, the system refuses to issue a diagnosis and
@@ -421,11 +367,224 @@ ICC 2022 output:
               </figcaption>
             </figure>
 
-            <h3>Properties we prove</h3>
+            <h3>Actual IML guardrail code</h3>
+            <p>
+              Below are excerpts from our production IML codebase. These are not pseudocode or
+              simplified illustrations. They are the actual functions that run in our classifier and
+              guardrail pipeline. We include them here because the specificity matters: these are the
+              rules that determine whether a diagnosis proceeds or gets blocked.
+            </p>
+
+            <h4>Three-state boolean: modelling clinical uncertainty</h4>
+            <p>
+              Clinical data is not binary. A test result can be positive, negative, or simply not
+              performed. Our type system enforces this distinction at every decision point. No field
+              silently defaults to true or false when the information is absent.
+            </p>
+
+            <pre className={styles.codeBlock}>
+{`(* Three-state boolean — maps Python's True / False / None *)
+(* BTrue   = explicitly positive  (test confirmed)
+   BFalse  = explicitly negative  (test ruled out)
+   BUnknown = unknown / not tested / not mentioned *)
+
+type tribool =
+  | BTrue
+  | BFalse
+  | BUnknown
+
+let is_true (v : tribool) : bool =
+  match v with
+  | BTrue -> true
+  | _ -> false`}
+            </pre>
+
+            <h4>TP53 VUS contradiction guardrail</h4>
+            <p>
+              This guardrail detects when a TP53 variant is classified as a variant of uncertain
+              significance (VUS) while simultaneous pathogenic TP53 evidence is also present. That
+              combination is a clinical impossibility: if the variant is truly uncertain, there should
+              be no confirmatory signals. If detected, the system flags it as a high-severity
+              contradiction before classification proceeds.
+            </p>
+
+            <pre className={styles.codeBlock}>
+{`(* TP53 VUS with pathogenic evidence — clinical impossibility *)
+
+let tp53_pathogenic_signal =
+  is_true d.tp53.two_tp53_mutations ||
+  is_true d.tp53.tp53_del17p ||
+  is_true d.tp53.tp53_loh ||
+  is_true d.tp53.tp53_50_vaf ||
+  is_true d.tp53.tp53_10_vaf
+in
+if is_true d.tp53.tp53_vus && tp53_pathogenic_signal then
+  mk_diag
+    "impossible.tp53.tp53_vus_with_pathogenic_tp53_evidence"
+    High
+    "TP53 VUS conflicts with pathogenic TP53 evidence signals."
+    [ "tp53.tp53_vus"; "tp53.two_tp53_mutations";
+      "tp53.tp53_del17p"; "tp53.tp53_loh";
+      "tp53.tp53_50_vaf"; "tp53.tp53_10_vaf" ]`}
+            </pre>
+
+            <h4>Cross-field age consistency check</h4>
+            <p>
+              When both age-in-days and age-in-years are provided, they must agree. A large discrepancy
+              between the two fields indicates a data entry error or an upstream parsing failure. This
+              check catches the inconsistency before it silently corrupts a blast threshold or
+              age-gated classification pathway.
+            </p>
+
+            <pre className={styles.codeBlock}>
+{`(* Age-in-days vs age-in-years cross-field consistency *)
+
+match d.age_days, d.age_years with
+| Some ad, Some ay ->
+  let ad_years = (float_of_int ad) /. 365.25 in
+  let diff = abs_float (ad_years -. ay) in
+  if diff > 2.0 then
+    mk_diag
+      "impossible.cross_field.age_days_age_years_inconsistent"
+      High
+      "Age in days and age in years are materially inconsistent."
+      ["age_days"; "age_years"]
+  else diags
+| _ -> diags`}
+            </pre>
+
+            <h4>Down syndrome TAM in adult context</h4>
+            <p>
+              Transient Abnormal Myelopoiesis (TAM) is a neonatal entity specific to Down syndrome.
+              If the system encounters Down syndrome plus GATA1 mutation flags on an adult patient,
+              that combination is temporally impossible. This guardrail prevents a neonatal diagnosis
+              pathway from being applied to a patient whose age contradicts the entity&apos;s clinical
+              definition.
+            </p>
+
+            <pre className={styles.codeBlock}>
+{`(* Down syndrome TAM context with adult age — temporal impossibility *)
+
+match d.age_years with
+| Some ay when ay >= 18.0 && d.down_syndrome && d.gata1_mutation ->
+  mk_diag
+    "impossible.temporal.down_syndrome_gata1_with_adult_age"
+    Medium
+    "Down syndrome + GATA1 neonatal context conflicts with adult age."
+    ["age_years"; "down_syndrome"; "gata1_mutation"]
+| _ -> diags`}
+            </pre>
+
+            <h4>TP53 pathway classification with VUS exclusion</h4>
+            <p>
+              This is the actual production TP53 pathway function used by the AML ICC classifier. The
+              first line blocks the entire pathway if the variant is VUS. Then it evaluates five
+              independent biallelic criteria, including the ICC-specific surrogate of VAF &ge; 10%
+              plus complex karyotype. The blast thresholds determine whether the output is AML,
+              MDS/AML, or deferred to MDS classification.
+            </p>
+
+            <pre className={styles.codeBlock}>
+{`(* TP53 pathway — shared between classifiers, parameterised *)
+
+let classify_tp53_pathway
+    (blasts : real) (tp53 : tp53_data)
+    (cyto : mds_cytogenetics)
+    (include_complex_karyotype_surrogate : bool) : string =
+  (* VUS excludes all TP53 data — this is the P3 safety property *)
+  if is_true tp53.tp53_vus then ""
+  else
+    let has_complex = is_true cyto.complex_karyotype in
+    let has_low_vaf_plus_complex =
+      is_true tp53.tp53_10_vaf && has_complex
+        && include_complex_karyotype_surrogate
+    in
+    let biallelic_met =
+      is_true tp53.two_tp53_mutations ||
+      is_true tp53.tp53_del17p ||
+      is_true tp53.tp53_loh ||
+      is_true tp53.tp53_50_vaf ||
+      is_true tp53.tp53_10_vaf ||
+      has_low_vaf_plus_complex
+    in
+    if biallelic_met then
+      if blasts < 10.0 then
+        "Not AML, consider MDS classification"
+      else if blasts < 20.0 then
+        "MDS/AML with mutated TP53"
+      else "AML with mutated TP53"
+    else ""`}
+            </pre>
+
+            <h4>Formal safety theorem: totality</h4>
+            <p>
+              This is a theorem, not a test. Imandra proves that the following holds for <em>every
+              possible input</em> to the classifier. No matter what combination of genetic findings,
+              blast counts, age, therapy history, or clinical context is provided, the classifier
+              always returns a non-empty label. There is no silent failure mode.
+            </p>
+
+            <pre className={styles.codeBlock}>
+{`(* P1: Totality — every input produces a non-empty label *)
+
+theorem totality_aml_who2022 (d : parsed_data) =
+  (classify_aml_who2022 d).label <> ""
+
+theorem totality_aml_icc2022 (d : parsed_data) =
+  (classify_aml_icc2022 d).label <> ""
+
+theorem totality_mds_who2022 (d : parsed_data) =
+  (classify_mds_who2022 d).label <> ""
+
+theorem totality_mds_icc2022 (d : parsed_data) =
+  (classify_mds_icc2022 d).label <> ""`}
+            </pre>
+
+            <h4>Formal safety theorem: WHO low-blast boundary</h4>
+            <p>
+              This theorem proves that when blasts are below 20%, no AML-defining abnormality matches,
+              and the case is not erythroid or TAM, the WHO AML classifier always returns the
+              non-AML sentinel. This is not tested on a sample; it is proved across the full
+              combinatorial input space.
+            </p>
+
+            <pre className={styles.codeBlock}>
+{`(* P2: WHO low-blast boundary safety *)
+
+theorem who_low_blast_boundary (d : parsed_data) =
+  match d.blasts_percentage with
+  | Some b when b >= 0.0 && b < 20.0 ->
+    let no_cebpa_gate =
+      not (d.cebpa_bzip_ambiguous && d.cebpa_present) in
+    let no_defining =
+      classify_who_defining_abnormalities d.aml_defining b = "" in
+    let no_erythroid =
+      classify_erythroid d.aml_differentiation d.erythroid = "" in
+    let no_tam =
+      not (d.down_syndrome && d.gata1_mutation &&
+        (match d.age_days with
+         | Some ad -> ad <= 90 | None -> false)) in
+    (no_cebpa_gate && no_defining && no_erythroid && no_tam)
+    ==>
+    (classify_aml_who2022 d).label =
+      "Not AML, consider MDS classification"
+  | _ -> true`}
+            </pre>
+
+            <p>
+              Each guardrail diagnostic includes a stable rule ID (e.g.
+              {' '}<code>impossible.tp53.tp53_vus_with_pathogenic_tp53_evidence</code>), a severity
+              level, a human-readable message, and the list of evidence fields involved. This
+              structure is consumed by the API and the WebGUI for runtime display and telemetry
+              aggregation. The full guardrail module contains 16 impossibility checks across range
+              validation, cross-field consistency, temporal logic, and schema coherence categories.
+            </p>
+
+            <h3>Properties we prove (not exhaustive)</h3>
             <p>
               <strong>Totality.</strong> For every possible input, all four classifiers (AML WHO 2022,
               AML ICC 2022, MDS WHO 2022, MDS ICC 2022) produce a non-empty classification label. No
-              patient case results in a silent failure — even error states and confirmation gates produce
+              patient case results in a silent failure. Even error states and confirmation gates produce
               explicit, non-empty labels.
             </p>
             <p>
@@ -454,7 +613,7 @@ ICC 2022 output:
 
             <h3>What counterexample generation reveals</h3>
             <p>
-              Not every candidate property passes — and the failures are as valuable as the proofs. We
+              Not every candidate property passes. The failures are as valuable as the proofs. We
               systematically attempted to prove that each clinically urgent entity is always correctly
               recognised. When Imandra cannot prove a property, it produces a concrete counterexample:
               a specific combination of inputs that violates the invariant. These counterexamples surface
@@ -467,7 +626,7 @@ ICC 2022 output:
               PML::RARA always produces an APL diagnosis. Imandra found that when CEBPA bZIP ambiguity is
               also flagged, the classifier enters the CEBPA confirmation gate (step 2) before it reaches the
               PML::RARA check (step 3). The system returns &ldquo;Needs CEBPA confirmation&rdquo; instead of
-              the expected APL label — even though APL is an oncologic emergency requiring immediate ATRA
+              the expected APL label. This matters because APL is an oncologic emergency requiring immediate ATRA
               treatment. This is a systemic issue: the CEBPA gate masks <em>every</em> defining abnormality
               checked at step 3, including all core binding factor fusions (RUNX1::RUNX1T1, CBFB::MYH11)
               and BCR::ABL1.
@@ -477,7 +636,7 @@ ICC 2022 output:
               <strong>BCR::ABL1 missed at intermediate blast counts.</strong> We attempted to prove
               that BCR::ABL1 positivity always produces a BCR::ABL1-specific label. Imandra found that in
               the WHO classifier, BCR::ABL1 requires blasts &ge; 20%. A patient with BCR::ABL1 and 15% blasts
-              receives &ldquo;Not AML, consider MDS classification&rdquo; — missing a disease that requires
+              receives &ldquo;Not AML, consider MDS classification&rdquo;, which would miss a disease that requires
               TKI therapy (imatinib/dasatinib). The ICC classifier catches this case (threshold is 10%), but
               at blasts below 10% both classifiers miss it. The counterexample asks: should BCR::ABL1
               positivity always trigger at minimum a CML workup flag, regardless of blast percentage?
@@ -488,7 +647,7 @@ ICC 2022 output:
               finding. We attempted to prove that a Down syndrome neonate (age &le; 90 days, GATA1 mutation
               positive) always receives the TAM (Transient Abnormal Myelopoiesis) diagnosis. Imandra found
               that when blasts &ge; 20% and any MDS-related gene mutation (e.g. ASXL1) is also present,
-              the classifier assigns &ldquo;AML, myelodysplasia related&rdquo; — because the MDS mutation
+              the classifier assigns &ldquo;AML, myelodysplasia related&rdquo; because the MDS mutation
               check at step 5 fires before the TAM check at step 7c is reached. TAM typically self-resolves;
               misclassifying it as AML could lead to aggressive chemotherapy in a neonate whose condition
               would resolve spontaneously.
@@ -512,53 +671,65 @@ ICC 2022 output:
 
             {/* ── 7. Parity strategy (added id) ────────────────── */}
 
-            <h2 id="parity-strategy">Parity strategy: how we keep implementations synchronized</h2>
+            <h2 id="parity-strategy">Parity strategy: how we validated the Python-to-IML migration</h2>
             <p>
-              Independent safety layers are only useful when they stay aligned with production logic over time.
-              We use a staged validation strategy so drift is detected early and then locked down.
+              Before retiring the Python classifier, we needed high-confidence evidence that the IML
+              implementation produced identical results. We used a staged validation strategy with four
+              layers, each designed to catch different classes of divergence.
             </p>
 
             <h3>1) Curated scenario checks</h3>
             <p>
-              High-impact, clinically meaningful scenarios are continuously replayed to confirm stable behavior.
+              High-impact, clinically meaningful scenarios were replayed against both implementations to
+              confirm identical behavior on known edge cases.
             </p>
 
             <h3>2) Broad combinatorial coverage</h3>
             <p>
-              We evaluate large sets of feature combinations so edge-case interactions are tested, not assumed.
+              We evaluated large sets of feature combinations so edge-case interactions were tested, not
+              assumed. This covered the combinatorial space that curated scenarios alone cannot reach.
             </p>
 
             <h3>3) Randomized stress testing</h3>
             <p>
-              Randomized case generation finds unusual combinations that hand-written suites may miss.
+              Randomized case generation found unusual combinations that hand-written suites may miss,
+              providing additional confidence across the input space.
             </p>
 
             <h3>4) Regression locking</h3>
             <p>
-              Once a failure pattern is found and fixed, it is promoted into permanent checks to prevent
-              reintroduction.
+              Once a failure pattern was found and fixed, it was promoted into permanent checks. These
+              regression fixtures remain part of the IML test suite today, ensuring that resolved issues
+              are never reintroduced.
+            </p>
+
+            <p>
+              The result of this process: 1888 classifier comparisons with zero failures. That evidence
+              justified the decision to retire the Python implementation and run IML as the sole production
+              classifier.
             </p>
 
             {/* ── 7. Telemetry (added id) ──────────────────────── */}
 
             <h2 id="telemetry">Telemetry, artifacts, and non-blocking safety rollout</h2>
             <p>
-              Every live evaluation contributes to an operational safety signal stream: parity mismatches,
-              impossibility detections, and availability events. This turns safety from a one-time checklist into
-              an operating discipline with measurable trend lines.
+              Every live evaluation contributes to an operational safety signal stream: impossibility
+              detections, safety property evaluations, and availability events. This turns safety from a
+              one-time checklist into an operating discipline with measurable trend lines.
             </p>
             <p>
               Operationally, this makes quality improvement faster: recurring warning patterns can be triaged,
-              reviewed, and folded back into parser and logic hardening cycles, then re-locked into regression.
+              reviewed, and folded back into logic hardening cycles, then re-locked into the regression suite.
             </p>
 
             {/* ── 8. Validation evidence (removed duplicate "running live") ── */}
 
             <h2 id="evidence">Validation evidence (aggregated internal metrics)</h2>
             <p>
-              We do not treat these metrics as marketing numbers. We treat them as operating evidence that the
-              digital twin stays aligned with production logic while running in parallel at live speed. Values
-              below reflect the latest local validation run.
+              We do not treat these metrics as marketing numbers. We treat them as the engineering evidence
+              that justified replacing the Python classifier with IML. The parity results below represent
+              the final validation run before the migration. It shows that the IML implementation matched
+              the Python original across the full test space.
             </p>
             <p>
               This is the canonical public snapshot for every test-result category mentioned in this section:{' '}
@@ -572,18 +743,16 @@ ICC 2022 output:
             <h3>What these metrics represent</h3>
             <ul>
               <li>
-                <strong>Parity pass rate:</strong> how often primary and twin systems agree across the full test
-                strategy.
+                <strong>Parity pass rate:</strong> how often the IML and Python implementations agreed during
+                migration validation. This is the evidence that justified retiring Python.
               </li>
               <li>
                 <strong>Impossibility detection performance:</strong> whether contradiction scenarios are surfaced
-                consistently.
+                consistently by the IML guardrails.
               </li>
               <li>
-                <strong>Runtime overhead:</strong> the additional time cost of parallel formal checking.
-              </li>
-              <li>
-                <strong>Regression stability:</strong> whether previously fixed failures remain fixed.
+                <strong>Regression stability:</strong> whether previously fixed failures remain fixed in the IML
+                codebase.
               </li>
             </ul>
 
@@ -598,7 +767,8 @@ ICC 2022 output:
                   <Link href="/articles/imandra-validation-results#parity-suite">100%</Link>
                 </div>
                 <p className={styles.metricNote}>
-                  Combined reliability across scenario checks, broad coverage, and randomized testing.
+                  Combined reliability across scenario checks, broad coverage, and randomized testing during
+                  migration validation.
                 </p>
               </div>
               <div className={styles.metricCard}>
@@ -622,7 +792,8 @@ ICC 2022 output:
                   <Link href="/articles/imandra-validation-results#matrix-summary">1888/1888</Link>
                 </div>
                 <p className={styles.metricNote}>
-                  Python-vs-expected and Imandra-vs-Python comparisons matched in the latest matrix run.
+                  Python-vs-expected and IML-vs-Python comparisons matched in the migration validation matrix
+                  run. This is the evidence that justified the replacement.
                 </p>
               </div>
               <div className={styles.metricCard}>
@@ -655,7 +826,7 @@ ICC 2022 output:
             <p>
               Before any classification runs, the system parses the raw report into a structured summary. This
               view makes it immediately clear which clinical features were extracted, which TP53 signals were
-              detected, and how the karyotype was decomposed — so reviewers can verify extraction fidelity before
+              detected, and how the karyotype was decomposed. Reviewers can verify extraction fidelity before
               inspecting the decision itself.
             </p>
 
@@ -679,7 +850,7 @@ ICC 2022 output:
             <h3>Classification and derivation</h3>
             <p>
               The system presents WHO 2022 and ICC 2022 classifications side by side, each with a full derivation
-              trace. In this case, the two guidelines reach different primary labels from identical inputs — WHO
+              trace. In this case, the two guidelines reach different primary labels from identical inputs. WHO
               prioritises the MDS-related cytogenetic pathway while ICC prioritises the TP53 multi-hit pathway.
               Making both derivation chains visible is what allows clinicians and QA teams to understand exactly
               where and why the guidelines diverge.
@@ -722,8 +893,8 @@ ICC 2022 output:
             <p>
               We provide multiple levels of trace visualisation so teams can follow the decision path from
               end-to-end overview down to individual branch logic. Teal nodes indicate the path the classifier
-              followed; red nodes show branches that were evaluated and rejected. This is what makes parity
-              review and mismatch triage practical.
+              followed; red nodes show branches that were evaluated and rejected. This is what makes decision
+              review and edge-case triage practical.
             </p>
 
             <figure className={styles.figureBlock}>
@@ -764,22 +935,29 @@ ICC 2022 output:
             <h2 id="how-this-helps">How this helps Haem.io</h2>
             <ul>
               <li>
-                <strong>Independent verification:</strong> two implementations assess the same case, reducing
-                silent single-path failure.
+                <strong>Formally verified classifier:</strong> the production classifier is written in IML,
+                enabling mathematical proofs about its behavior, not just test coverage.
               </li>
               <li>
-                <strong>Better QA triage:</strong> mismatch and impossibility events surface edge cases early.
+                <strong>Single codebase for classification and safety:</strong> impossibility checks and safety
+                properties are part of the same IML code, eliminating the risk of a separate safety layer
+                falling out of sync.
+              </li>
+              <li>
+                <strong>Better QA triage:</strong> impossibility events and counterexample generation surface
+                edge cases early.
               </li>
               <li>
                 <strong>Auditability:</strong> rule IDs, severity, and evidence fields are captured in structured
-                form.
+                form, and the IML source is inspectable by formal tools.
               </li>
               <li>
-                <strong>Safe deployment posture:</strong> soft guardrails allow monitoring in production without
+                <strong>Safe deployment posture:</strong> guardrails allow monitoring in production without
                 interrupting clinical workflow.
               </li>
               <li>
-                <strong>Faster hardening cycle:</strong> promoted artifacts become permanent regression checks.
+                <strong>Faster hardening cycle:</strong> promoted artifacts become permanent regression checks
+                in the IML test suite.
               </li>
             </ul>
 
@@ -800,15 +978,15 @@ ICC 2022 output:
 
             {/* ── 12. Broader relevance ────────────────────────── */}
 
-            <h2 id="broader-relevance">Broader relevance to other diagnostic software</h2>
+            <h2 id="broader-relevance">Where else this approach works</h2>
             <p>
-              This pattern is transferable beyond haematology: probabilistic extraction plus deterministic
+              The same structure works outside haematology. Probabilistic extraction plus deterministic
               execution plus formal guardrails can strengthen any diagnostic software stack that combines
               unstructured clinical text with guideline-driven classification logic.
             </p>
             <p>
-              The neurosymbolic paradigm — using neural models where flexibility matters and formal reasoning
-              where precision matters — is gaining traction across safety-critical domains. The CodeLogician
+              The neurosymbolic paradigm (using neural models where flexibility matters and formal reasoning
+              where precision matters) is gaining traction across safety-critical domains. The CodeLogician
               work demonstrates this in financial and software systems; our implementation demonstrates it in
               clinical diagnostics.<sup><a href="#ref4" className={styles.citation}>4</a></sup> In both
               cases, the insight is the same: LLMs are powerful extractors and translators, but they cannot
@@ -816,8 +994,8 @@ ICC 2022 output:
             </p>
             <p>
               In other domains, the exact rule content will differ, but the architecture remains valuable:
-              explicit unknown-state modeling, independent implementation checks, contradiction diagnostics, and
-              regression promotion from real-world failures into permanent tests.
+              explicit unknown-state modeling, parity-validated migration to formally verifiable code,
+              contradiction diagnostics, and regression promotion from real-world failures into permanent tests.
             </p>
 
             {/* ── 13. Closing (renamed, no phantom "next step") ── */}

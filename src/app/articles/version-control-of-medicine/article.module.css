@@ -317,12 +317,12 @@
   height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 2rem 0;
+  padding: 2rem 3rem 2rem 2rem;
   background: transparent;
   z-index: 10;
   border-right: 1px solid #f0f0f0;
-  padding-right: 3rem;
   margin-right: 3rem;
+  margin-left: 2rem;
 }
 
 .sidebar::-webkit-scrollbar {

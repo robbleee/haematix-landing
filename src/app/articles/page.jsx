@@ -33,6 +33,18 @@ const articles = [
     slug: '/articles/signal-vs-execution'
   },
   {
+    id: 'neurosymbolic-imandra',
+    category: 'Engineering Architecture',
+    categoryColor: '#0e7490',
+    title: 'Neurosymbolic Diagnostic Algorithms with Imandra',
+    excerpt: 'How a formally verified IML classifier replaced our Python implementation — and what we proved, failed to prove, and learned in the process.',
+    author: 'Robert Lee',
+    authorImage: '/profile-pics/robbie.png',
+    date: 'February 10, 2026',
+    readTime: '18 min read',
+    slug: '/articles/neurosymbolic-diagnostic-algorithms-imandra'
+  },
+  {
     id: 'expansion-thesis',
     category: 'Strategy',
     categoryColor: '#8b5cf6',

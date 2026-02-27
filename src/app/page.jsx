@@ -75,6 +75,62 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Complexity Context Section */}
+      <section style={{
+        backgroundColor: '#ffffff',
+        padding: '5rem 0 4.5rem',
+        borderTop: '1px solid #e2e8f0',
+        borderBottom: '1px solid #e2e8f0'
+      }}>
+        <div className="container" style={{ maxWidth: '980px' }}>
+          <div style={{ margin: '0 auto' }}>
+            <h2 style={{
+              fontSize: '2.15rem',
+              fontWeight: '700',
+              color: '#009688',
+              marginBottom: '1.5rem',
+              letterSpacing: '-0.01em'
+            }}>
+              The Complexity Crisis in Genomic Diagnosis
+            </h2>
+            <p style={{
+              fontSize: '1.12rem',
+              lineHeight: '1.9',
+              color: '#334155',
+              marginBottom: '1.5rem'
+            }}>
+              With genomic-era diagnosis, myeloid disease classification is no longer a small checklist.
+              It is a high-dimensional state space of genetic findings, cytogenetics, blast patterns,
+              prior-treatment context, and clinical qualifiers, all evaluated through increasingly complex
+              guideline logic. In practice, this can produce hundreds of thousands of possible pathway
+              combinations before arriving at a final subtype label.
+            </p>
+            <p style={{
+              fontSize: '1.12rem',
+              lineHeight: '1.9',
+              color: '#334155',
+              marginBottom: '1.5rem'
+            }}>
+              More broadly, this is becoming a system-wide challenge across oncology as diagnostic practice
+              shifts from morphology-first classification toward genomics-first classification.
+            </p>
+            <p style={{
+              fontSize: '1.12rem',
+              lineHeight: '1.9',
+              color: '#334155',
+              margin: 0
+            }}>
+              Expecting clinicians to execute that full combinatorial logic by hand, repeatedly and
+              consistently, is not realistic. We need algorithmic execution for reliability, and formal
+              verification layers so those algorithms can be checked for drift, contradiction, and internal
+              coherence as they run in the real world. Diagnosticians in the west — and increasingly in
+              LMICs — are expected to do this hundreds of times per year, and these diagnoses are clinically
+              critical. It can be the difference between being put on a chemotherapy regimen or not.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section id="features" className={styles.featuresSection} style={{
         backgroundColor: 'white',

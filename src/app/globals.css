@@ -123,7 +123,8 @@ button:hover, .button:hover {
   }
   
   /* Make header flex for mobile */
-  header > div {
+  header > div,
+  .header-inner {
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
@@ -149,6 +150,21 @@ button:hover, .button:hover {
 
 section {
   padding: 4rem 0;
+}
+
+/* Expansion thesis mobile */
+@media (max-width: 1024px) {
+  .expansion-thesis {
+    padding: 1rem !important;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .expansion-thesis {
+    padding: 0.75rem !important;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {

@@ -6,7 +6,7 @@ import { FunnelExpansion, TimeTaxChart } from './ExpansionVisuals';
 
 export default function ExpansionThesisContent() {
   return (
-    <div style={{ 
+    <div className="expansion-thesis" style={{ 
       maxWidth: '1600px', 
       margin: '0 auto', 
       padding: '2rem',

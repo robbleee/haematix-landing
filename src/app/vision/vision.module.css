@@ -1,0 +1,159 @@
+.visionPage {
+  min-height: 100vh;
+  background: #f8f9fa;
+  color: #1a202c;
+}
+
+.header {
+  padding: 6rem 2rem 4rem;
+  text-align: center;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.header h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: #009688;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+.matrixSection {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.visionGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.visionCard {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 2.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.visionCard:hover {
+  border-color: #009688;
+  box-shadow: 0 10px 25px -5px rgba(0, 150, 136, 0.15);
+  transform: translateY(-4px);
+}
+
+@media (max-width: 480px) {
+  .visionCard {
+    padding: 1.5rem;
+  }
+}
+
+.missionSection {
+  padding: 4rem 2rem;
+  background: white;
+  border-top: 1px solid #e2e8f0;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modalContent {
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  background: white;
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  overflow-y: auto;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 4rem 1rem 3rem;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
+
+  .matrixSection {
+    padding: 3rem 1rem;
+  }
+
+  .visionGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .missionSection {
+    padding: 3rem 1rem;
+  }
+
+  .modalContent {
+    padding: 2rem 1.5rem;
+  }
+
+  .modalContent h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 3rem 0.75rem 2rem;
+  }
+
+  .header h1 {
+    font-size: 1.75rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .matrixSection {
+    padding: 2rem 0.75rem;
+  }
+
+  .visionGrid {
+    grid-template-columns: 1fr;
+    min-width: 0;
+  }
+
+  .missionSection {
+    padding: 2rem 0.75rem;
+  }
+
+  .modalContent {
+    padding: 1.5rem 1rem;
+  }
+}

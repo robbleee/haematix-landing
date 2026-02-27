@@ -20,8 +20,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <header style={{ backgroundColor: 'var(--background-color)', boxShadow: '0 2px 4px rgba(0,0,0,0.1)', position: 'relative' }}>
-          <div style={{ 
-            padding: '1rem 2rem', 
+          <div className="header-inner" style={{ 
+            padding: '1rem 1.25rem',
             display: 'flex', 
             justifyContent: 'space-between', 
             alignItems: 'center',
@@ -38,9 +38,6 @@ export default function RootLayout({ children }) {
             <nav>
               <ul style={{ display: 'flex', gap: '1.5rem', listStyle: 'none', margin: 0, padding: 0 }}>
                 <li><Link href="/" style={{ textDecoration: 'none' }}>Home</Link></li>
-                <li><Link href="/vision" style={{ textDecoration: 'none' }}>Our Vision</Link></li>
-                <li><Link href="/expansion-thesis" style={{ textDecoration: 'none' }}>Expansion Thesis</Link></li>
-                <li><Link href="/roadmap" style={{ textDecoration: 'none' }}>Roadmap</Link></li>
                 <li><Link href="/team" style={{ textDecoration: 'none' }}>Team</Link></li>
                 <li><Link href="/articles" style={{ textDecoration: 'none' }}>Articles</Link></li>
                 <li><a className="button" href="https://app.haem.io/" target="_blank" rel="noopener noreferrer">Login</a></li>

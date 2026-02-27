@@ -9,8 +9,8 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <section className={styles.hero} style={{
-        paddingTop: '8rem',
-        paddingBottom: '5rem',
+        paddingTop: '6rem',
+        paddingBottom: '4rem',
         background: 'linear-gradient(180deg, #ffffff 0%, #f0fdfa 100%)',
         position: 'relative',
         zIndex: 1
@@ -28,7 +28,7 @@ export default function Home() {
               maxWidth: '800px',
               textAlign: 'center'
             }}>
-              <h1 style={{ 
+              <h1 className={styles.heroTitle} style={{ 
                 fontSize: '3.5rem', 
                 fontWeight: '800', 
                 marginBottom: '1.5rem',
@@ -37,7 +37,7 @@ export default function Home() {
               }}>
                 <span style={{ color: '#009688' }}>Haem.io</span>
               </h1>
-              <p style={{ 
+              <p className={styles.heroSubtitle} style={{ 
                 fontSize: '1.35rem', 
                 margin: '0 auto 2rem', 
                 lineHeight: '1.6', 
@@ -76,7 +76,7 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section id="features" style={{
+      <section id="features" className={styles.featuresSection} style={{
         backgroundColor: 'white',
         padding: '6rem 0',
         borderTop: '1px solid #e2e8f0'
@@ -99,7 +99,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+          <div className={styles.featuresGrid} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
             {/* Feature 1 */}
             <div className={styles.featureCard} style={{
               padding: '2.5rem',

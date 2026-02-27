@@ -74,6 +74,67 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .hero {
-    padding: 4rem 0;
+    padding: 4rem 0 !important;
+  }
+
+  .heroContent h1,
+  .hero .heroTitle {
+    font-size: 2rem !important;
+  }
+
+  .heroContent p,
+  .hero .heroSubtitle {
+    font-size: 1rem !important;
+  }
+
+  .hero .secondary-button {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+  }
+
+  .featuresSection {
+    padding: 4rem 0 !important;
+  }
+
+  .featuresSection h2 {
+    font-size: 1.75rem !important;
+  }
+
+  .featuresSection > div > div:first-child {
+    margin-bottom: 2.5rem !important;
+  }
+
+  .featuresGrid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+
+  .featureCard {
+    padding: 1.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 3rem 0 !important;
+  }
+
+  .heroContent h1,
+  .hero .heroTitle {
+    font-size: 1.75rem !important;
+  }
+
+  .heroContent p,
+  .hero .heroSubtitle {
+    font-size: 0.9375rem !important;
+  }
+
+  .featuresSection {
+    padding: 3rem 0 !important;
+  }
+
+  .featuresSection h2 {
+    font-size: 1.5rem !important;
   }
 } 

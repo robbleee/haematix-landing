@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import styles from './vision.module.css';
 
 export default function VisionPage() {
   const [activeCard, setActiveCard] = useState(null);
@@ -148,67 +149,33 @@ export default function VisionPage() {
   const expandedNode = visionNodes.find(node => node.id === expandedCard);
 
   return (
-    <main style={{ 
-      minHeight: '100vh', 
-      background: '#f8f9fa',
-      color: '#1a202c',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
-    }}>
+    <main className={styles.visionPage}>
       
       {/* Header */}
-      <section style={{
-        padding: '6rem 2rem 4rem',
-        textAlign: 'center',
-        background: 'white',
-        borderBottom: '1px solid #e2e8f0'
-      }}>
+      <section className={styles.header}>
         <div className="container" style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <h1 style={{
-            fontSize: '3rem',
-            fontWeight: '800',
-            marginBottom: '1.5rem',
-            color: '#009688',
-            letterSpacing: '-0.02em'
-          }}>
-            Our Vision
-          </h1>
-          <p style={{
-            fontSize: '1.25rem',
-            color: '#4a5568',
-            lineHeight: '1.6'
-          }}>
+          <h1>Our Vision</h1>
+          <p className={styles.subtitle}>
             Advancing Precision Hematology Through AI-Driven Insights
           </p>
         </div>
       </section>
 
       {/* Vision Matrix Interface */}
-      <section style={{
-        padding: '4rem 2rem',
-        maxWidth: '1200px',
-        margin: '0 auto'
-      }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
-          gap: '2rem'
-        }}>
+      <section className={styles.matrixSection}>
+        <div className={styles.visionGrid}>
           {visionNodes.map((node) => (
             <div
               key={node.id}
               onClick={() => handleCardClick(node.id)}
               onMouseEnter={() => setActiveCard(node.id)}
               onMouseLeave={() => setActiveCard(null)}
+              className={styles.visionCard}
               style={{
-                background: 'white',
-                border: activeCard === node.id ? '1px solid #009688' : '1px solid #e2e8f0',
-                borderRadius: '12px',
-                padding: '2.5rem',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
+                border: activeCard === node.id ? '1px solid #009688' : undefined,
                 boxShadow: activeCard === node.id 
                   ? '0 10px 25px -5px rgba(0, 150, 136, 0.15)' 
-                  : '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
+                  : undefined,
                 transform: activeCard === node.id ? 'translateY(-4px)' : 'none'
               }}
             >
@@ -248,11 +215,7 @@ export default function VisionPage() {
       </section>
 
       {/* Core Principles / Mission */}
-      <section style={{
-        padding: '4rem 2rem',
-        background: 'white',
-        borderTop: '1px solid #e2e8f0'
-      }}>
+      <section className={styles.missionSection}>
         <div className="container" style={{ maxWidth: '800px', margin: '0 auto' }}>
           <div style={{
             padding: '3rem',
@@ -291,34 +254,11 @@ export default function VisionPage() {
       {/* Expanded Modal */}
       {expandedCard && expandedNode && (
         <div 
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100vw',
-            height: '100vh',
-            background: 'rgba(0, 0, 0, 0.6)',
-            backdropFilter: 'blur(4px)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 1000,
-            padding: '1rem'
-          }}
+          className={styles.modalOverlay}
           onClick={closeExpanded}
         >
           <div 
-            style={{
-              width: '100%',
-              maxWidth: '800px',
-              maxHeight: '90vh',
-              background: 'white',
-              borderRadius: '16px',
-              padding: '3rem',
-              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-              overflowY: 'auto',
-              position: 'relative'
-            }}
+            className={styles.modalContent}
             onClick={(e) => e.stopPropagation()}
           >
             <button

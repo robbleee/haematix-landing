@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styles from '../imandra-safe-diagnostic-algorithms/article.module.css';
+import styles from '../safe-diagnostic-algorithms-imandra-verification-formal-methods-guardrail-architecture/article.module.css';
 import CasesExplorer from './CasesExplorer';
 
 export const metadata = {
@@ -11,7 +11,7 @@ export const metadata = {
 export default function ImandraValidationResultsPage() {
   return (
     <div className={styles.articleContainer}>
-      <Link href="/articles/imandra-safe-diagnostic-algorithms" className={styles.backButton}>
+      <Link href="/articles/safe-diagnostic-algorithms-imandra-verification-formal-methods-guardrail-architecture" className={styles.backButton}>
         {'<-'} Back to Imandra Article
       </Link>
 

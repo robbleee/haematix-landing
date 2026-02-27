@@ -46,70 +46,59 @@ const teamMembers = [
 export default function TeamPage() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % teamMembers.length);
-  };
+  const next = () => setCurrentIndex((prev) => (prev + 1) % teamMembers.length);
+  const prev = () => setCurrentIndex((prev) => (prev - 1 + teamMembers.length) % teamMembers.length);
 
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + teamMembers.length) % teamMembers.length);
-  };
-
-  const goToSlide = (index) => {
-    setCurrentIndex(index);
-  };
-
-  const currentMember = teamMembers[currentIndex];
+  const current = teamMembers[currentIndex];
 
   return (
-    <div className={styles.teamPageContainer}>
-      <Link href="/" className={styles.backButton}>
-        ← Back to Home
-      </Link>
+    <div className={styles.page}>
+      {/* Header */}
+      <div className={styles.header}>
+        <p className={styles.eyebrow}>Meet the team</p>
+        <h1 className={styles.title}>The Research Team</h1>
+        <p className={styles.subtitle}>Expertise in AI, clinical haematology, and healthcare technology.</p>
+      </div>
 
-      <div className={styles.teamPageContent}>
-        <div className={styles.teamHeader}>
-          <h1>The Research Team</h1>
-          <p className={styles.teamIntro}>Expertise in AI, clinical haematology, and healthcare technology.</p>
-        </div>
+      {/* Card + side arrows (desktop) */}
+      <div className={styles.carouselRow}>
+        <button onClick={prev} className={styles.sideArrow} aria-label="Previous">‹</button>
 
-        <div className={styles.carouselContainer}>
-          <button onClick={prevSlide} className={styles.carouselArrow} aria-label="Previous team member">
-            ‹
-          </button>
-
-          <div className={styles.carouselContent}>
-            <div className={styles.teamMemberCard} key={currentIndex}>
-              <div className={styles.teamMemberPhoto}>
-                <img src={currentMember.image} alt={currentMember.name} />
-              </div>
-              <h3>{currentMember.name}</h3>
-              <h4>{currentMember.title}</h4>
-              {currentMember.bio.map((paragraph, idx) => (
-                <p key={idx}>{paragraph}</p>
-              ))}
+        <div className={styles.card} key={currentIndex}>
+          <div className={styles.cardTop}>
+            <img src={current.image} alt={current.name} className={styles.photo} />
+            <div>
+              <h2 className={styles.name}>{current.name}</h2>
+              <p className={styles.role}>{current.title}</p>
             </div>
           </div>
-
-          <button onClick={nextSlide} className={styles.carouselArrow} aria-label="Next team member">
-            ›
-          </button>
+          <div className={styles.bio}>
+            {current.bio.map((para, i) => <p key={i}>{para}</p>)}
+          </div>
         </div>
 
-        <div className={styles.carouselDots}>
-          {teamMembers.map((member, index) => (
+        <button onClick={next} className={styles.sideArrow} aria-label="Next">›</button>
+      </div>
+
+      {/* Controls: prev · dots · next (unified row, used on mobile) */}
+      <div className={styles.controls}>
+        <button onClick={prev} className={styles.controlArrow} aria-label="Previous">‹</button>
+
+        <div className={styles.dots}>
+          {teamMembers.map((member, i) => (
             <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`${styles.dot} ${index === currentIndex ? styles.dotActive : ''}`}
+              key={i}
+              onClick={() => setCurrentIndex(i)}
+              className={`${styles.dot} ${i === currentIndex ? styles.dotActive : ''}`}
               aria-label={`View ${member.name}`}
             >
               <img src={member.image} alt={member.name} />
             </button>
           ))}
         </div>
+
+        <button onClick={next} className={styles.controlArrow} aria-label="Next">›</button>
       </div>
     </div>
   );
 }
-
-

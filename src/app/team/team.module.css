@@ -1,114 +1,179 @@
-.teamPageContainer {
+/* ── Page ───────────────────────────────────────────────── */
+.page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  padding: 2rem;
-  position: relative;
+  background: #fafaf9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1.25rem 4rem;
 }
 
-.backButton {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
-  padding: 0.75rem 1.5rem;
-  background: white;
-  color: var(--primary-color);
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: 500;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  z-index: 10;
-}
-
-.backButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.teamPageContent {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding-top: 2rem;
-}
-
-.teamHeader {
+/* ── Header ─────────────────────────────────────────────── */
+.header {
+  width: 100%;
   text-align: center;
-  margin-bottom: 1.5rem;
+  padding: 4rem 1rem 2.5rem;
+  border-bottom: 1px solid #e5e5e3;
+  margin-bottom: 2.5rem;
 }
 
-.teamHeader h1 {
-  color: #333;
-  font-size: 2rem;
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin: 0 0 0.75rem;
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #111;
+  margin: 0 0 0.75rem;
+  line-height: 1.1;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* ── Carousel row (desktop: card flanked by arrows) ─────── */
+.carouselRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 900px;
+}
+
+/* ── Card ───────────────────────────────────────────────── */
+.card {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #e5e5e3;
+  border-radius: 16px;
+  padding: 2rem 2.25rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  animation: fadeSlide 0.35s ease;
+}
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #f0f0ee;
+}
+
+.photo {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--primary-color, #009688);
+  flex-shrink: 0;
+}
+
+.name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 0.25rem;
+  letter-spacing: -0.015em;
+}
+
+.role {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--primary-color, #009688);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.bio p {
+  font-size: 0.92rem;
+  color: #4b5563;
+  line-height: 1.75;
+  margin: 0 0 0.9rem;
+}
+
+.bio p:last-child {
   margin-bottom: 0;
 }
 
-.teamIntro {
-  display: none;
-}
-
-/* Carousel Styles */
-.carouselContainer {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-  max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.carouselContent {
-  flex: 1;
-  overflow: hidden;
-}
-
-.carouselArrow {
-  background: white;
-  border: 2px solid var(--primary-color);
-  color: var(--primary-color);
-  width: 60px;
-  height: 80px;
-  border-radius: 8px;
-  font-size: 3rem;
+/* ── Side arrows (desktop only) ─────────────────────────── */
+.sideArrow {
+  background: #fff;
+  border: 1px solid #e5e5e3;
+  color: #374151;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 1.75rem;
+  font-weight: 300;
   cursor: pointer;
-  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  margin-top: 6rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
   line-height: 1;
-  padding: 0;
-  font-weight: 300;
+  padding-bottom: 2px;
 }
 
-.carouselArrow:hover {
-  background: var(--primary-color);
-  color: white;
-  transform: translateX(0) scale(1.05);
-  box-shadow: 0 4px 16px rgba(0, 150, 136, 0.25);
+.sideArrow:hover {
+  background: var(--primary-color, #009688);
+  border-color: var(--primary-color, #009688);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 150, 136, 0.25);
 }
 
-.carouselArrow:active {
-  transform: scale(0.98);
-}
-
-.carouselDots {
+/* ── Unified controls row (dots + arrows) ────────────────── */
+.controls {
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 0.75rem;
-  margin: 1.5rem 0 1rem;
+  gap: 1rem;
+  margin-top: 1.75rem;
+  width: 100%;
+  max-width: 900px;
+}
+
+/* On desktop, hide the control-row arrows (side arrows handle it) */
+.controlArrow {
+  display: none;
+}
+
+.dots {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
 }
 
 .dot {
-  width: 50px;
-  height: 50px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  border: 3px solid transparent;
+  border: 2.5px solid transparent;
   padding: 0;
   cursor: pointer;
-  transition: all 0.3s ease;
   background: transparent;
   overflow: hidden;
+  transition: all 0.2s ease;
+  opacity: 0.45;
 }
 
 .dot img {
@@ -116,136 +181,95 @@
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
-  opacity: 0.5;
-  transition: all 0.3s ease;
 }
 
-.dot:hover img {
-  opacity: 0.8;
+.dot:hover {
+  opacity: 0.75;
 }
 
 .dotActive {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px white, 0 0 0 4px var(--primary-color);
-}
-
-.dotActive img {
+  border-color: var(--primary-color, #009688);
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--primary-color, #009688);
   opacity: 1;
 }
 
-.teamMemberCard {
-  background: white;
-  border: 2px solid #e0e0e0;
-  border-radius: 12px;
-  padding: 2.5rem 3rem;
-  animation: fadeIn 0.5s ease-in;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  border-color: var(--primary-color);
-  min-height: 450px;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.teamMemberPhoto {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 0 auto 1rem;
-  border: 4px solid var(--primary-color);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.teamMemberPhoto img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.teamMemberCard h3 {
-  color: #333;
-  text-align: center;
-  margin-bottom: 0.25rem;
-  font-size: 1.25rem;
-}
-
-.teamMemberCard h4 {
-  color: var(--primary-color);
-  text-align: center;
-  margin-bottom: 1rem;
-  font-size: 0.95rem;
-  font-weight: 600;
-}
-
-.teamMemberCard p {
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 0.9rem;
-  text-align: justify;
-  font-size: 0.88rem;
-}
-
-.teamMemberCard p:last-child {
-  margin-bottom: 0;
-}
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .teamPageContainer {
-    padding: 1rem;
+/* ── Mobile ──────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .page {
+    padding: 0 1rem 3rem;
   }
 
-  .backButton {
-    top: 1rem;
-    left: 1rem;
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
+  .header {
+    padding: 2.5rem 0.5rem 2rem;
+    margin-bottom: 1.5rem;
   }
 
-  .teamPageContent {
-    padding-top: 2rem;
+  /* Hide side arrows, show control-row arrows instead */
+  .sideArrow {
+    display: none;
   }
 
-  .teamHeader h1 {
-    font-size: 1.75rem;
+  .controlArrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 1px solid #e5e5e3;
+    color: #374151;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: 300;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+    line-height: 1;
+    padding-bottom: 2px;
   }
 
-  .carouselContainer {
+  .controlArrow:hover {
+    background: var(--primary-color, #009688);
+    border-color: var(--primary-color, #009688);
+    color: #fff;
+  }
+
+  .carouselRow {
+    gap: 0;
+  }
+
+  .card {
+    padding: 1.25rem 1.1rem;
+    border-radius: 12px;
+  }
+
+  .cardTop {
     gap: 1rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
   }
 
-  .carouselArrow {
-    width: 50px;
-    height: 70px;
-    font-size: 2.5rem;
+  .photo {
+    width: 60px;
+    height: 60px;
   }
 
-  .teamMemberCard {
-    padding: 1.5rem;
+  .name {
+    font-size: 1.05rem;
   }
 
-  .teamMemberPhoto {
-    width: 120px;
-    height: 120px;
+  .bio p {
+    font-size: 0.875rem;
+    line-height: 1.7;
   }
 
   .dot {
-    width: 50px;
-    height: 50px;
+    width: 36px;
+    height: 36px;
   }
 
-  .carouselDots {
+  .controls {
+    margin-top: 1.25rem;
     gap: 0.75rem;
   }
 }
-
-

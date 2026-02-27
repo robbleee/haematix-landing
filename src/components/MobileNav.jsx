@@ -32,15 +32,6 @@ export default function MobileNav() {
             <Link href="/" style={{ textDecoration: 'none', display: 'block' }} onClick={closeMenu}>Home</Link>
           </li>
           <li style={{ padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
-            <Link href="/vision" style={{ textDecoration: 'none', display: 'block' }} onClick={closeMenu}>Our Vision</Link>
-          </li>
-          <li style={{ padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
-            <Link href="/expansion-thesis" style={{ textDecoration: 'none', display: 'block' }} onClick={closeMenu}>Expansion Thesis</Link>
-          </li>
-          <li style={{ padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
-            <Link href="/roadmap" style={{ textDecoration: 'none', display: 'block' }} onClick={closeMenu}>Roadmap</Link>
-          </li>
-          <li style={{ padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
             <Link href="/team" style={{ textDecoration: 'none', display: 'block' }} onClick={closeMenu}>Team</Link>
           </li>
           <li style={{ padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>

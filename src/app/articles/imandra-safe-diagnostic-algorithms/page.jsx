@@ -733,11 +733,11 @@ theorem who_low_blast_boundary (d : parsed_data) =
             </p>
             <p>
               This is the canonical public snapshot for every test-result category mentioned in this section:{' '}
-              <Link href="/articles/imandra-classifier-migration-validation-results-parity-exhaustive-property-regression-matrix">Imandra Validation Results</Link>.
+              <Link href="/articles/imandra-validation-results">Imandra Validation Results</Link>.
             </p>
             <p>
               You can inspect exact case-level inputs and outputs at{' '}
-              <Link href="/articles/imandra-classifier-migration-validation-results-parity-exhaustive-property-regression-matrix#exact-test-data">the exact test data section</Link>.
+              <Link href="/articles/imandra-validation-results#exact-test-data">the exact test data section</Link>.
             </p>
 
             <h3>What these metrics represent</h3>
@@ -759,12 +759,12 @@ theorem who_low_blast_boundary (d : parsed_data) =
             <div className={styles.metricGrid}>
               <div className={styles.metricCard}>
                 <div className={styles.metricLabel}>
-                  <Link href="/articles/imandra-classifier-migration-validation-results-parity-exhaustive-property-regression-matrix#parity-suite">
+                  <Link href="/articles/imandra-validation-results#parity-suite">
                     Parity pass rate (all suites)
                   </Link>
                 </div>
                 <div className={styles.metricValue}>
-                  <Link href="/articles/imandra-classifier-migration-validation-results-parity-exhaustive-property-regression-matrix#parity-suite">100%</Link>
+                  <Link href="/articles/imandra-validation-results#parity-suite">100%</Link>
                 </div>
                 <p className={styles.metricNote}>
                   Combined reliability across scenario checks, broad coverage, and randomized testing during
@@ -773,12 +773,12 @@ theorem who_low_blast_boundary (d : parsed_data) =
               </div>
               <div className={styles.metricCard}>
                 <div className={styles.metricLabel}>
-                  <Link href="/articles/imandra-classifier-migration-validation-results-parity-exhaustive-property-regression-matrix#impossibility-publication">
+                  <Link href="/articles/imandra-validation-results#impossibility-publication">
                     Impossibility challenge-set publication
                   </Link>
                 </div>
                 <div className={styles.metricValue}>
-                  <Link href="/articles/imandra-classifier-migration-validation-results-parity-exhaustive-property-regression-matrix#impossibility-publication">Published</Link>
+                  <Link href="/articles/imandra-validation-results#impossibility-publication">Published</Link>
                 </div>
                 <p className={styles.metricNote}>
                   Contradiction case families and expected impossibility behavior are published on the validation page.
@@ -786,10 +786,10 @@ theorem who_low_blast_boundary (d : parsed_data) =
               </div>
               <div className={styles.metricCard}>
                 <div className={styles.metricLabel}>
-                  <Link href="/articles/imandra-classifier-migration-validation-results-parity-exhaustive-property-regression-matrix#matrix-summary">Matrix comparison coverage</Link>
+                  <Link href="/articles/imandra-validation-results#matrix-summary">Matrix comparison coverage</Link>
                 </div>
                 <div className={styles.metricValue}>
-                  <Link href="/articles/imandra-classifier-migration-validation-results-parity-exhaustive-property-regression-matrix#matrix-summary">1888/1888</Link>
+                  <Link href="/articles/imandra-validation-results#matrix-summary">1888/1888</Link>
                 </div>
                 <p className={styles.metricNote}>
                   Python-vs-expected and IML-vs-Python comparisons matched in the migration validation matrix
@@ -798,10 +798,10 @@ theorem who_low_blast_boundary (d : parsed_data) =
               </div>
               <div className={styles.metricCard}>
                 <div className={styles.metricLabel}>
-                  <Link href="/articles/imandra-classifier-migration-validation-results-parity-exhaustive-property-regression-matrix#result-interpretation">Suite status</Link>
+                  <Link href="/articles/imandra-validation-results#result-interpretation">Suite status</Link>
                 </div>
                 <div className={styles.metricValue}>
-                  <Link href="/articles/imandra-classifier-migration-validation-results-parity-exhaustive-property-regression-matrix#result-interpretation">6/6 Passed</Link>
+                  <Link href="/articles/imandra-validation-results#result-interpretation">6/6 Passed</Link>
                 </div>
                 <p className={styles.metricNote}>
                   Regressions, parity, exhaustive, property, TP53 parity, and matrix comparison all passed.
@@ -892,8 +892,8 @@ theorem who_low_blast_boundary (d : parsed_data) =
             <h3>Execution path visualisation</h3>
             <p>
               We provide multiple levels of trace visualisation so teams can follow the decision path from
-              end-to-end overview down to individual branch logic.               Red nodes indicate the path the classifier
-              followed; teal nodes show the decision tree available. This is what makes decision
+              end-to-end overview down to individual branch logic. Teal nodes indicate the path the classifier
+              followed; red nodes show branches that were evaluated and rejected. This is what makes decision
               review and edge-case triage practical.
             </p>
 
@@ -908,7 +908,8 @@ theorem who_low_blast_boundary (d : parsed_data) =
               </div>
               <figcaption className={styles.figureCaption}>
                 <strong>Figure 4: Full execution path.</strong> End-to-end WHO 2022 AML decision trace for
-                this case. Teal shows the decision tree available; red shows the path the classifier followed.
+                this case. Red (rejected) and teal (accepted) branches show every evaluation point the
+                classifier traversed to reach the final label.
               </figcaption>
             </figure>
 

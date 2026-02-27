@@ -229,7 +229,7 @@ export default function CasesExplorer() {
       setLoading(true);
       setError('');
       try {
-        const res = await fetch('/articles/imandra-validation-results/test-results', {
+        const res = await fetch('/articles/imandra-classifier-migration-validation-results-parity-exhaustive-property-regression-matrix/test-results', {
           cache: 'no-store',
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);

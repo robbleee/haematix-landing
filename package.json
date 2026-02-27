@@ -10,6 +10,7 @@
     "postinstall": "npx puppeteer browsers install chrome || true"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.6.1",
     "archiver": "^7.0.1",
     "chart.js": "^4.4.9",
     "github-markdown-css": "^5.8.1",
@@ -17,7 +18,7 @@
     "html2pdf.js": "^0.12.1",
     "jspdf": "^3.0.1",
     "marked": "^15.0.12",
-    "next": "15.2.4",
+    "next": "^15.2.8",
     "puppeteer": "^24.26.0",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.3.0",

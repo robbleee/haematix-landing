@@ -49,7 +49,7 @@ export default function Home() {
               </p>
               
               <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '2rem' }}>
-                <Link href="/full-flow" style={{
+                <Link href="/interactive-classifier" style={{
                   padding: '0.75rem 1.5rem',
                   backgroundColor: 'white',
                   color: '#009688',
@@ -59,7 +59,7 @@ export default function Home() {
                   textDecoration: 'none',
                   transition: 'all 0.2s ease'
                 }} className="secondary-button">
-                  View Full System Logic
+                  Try Our AML/MDS Classifier
                 </Link>
               </div>
             </div>

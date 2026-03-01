@@ -236,7 +236,7 @@ const InteractiveClassifier = () => {
           Experiment with genetic permutations and blast thresholds to see how our logic seamlessly processes WHO 2022, ICC 2022, and ELN 2022 criteria.
         </p>
         <div className={styles.disclaimer}>
-          <strong>Note:</strong> This calculator is a highly simplified demonstration. Unlike our main haem.io platform—which features automated AI extraction and comprehensive guardrails—this tool requires manual data entry and is provided for illustrative purposes only. No clinical guarantees are made regarding the results it produces.
+          <strong>Note:</strong> This calculator is a highly simplified demonstration. Unlike our main haem.io platform—which features automated AI extraction and comprehensive guardrails—this tool requires manual data entry and is provided for illustrative purposes only. It currently supports AML and MDS pathways only. No clinical guarantees are made regarding the results it produces.
         </div>
       </div>
 

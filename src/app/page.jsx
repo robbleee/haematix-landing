@@ -71,6 +71,28 @@ export default function Home() {
             }}>
               <DiagnosticArchitecture />
             </div>
+
+            {/* Interactive Classifier Link */}
+            <div style={{
+              width: '100%',
+              marginTop: '2rem',
+              display: 'flex',
+              justifyContent: 'center'
+            }}>
+              <Link href="/interactive-classifier" style={{
+                padding: '1rem 2rem',
+                backgroundColor: '#009688',
+                color: 'white',
+                borderRadius: '8px',
+                fontWeight: '700',
+                fontSize: '1.1rem',
+                textDecoration: 'none',
+                boxShadow: '0 4px 6px rgba(0, 150, 136, 0.2)',
+                transition: 'all 0.2s ease',
+              }}>
+                Try the Interactive Classifier Engine
+              </Link>
+            </div>
           </div>
         </div>
       </section>

@@ -31,12 +31,13 @@ export default function CookieBanner() {
     <div className={styles.cookieBanner}>
       <div className={styles.content}>
         <div className={styles.text}>
+          <p className={styles.kicker}>Cookie preferences</p>
           <p>
             We use cookies to enhance your experience on our site. These cookies help us analyze traffic, 
             personalize content, and improve our services. By clicking "Accept", you consent to our use of cookies.
           </p>
           <a href="/privacy-policy" className={styles.privacyLink}>
-            Learn more about our privacy policy
+            Read our privacy policy
           </a>
         </div>
         <div className={styles.actions}>

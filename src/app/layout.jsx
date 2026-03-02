@@ -6,8 +6,39 @@ import ComplianceFooter from '../components/ComplianceFooter';
 import MobileNav from '../components/MobileNav';
 
 export const metadata = {
-  title: 'Haem.io - Haematology Diagnosis Tool',
-  description: 'Advanced tool for haematology diagnoses using WHO 2022 and ICC 2022 classifications',
+  metadataBase: new URL('https://haem.io'),
+  title: {
+    default: 'Haem.io | Leukemia Diagnostic Tool and AML Classifier',
+    template: '%s | Haem.io'
+  },
+  description: 'Haem.io (Haemio) is a haematology diagnostic platform for leukemia and myeloid disease classification with WHO 2022, ICC 2022, and ELN-aligned logic.',
+  alternates: {
+    canonical: '/'
+  },
+  keywords: [
+    'Haem.io',
+    'Haemio',
+    'leukemia diagnostic tool',
+    'AML classifier',
+    'MDS diagnosis tool',
+    'haematology diagnosis platform'
+  ],
+  openGraph: {
+    type: 'website',
+    url: 'https://haem.io',
+    siteName: 'Haem.io',
+    title: 'Haem.io | Leukemia Diagnostic Tool and AML Classifier',
+    description: 'Haem.io (Haemio) provides explainable leukemia and myeloid disease classification using WHO 2022, ICC 2022, and ELN-guided logic.'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Haem.io | Leukemia Diagnostic Tool and AML Classifier',
+    description: 'Haem.io (Haemio) provides explainable leukemia and myeloid disease classification using WHO 2022, ICC 2022, and ELN-guided logic.'
+  },
+  robots: {
+    index: true,
+    follow: true
+  },
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any', type: 'image/x-icon' },

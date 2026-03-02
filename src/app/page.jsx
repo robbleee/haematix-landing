@@ -5,8 +5,45 @@ import DiagnosticArchitecture from '../components/DiagnosticArchitecture';
 import styles from './page.module.css';
 
 export default function Home() {
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        name: 'Haem.io',
+        alternateName: 'Haemio',
+        url: 'https://haem.io',
+        logo: 'https://haem.io/favicon.svg'
+      },
+      {
+        '@type': 'WebSite',
+        name: 'Haem.io',
+        alternateName: 'Haemio',
+        url: 'https://haem.io',
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: 'https://haem.io/articles?q={search_term_string}',
+          'query-input': 'required name=search_term_string'
+        }
+      },
+      {
+        '@type': 'SoftwareApplication',
+        name: 'Haem.io AML/MDS Classifier',
+        applicationCategory: 'HealthApplication',
+        operatingSystem: 'Web',
+        url: 'https://haem.io/interactive-classifier',
+        description:
+          'A leukemia and myeloid disease diagnostic classifier supporting AML and MDS pathways with WHO 2022 and ICC 2022 logic.'
+      }
+    ]
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       {/* Hero Section */}
       <section className={styles.hero} style={{
         paddingTop: '6rem',
@@ -45,7 +82,16 @@ export default function Home() {
                 color: '#4a5568',
                 fontWeight: '400'
               }}>
-                Building the end-to-end diagnostic architecture for the complexities of genomic-based haematology.
+                Haem.io (Haemio) is an explainable leukemia diagnostic tool and AML/MDS classifier built for genomic-era haematology.
+              </p>
+              <p style={{
+                fontSize: '1rem',
+                margin: '0 auto',
+                lineHeight: '1.7',
+                maxWidth: '46rem',
+                color: '#64748b'
+              }}>
+                Designed to support WHO 2022, ICC 2022, and ELN-aligned decision logic for clinical teams managing complex blood cancer diagnosis.
               </p>
               
               <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '2rem' }}>
@@ -60,6 +106,17 @@ export default function Home() {
                   transition: 'all 0.2s ease'
                 }} className="secondary-button">
                   Try Our AML/MDS Classifier
+                </Link>
+              </div>
+              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '1.25rem', flexWrap: 'wrap' }}>
+                <Link href="/aml-classifier" style={{ color: '#0f766e', textDecoration: 'underline', fontWeight: '600' }}>
+                  AML classifier details
+                </Link>
+                <Link href="/leukemia-diagnostic-tool" style={{ color: '#0f766e', textDecoration: 'underline', fontWeight: '600' }}>
+                  Leukemia diagnostic tool
+                </Link>
+                <Link href="/mds-vs-aml-diagnosis" style={{ color: '#0f766e', textDecoration: 'underline', fontWeight: '600' }}>
+                  MDS vs AML diagnosis
                 </Link>
               </div>
             </div>
@@ -93,6 +150,38 @@ export default function Home() {
                 Try the Interactive Classifier Engine
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section style={{
+        backgroundColor: '#f8fafc',
+        padding: '2rem 0 3rem',
+        borderTop: '1px solid #e2e8f0'
+      }}>
+        <div className="container" style={{ maxWidth: '980px' }}>
+          <h2 style={{ fontSize: '1.85rem', color: '#1f2937', marginBottom: '1rem' }}>
+            Explore Leukemia Diagnosis Resources
+          </h2>
+          <p style={{ color: '#475569', marginBottom: '1rem', lineHeight: '1.8' }}>
+            Use these pages to compare AML and MDS diagnostic pathways, understand current product scope, and review our approach to clinical decision support.
+          </p>
+          <div style={{ display: 'flex', gap: '1.2rem', flexWrap: 'wrap' }}>
+            <Link href="/aml-classifier" style={{ color: '#0f766e', textDecoration: 'underline', fontWeight: 600 }}>
+              AML diagnosis and classification page
+            </Link>
+            <Link href="/leukemia-diagnostic-tool" style={{ color: '#0f766e', textDecoration: 'underline', fontWeight: 600 }}>
+              Leukemia diagnostic tool overview
+            </Link>
+            <Link href="/mds-vs-aml-diagnosis" style={{ color: '#0f766e', textDecoration: 'underline', fontWeight: 600 }}>
+              MDS vs AML explainer
+            </Link>
+            <Link href="/articles/version-control-of-medicine" style={{ color: '#0f766e', textDecoration: 'underline', fontWeight: 600 }}>
+              Clinical logic deep dive
+            </Link>
+            <Link href="/source-docs" style={{ color: '#0f766e', textDecoration: 'underline', fontWeight: 600 }}>
+              Source documentation hub
+            </Link>
           </div>
         </div>
       </section>

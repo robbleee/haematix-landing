@@ -2,6 +2,7 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import { CORE_FIELDS, ADVANCED_FIELDS, allFieldPaths } from '../lib/classifierFieldCatalog';
+import { runInteractiveClassifiers } from '../lib/classifierEngine';
 import styles from './InteractiveClassifier.module.css';
 
 function setPathValue(target, path, value) {
@@ -40,6 +41,18 @@ const DEFAULT_MDS_CONFIRMATION = {
   platelet_cytosis: false,
   eosinophil_cytosis: false,
 };
+
+function withFallbackTrace(resultSet, message) {
+  const annotate = (item, key) => {
+    const trace = Array.isArray(item?.derivation) ? item.derivation : [];
+    return { ...item, derivation: [message, ...trace], fallbackSource: key };
+  };
+  return {
+    who: annotate(resultSet?.who, 'who'),
+    icc: annotate(resultSet?.icc, 'icc'),
+    eln: annotate(resultSet?.eln, 'eln'),
+  };
+}
 
 function TerminalTrace({ steps }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -116,6 +129,7 @@ const InteractiveClassifier = () => {
   const [results, setResults] = useState(DEFAULT_RESULTS);
   const [isLoading, setIsLoading] = useState(false);
   const [apiError, setApiError] = useState(null);
+  const [usingFallback, setUsingFallback] = useState(false);
   const [showMdsConfirmation, setShowMdsConfirmation] = useState(false);
   const [isSubmittingMdsConfirmation, setIsSubmittingMdsConfirmation] = useState(false);
   const [mdsConfirmation, setMdsConfirmation] = useState({ ...DEFAULT_MDS_CONFIRMATION });
@@ -154,11 +168,18 @@ const InteractiveClassifier = () => {
         }
 
         if (!cancelled) {
+          setUsingFallback(false);
           setResults(payload);
         }
       } catch (error) {
         if (!cancelled) {
-          setApiError(error instanceof Error ? error.message : 'Classification failed.');
+          const fallback = withFallbackTrace(
+            runInteractiveClassifiers(parsedData),
+            'Backend unavailable. Falling back to local classifier engine.'
+          );
+          setResults(fallback);
+          setUsingFallback(true);
+          setApiError(null);
         }
       } finally {
         if (!cancelled) {
@@ -192,26 +213,35 @@ const InteractiveClassifier = () => {
   const handleMdsConfirmSubmit = async () => {
     setIsSubmittingMdsConfirmation(true);
     setApiError(null);
+    const mdsData = {
+      ...parsedData,
+      ...mdsConfirmation,
+      require_mds_confirmation: true,
+    };
     try {
       const response = await fetch('/api/classifier', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          parsed_data: {
-            ...parsedData,
-            ...mdsConfirmation,
-            require_mds_confirmation: true,
-          },
+          parsed_data: mdsData,
         }),
       });
       const payload = await response.json();
       if (!response.ok) {
         throw new Error(payload?.error || 'MDS confirmation failed.');
       }
+      setUsingFallback(false);
       setResults(payload);
       setShowMdsConfirmation(false);
     } catch (error) {
-      setApiError(error instanceof Error ? error.message : 'MDS confirmation failed.');
+      const fallback = withFallbackTrace(
+        runInteractiveClassifiers(mdsData),
+        'Backend unavailable during MDS confirmation. Falling back to local classifier engine.'
+      );
+      setResults(fallback);
+      setUsingFallback(true);
+      setApiError(null);
+      setShowMdsConfirmation(false);
     } finally {
       setIsSubmittingMdsConfirmation(false);
     }
@@ -282,6 +312,11 @@ const InteractiveClassifier = () => {
           {apiError && (
             <div className={styles.disclaimer} style={{ marginTop: '-0.25rem', marginBottom: '0.5rem' }}>
               <strong>Backend error:</strong> {apiError}
+            </div>
+          )}
+          {usingFallback && !apiError && (
+            <div className={styles.disclaimer} style={{ marginTop: '-0.25rem', marginBottom: '0.5rem' }}>
+              <strong>Offline mode:</strong> Backend unavailable. Using local classifier engine fallback.
             </div>
           )}
 

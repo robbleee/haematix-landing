@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { runInteractiveClassifiers } from '../../../lib/classifierEngine';
 
 function normalizeClassificationResult(result) {
   if (!result || typeof result !== 'object') {
@@ -45,6 +46,26 @@ function normalizeRiskResult(riskMap) {
   };
 }
 
+function buildFallbackResponse(parsedData, reason) {
+  const local = runInteractiveClassifiers(parsedData);
+  const fallbackNote = `Backend unavailable (${reason}). Using local classifier engine fallback.`;
+  const withTrace = (entry = {}) => ({
+    ...entry,
+    derivation: [fallbackNote, ...(Array.isArray(entry.derivation) ? entry.derivation : [])],
+  });
+
+  return {
+    who: withTrace(local.who),
+    icc: withTrace(local.icc),
+    eln: withTrace(local.eln),
+    metadata: {
+      source: 'local-fallback',
+      backend_available: false,
+      fallback_reason: reason,
+    },
+  };
+}
+
 export async function POST(request) {
   try {
     const body = await request.json();
@@ -85,12 +106,30 @@ export async function POST(request) {
       },
     };
 
-    const response = await fetch(`${apiBaseUrl}/api/v1/classify`, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify(payload),
-      cache: 'no-store',
-    });
+    const timeoutMs = Number(process.env.HAEM_API_TIMEOUT_MS || 5000);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
+    let response;
+    try {
+      response = await fetch(`${apiBaseUrl}/api/v1/classify`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(payload),
+        cache: 'no-store',
+        signal: controller.signal,
+      });
+    } catch (backendError) {
+      const fallbackReason =
+        backendError instanceof Error && backendError.name === 'AbortError'
+          ? `request timed out after ${timeoutMs}ms`
+          : backendError instanceof Error
+          ? backendError.message
+          : 'network error';
+      return NextResponse.json(buildFallbackResponse(parsedData, fallbackReason));
+    } finally {
+      clearTimeout(timeoutId);
+    }
 
     const responseJson = await response.json().catch(() => ({}));
     if (!response.ok) {
@@ -100,7 +139,7 @@ export async function POST(request) {
         responseJson?.error ||
         response.statusText ||
         'Backend classification failed';
-      return NextResponse.json({ error: detail }, { status: response.status });
+      return NextResponse.json(buildFallbackResponse(parsedData, detail));
     }
 
     const classification = responseJson?.classification || {};
@@ -117,7 +156,11 @@ export async function POST(request) {
       who: normalizeClassificationResult(whoRaw),
       icc: normalizeClassificationResult(iccRaw),
       eln: normalizeRiskResult(responseJson?.risk_stratification),
-      metadata: responseJson?.metadata || null,
+      metadata: {
+        ...(responseJson?.metadata || {}),
+        source: 'backend',
+        backend_available: true,
+      },
     };
 
     return NextResponse.json(normalized);

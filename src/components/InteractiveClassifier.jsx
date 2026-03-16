@@ -54,6 +54,27 @@ function withFallbackTrace(resultSet, message) {
   };
 }
 
+async function classifyWithFallback(parsedData, fallbackMessage) {
+  try {
+    const response = await fetch('/api/classifier', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ parsed_data: parsedData }),
+    });
+
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      throw new Error(payload?.error || 'Classification failed.');
+    }
+    return { payload, usedFallback: false };
+  } catch (error) {
+    return {
+      payload: withFallbackTrace(runInteractiveClassifiers(parsedData), fallbackMessage),
+      usedFallback: true,
+    };
+  }
+}
+
 function TerminalTrace({ steps }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -128,7 +149,6 @@ const InteractiveClassifier = () => {
   const [search, setSearch] = useState('');
   const [results, setResults] = useState(DEFAULT_RESULTS);
   const [isLoading, setIsLoading] = useState(false);
-  const [apiError, setApiError] = useState(null);
   const [usingFallback, setUsingFallback] = useState(false);
   const [showMdsConfirmation, setShowMdsConfirmation] = useState(false);
   const [isSubmittingMdsConfirmation, setIsSubmittingMdsConfirmation] = useState(false);
@@ -154,32 +174,25 @@ const InteractiveClassifier = () => {
 
     const classify = async () => {
       setIsLoading(true);
-      setApiError(null);
       try {
-        const response = await fetch('/api/classifier', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ parsed_data: parsedData }),
-        });
-
-        const payload = await response.json();
-        if (!response.ok) {
-          throw new Error(payload?.error || 'Classification failed.');
-        }
+        const { payload, usedFallback } = await classifyWithFallback(
+          parsedData,
+          'Backend unavailable. Falling back to local classifier engine.'
+        );
 
         if (!cancelled) {
-          setUsingFallback(false);
+          setUsingFallback(usedFallback);
           setResults(payload);
         }
       } catch (error) {
         if (!cancelled) {
-          const fallback = withFallbackTrace(
-            runInteractiveClassifiers(parsedData),
-            'Backend unavailable. Falling back to local classifier engine.'
-          );
-          setResults(fallback);
           setUsingFallback(true);
-          setApiError(null);
+          setResults(
+            withFallbackTrace(
+              runInteractiveClassifiers(parsedData),
+              'Backend unavailable. Falling back to local classifier engine.'
+            )
+          );
         }
       } finally {
         if (!cancelled) {
@@ -212,35 +225,27 @@ const InteractiveClassifier = () => {
 
   const handleMdsConfirmSubmit = async () => {
     setIsSubmittingMdsConfirmation(true);
-    setApiError(null);
     const mdsData = {
       ...parsedData,
       ...mdsConfirmation,
       require_mds_confirmation: true,
     };
     try {
-      const response = await fetch('/api/classifier', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          parsed_data: mdsData,
-        }),
-      });
-      const payload = await response.json();
-      if (!response.ok) {
-        throw new Error(payload?.error || 'MDS confirmation failed.');
-      }
-      setUsingFallback(false);
+      const { payload, usedFallback } = await classifyWithFallback(
+        mdsData,
+        'Backend unavailable during MDS confirmation. Falling back to local classifier engine.'
+      );
+      setUsingFallback(usedFallback);
       setResults(payload);
       setShowMdsConfirmation(false);
     } catch (error) {
-      const fallback = withFallbackTrace(
-        runInteractiveClassifiers(mdsData),
-        'Backend unavailable during MDS confirmation. Falling back to local classifier engine.'
-      );
-      setResults(fallback);
       setUsingFallback(true);
-      setApiError(null);
+      setResults(
+        withFallbackTrace(
+          runInteractiveClassifiers(mdsData),
+          'Backend unavailable during MDS confirmation. Falling back to local classifier engine.'
+        )
+      );
       setShowMdsConfirmation(false);
     } finally {
       setIsSubmittingMdsConfirmation(false);
@@ -309,12 +314,7 @@ const InteractiveClassifier = () => {
               </button>
             )}
           </div>
-          {apiError && (
-            <div className={styles.disclaimer} style={{ marginTop: '-0.25rem', marginBottom: '0.5rem' }}>
-              <strong>Backend error:</strong> {apiError}
-            </div>
-          )}
-          {usingFallback && !apiError && (
+          {usingFallback && (
             <div className={styles.disclaimer} style={{ marginTop: '-0.25rem', marginBottom: '0.5rem' }}>
               <strong>Offline mode:</strong> Backend unavailable. Using local classifier engine fallback.
             </div>

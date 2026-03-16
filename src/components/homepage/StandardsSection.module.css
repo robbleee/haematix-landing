@@ -1,0 +1,158 @@
+.section {
+  padding: 5rem 0;
+  background: #fafbfc;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.header.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sectionTitle {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #1a202c;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.sectionSubtitle {
+  font-size: 1.1rem;
+  color: #718096;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Badges row */
+.badgesRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.badge {
+  position: relative;
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.9) translateY(20px);
+}
+
+.badgeVisible {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.badge:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 150, 136, 0.3);
+}
+
+.badgeAccent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #009688, #4DB6AC);
+  border-radius: 16px 0 0 16px;
+}
+
+.badgeContent {
+  padding-left: 0.5rem;
+}
+
+.badgeName {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #009688;
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.01em;
+}
+
+.badgeEdition {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #00796b;
+  background: #e0f2f1;
+  padding: 0.2rem 0.65rem;
+  border-radius: 100px;
+  margin-bottom: 0.75rem;
+}
+
+.badgeDesc {
+  font-size: 0.9rem;
+  color: #4a5568;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.footnote {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #718096;
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.65;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease-out 0.5s;
+}
+
+.footnote.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .badgesRow {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto 2rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+
+  .badge {
+    padding: 1.5rem;
+  }
+}

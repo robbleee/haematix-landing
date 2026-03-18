@@ -72,6 +72,7 @@ export default function RootLayout({ children }) {
                 <li><Link href="/" style={{ textDecoration: 'none' }}>Home</Link></li>
                 <li><Link href="/team" style={{ textDecoration: 'none' }}>Team</Link></li>
                 <li><Link href="/articles" style={{ textDecoration: 'none' }}>Articles</Link></li>
+                <li><a href="https://learn.haem.io" style={{ textDecoration: 'none' }}>Learn</a></li>
                 <li><a className="button" href="https://app.haem.io/" target="_blank" rel="noopener noreferrer">Login</a></li>
               </ul>
             </nav>

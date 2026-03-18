@@ -37,9 +37,6 @@ export default function HeroSection() {
                 <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
               </svg>
             </Link>
-            <Link href="/source-docs" className={styles.ctaSecondary}>
-              Read Methodology
-            </Link>
           </div>
 
           <div className={styles.badges}>

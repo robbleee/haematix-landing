@@ -2,7 +2,7 @@
   position: relative;
   padding: 7rem 0 5rem;
   overflow: hidden;
-  min-height: 85vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
 }
@@ -128,8 +128,12 @@
   white-space: nowrap;
   border-right: 2px solid #009688;
   width: 0;
-  animation: typing 2.5s steps(38) 1s forwards, blink 0.7s step-end infinite;
+  animation: typing 2.5s steps(38) 1s forwards, blink 0.7s step-end 4s 5, hideCursor 0s 4.5s forwards;
   margin-bottom: 0;
+}
+
+@keyframes hideCursor {
+  to { border-right-color: transparent; }
 }
 
 @keyframes typing {

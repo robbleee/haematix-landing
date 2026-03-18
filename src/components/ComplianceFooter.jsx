@@ -32,7 +32,6 @@ export default function ComplianceFooter() {
     { title: 'Our Vision', href: '/vision' },
     { title: 'Roadmap', href: '/roadmap' },
     { title: 'Source Docs', href: '/source-docs' },
-    { title: 'Methodology', href: '/methodology' },
     { title: 'Validation', href: '/validation-evidence' },
     { title: 'LLM Index', href: '/llms.txt' },
     { title: 'Testing Suite', href: '/testing-stats' },

@@ -10,6 +10,12 @@ export default function DemoSection() {
 
   return (
     <section className={styles.section}>
+      {/* Wave divider — smooth transition from HeroSection */}
+      <div className={styles.waveDivider}>
+        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0 40C240 0 480 80 720 40C960 0 1200 80 1440 40V0H0V40Z" fill="#ffffff" />
+        </svg>
+      </div>
       <div className={styles.container}>
         <div
           ref={headerRef}

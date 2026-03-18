@@ -6,6 +6,7 @@ import HowItWorksSection from '../components/homepage/HowItWorksSection';
 import FeaturesSection from '../components/homepage/FeaturesSection';
 import StatsSection from '../components/homepage/StatsSection';
 import StandardsSection from '../components/homepage/StandardsSection';
+import LearnSection from '../components/homepage/LearnSection';
 import CtaSection from '../components/homepage/CtaSection';
 
 export default function Home() {
@@ -54,6 +55,7 @@ export default function Home() {
       <FeaturesSection />
       <StatsSection />
       <StandardsSection />
+      <LearnSection />
       <CtaSection />
     </>
   );

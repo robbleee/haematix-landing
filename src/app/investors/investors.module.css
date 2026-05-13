@@ -108,6 +108,25 @@ body:has(.pitchDeck) main {
   background: rgba(15, 23, 42, 0.98);
 }
 
+@media (max-width: 720px) {
+  .backButton {
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .downloadPitchButton {
+    top: 1rem;
+    right: 1rem;
+    left: auto;
+  }
+
+  .fullscreenPitchButton {
+    top: 4rem;
+    right: 1rem;
+    left: auto;
+  }
+}
+
 
 
 /* Pitch Deck Container */

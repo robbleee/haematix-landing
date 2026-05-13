@@ -1115,9 +1115,14 @@ export default function Pitch({ hideControls = false }) {
     <div className={styles.pitchDeck} ref={containerRef}>
       {/* Back to Main Button */}
       {!isCleanMode && !hideControls && (
-        <a href="/" className={styles.backButton}>
-          ← Back
-        </a>
+        <>
+          <a href="/" className={styles.backButton}>
+            ← Back
+          </a>
+          <a href="/investors/three-minute-pitch" className={styles.shortPitchButton}>
+            3-min pitch
+          </a>
+        </>
       )}
 
 

@@ -3,6 +3,10 @@ body:has(.pitchDeck) header {
   display: none;
 }
 
+body:has(.pitchDeck) footer {
+  display: none;
+}
+
 /* Adjust main content to fill full screen */
 body:has(.pitchDeck) main {
   padding-top: 0;
@@ -32,6 +36,78 @@ body:has(.pitchDeck) main {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
+.shortPitchButton {
+  position: fixed;
+  top: 2rem;
+  left: 8.6rem;
+  background: rgba(0, 128, 111, 0.92);
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  z-index: 200;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.shortPitchButton:hover {
+  background: rgba(0, 107, 95, 0.96);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 128, 111, 0.24);
+}
+
+.deckActionButton {
+  position: fixed;
+  top: 2rem;
+  z-index: 200;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 43px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 25px;
+  padding: 0.75rem 1.25rem;
+  color: white;
+  font-weight: 700;
+  font-size: 0.9rem;
+  line-height: 1;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 128, 111, 0.24);
+}
+
+.deckActionButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.deckActionButton:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.downloadPitchButton {
+  left: 10.5rem;
+  background: rgba(0, 128, 111, 0.92);
+}
+
+.downloadPitchButton:hover:not(:disabled) {
+  background: rgba(0, 107, 95, 0.96);
+}
+
+.fullscreenPitchButton {
+  left: 20.1rem;
+  background: rgba(15, 23, 42, 0.92);
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.24);
+}
+
+.fullscreenPitchButton:hover:not(:disabled) {
+  background: rgba(15, 23, 42, 0.98);
+}
+
 
 
 /* Pitch Deck Container */
@@ -46,6 +122,40 @@ body:has(.pitchDeck) main {
 
 .pitchPage {
   min-height: 100vh;
+}
+
+.shortPitchDeck .slide {
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  padding: 0.75rem 0;
+}
+
+.shortPitchDeck .slide:first-of-type {
+  opacity: 1;
+  animation: none;
+}
+
+.shortPitchDeck .slideHeader {
+  margin-bottom: 1.25rem;
+}
+
+.shortPitchDeck .slide h1 {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+}
+
+.shortPitchDeck .slideSubtitle {
+  font-size: 1.25rem;
+}
+
+.shortPitchDeck .slideContent {
+  padding: 0 2.5rem;
+}
+
+.shortPitchDeck .slideContent h3 {
+  font-size: 1.85rem;
+  margin-bottom: 1.4rem;
 }
 
 /* Hero Section */
@@ -6024,6 +6134,7 @@ body:has(.pitchDeck) main {
   /* Hide navigation and interactive elements */
   .navigation,
   .backButton,
+  .deckActionButton,
   .slideIndicators {
     display: none !important;
   }

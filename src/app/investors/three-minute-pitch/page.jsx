@@ -157,47 +157,6 @@ const shortPitchSlides = [
     ),
   },
   {
-    id: 'traction',
-    title: 'Early Traction',
-    subtitle: 'Beta testing, clinical support, and pharma interest',
-    content: (
-      <div className={styles.slideContent}>
-        <div className={styles.advantageGrid} style={{ gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', marginTop: '1rem' }}>
-          <div className={styles.advantagePoint} style={{ padding: '2rem', borderRadius: '20px', background: 'linear-gradient(135deg, #f0fdf4, #dcfce7)', boxShadow: '0 4px 20px rgba(0,0,0,0.08)', border: '2px solid var(--primary-color)' }}>
-            <div className={styles.pointNumber} style={{ background: 'var(--primary-color)' }}>1</div>
-            <h4>Production Beta</h4>
-            <p>AML and MDS classifiers are built and currently in beta testing with 10 haematologists.</p>
-          </div>
-          <div className={styles.advantagePoint} style={{ padding: '2rem', borderRadius: '20px', background: 'white', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}>
-            <div className={styles.pointNumber}>2</div>
-            <h4>Clinical Support</h4>
-            <p>Letters of support from consultant haematologists at The Christie, Royal Devon, Blackpool, and the UK AML Research Network.</p>
-          </div>
-          <div className={styles.advantagePoint} style={{ padding: '2rem', borderRadius: '20px', background: 'white', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}>
-            <div className={styles.pointNumber}>3</div>
-            <h4>Pharma Pull</h4>
-            <p>Pfizer, Servier, Jazz, and J&J in active discussions for roughly £210k in non-dilutive grant funding.</p>
-          </div>
-          <div className={styles.advantagePoint} style={{ padding: '2rem', borderRadius: '20px', background: 'white', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}>
-            <div className={styles.pointNumber}>4</div>
-            <h4>Global Standards</h4>
-            <p>Built on WHO 2022 and ICC 2022, so the same diagnostic logic works internationally.</p>
-          </div>
-          <div className={styles.advantagePoint} style={{ padding: '2rem', borderRadius: '20px', background: 'white', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}>
-            <div className={styles.pointNumber}>5</div>
-            <h4>No Integration Drag</h4>
-            <p>Works from PDFs, scanned documents, text files, and existing report formats.</p>
-          </div>
-          <div className={styles.advantagePoint} style={{ padding: '2rem', borderRadius: '20px', background: 'white', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}>
-            <div className={styles.pointNumber}>6</div>
-            <h4>Defensible Expertise</h4>
-            <p>Clinical diagnostic logic codified with specialist haematology input, not a generic AI wrapper.</p>
-          </div>
-        </div>
-      </div>
-    ),
-  },
-  {
     id: 'market',
     title: 'Business Model + Market',
     subtitle: 'Bottom-up NHS wedge, oncology expansion upside',

@@ -73,13 +73,6 @@ export default function TreatmentExplorer() {
   return (
     <main className={styles.page}>
       <div className={styles.orbOne}/><div className={styles.orbTwo}/><div className={styles.gridTexture}/>
-      <section className={styles.hero}>
-        <div className={styles.kicker}><span className={styles.kickerDot}/>Deterministic clinical pathway</div>
-        <h1>Follow the evidence.<br/><span>See where it leads.</span></h1>
-        <p>Explore the Coats–Delphi AML treatment consensus one decision at a time. No AI, no hidden scoring—just a transparent clinical pathway.</p>
-        <div className={styles.heroMeta}><span>28 consensus cases</span><i/><span>Runs in your browser</span><i/><span>No patient data stored</span></div>
-      </section>
-
       <section className={styles.explorerShell}>
         <aside className={styles.pathPanel}>
           <div className={styles.panelTop}><span>Your pathway</span><button onClick={reset}>Reset</button></div>

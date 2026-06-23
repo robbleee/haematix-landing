@@ -282,7 +282,7 @@ const shortPitchSlides = [
               <div className={styles.memberInfo}>
                 <h3>Robert Lee</h3>
                 <h4>CEO & Co-Founder</h4>
-                <p>BSc Computer Science, Manchester. Cancer survivor and former Coinbase, LSEG, and FlexTrade engineer. Leads software, regulatory pathway, and research coordination.</p>
+                <p>Computer science and financial technology background, with experience at Coinbase, LSEG, and FlexTrade. Works across product development, software, regulatory planning, and research coordination.</p>
               </div>
             </div>
 

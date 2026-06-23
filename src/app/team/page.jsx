@@ -10,8 +10,8 @@ const teamMembers = [
     title: 'CEO & Co-Founder',
     image: '/profile-pics/robbie.png',
     bio: [
-      "Robert graduated from the University of Manchester with a BSc in Computer Science. After being diagnosed with Burkitt's Lymphoma at 19, he built his career in FinTech at the London Stock Exchange Group, FlexTrade, and most recently Coinbase — leaving a senior role (and a >70% pay cut) to build Haem.io full-time.",
-      "Drawing on this technical background, Robert developed the initial concept for Haem.io's hybrid AI framework that combines AI-driven data extraction with a deterministic logic engine. He co-developed the platform with Dr. John Burthem and leads the project's software development, regulatory pathway, and research coordination."
+      "Robert has a background in computer science and financial technology, with experience at the London Stock Exchange Group, FlexTrade, and Coinbase. His personal experience of blood cancer helped shape his interest in making specialist diagnostics easier to access and interpret.",
+      "At Haem.io, Robert works across product development, software engineering, regulatory planning, and research coordination. He collaborates closely with the clinical and technical team to translate haematology expertise into practical decision-support tools."
     ]
   },
   {

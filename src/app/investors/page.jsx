@@ -766,7 +766,7 @@ const pitchSlides = [
               <div className={styles.memberInfo}>
                 <h3>Robert Lee</h3>
                 <h4>CEO & Co-Founder</h4>
-                <p>BSc Computer Science, Manchester. Cancer survivor driving the mission. Leaving senior role at Coinbase (&gt;70% pay cut) to build Haem.io full-time. Background in FinTech at LSEG and FlexTrade.</p>
+                <p>Computer science and financial technology background, with experience at Coinbase, LSEG, and FlexTrade. Works across product development, software, regulatory planning, and research coordination.</p>
               </div>
             </div>
 

@@ -83,6 +83,7 @@ export default function RootLayout({ children }) {
                 <li><Link href="/articles" style={{ textDecoration: 'none' }}>Articles</Link></li>
                 <li><a href="https://learn.haem.io" style={{ textDecoration: 'none' }}>Learn</a></li>
                 <li><Link href="/clinical-trials" style={{ textDecoration: 'none' }}>Clinical Trials</Link></li>
+                <li><Link href="/mcp" style={{ textDecoration: 'none' }}>MCP</Link></li>
                 <li><a className="button" href="https://app.haem.io/" target="_blank" rel="noopener noreferrer">Login</a></li>
               </ul>
             </nav>
@@ -100,4 +101,4 @@ export default function RootLayout({ children }) {
       </body>
     </html>
   );
-} 
+}

@@ -147,6 +147,7 @@
 }
 
 .band,
+.accessSection,
 .coverageSection,
 .clientSection {
   padding: 3rem 1.5rem;
@@ -174,6 +175,7 @@
 }
 
 .stepsGrid,
+.accessGrid,
 .clientGrid {
   display: grid;
   max-width: 1180px;
@@ -185,7 +187,12 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.step {
+.accessGrid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.step,
+.accessItem {
   min-height: 180px;
   padding: 1.25rem;
   border: 1px solid #c7dddb;
@@ -194,6 +201,7 @@
 }
 
 .step h3,
+.accessItem h3,
 .tool h3,
 .workflowPanel h2,
 .clientBlock h3 {
@@ -203,6 +211,7 @@
 }
 
 .step p,
+.accessItem p,
 .tool p,
 .workflowPanel p,
 .clientBlock p {
@@ -351,6 +360,7 @@
   }
 
   .stepsGrid,
+  .accessGrid,
   .clientGrid {
     grid-template-columns: 1fr;
   }

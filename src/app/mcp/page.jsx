@@ -34,15 +34,49 @@ const tools = [
 const setupSteps = [
   {
     title: '1. Request access',
-    body: 'We provision approved beta users with scoped MCP access. The production path is OAuth; bearer tokens are available for early remote-MCP clients that support them.',
+    body: 'Create or use an active haem.io account, then request MCP access. We approve MCP separately from normal app login because agentic diagnostic access needs tighter control.',
   },
   {
-    title: '2. Add the remote MCP server',
-    body: `Use ${MCP_ENDPOINT} as the server URL in your MCP-capable client. The transport is hosted HTTP MCP with JSON-RPC tool calls.`,
+    title: '2. Sign in with approved OAuth',
+    body: `Use ${MCP_ENDPOINT} as the server URL in your MCP-capable client. OAuth tokens must include the MCP audience, diagnostic scopes, and a haem.io MCP entitlement.`,
   },
   {
     title: '3. Keep the agent in decision-support mode',
     body: 'Agents should call capabilities first, parse reports before classification, and stop at clinician-confirmation states instead of inventing missing clinical facts.',
+  },
+];
+
+const accessRows = [
+  {
+    label: 'haem.io account',
+    value: 'Required for user-facing OAuth access. The account must be active.',
+  },
+  {
+    label: 'MCP entitlement',
+    value: 'Required separately from normal app access. Approved users have MCP access enabled on their haem.io profile.',
+  },
+  {
+    label: 'Diagnostic scopes',
+    value: 'The OAuth token must include the requested tool scopes, such as diagnostic:parse or diagnostic:classify.',
+  },
+  {
+    label: 'Service tokens',
+    value: 'Reserved for approved beta, service, or integration testing workflows and should use the narrowest practical scope.',
+  },
+];
+
+const clientSetup = [
+  {
+    title: 'Add the remote MCP server',
+    body: `Use ${MCP_ENDPOINT} as the server URL in your MCP-capable client. The transport is hosted HTTP MCP with JSON-RPC tool calls.`,
+  },
+  {
+    title: 'Authorize with haem.io',
+    body: 'Complete the haem.io/Auth0 OAuth flow. Access succeeds only for active haem.io users with MCP enabled.',
+  },
+  {
+    title: 'Start with capabilities',
+    body: 'Ask the agent to call get_diagnostic_capabilities before parsing or classification so it understands scope and stopping rules.',
   },
 ];
 
@@ -99,7 +133,7 @@ export default function McpPage() {
             </div>
             <div>
               <dt>Auth</dt>
-              <dd>OAuth / scoped bearer token</dd>
+              <dd>haem.io OAuth entitlement</dd>
             </div>
             <div>
               <dt>Default mode</dt>
@@ -123,6 +157,25 @@ export default function McpPage() {
             <article className={styles.step} key={step.title}>
               <h3>{step.title}</h3>
               <p>{step.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles.accessSection}>
+        <div className={styles.sectionHeader}>
+          <p className={styles.kicker}>Access model</p>
+          <h2>Login is necessary, approval is separate</h2>
+          <p>
+            A haem.io account proves who the user is. MCP entitlement controls
+            whether that user can connect clinical AI agents to the diagnostic tools.
+          </p>
+        </div>
+        <div className={styles.accessGrid}>
+          {accessRows.map((row) => (
+            <article className={styles.accessItem} key={row.label}>
+              <h3>{row.label}</h3>
+              <p>{row.value}</p>
             </article>
           ))}
         </div>
@@ -189,14 +242,21 @@ export default function McpPage() {
           <h2>Connection details for early adopters</h2>
         </div>
         <div className={styles.clientGrid}>
+          {clientSetup.map((step) => (
+            <article className={styles.clientBlock} key={step.title}>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </article>
+          ))}
           <article className={styles.clientBlock}>
             <h3>ChatGPT and custom GPT actions</h3>
             <p>
               Use the remote server URL when MCP connectors are available for your
-              workspace. OAuth sign-in is the preferred production access pattern.
+              workspace. OAuth sign-in is the production access pattern for approved
+              haem.io users.
             </p>
             <pre><code>{`Server URL: ${MCP_ENDPOINT}
-Auth: OAuth when enabled for your account`}</code></pre>
+Auth: haem.io OAuth with MCP access enabled`}</code></pre>
           </article>
           <article className={styles.clientBlock}>
             <h3>Claude and MCP-compatible clients</h3>

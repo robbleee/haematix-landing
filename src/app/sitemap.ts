@@ -11,6 +11,7 @@ const ROUTES = [
   '/source-docs',
   '/methodology',
   '/validation-evidence',
+  '/tools',
   '/vision',
   '/roadmap',
   '/articles',

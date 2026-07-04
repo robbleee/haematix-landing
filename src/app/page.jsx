@@ -7,7 +7,6 @@ import StatsSection from '../components/homepage/StatsSection';
 import EndorsementsSection from '../components/homepage/EndorsementsSection';
 import LearnSection from '../components/homepage/LearnSection';
 import CtaSection from '../components/homepage/CtaSection';
-import TreatmentExplorerSection from '../components/homepage/TreatmentExplorerSection';
 
 export default function Home() {
   const structuredData = {
@@ -51,7 +50,6 @@ export default function Home() {
       />
       <HeroSection />
       <HowItWorksSection />
-      <TreatmentExplorerSection />
       <ProductWalkthrough />
       <StatsSection />
       <EndorsementsSection />

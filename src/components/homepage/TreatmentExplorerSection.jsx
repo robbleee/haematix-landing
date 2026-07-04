@@ -8,8 +8,44 @@ export default function TreatmentExplorerSection() {
   const [ref, visible] = useIntersectionObserver({ threshold: .18 });
   return <section ref={ref} className={styles.section}>
     <div className={`${styles.inner} ${visible ? styles.visible : ''}`}>
-      <div className={styles.copy}><span className={styles.eyebrow}>Try the pathway</span><h2>From molecular profile<br/>to consensus pathway.</h2><p>Walk through all 28 Coats–Delphi AML treatment cases in a transparent, deterministic decision tree. No report upload and no AI required.</p><Link href="/aml-treatment-explorer" className={styles.cta}>Open the treatment explorer <span>→</span></Link><div className={styles.meta}><span>● Browser-only</span><span>● No data stored</span><span>● Fully explainable</span></div></div>
-      <div className={styles.preview}><div className={styles.previewTop}><span><i/> Path in progress</span><em>04 / 07</em></div><div className={styles.route}><div className={styles.done}><b>✓</b><span><strong>NPM1 detected</strong><small>Defining genetics</small></span></div><i/><div className={styles.done}><b>✓</b><span><strong>FLT3-ITD</strong><small>FLT3 profile</small></span></div><i/><div className={styles.active}><b>3</b><span><strong>Normal cytogenetics</strong><small>Current branch</small></span></div><i/><div className={styles.future}><b>4</b><span><strong>sAML mutations</strong><small>Next question</small></span></div></div><div className={styles.previewResult}><span>Cases remaining</span><strong>2</strong><div><i>Case 10</i><i>Case 11</i></div></div></div>
+      <div className={styles.copy}>
+        <span className={styles.eyebrow}>Free tools</span>
+        <h2>Small, transparent tools for AML decisions.</h2>
+        <p>Browser-first calculators for exploring AML pathways and checking response criteria without report upload, account setup, or black-box reasoning.</p>
+        <div className={styles.meta}><span>Browser-only options</span><span>No data stored</span><span>Fully explainable</span></div>
+      </div>
+
+      <div className={styles.toolGrid}>
+        <article className={styles.toolCard}>
+          <div className={styles.toolTop}>
+            <span className={styles.toolTag}>Treatment pathway</span>
+            <span className={styles.toolStatus}>Live</span>
+          </div>
+          <h3>AML Treatment Explorer</h3>
+          <p>Walk through all 28 Coats-Delphi AML treatment cases in a deterministic decision tree.</p>
+          <div className={styles.toolPoints}>
+            <span>Molecular profile inputs</span>
+            <span>Step-by-step pathway</span>
+            <span>No AI required</span>
+          </div>
+          <Link href="/aml-treatment-explorer" className={styles.cta}>Open explorer <span>→</span></Link>
+        </article>
+
+        <article className={styles.toolCard}>
+          <div className={styles.toolTop}>
+            <span className={styles.toolTag}>Response criteria</span>
+            <span className={styles.toolStatus}>Local deploy</span>
+          </div>
+          <h3>ELN AML Response Calculator</h3>
+          <p>ELN 2017/2022 response assessment from marrow findings and blood counts, with visible reasoning and a printable coordinator report.</p>
+          <div className={styles.toolPoints}>
+            <span>Manual, paste, or CSV bloods</span>
+            <span>7-day blood-count window</span>
+            <span>PDF report output</span>
+          </div>
+          <a href="mailto:robert.lee@haem.io?subject=ELN%20AML%20response%20calculator%20deployment" className={styles.cta}>Request deployment pack <span>→</span></a>
+        </article>
+      </div>
     </div>
   </section>;
 }

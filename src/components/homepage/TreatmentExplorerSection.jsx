@@ -34,7 +34,7 @@ export default function TreatmentExplorerSection() {
         <article className={styles.toolCard}>
           <div className={styles.toolTop}>
             <span className={styles.toolTag}>Response criteria</span>
-            <span className={styles.toolStatus}>Local deploy</span>
+            <span className={styles.toolStatus}>Live demo</span>
           </div>
           <h3>ELN AML Response Calculator</h3>
           <p>ELN 2017/2022 response assessment from marrow findings and blood counts, with visible reasoning and a printable coordinator report.</p>
@@ -43,7 +43,7 @@ export default function TreatmentExplorerSection() {
             <span>7-day blood-count window</span>
             <span>PDF report output</span>
           </div>
-          <a href="mailto:robert.lee@haem.io?subject=ELN%20AML%20response%20calculator%20deployment" className={styles.cta}>Request deployment pack <span>→</span></a>
+          <a href="https://haem-eln-response-calculator-92c7a45c14b8.herokuapp.com/" target="_blank" rel="noopener noreferrer" className={styles.cta}>Open calculator <span>→</span></a>
         </article>
       </div>
     </div>

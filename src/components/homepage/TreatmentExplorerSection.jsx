@@ -6,7 +6,7 @@ import styles from './TreatmentExplorerSection.module.css';
 
 export default function TreatmentExplorerSection() {
   const [ref, visible] = useIntersectionObserver({ threshold: .18 });
-  return <section ref={ref} className={styles.section}>
+  return <section id="tools" ref={ref} className={styles.section}>
     <div className={`${styles.inner} ${visible ? styles.visible : ''}`}>
       <div className={styles.copy}>
         <span className={styles.eyebrow}>Free tools</span>

@@ -38,6 +38,9 @@ export default function MobileNav() {
             <Link href="/articles" style={{ textDecoration: 'none', display: 'block' }} onClick={closeMenu}>Articles</Link>
           </li>
           <li style={{ padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
+            <Link href="/#tools" style={{ textDecoration: 'none', display: 'block' }} onClick={closeMenu}>Tools</Link>
+          </li>
+          <li style={{ padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
             <a href="https://learn.haem.io" style={{ textDecoration: 'none', display: 'block' }} onClick={closeMenu}>Learn</a>
           </li>
           <li style={{ padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>

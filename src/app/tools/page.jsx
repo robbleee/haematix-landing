@@ -3,6 +3,33 @@ import styles from './tools.module.css';
 
 const toolRows = [
   {
+    name: 'ELN 2022 AML Risk Calculator',
+    type: 'Risk stratification calculator',
+    status: 'Available',
+    purpose: 'Apply structured ELN 2022 intensive-treatment AML risk logic from genetic and cytogenetic inputs, with visible reasoning.',
+    data: 'Uses the haem.io classifier proxy with local deterministic fallback if the backend is unavailable. Do not enter patient identifiers.',
+    href: '/tools/eln-risk-calculator',
+    external: false,
+  },
+  {
+    name: 'MDS / AML Boundary Checker',
+    type: 'WHO/ICC classification helper',
+    status: 'Available',
+    purpose: 'Compare WHO 2022 and ICC 2022 outputs around the MDS, MDS/AML, and AML boundary using structured inputs.',
+    data: 'Uses the haem.io classifier proxy with local deterministic fallback if the backend is unavailable. Do not enter patient identifiers.',
+    href: '/tools/mds-aml-boundary-checker',
+    external: false,
+  },
+  {
+    name: 'TP53 Multi-Hit Checker',
+    type: 'Molecular rule checker',
+    status: 'Available',
+    purpose: 'Check how TP53 configurations affect WHO 2022, ICC 2022, and ELN 2022 outputs.',
+    data: 'Uses the haem.io classifier proxy with local deterministic fallback if the backend is unavailable. Do not enter patient identifiers.',
+    href: '/tools/tp53-multi-hit-checker',
+    external: false,
+  },
+  {
     name: 'AML Treatment Explorer',
     type: 'Treatment pathway explorer',
     status: 'Available',

@@ -6,9 +6,34 @@ import styles from './ComplianceFooter.module.css';
 export default function ComplianceFooter() {
   const complianceLinks = [
     {
-      title: 'Privacy Policy',
+      title: 'Privacy Notice',
       href: '/privacy-policy',
       description: 'How we collect, use, and protect your data'
+    },
+    {
+      title: 'Data Processing Addendum',
+      href: '/data-processing-addendum',
+      description: 'Processor terms for customer deployments'
+    },
+    {
+      title: 'Subprocessors',
+      href: '/subprocessors',
+      description: 'Third-party providers used to operate Haem.io'
+    },
+    {
+      title: 'Retention',
+      href: '/data-retention',
+      description: 'How long we keep different categories of data'
+    },
+    {
+      title: 'Clinical Safety',
+      href: '/clinical-safety',
+      description: 'Intended use and clinician-in-the-loop notice'
+    },
+    {
+      title: 'Cookie Notice',
+      href: '/cookie-notice',
+      description: 'Cookies, local storage, and analytics'
     },
     {
       title: 'Security & Compliance',
@@ -104,17 +129,17 @@ export default function ComplianceFooter() {
             <h3 className={styles.sectionTitle}>Healthcare Standards</h3>
             <div className={styles.complianceInfo}>
               <p className={styles.complianceItem}>
-                <span className={styles.complianceIcon}>🛡️</span>
-                <strong>UK GDPR Compliant</strong><br />
-                <small>Full data protection compliance</small>
+                <span className={styles.complianceIcon}>*</span>
+                <strong>UK GDPR Documentation</strong><br />
+                <small>Controller and processor documentation</small>
               </p>
               <p className={styles.complianceItem}>
-                <span className={styles.complianceIcon}>🔒</span>
+                <span className={styles.complianceIcon}>*</span>
                 <strong>Healthcare Grade Security</strong><br />
-                <small>End-to-end encryption & anonymization</small>
+                <small>Encryption, access controls, and audit logs</small>
               </p>
               <p className={styles.complianceItem}>
-                <span className={styles.complianceIcon}>📋</span>
+                <span className={styles.complianceIcon}>*</span>
                 <strong>Clinical Standards</strong><br />
                 <small>WHO 2022 & ICC 2022 classifications</small>
               </p>
@@ -131,7 +156,7 @@ export default function ComplianceFooter() {
             </p>
           </div>
           <div className={styles.lastUpdated}>
-            <p>Documentation last updated: March 2026</p>
+            <p>Documentation last updated: July 2026</p>
           </div>
         </div>
       </div>

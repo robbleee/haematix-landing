@@ -1,332 +1,171 @@
-# Privacy Notice - Haem.io Blood Cancer Classification System
+# Privacy Notice
 
-**Last Updated**: December 2024  
-**Version**: 1.0  
-**Next Review**: March 2025
+**Last updated:** 7 July 2026  
+**Version:** 2.0
 
----
+This notice explains how Haemio Ltd handles personal data when you visit our website, contact us, use our public tools, or use a hosted or on-premise Haem.io deployment.
+
+This notice is intended for healthcare professionals, researchers, institutional customers, website visitors, and other business contacts. Haem.io is not intended for direct patient use.
 
 ## 1. Who We Are
 
-**Data Controller**: Robert Lee  
-**Company**: Haem.io Ltd  
-**Address**: 73 Meliden Road, Prestatyn, LL19 8RH, UK  
-**Email**: robbielee543@gmail.com  
-**Phone**: 07399676299  
-**Data Protection Officer**: Robert Lee  
+**Controller for website and business contact data:** Haemio Ltd  
+**Company number:** 16528517  
+**Registered office:** 73 Meliden Road, Prestatyn, Wales, LL19 8RH  
+**Contact:** [robert.lee@haem.io](mailto:robert.lee@haem.io)
 
-Haem.io Ltd is a company providing AI-powered clinical decision support tools for haematologic malignancies to healthcare professionals in the UK and internationally.
+For customer clinical deployments, our role depends on the deployment model:
 
----
+| Scenario | Typical Role |
+| --- | --- |
+| Website, marketing, enquiries, investor/contact forms, analytics | Haemio Ltd acts as controller |
+| Hosted customer deployment operated by Haemio Ltd for a hospital, clinic, research group, or other customer | The customer is usually controller and Haemio Ltd is usually processor |
+| On-premise customer deployment operated by the customer without Haemio Ltd access to live data | The customer is usually controller; Haemio Ltd may not process patient data unless support access is granted |
+| Product development, security, account administration, and business records | Haemio Ltd acts as controller |
 
-## 2. What This Notice Covers
+This notice does not replace a customer-specific data processing agreement or deployment-specific DPIA.
 
-This privacy notice explains how we collect, use, store, and protect your personal data when you use the Haem.io Blood Cancer Classification System. It covers:
+## 2. What Haem.io Does
 
-- Your user account information
-- Clinical data you process through our system
-- How we use cookies and analytics
-- Your rights under UK GDPR
-- How to contact us about data protection
+Haem.io provides deterministic clinical decision support tools for haematology and myeloid disease classification. The production direction is deterministic, rules-based classification aligned to published clinical criteria. We are not currently using OpenAI or Gemini in the live EU API.
 
-**Important**: This system is designed for healthcare professionals only. Do not enter real patient data without proper authorization and anonymization.
+Haem.io is intended to support, not replace, professional clinical judgement.
 
----
+## 3. Personal Data We Collect
 
-## 3. What Personal Data We Collect
+### Website and Business Contact Data
 
-### 3.1 User Account Data (Stored)
-When you register and use our system, we collect and store:
+We may collect:
 
-| Data Type | Examples | Purpose | Legal Basis |
-|-----------|----------|---------|-------------|
-| **Professional Identity** | First name, last name, email address | Account management, authentication | Legitimate interest |
-| **Institution Details** | Hospital/clinic name, department, medical specialty | Service customization, usage analytics | Legitimate interest |
-| **Account Information** | Username, encrypted password, role (user/admin/clinician) | System access and security | Legitimate interest |
-| **Usage Preferences** | Interface settings, notification preferences | Service personalization | Legitimate interest |
-| **Login Data** | Login timestamps, IP addresses, session duration | Security monitoring, fraud prevention | Legitimate interest |
+- name, role, organisation, and work email address if you contact us;
+- email content and correspondence history;
+- investor, partnership, pilot, or procurement information you choose to provide;
+- technical information such as IP address, browser type, device information, referral URL, and approximate location derived from network information;
+- analytics events collected through Vercel Analytics if you accept analytics;
+- cookie consent preference stored in your browser.
 
-### 3.2 Clinical Data (Processed Only - Not Stored)
-When you use our classification system, we process but **do not permanently store**:
+### Account and Hosted Deployment Data
 
-| Data Type | Processing | Storage | Legal Basis |
-|-----------|------------|---------|-------------|
-| **Clinical Reports** | Real-time AI analysis | **Not stored** - deleted after session | Legitimate interest (healthcare research) |
-| **Genetic/Pathology Data** | Classification algorithms | **Not stored** - processed in memory only | Legitimate interest (clinical decision support) |
-| **Patient Identifiers** | Automatic anonymization via Microsoft Presidio | **Not stored** - anonymized before processing | Legitimate interest + data protection |
-| **Classification Results** | Generated recommendations | **Not stored** - displayed only during session | Legitimate interest (healthcare research) |
+For hosted deployments, we may process:
 
-### 3.3 System Analytics (Aggregated Only)
-We collect anonymized usage statistics:
+- account identifiers such as name, work email, organisation, and role;
+- authentication, session, and access-control data;
+- audit logs, including timestamps, user/account identifiers, feature use, and security events;
+- clinical case metadata or classification outputs if enabled for that deployment;
+- support tickets and diagnostic information shared with us.
 
-- Feature usage patterns (no individual identification)
-- System performance metrics
-- Error logs (with personal data removed)
-- Aggregated classification statistics (no patient data)
+### Clinical Data
 
----
+The public website and public tools are not intended for identifiable patient data. Users should not upload or paste names, NHS numbers, dates of birth, addresses, or other direct patient identifiers into public website tools.
 
-## 4. How We Use Your Personal Data
+In customer deployments, especially on-premise deployments, customers may process patient or clinical data under their own governance arrangements. Where Haemio Ltd has access to clinical data as part of a hosted service or support activity, we treat it as health data and, where applicable, special category personal data.
 
-### 4.1 Primary Purposes
+We do not intentionally collect patient names or identifiers on the public website. If a user accidentally includes identifiers in a report or free text, those identifiers may be processed as part of the submitted content and should be reported to us promptly so we can help delete or remediate the data where technically possible.
 
-**For User Account Management:**
-- Authenticate your access to the system
-- Maintain your professional profile and preferences
-- Communicate important system updates or security notices
-- Provide technical support when requested
+## 4. Purposes and Legal Bases
 
-**For Clinical Decision Support:**
-- Process clinical reports through our AI classification algorithms
-- Generate haematologic malignancy classifications and risk assessments
-- Provide treatment recommendations and clinical trial matching
-- Maintain audit logs for system security and quality assurance
+| Purpose | Example Data | Legal Basis |
+| --- | --- | --- |
+| Responding to enquiries | name, email, organisation, message | legitimate interests; taking steps before a contract |
+| Managing customer relationships | business contact records, procurement correspondence | contract; legitimate interests |
+| Providing hosted services | account, access, audit, configuration data | contract; legitimate interests |
+| Security and abuse prevention | IP address, logs, access events | legitimate interests; legal obligation where applicable |
+| Website analytics and improvement | Vercel Analytics events, technical data | consent |
+| Clinical decision support in customer deployments | clinical case data, classification outputs | customer determines Article 6 basis; Article 9 condition usually relates to healthcare provision, public interest in health, or research depending on the customer context |
+| Legal, regulatory, and audit recordkeeping | contracts, audit logs, correspondence | legal obligation; legitimate interests |
 
-**For System Improvement:**
-- Analyze usage patterns to improve our algorithms (anonymized data only)
-- Monitor system performance and security
-- Conduct research to advance haematologic oncology (no patient data)
+Where Haemio Ltd acts as processor, we process personal data only on the documented instructions of the customer controller, except where law requires otherwise.
 
-### 4.2 Legal Basis for Processing
+## 5. Special Category Data
 
-We process your personal data based on:
+Health, genetic, and pathology information may be special category data under UK GDPR.
 
-- **Legitimate Interest** (Article 6(1)(f) UK GDPR): Providing healthcare decision support tools, system security, and service improvement
-- **Vital Interests** (Article 6(1)(d) UK GDPR): Where processing supports patient care decisions
-- **Special Category Data** (Article 9(2)(j) UK GDPR): Processing for healthcare research and clinical decision support in the public interest
+The public website is not intended to receive identifiable special category patient data. For clinical deployments, the customer controller is responsible for confirming the relevant lawful basis and special category condition, completing any required DPIA, and ensuring users have appropriate authority to process patient data.
 
----
+## 6. Deterministic Classifier and No AI Provider Processing
 
-## 5. Data Sharing and International Transfers
+The live EU API is configured for deterministic classification. OpenAI and Gemini API keys have been removed from the live EU API environment.
 
-### 5.1 Who We Share Data With
+Historical documentation may refer to AI-assisted extraction or review. Those references do not describe the current live EU API configuration unless a specific customer deployment separately enables such functionality under its own agreement.
 
-**We do not sell or rent your personal data to third parties.**
+## 7. Cookies and Analytics
 
-We may share your data with:
+The website uses:
 
-| Recipient | Data Shared | Purpose | Safeguards |
-|-----------|-------------|---------|------------|
-| **OpenAI (ChatGPT API)** | Anonymized clinical text only | AI classification processing | Data Processing Agreement, anonymization via Presidio |
-| **Heroku (Salesforce)** | User account data, system logs | Cloud hosting and infrastructure | EU/UK data centers, encryption in transit/rest |
-| **Technical Support** | Account details when you request help | Customer support | Access controls, confidentiality agreements |
-| **Legal/Regulatory** | As required by law | Compliance with legal obligations | Only when legally required |
+- essential browser storage for cookie banner preference;
+- Vercel Analytics to understand site usage and performance after you accept analytics;
+- cookies or local storage needed for basic site operation.
 
-### 5.2 International Transfers
+We do not currently use Google Analytics, Facebook/Meta pixel, Hotjar, or PostHog on the landing site.
 
-**Clinical Data**: Processed by OpenAI in the US, but only after anonymization removes all personal identifiers.
+See our [Cookie Notice](/cookie-notice) for more information.
 
-**User Account Data**: Stored in EU/UK data centers via Heroku's European infrastructure.
+## 8. Subprocessors and Hosting
 
-**Safeguards**: We rely on adequacy decisions and implement additional safeguards including encryption, anonymization, and data processing agreements.
+Current public/hosted infrastructure includes Heroku/Salesforce for the EU API, Postgres, and Redis; Vercel for the landing site and serverless functions; GoDaddy for DNS; GitHub for source control; and Resend if email delivery is used.
 
----
+See our [Subprocessors](/subprocessors) page.
 
-## 6. How Long We Keep Your Data
+## 9. International Transfers
 
-### 6.1 Data Retention Periods
+We aim to host the main hosted API and database in UK/EU-region infrastructure where practical. Current production API and database infrastructure is in Heroku's EU region, and landing functions are configured for Vercel London (`lhr1`).
 
-| Data Type | Retention Period | Reason |
-|-----------|------------------|---------|
-| **User Account Data** | Until account deletion requested | Ongoing service provision |
-| **Clinical Data** | **Not retained** - deleted immediately after session | Privacy by design |
-| **Session Metadata** | 30 days | System security and performance |
-| **Audit Logs** | 7 years (anonymized) | Legal compliance, security monitoring |
-| **Support Communications** | 3 years | Customer service quality |
-| **Anonymized Analytics** | Indefinitely | Research and system improvement |
+Some vendors are global organisations and may provide support, security, routing, or account administration from outside the UK/EEA. Where required, we rely on appropriate contractual safeguards, such as UK International Data Transfer Addendum, EU Standard Contractual Clauses, or vendor data processing terms.
 
-### 6.2 Account Deletion
+On-premise deployments may avoid transfer of customer clinical data to Haemio Ltd or cloud processors if operated entirely by the customer.
 
-You can request account deletion at any time by:
-- Using the "Delete Account" option in your profile settings
-- Emailing us at privacy@haem.io
-- Contacting our Data Protection Officer at robbielee543@gmail.com
+## 10. Retention
 
-**Note**: Account deletion is permanent and cannot be undone. You will lose access to all historical session data and preferences.
+We keep personal data only for as long as necessary for the relevant purpose.
 
----
+| Data Category | Typical Retention |
+| --- | --- |
+| Website analytics | according to Vercel Analytics retention and our configuration |
+| Cookie consent preference | until cleared by the user or expired by browser storage |
+| Business correspondence | up to 6 years after last meaningful contact |
+| Customer contracts and commercial records | up to 6 years after the end of the customer relationship |
+| Hosted account records | for the life of the account, then normally deleted or anonymised within 90 days unless required for legal/audit purposes |
+| Security and audit logs | normally up to 6 years where needed for clinical, security, contractual, or regulatory auditability |
+| Public website accidental clinical submissions | deleted as soon as reasonably practicable after discovery |
+| Customer clinical records in hosted deployments | as agreed with the customer controller, with 6 years as a default audit-retention position where classification audit records are enabled |
 
-## 7. Your Rights Under UK GDPR
+See our [Data Retention Policy](/data-retention).
 
-You have the following rights regarding your personal data:
+## 11. Security
 
-### 7.1 Right of Access
-**What**: Request a copy of the personal data we hold about you  
-**How**: Email privacy@haem.io or use your account settings  
-**Timeframe**: We'll respond within 30 days  
-**Cost**: Free for the first request per year
+We use technical and organisational measures designed to protect personal data, including:
 
-### 7.2 Right to Rectification
-**What**: Correct inaccurate or incomplete personal data  
-**How**: Update your profile in account settings or contact us  
-**Timeframe**: Immediate for profile updates, 30 days for other requests
+- HTTPS/TLS in transit;
+- encryption at rest where supported by our hosting and database providers;
+- access controls and separation of production systems;
+- API key or authenticated access for protected endpoints;
+- audit logging where enabled;
+- least-privilege operational access;
+- provider-managed backup, monitoring, and infrastructure security controls;
+- configuration hardening for production, including disabling debug/test endpoints.
 
-### 7.3 Right to Erasure ("Right to be Forgotten")
-**What**: Request deletion of your personal data  
-**How**: Use account deletion feature or contact us  
-**Limitations**: We may retain anonymized data for research purposes
+No system is perfectly secure. Users and customers must also ensure appropriate local governance, user access controls, and de-identification practices.
 
-### 7.4 Right to Restrict Processing
-**What**: Limit how we process your data  
-**How**: Contact our Data Protection Officer at robbielee543@gmail.com  
-**Effect**: We'll only store your data, not actively process it
+## 12. Your Rights
 
-### 7.5 Right to Data Portability
-**What**: Receive your data in a machine-readable format  
-**How**: Export function in account settings or contact us  
-**Format**: JSON or CSV file containing your profile and preferences
+Depending on the context and applicable law, you may have rights to:
 
-### 7.6 Right to Object
-**What**: Object to processing based on legitimate interests  
-**How**: Contact our Data Protection Officer at robbielee543@gmail.com  
-**Effect**: We'll stop processing unless we have compelling legitimate grounds
+- access your personal data;
+- correct inaccurate personal data;
+- request deletion;
+- restrict processing;
+- object to processing;
+- receive a copy of certain data in a portable format;
+- complain to the UK Information Commissioner's Office.
 
-### 7.7 Rights Related to Automated Decision-Making
-**What**: Our AI system makes automated classifications  
-**Your Rights**: 
-- Right to human review of AI decisions
-- Right to challenge automated decisions
-- Right to explanation of AI logic
-**How**: Contact our clinical team for human review
+To exercise your rights, contact [robert.lee@haem.io](mailto:robert.lee@haem.io).
 
----
+If your request relates to data processed in a customer deployment, we may need to refer the request to the relevant customer controller.
 
-## 8. Data Security
+## 13. ICO
 
-We implement comprehensive technical and organizational measures to protect your data:
+You can contact the UK Information Commissioner's Office at [https://ico.org.uk](https://ico.org.uk). We would appreciate the opportunity to address your concern first.
 
-### 8.1 Technical Safeguards
-- **Encryption**: AES-256 encryption for data at rest and in transit
-- **Access Controls**: Multi-factor authentication and role-based access
-- **PII Detection**: Microsoft Presidio enterprise-grade anonymization (95%+ accuracy)
-- **Network Security**: HTTPS/TLS with security headers, VPN access for staff
-- **Monitoring**: 24/7 security monitoring and intrusion detection
+## 14. Changes
 
-### 8.2 Organizational Safeguards
-- **Staff Training**: Regular data protection and security training
-- **Access Management**: Principle of least privilege, regular access reviews
-- **Incident Response**: 72-hour breach notification procedures
-- **Vendor Management**: Data processing agreements with all suppliers
-- **Regular Audits**: Annual security assessments and penetration testing
-
-### 8.3 Data Breach Procedures
-In the unlikely event of a data breach:
-1. **Detection**: Automated monitoring systems alert our security team
-2. **Assessment**: Within 24 hours, we assess the scope and risk
-3. **ICO Notification**: Within 72 hours if high risk to your rights
-4. **User Notification**: We'll notify you directly if you're affected
-5. **Remediation**: Immediate steps to contain and resolve the breach
-
----
-
-## 9. Cookies and Analytics
-
-### 9.1 Essential Cookies
-We use essential cookies for:
-- **Authentication**: Secure login sessions (encrypted)
-- **Security**: CSRF protection and session management
-- **Preferences**: Your interface settings and language preferences
-
-### 9.2 Analytics
-We use privacy-focused analytics to improve our service:
-- **What we track**: Page views, feature usage, error rates (anonymized)
-- **What we don't track**: Personal identifiers, clinical data, detailed behavior
-- **Your control**: You can opt-out in your account settings
-
-**No third-party tracking**: We do not use Google Analytics, Facebook pixels, or other third-party tracking tools.
-
----
-
-## 10. Special Considerations for Healthcare Data
-
-### 10.1 Clinical Governance
-- This system is designed as a clinical decision support tool, not a replacement for clinical judgment
-- All AI classifications should be reviewed by qualified healthcare professionals
-- We recommend following your institution's clinical governance procedures
-
-### 10.2 Patient Data Protection
-- **Never enter real patient identifiers** without proper authorization
-- **Use anonymized or pseudonymized data** where possible
-- **Follow your institution's data protection policies**
-- **Ensure proper consent** for any patient data processing
-
-### 10.3 Professional Responsibility
-As a healthcare professional, you remain responsible for:
-- Ensuring appropriate use of this system
-- Maintaining patient confidentiality
-- Following professional guidelines and regulations
-- Making independent clinical decisions
-
----
-
-## 11. Changes to This Privacy Notice
-
-### 11.1 Updates
-We may update this privacy notice to reflect:
-- Changes in data protection law
-- New features or services
-- Feedback from users or regulators
-- Best practice developments
-
-### 11.2 Notification
-We'll notify you of significant changes by:
-- Email notification to your registered address
-- Prominent notice on the system login page
-- Requiring re-acceptance for material changes
-
-### 11.3 Version Control
-- **Current Version**: 1.0 (December 2024)
-- **Previous Versions**: Available on request
-- **Next Review**: March 2025
-
----
-
-## 12. Contact Information
-
-### 12.1 General Data Protection Queries
-**Email**: privacy@haem.io  
-**Phone**: 07399676299  
-**Address**: 73 Meliden Road, Prestatyn, LL19 8RH, UK
-
-### 12.2 Data Protection Officer
-**Name**: Robert Lee  
-**Email**: robbielee543@gmail.com  
-**Phone**: 07399676299
-
-### 12.3 Technical Support
-**Email**: support@haem.io  
-**Hours**: Monday-Friday, 9 AM - 5 PM GMT
-
-### 12.4 Complaints
-If you're not satisfied with our response, you can complain to:
-
-**Information Commissioner's Office (ICO)**  
-**Website**: https://ico.org.uk/  
-**Phone**: 0303 123 1113  
-**Address**: Information Commissioner's Office, Wycliffe House, Water Lane, Wilmslow, Cheshire SK9 5AF
-
----
-
-## 13. Consent and Acceptance
-
-By ticking the box below and clicking "I Accept", you confirm that you have:
-
-✅ Read and understood this privacy notice  
-✅ Understand how we collect, use, and protect your personal data  
-✅ Understand your rights under UK GDPR  
-✅ Agree to our processing of your personal data as described above  
-✅ Understand that clinical data is processed but not stored  
-✅ Acknowledge your professional responsibilities when using this system  
-
-**Professional Declaration**: I confirm that I am a qualified healthcare professional authorized to access clinical decision support tools for haematologic malignancies.
-
-**Consent is freely given and can be withdrawn at any time by deleting your account or contacting our Data Protection Officer.**
-
----
-
-**This privacy notice complies with UK GDPR, Data Protection Act 2018, and healthcare data protection best practices.**
-
-**Document Reference**: PN-HAEMIO-2024-001  
-**Legal Review**: Completed by Robert Lee (Data Controller)  
-**Approved by**: Robert Lee, Haem.io Ltd  
-**Effective Date**: December 2024 
+We may update this notice as the product, deployment model, or legal requirements evolve. The latest version will be published on this page.

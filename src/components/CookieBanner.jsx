@@ -16,12 +16,13 @@ export default function CookieBanner() {
 
   const handleAccept = () => {
     localStorage.setItem('cookie-consent', 'accepted');
+    window.dispatchEvent(new Event('cookie-consent-change'));
     setIsVisible(false);
-    // You can add analytics/tracking initialization here
   };
 
   const handleDecline = () => {
     localStorage.setItem('cookie-consent', 'declined');
+    window.dispatchEvent(new Event('cookie-consent-change'));
     setIsVisible(false);
   };
 
@@ -33,11 +34,11 @@ export default function CookieBanner() {
         <div className={styles.text}>
           <p className={styles.kicker}>Cookie preferences</p>
           <p>
-            We use cookies to enhance your experience on our site. These cookies help us analyze traffic, 
-            personalize content, and improve our services. By clicking "Accept", you consent to our use of cookies.
+            We use essential local storage to remember this choice and privacy-focused analytics
+            after you accept to understand site usage. We do not use advertising trackers or personalised ads.
           </p>
           <a href="/privacy-policy" className={styles.privacyLink}>
-            Read our privacy policy
+            Read our privacy notice
           </a>
         </div>
         <div className={styles.actions}>
@@ -45,7 +46,7 @@ export default function CookieBanner() {
             Decline
           </button>
           <button onClick={handleAccept} className={styles.acceptButton}>
-            Accept All Cookies
+            Accept
           </button>
         </div>
       </div>

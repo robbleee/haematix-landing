@@ -17,12 +17,12 @@ Complete GDPR compliance documentation and procedures:
 - **`privacy_notice.md`** - User privacy notice and data protection information
 - **`uk_gdpr_compliance.md`** - UK GDPR compliance overview and requirements
 
-### 🛡️ **security/** - Security Implementation
-Security architecture and implementation guides:
+### 🛡️ **security/** - Security Documentation
+Current security documentation and archived implementation notes:
 
 - **`security_and_compliance.md`** - Overall security architecture and compliance measures
-- **`healthcare_encryption_implementation.md`** - Healthcare-grade encryption implementation
-- **`presidio_installation_guide.md`** - Microsoft Presidio PII anonymization setup
+- **`healthcare_encryption_implementation.md`** - Archived historical implementation note
+- **`presidio_installation_guide.md`** - Archived historical implementation note
 
 ### ⚙️ **technical/** - Technical Documentation
 System architecture and technical specifications:
@@ -82,7 +82,7 @@ Reserved for additional legal documents (currently empty).
 
 ### ✅ **Complete & Current**
 - GDPR compliance documentation
-- Security implementation guides
+- Security and compliance overview
 - User manuals and guides
 - Technical architecture documentation
 
@@ -153,9 +153,8 @@ All documents include:
 - [UK GDPR Legislation](https://www.gov.uk/data-protection)
 
 ### **Technical:**
-- [Microsoft Presidio](https://microsoft.github.io/presidio/)
 - [Heroku Security](https://devcenter.heroku.com/articles/security)
-- [OpenAI API Documentation](https://platform.openai.com/docs)
+- [Vercel Security](https://vercel.com/security)
 
 ---
 
@@ -163,13 +162,13 @@ All documents include:
 
 For questions about specific documentation:
 
-- **Compliance/Legal**: robbielee543@gmail.com
-- **Technical Issues**: robbielee543@gmail.com
-- **User Guide Questions**: support@haem.io
-- **Clinical Queries**: robbielee543@gmail.com
+- **Compliance/Legal**: robert.lee@haem.io
+- **Technical Issues**: robert.lee@haem.io
+- **User Guide Questions**: robert.lee@haem.io
+- **Clinical Queries**: robert.lee@haem.io
 
 ---
 
-**Last Updated**: December 2024  
-**Next Organization Review**: June 2025  
-**Maintained By**: Documentation Team 
+**Last Updated**: July 2026  
+**Next Organization Review**: January 2027  
+**Maintained By**: Haemio Ltd

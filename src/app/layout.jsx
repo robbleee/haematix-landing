@@ -1,7 +1,7 @@
 import './globals.css';
 import Link from 'next/link';
-import { Analytics } from '@vercel/analytics/react';
 import CookieBanner from '../components/CookieBanner';
+import ConsentAnalytics from '../components/ConsentAnalytics';
 import ComplianceFooter from '../components/ComplianceFooter';
 import MobileNav from '../components/MobileNav';
 
@@ -96,7 +96,7 @@ export default function RootLayout({ children }) {
         <main>
           {children}
         </main>
-        <Analytics />
+        <ConsentAnalytics />
         <ComplianceFooter />
         <CookieBanner />
       </body>

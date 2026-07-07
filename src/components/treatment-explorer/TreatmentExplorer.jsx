@@ -10,6 +10,7 @@ import {
   SAML_GENES,
   classifyCoats,
   deriveCoatsCytogenetics,
+  getPrimaryCytogeneticKey,
   hasPrimaryCytogeneticFinding,
   isCytogeneticModifierDisabled,
   isCytogeneticOptionDisabled,
@@ -60,6 +61,7 @@ export default function TreatmentExplorer() {
   const [direction, setDirection] = useState('forward');
   const [showWhy, setShowWhy] = useState(false);
   const [showElnWhy, setShowElnWhy] = useState(false);
+  const [cytoModifierPromptOpen, setCytoModifierPromptOpen] = useState(false);
   const [sessionId] = useState(createExplorerSessionId);
   const resultTrackedRef = useRef(null);
   const coatsCytogenetics = useMemo(() => deriveCoatsCytogenetics(profile), [profile]);
@@ -72,8 +74,27 @@ export default function TreatmentExplorer() {
 
   const update = (key, value) => setProfile((current) => ({ ...current, [key]: value }));
   const toggleGene = (gene) => update('samlGenes', profile.samlGenes.includes(gene) ? profile.samlGenes.filter((g) => g !== gene) : [...profile.samlGenes, gene]);
-  const toggleCytogeneticFinding = (finding) => update('cytogeneticFindings', toggleCytogeneticFindingValue(profile.cytogeneticFindings, finding));
-  const setCytogeneticsStatus = (status) => setProfile((current) => ({ ...current, cytogeneticsStatus: status, cytogeneticFindings: status === 'reported' ? current.cytogeneticFindings : [] }));
+  const toggleCytogeneticFinding = (finding) => {
+    const wasSelected = profile.cytogeneticFindings.includes(finding);
+    const cytogeneticFindings = toggleCytogeneticFindingValue(profile.cytogeneticFindings, finding);
+    const nextProfile = { ...profile, cytogeneticFindings };
+    setProfile(nextProfile);
+    if (CYTOGENETIC_MODIFIERS.some((modifier) => modifier.key === finding)) {
+      setCytoModifierPromptOpen(true);
+      return;
+    }
+    const openedPrimary = !wasSelected && getPrimaryCytogeneticKey(nextProfile) === finding && !isCytogeneticModifierDisabled(nextProfile);
+    setCytoModifierPromptOpen(openedPrimary);
+  };
+  const clearCytogeneticModifiers = () => {
+    const modifierKeys = new Set(CYTOGENETIC_MODIFIERS.map((modifier) => modifier.key));
+    setProfile((current) => ({ ...current, cytogeneticFindings: current.cytogeneticFindings.filter((finding) => !modifierKeys.has(finding)) }));
+    setCytoModifierPromptOpen(false);
+  };
+  const setCytogeneticsStatus = (status) => {
+    setProfile((current) => ({ ...current, cytogeneticsStatus: status, cytogeneticFindings: status === 'reported' ? current.cytogeneticFindings : [] }));
+    setCytoModifierPromptOpen(false);
+  };
   const canContinue = canContinueFromStep(currentStep?.key, profile);
   const next = () => {
     if (!canContinue) return;
@@ -85,9 +106,10 @@ export default function TreatmentExplorer() {
     });
     setDirection('forward');
     setShowWhy(false);
+    setCytoModifierPromptOpen(false);
     setStep((s) => s + 1);
   };
-  const back = () => { setDirection('back'); setShowWhy(false); setStep((s) => Math.max(0, s - 1)); };
+  const back = () => { setDirection('back'); setShowWhy(false); setCytoModifierPromptOpen(false); setStep((s) => Math.max(0, s - 1)); };
   const reset = () => {
     trackExplorerEvent(sessionId, 'reset', buildTelemetryProfile(profile, matched, eln));
     resultTrackedRef.current = null;
@@ -95,6 +117,7 @@ export default function TreatmentExplorer() {
     setDirection('back');
     setShowWhy(false);
     setShowElnWhy(false);
+    setCytoModifierPromptOpen(false);
     setStep(0);
   };
 
@@ -148,7 +171,8 @@ export default function TreatmentExplorer() {
 
             {currentStep.key === 'markers' && <div className={styles.markerGrid}>{MARKERS.map(([key, label]) => <button key={key} onClick={() => update(key, !profile[key])} className={`${styles.markerCard} ${profile[key] ? styles.selected : ''}`}><span className={styles.selectMark}>{profile[key] ? '✓' : '+'}</span><strong>{label}</strong><small>{profile[key] ? 'Detected' : 'Not detected'}</small></button>)}</div>}
             {currentStep.key === 'flt3' && <ChoiceGrid value={profile.flt3} onChange={(v) => update('flt3', v)} choices={[[ 'none','Not detected','Neither ITD nor TKD'],['itd','FLT3-ITD','Internal tandem duplication'],['tkd','FLT3-TKD','Tyrosine kinase domain'],['both','Both','ITD and TKD detected']]}/>}
-            {currentStep.key === 'cytogenetics' && <CytogeneticsSelector profile={profile} onStatus={setCytogeneticsStatus} onToggle={toggleCytogeneticFinding}/>}
+            {currentStep.key === 'cytogenetics' && <CytogeneticsSelector profile={profile} onStatus={setCytogeneticsStatus} onToggle={toggleCytogeneticFinding} onOpenModifiers={() => setCytoModifierPromptOpen(true)}/>}
+            {currentStep.key === 'cytogenetics' && cytoModifierPromptOpen && <CytogeneticModifierModal profile={profile} onToggle={toggleCytogeneticFinding} onClear={clearCytogeneticModifiers} onClose={() => setCytoModifierPromptOpen(false)}/>}
             {currentStep.key === 'saml' && <><div className={styles.countBadge}><span>{profile.samlGenes.length}</span><div><strong>selected</strong><small>{profile.samlGenes.length === 0 ? 'No defining mutations' : profile.samlGenes.length === 1 ? 'Single-mutation pathway' : '2+ mutation pathway'}</small></div></div><div className={styles.geneGrid}>{SAML_GENES.map((gene) => <button key={gene} onClick={() => toggleGene(gene)} className={profile.samlGenes.includes(gene) ? styles.geneSelected : ''}><span>{profile.samlGenes.includes(gene) ? '✓' : '+'}</span>{gene}</button>)}</div></>}
             {currentStep.key === 'context' && <ChoiceGrid value={profile.context} onChange={(v) => update('context', v)} choices={CONTEXT_CHOICES}/>}
             {currentStep.key === 'dnmt3a' && <div className={styles.binaryWrap}><button onClick={() => update('DNMT3A', true)} className={profile.DNMT3A === true ? styles.binarySelected : ''}><span>+</span><strong>Detected</strong><small>DNMT3A mutation present</small></button><button onClick={() => update('DNMT3A', false)} className={profile.DNMT3A === false ? styles.binarySelected : ''}><span>−</span><strong>Not detected</strong><small>Wild-type DNMT3A</small></button></div>}
@@ -172,11 +196,13 @@ function ChoiceGrid({ choices, value, onChange, wide = false }) {
   return <div className={`${styles.choiceGrid} ${wide ? styles.choiceGridWide : ''}`}>{choices.map(([key,label,desc,meta = {}]) => <button key={key} disabled={meta.disabled} onClick={() => !meta.disabled && onChange(key)} className={`${value === key ? styles.choiceSelected : ''} ${meta.disabled ? styles.choiceDisabled : ''}`}><span className={styles.radio}><i/></span><span><strong>{label}</strong><small>{desc}</small>{meta.disabled && <em>Not selectable</em>}</span></button>)}</div>;
 }
 
-function CytogeneticsSelector({ profile, onStatus, onToggle }) {
+function CytogeneticsSelector({ profile, onStatus, onToggle, onOpenModifiers }) {
   const statuses = [
     ['reported', 'Cytogenetic result available', 'Select the matching group below'],
     ['unavailable', 'Unavailable', 'Pending, failed, or not performed'],
   ];
+  const canUseModifiers = profile.cytogeneticsStatus === 'reported' && !isCytogeneticModifierDisabled(profile);
+  const selectedModifiers = CYTOGENETIC_MODIFIERS.filter((modifier) => profile.cytogeneticFindings.includes(modifier.key));
   return <div className={styles.cytoSelector}>
     <div className={styles.statusGrid}>{statuses.map(([key, label, description]) => <button key={key} onClick={() => onStatus(key)} className={profile.cytogeneticsStatus === key ? styles.statusSelected : ''}><span className={styles.radio}><i/></span><span><strong>{label}</strong><small>{description}</small></span></button>)}</div>
     {profile.cytogeneticsStatus === 'reported' && <div className={styles.cytoGroups}>{CYTOGENETIC_GROUPS.map((group) => <section key={group.label} className={styles.cytoGroup} data-tone={group.tone}><div className={styles.cytoGroupTitle}><span/>{group.label}</div><div className={styles.cytoGrid}>{group.findings.map((finding) => {
@@ -189,17 +215,29 @@ function CytogeneticsSelector({ profile, onStatus, onToggle }) {
         </button>
       </div>;
     })}</div></section>)}
-      <section className={styles.cytoGroup} data-tone="karyotype"><div className={styles.cytoGroupTitle}><span/>Karyotype modifiers</div><div className={styles.cytoGrid}>{CYTOGENETIC_MODIFIERS.map((modifier) => {
-        const selected = profile.cytogeneticFindings.includes(modifier.key);
-        const disabled = isCytogeneticModifierDisabled(profile);
-        return <div key={modifier.key} className={styles.cytoRow}><button aria-pressed={selected} disabled={disabled} onClick={() => !disabled && onToggle(modifier.key)} className={`${styles.cytoAdjunct} ${selected ? styles.cytoSelected : ''} ${disabled ? styles.cytoDisabled : ''}`}>
-          <span className={styles.cytoCheck}>{selected ? '✓' : disabled ? '–' : '+'}</span>
-          <span><strong>{modifier.label}</strong><small>{modifier.description}</small>{disabled && <em>Not applicable to this cytogenetic group</em>}</span>
-        </button></div>;
-      })}</div></section>
+      {canUseModifiers && <section className={styles.cytoModifierSummary}><div><span>Karyotype follow-up</span><strong>{selectedModifiers.length ? selectedModifiers.map((modifier) => modifier.label).join(', ') : 'No complex or monosomal modifier selected'}</strong><small>Asked separately because this should not replace the primary cytogenetic branch.</small></div><button onClick={onOpenModifiers}>{selectedModifiers.length ? 'Edit' : 'Answer'}</button></section>}
     </div>}
     {profile.cytogeneticsStatus === 'reported' && profile.cytogeneticFindings.length === 0 && <p className={styles.emptyFindingNote}>Select Normal or the closest reported cytogenetic group to continue.</p>}
     {profile.cytogeneticsStatus === 'unavailable' && <p className={styles.unavailableNote}>A provisional molecular ELN result can be shown, but no cytogenetic finding will be assumed absent and no Coats case will be forced.</p>}
+  </div>;
+}
+
+function CytogeneticModifierModal({ profile, onToggle, onClear, onClose }) {
+  return <div className={styles.modalBackdrop} role="presentation" onClick={onClose}>
+    <div className={styles.cytoModal} role="dialog" aria-modal="true" aria-labelledby="cyto-modifier-title" onClick={(event) => event.stopPropagation()}>
+      <span className={styles.modalEyebrow}>Cytogenetic follow-up</span>
+      <h3 id="cyto-modifier-title">Does the report also show complex or monosomal karyotype?</h3>
+      <p>Use this only if the report states complex karyotype, three or more cytogenetic abnormalities, or monosomal karyotype. It is not asked for the non-adverse trisomy or multiple-trisomy branch.</p>
+      <div className={styles.modifierChoices}>{CYTOGENETIC_MODIFIERS.map((modifier) => {
+        const selected = profile.cytogeneticFindings.includes(modifier.key);
+        return <button key={modifier.key} aria-pressed={selected} onClick={() => onToggle(modifier.key)} className={selected ? styles.modifierSelected : ''}>
+          <span>{selected ? '✓' : '+'}</span>
+          <strong>{modifier.label}</strong>
+          <small>{modifier.description}</small>
+        </button>;
+      })}</div>
+      <div className={styles.modalActions}><button className={styles.modalSecondary} onClick={onClear}>Neither / not reported</button><button className={styles.modalPrimary} onClick={onClose}>Done</button></div>
+    </div>
   </div>;
 }
 

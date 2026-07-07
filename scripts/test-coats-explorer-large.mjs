@@ -118,6 +118,7 @@ function testDataIntegrity() {
 
   const modifierKeys = CYTOGENETIC_MODIFIERS.map((modifier) => modifier.key);
   assert.deepEqual(new Set(modifierKeys), new Set(['complex_karyotype', 'monosomal_karyotype']));
+  assert.match(CYTOGENETIC_MODIFIERS.find((modifier) => modifier.key === 'complex_karyotype')?.label || '', /3\+/);
 }
 
 function testLookupRowsReplay() {
@@ -266,21 +267,26 @@ async function testBrowserSmoke() {
     await clickButtonByText(page, 'Not detected');
     await clickButtonByText(page, 'Continue');
     await clickButtonByText(page, 'Cytogenetic result available');
+    await clickButtonByText(page, 'Other non-adverse');
+    const nonAdversePromptVisible = await page.evaluate(() => document.body.textContent.includes('Does the report also show complex or monosomal karyotype?'));
+    assert.equal(nonAdversePromptVisible, false, 'other non-adverse should not trigger the complex/3+ prompt');
+    await clickButtonByText(page, 'Other non-adverse');
     await clickButtonByText(page, 'Core binding factor');
+    await page.waitForFunction(() => document.body.textContent.includes('Does the report also show complex or monosomal karyotype?'), { timeout: 10000 });
     await clickButtonByText(page, 'Complex karyotype');
+    await clickButtonByText(page, 'Done');
 
     const cytoState = await page.evaluate(() => {
       const normalise = (value) => value.replace(/\s+/g, ' ').trim().toLowerCase();
       const buttons = [...document.querySelectorAll('button')];
       const otherNonAdverse = buttons.find((button) => normalise(button.textContent || '').includes('other non-adverse'));
-      const complex = buttons.find((button) => normalise(button.textContent || '').includes('complex karyotype'));
       return {
         otherNonAdverseDisabled: Boolean(otherNonAdverse?.disabled),
-        complexSelected: complex?.getAttribute('aria-pressed') === 'true',
+        complexSummaryVisible: document.body.textContent.includes('Complex karyotype / 3+ abnormalities'),
       };
     });
     assert.equal(cytoState.otherNonAdverseDisabled, true, 'other non-adverse should be disabled after CBF selection');
-    assert.equal(cytoState.complexSelected, true, 'complex modifier should be selectable with CBF');
+    assert.equal(cytoState.complexSummaryVisible, true, 'complex modifier should be captured after the prompt');
 
     await clickButtonByText(page, 'Continue');
     await clickButtonByText(page, 'Continue');

@@ -104,8 +104,8 @@ export const CYTOGENETIC_GROUPS = [
 export const CYTOGENETIC_MODIFIERS = [
   {
     key: 'complex_karyotype',
-    label: 'Complex karyotype',
-    description: 'Three or more cytogenetic abnormalities',
+    label: 'Complex karyotype / 3+ abnormalities',
+    description: 'Select only when the report states complex karyotype or three or more cytogenetic abnormalities',
   },
   {
     key: 'monosomal_karyotype',

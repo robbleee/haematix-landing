@@ -148,7 +148,7 @@ export default function TreatmentExplorer() {
         <a className={styles.homeBack} href="/" aria-label="Back to haem.io home">← haem.io home</a>
         <section className={styles.safetyBanner}>
           <strong>Not a medical device</strong>
-          <p>This educational tool summarises the results of a Coats-Delphi poll led by Tom Coats. It must not be used as a standalone treatment recommendation. Clinicians must use independent judgement and check all outputs against the source table, current evidence, local protocols, prescribing information, funding rules, and specialist MDT review.</p>
+          <p>This educational tool summarises the results of a Coats-Delphi poll led by Tom Coats. It is intended to support discussion, not to function as a standalone treatment recommendation. Outputs should be interpreted alongside the source table, current evidence, local protocols, prescribing information, funding context, and specialist MDT review.</p>
         </section>
       </header>
       <section className={styles.explorerShell}>
@@ -194,7 +194,7 @@ export default function TreatmentExplorer() {
         </div>
       </section>
 
-      <section className={styles.disclaimer}><div className={styles.disclaimerIcon}>!</div><div><strong>Clinical judgement required</strong><p>This is not a medical device and does not provide medical advice. It reflects Delphi poll outputs only; every result must be checked by a clinician against patient context, evidence, local protocols, prescribing information, funding rules, and MDT review.</p></div></section>
+      <section className={styles.disclaimer}><div className={styles.disclaimerIcon}>!</div><div><strong>Clinical context required</strong><p>This is not a medical device and does not provide medical advice. It reflects Delphi poll outputs only and should be interpreted in the context of the individual patient, current evidence, local protocols, prescribing information, funding context, and MDT discussion.</p></div></section>
     </main>
   );
 }

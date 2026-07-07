@@ -270,6 +270,11 @@ async function testBrowserSmoke() {
     const safetyText = await page.evaluate(() => document.body.textContent);
     assert.match(safetyText, /Not a medical device/i);
     assert.match(safetyText, /Coats-Delphi poll led by Tom Coats/i);
+    const globalHeaderHidden = await page.evaluate(() => {
+      const header = document.body.querySelector(':scope > header');
+      return !header || getComputedStyle(header).display === 'none';
+    });
+    assert.equal(globalHeaderHidden, true, 'global site header should be hidden on the explorer route');
     const homeHref = await page.$eval('a[aria-label="Back to haem.io home"]', (link) => link.textContent);
     assert.match(homeHref, /haem\.io home/i);
     await clickButtonByText(page, 'Continue');

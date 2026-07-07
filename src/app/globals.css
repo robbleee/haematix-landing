@@ -34,7 +34,8 @@ body.treatment-explorer-fullscreen {
   overflow: hidden;
 }
 
-body.treatment-explorer-fullscreen footer {
+body.treatment-explorer-fullscreen > header,
+body.treatment-explorer-fullscreen > footer {
   display: none !important;
 }
 

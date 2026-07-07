@@ -22,13 +22,13 @@ import {
 import styles from './TreatmentExplorer.module.css';
 
 const STEPS = [
-  { key: 'markers', eyebrow: 'Defining genetics', title: 'Which defining mutations are present?', hint: 'Select every confirmed positive finding. Unselected markers will be treated as not detected.' },
-  { key: 'flt3', eyebrow: 'FLT3 profile', title: 'What is the FLT3 result?', hint: 'Choose the most specific confirmed result.' },
-  { key: 'cytogenetics', eyebrow: 'Cytogenetics', title: 'What did cytogenetic testing show?', hint: 'Set the report status, then select every confirmed finding. ELN risk updates automatically.' },
-  { key: 'saml', eyebrow: 'Myelodysplasia-related genetics', title: 'Select any sAML-defining mutations', hint: 'The pathway distinguishes between zero, one, and two or more mutations.' },
-  { key: 'context', eyebrow: 'Disease context', title: 'What is the disease context?', hint: 'Choose the best-supported clinical history.' },
-  { key: 'dnmt3a', eyebrow: 'Refining marker', title: 'Is DNMT3A mutated?', hint: 'This separates the two NPM1 + FLT3-ITD consensus pathways.' },
-  { key: 'patient', eyebrow: 'Patient context', title: 'Add age and MRD status', hint: 'These refine the transplant context; they do not change the matched consensus case.' },
+  { key: 'markers', eyebrow: 'Defining genetics', title: 'Defining mutations', hint: 'Select every confirmed positive finding. Unselected markers will be treated as not detected.' },
+  { key: 'flt3', eyebrow: 'FLT3 profile', title: 'FLT3 result', hint: 'Choose the most specific confirmed result.' },
+  { key: 'cytogenetics', eyebrow: 'Cytogenetics', title: 'Cytogenetic findings', hint: 'Set the report status, then select every confirmed finding. ELN risk updates automatically.' },
+  { key: 'saml', eyebrow: 'Myelodysplasia-related genetics', title: 'sAML-defining mutations', hint: 'Select any confirmed sAML-defining mutation. The current Coats lookup treats this as present or absent.' },
+  { key: 'context', eyebrow: 'Disease context', title: 'Disease context', hint: 'Choose the best-supported clinical history.' },
+  { key: 'dnmt3a', eyebrow: 'Refining marker', title: 'DNMT3A status', hint: 'This separates the two NPM1 + FLT3-ITD consensus pathways.' },
+  { key: 'patient', eyebrow: 'Patient context', title: 'Age and MRD status', hint: 'These refine the transplant context; they do not change the matched consensus case.' },
 ];
 
 const MARKERS = [
@@ -144,9 +144,6 @@ export default function TreatmentExplorer() {
   return (
     <main className={styles.page}>
       <div className={styles.orbOne}/><div className={styles.orbTwo}/><div className={styles.gridTexture}/>
-      <header className={styles.explorerHeader}>
-        <a className={styles.homeBack} href="/" aria-label="Back to haem.io home">← haem.io home</a>
-      </header>
       <section className={styles.explorerShell}>
         <aside className={styles.pathPanel}>
           <div className={styles.panelTop}><span>Your pathway</span><button onClick={reset}>Reset</button></div>
@@ -164,18 +161,23 @@ export default function TreatmentExplorer() {
               <span className={styles.pathCopy}><strong>Consensus match</strong><small>{isResult ? matched ? consensusDisplayLabel(matched) : 'No exact match' : 'Waiting'}</small></span>
             </div>
           </div>
+          <div className={styles.panelLinks}>
+            <a href="/aml-treatment-explorer/algorithm">Algorithm sheet</a>
+            <a href="/" aria-label="Back to haem.io home">← haem.io home</a>
+          </div>
         </aside>
 
         <div className={styles.questionPanel}>
-          {!isResult ? <div key={step} className={`${styles.questionInner} ${direction === 'back' ? styles.slideBack : styles.slideForward}`}>
+          {!isResult ? <div className={`${styles.questionInner} ${currentStep.key === 'cytogenetics' ? styles.compactStep : ''}`}>
             <div className={styles.progressRow}><span>Step {String(step + 1).padStart(2, '0')}</span><div className={styles.progressTrack}><i style={{width: `${((step + 1) / activeSteps.length) * 100}%`}}/></div><span>{activeSteps.length}</span></div>
-            <div className={styles.questionHeader}><span>{currentStep.eyebrow}</span><h2>{currentStep.title}</h2><p>{currentStep.hint}</p></div>
+            <div key={step} className={`${styles.slideContent} ${direction === 'back' ? styles.slideBack : styles.slideForward}`}>
+            <div className={styles.questionHeader}><h2>{currentStep.title}</h2><p>{currentStep.hint}</p></div>
 
             {currentStep.key === 'markers' && <div className={styles.markerGrid}>{MARKERS.map(([key, label]) => <button key={key} onClick={() => update(key, !profile[key])} className={`${styles.markerCard} ${profile[key] ? styles.selected : ''}`}><span className={styles.selectMark}>{profile[key] ? '✓' : '+'}</span><strong>{label}</strong><small>{profile[key] ? 'Detected' : 'Not detected'}</small></button>)}</div>}
             {currentStep.key === 'flt3' && <ChoiceGrid value={profile.flt3} onChange={(v) => update('flt3', v)} choices={[[ 'none','Not detected','Neither ITD nor TKD'],['itd','FLT3-ITD','Internal tandem duplication'],['tkd','FLT3-TKD','Tyrosine kinase domain'],['both','Both','ITD and TKD detected']]}/>}
             {currentStep.key === 'cytogenetics' && <CytogeneticsSelector profile={profile} onStatus={setCytogeneticsStatus} onToggle={toggleCytogeneticFinding} onOpenModifiers={() => setCytoModifierPromptOpen(true)}/>}
             {currentStep.key === 'cytogenetics' && cytoModifierPromptOpen && <CytogeneticModifierModal profile={profile} onToggle={toggleCytogeneticFinding} onClear={clearCytogeneticModifiers} onClose={() => setCytoModifierPromptOpen(false)}/>}
-            {currentStep.key === 'saml' && <><div className={styles.countBadge}><span>{profile.samlGenes.length}</span><div><strong>selected</strong><small>{profile.samlGenes.length === 0 ? 'No defining mutations' : profile.samlGenes.length === 1 ? 'Single-mutation pathway' : '2+ mutation pathway'}</small></div></div><div className={styles.geneGrid}>{SAML_GENES.map((gene) => <button key={gene} onClick={() => toggleGene(gene)} className={profile.samlGenes.includes(gene) ? styles.geneSelected : ''}><span>{profile.samlGenes.includes(gene) ? '✓' : '+'}</span>{gene}</button>)}</div></>}
+            {currentStep.key === 'saml' && <><div className={styles.countBadge}><span>{profile.samlGenes.length}</span><div><strong>selected</strong><small>{profile.samlGenes.length === 0 ? 'sAML flag absent' : 'sAML flag present'}</small></div></div><div className={styles.geneGrid}>{SAML_GENES.map((gene) => <button key={gene} onClick={() => toggleGene(gene)} className={profile.samlGenes.includes(gene) ? styles.geneSelected : ''}><span>{profile.samlGenes.includes(gene) ? '✓' : '+'}</span>{gene}</button>)}</div></>}
             {currentStep.key === 'context' && <ChoiceGrid value={profile.context} onChange={(v) => update('context', v)} choices={CONTEXT_CHOICES}/>}
             {currentStep.key === 'dnmt3a' && <div className={styles.binaryWrap}><button onClick={() => update('DNMT3A', true)} className={profile.DNMT3A === true ? styles.binarySelected : ''}><span>+</span><strong>Detected</strong><small>DNMT3A mutation present</small></button><button onClick={() => update('DNMT3A', false)} className={profile.DNMT3A === false ? styles.binarySelected : ''}><span>−</span><strong>Not detected</strong><small>Wild-type DNMT3A</small></button></div>}
             {currentStep.key === 'patient' && <div className={styles.patientStack}><div className={styles.patientGrid}><label><span>Age <small>optional</small></span><div className={styles.inputWrap}><input value={profile.age} onChange={(e) => update('age', e.target.value.replace(/\D/g, '').slice(0,3))} inputMode="numeric" placeholder="e.g. 54"/><em>years</em></div></label><div><span className={styles.fieldLabel}>MRD status <small>optional</small></span><div className={styles.segmented}>{[['positive','Positive'],['negative','Negative'],['unknown','Not assessed']].map(([v,l]) => <button key={v} onClick={() => update('mrd', v)} className={profile.mrd === v ? styles.segmentActive : ''}>{l}</button>)}</div></div></div>{Number(profile.age || 0) >= 60 && <div><span className={styles.fieldLabel}>AML60+ risk <small>optional</small></span><div className={styles.segmented}>{[[null,'Not set'],['favourable','Favourable'],['intermediate_poor','Intermediate / poor']].map(([v,l]) => <button key={v || 'unset'} onClick={() => update('aml60Risk', v)} className={profile.aml60Risk === v ? styles.segmentActive : ''}>{l}</button>)}</div></div>}</div>}
@@ -185,6 +187,7 @@ export default function TreatmentExplorer() {
             <button className={styles.whyButton} onClick={() => setShowWhy(!showWhy)}><span>i</span>Why this matters<svg className={showWhy ? styles.rotated : ''} viewBox="0 0 20 20"><path d="m6 8 4 4 4-4"/></svg></button>
             {showWhy && <div className={styles.whyBox}>{whyCopy(currentStep.key)}</div>}
             <div className={styles.actions}>{step > 0 ? <button className={styles.backButton} onClick={back}>← Back</button> : <span/>}<button disabled={!canContinue} className={styles.continueButton} onClick={next}>{step === activeSteps.length - 1 ? 'Reveal consensus match' : 'Continue'}<span>→</span></button></div>
+            </div>
           </div> : <Result matched={matched} profile={profile} eln={eln} provisional={profile.cytogeneticsStatus === 'unavailable'} sessionId={sessionId} onBack={back} onReset={reset}/>}
         </div>
       </section>
@@ -270,7 +273,22 @@ function Result({ matched, profile, eln, provisional, sessionId, onBack, onReset
       setExportingPdf(false);
     }
   };
-  if (!matched) return <div className={styles.noMatch}><div className={styles.noMatchIcon}>?</div><span>Pathway complete</span><h2>No exact consensus case matched</h2><p>This combination falls outside the 28 defined Coats–Delphi cases, or cytogenetics are incomplete. It should be reviewed by a specialist multidisciplinary team rather than forced into a nearby branch.</p><DecisionTrace profile={profile} matched={matched} eln={eln}/><ElnBadge eln={eln} provisional={provisional} expanded={showResultEln} onToggle={() => setShowResultEln((value) => !value)}/>{pdfError && <p className={styles.pdfError}>{pdfError}</p>}<div className={styles.resultActions}><button onClick={onBack}>← Review answers</button><button className={styles.pdfButton} onClick={onExportPdf} disabled={exportingPdf}>{exportingPdf ? 'Preparing PDF…' : 'Export PDF'}</button><button onClick={onReset}>Start a new pathway</button></div></div>;
+  if (!matched) return <div className={styles.noMatch}>
+    <div className={styles.noMatchPanel}>
+      <div className={styles.noMatchMark}>!</div>
+      <div>
+        <span>Review pathway</span>
+        <h2>No surveyed consensus match</h2>
+        <p>This input combination is not directly covered by the current Coats-Delphi lookup, or cytogenetics are incomplete. The explorer therefore has not extrapolated a treatment recommendation.</p>
+      </div>
+    </div>
+    <div className={styles.noMatchGrid}>
+      <DecisionTrace profile={profile} matched={matched} eln={eln}/>
+      <ElnBadge eln={eln} provisional={provisional} expanded={showResultEln} onToggle={() => setShowResultEln((value) => !value)}/>
+    </div>
+    {pdfError && <p className={styles.pdfError}>{pdfError}</p>}
+    <div className={styles.resultActions}><button onClick={onBack}>← Review answers</button><button className={styles.pdfButton} onClick={onExportPdf} disabled={exportingPdf}>{exportingPdf ? 'Preparing PDF…' : 'Export PDF'}</button><button onClick={onReset}>Start a new pathway</button></div>
+  </div>;
   const noConsensus = matched.preferred.toLowerCase().includes('no consensus');
   const transplant = selectTransplantText(matched, profile);
   const venAza = selectVenAzaText(matched, profile);

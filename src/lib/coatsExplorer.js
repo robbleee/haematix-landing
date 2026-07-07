@@ -116,7 +116,7 @@ export const CYTOGENETIC_MODIFIERS = [
   },
 ];
 
-const SCENARIO_META = {
+export const SCENARIO_META = {
   1: { name: 'CBF AML (Core Binding Factor)', incidence: '~10%' },
   2: { name: 'NPM1 favourable risk', incidence: '~13%' },
   3: { name: 'NPM1 favourable with FLT3-TKD', incidence: '~2.25%' },

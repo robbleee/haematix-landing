@@ -73,7 +73,7 @@ export default function DemoPage() {
           webkitallowfullscreen="true"
           mozallowfullscreen="true"
           allowFullScreen
-          title="Haem.io AML diagnostic demo"
+          title="Haem.io AML classification support demo"
           style={{
             position: 'absolute',
             top: 0,

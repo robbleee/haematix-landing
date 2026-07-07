@@ -19,7 +19,7 @@ export default function ArchitectureFlowchart() {
             </svg>
           </div>
           <h3 className={styles.stepTitle}>1. The Signal</h3>
-          <p className={styles.stepSubtitle}>AI Extraction</p>
+          <p className={styles.stepSubtitle}>Clinician-Reviewed Inputs</p>
         </div>
 
         {/* Arrow 1 */}
@@ -69,4 +69,3 @@ export default function ArchitectureFlowchart() {
     </div>
   );
 }
-

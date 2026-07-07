@@ -72,8 +72,8 @@ export default function ComplianceFooter() {
           <div className={styles.section}>
             <h3 className={styles.sectionTitle}>Haem.io</h3>
             <p className={styles.description}>
-              Advanced haematology diagnosis tool using WHO 2022 and ICC 2022 classifications 
-              to support healthcare professionals in accurate blood cancer diagnosis.
+              Clinician-facing haematology decision support using transparent WHO 2022 and ICC 2022
+              criteria mapping. Outputs support professional review and do not replace clinical judgement.
             </p>
             <div className={styles.contact}>
               <p>
@@ -140,8 +140,13 @@ export default function ComplianceFooter() {
               </p>
               <p className={styles.complianceItem}>
                 <span className={styles.complianceIcon}>*</span>
-                <strong>Clinical Standards</strong><br />
-                <small>WHO 2022 & ICC 2022 classifications</small>
+                <strong>Transparent Criteria Logic</strong><br />
+                <small>WHO 2022 & ICC 2022 reasoning trails</small>
+              </p>
+              <p className={styles.complianceItem}>
+                <span className={styles.complianceIcon}>*</span>
+                <strong>GB UKCA Pathway</strong><br />
+                <small>Class I pathway in preparation, not currently UKCA-marked</small>
               </p>
             </div>
           </div>
@@ -152,7 +157,7 @@ export default function ComplianceFooter() {
           <div className={styles.copyright}>
             <p>© {new Date().getFullYear()} Haem.io. All rights reserved.</p>
             <p className={styles.disclaimer}>
-              This tool is for healthcare professional use only and should not replace clinical judgment.
+              This tool is for healthcare professional decision support only and should not replace clinical judgement.
             </p>
           </div>
           <div className={styles.lastUpdated}>

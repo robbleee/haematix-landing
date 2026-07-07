@@ -5,10 +5,10 @@ import useAnimatedCounter from '../../hooks/useAnimatedCounter';
 import styles from './StatsSection.module.css';
 
 const stats = [
-  { value: 100, suffix: '%', label: 'Gene Extraction Accuracy', prefix: '' },
+  { value: 100, suffix: '%', label: 'Visible Rule Traceability', prefix: '' },
   { value: 2, suffix: '', label: 'Classification Frameworks', prefix: '' },
   { value: 4, suffix: '', label: 'NHS Endorsements', prefix: '' },
-  { value: 2, suffix: 'min', label: 'Report to Diagnosis', prefix: '<' },
+  { value: 2, suffix: 'min', label: 'Demo Review Flow', prefix: '<' },
 ];
 
 function StatItem({ stat, isVisible }) {

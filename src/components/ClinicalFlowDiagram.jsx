@@ -23,9 +23,9 @@ export default function ClinicalFlowDiagram() {
         <div className={styles.step}>
           <div className={styles.stepNumber}>2</div>
           <div className={styles.stepContent}>
-            <h3 className={styles.stepTitle}>AI</h3>
+            <h3 className={styles.stepTitle}>Data Review</h3>
             <p className={styles.stepDescription}>
-              NLP data extraction from unstructured reports.
+              Structured findings are made visible for clinician review before criteria are applied.
             </p>
           </div>
         </div>
@@ -39,9 +39,9 @@ export default function ClinicalFlowDiagram() {
         <div className={styles.step}>
           <div className={styles.stepNumber}>3</div>
           <div className={styles.stepContent}>
-            <h3 className={styles.stepTitle}>Logic Core & Precision Diagnosis</h3>
+            <h3 className={styles.stepTitle}>Logic Core & Criteria Output</h3>
             <p className={styles.stepDescription}>
-              Provable WHO/ICC logic delivers exact disease classification.
+              Deterministic WHO/ICC logic produces traceable classification support.
             </p>
           </div>
         </div>

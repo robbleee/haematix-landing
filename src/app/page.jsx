@@ -32,12 +32,12 @@ export default function Home() {
       },
       {
         '@type': 'SoftwareApplication',
-        name: 'Haem.io Leukaemia Classifier',
+        name: 'Haem.io Haematology Decision Support',
         applicationCategory: 'HealthApplication',
         operatingSystem: 'Web',
         url: 'https://haem.io/interactive-classifier',
         description:
-          'A leukaemia and myeloid disease diagnostic classifier supporting WHO 2022 and ICC 2022 classification logic.'
+          'Clinician-facing leukaemia and myeloid disease decision support for transparent WHO 2022 and ICC 2022 criteria review.'
       }
     ]
   };

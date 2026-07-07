@@ -8,9 +8,9 @@ const steps = [
   {
     id: 'extract',
     number: '01',
-    title: 'Extract',
-    shortDesc: 'Pull key findings from reports into a clean structured profile.',
-    detail: 'LLM-powered extraction from free-text haematology reports. Identifies mutations, cytogenetics, blast counts, and flow cytometry markers with 100% gene detection accuracy.',
+    title: 'Structure',
+    shortDesc: 'Turn case findings into a clinician-reviewable structured profile.',
+    detail: 'Report findings can be entered manually or structured for review. Mutations, cytogenetics, blast counts, and flow markers remain visible so clinicians can verify the input before criteria are applied.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
@@ -22,9 +22,9 @@ const steps = [
   {
     id: 'classify',
     number: '02',
-    title: 'Classify',
-    shortDesc: 'Apply WHO, ICC, and ELN logic to produce a traceable result.',
-    detail: 'Dual-framework classification against WHO 2022 5th Edition and ICC 2022. Every decision node is traceable with full reasoning chains visible.',
+    title: 'Map',
+    shortDesc: 'Apply WHO, ICC, and ELN criteria to produce a traceable review output.',
+    detail: 'Dual-framework criteria mapping against WHO 2022 5th Edition and ICC 2022. Every decision node is traceable with full reasoning chains visible.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5" />
@@ -35,9 +35,9 @@ const steps = [
   {
     id: 'act',
     number: '03',
-    title: 'Act',
-    shortDesc: 'Support next-step decisions with diagnosis, risk, and rationale.',
-    detail: 'Generates ELN 2022 and ELN 2024 risk stratification with IPSS-M/R scoring. Provides rationale and evidence for clinical decision support alongside treatment considerations.',
+    title: 'Review',
+    shortDesc: 'Support clinician review with classification context, risk logic, and rationale.',
+    detail: 'Displays risk stratification and supporting rationale where configured. Outputs are decision support for qualified clinicians and do not replace local governance or professional judgement.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
@@ -59,7 +59,7 @@ export default function HowItWorksSection() {
       <div className={styles.container}>
         <div className={`${styles.header} ${isVisible ? styles.visible : ''}`}>
           <h2 className={styles.sectionTitle}>How Haem.io Works</h2>
-          <p className={styles.sectionSubtitle}>A simple three-step diagnostic workflow</p>
+          <p className={styles.sectionSubtitle}>A transparent three-step criteria review workflow</p>
         </div>
 
         <div className={styles.stepsContainer}>

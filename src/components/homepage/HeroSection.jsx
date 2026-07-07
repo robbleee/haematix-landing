@@ -6,9 +6,9 @@ import Image from 'next/image';
 import styles from './HeroSection.module.css';
 
 const SCREENSHOTS = [
-  { src: '/new-screenshots-for-landing/diagnostic-path.png', label: 'Diagnostic Pathway', alt: 'ICC 2022 Execution Path showing the full diagnostic decision tree' },
+  { src: '/new-screenshots-for-landing/diagnostic-path.png', label: 'Criteria Pathway', alt: 'ICC 2022 execution path showing the full criteria decision tree' },
   { src: '/new-screenshots-for-landing/classification-result.png', label: 'Classification', alt: 'WHO 2022 and ICC 2022 classification results with clinical reasoning traces' },
-  { src: '/new-screenshots-for-landing/data-entry.png', label: 'Report Upload', alt: 'Patient report upload with AI-powered analysis and data extraction' },
+  { src: '/new-screenshots-for-landing/data-entry.png', label: 'Data Entry', alt: 'Structured case data entry and report review workflow' },
   { src: '/new-screenshots-for-landing/data-inspector.png', label: 'Data Inspector', alt: 'Input data summary showing parsed mutations, cytogenetics, and clinical parameters' },
   { src: '/new-screenshots-for-landing/Risk-calculator.png', label: 'Risk', alt: 'ELN 2022 and 2024 risk stratification with median survival estimates' },
   { src: '/new-screenshots-for-landing/clinical-trials.png', label: 'Trial Matching', alt: 'Clinical trial matching with eligibility scores and confidence levels' },
@@ -32,7 +32,7 @@ export default function HeroSection() {
           <div className={styles.copyColumn}>
             <div className={styles.eyebrow}>
               <span className={styles.eyebrowDot} />
-              Clinical-grade AI for haematology
+              Clinician-facing decision support for haematology
             </div>
 
             <h1 className={styles.title}>
@@ -41,7 +41,7 @@ export default function HeroSection() {
             </h1>
 
             <p className={styles.subtitle}>
-              Explainable diagnostic intelligence aligned to WHO&nbsp;2022, ICC&nbsp;2022 and ELN risk stratification — built for the genomic era.
+              Transparent criteria execution aligned to WHO&nbsp;2022, ICC&nbsp;2022 and ELN risk stratification, built for clinician review in the genomic era.
             </p>
 
             <div className={styles.ctaGroup}>
@@ -61,7 +61,7 @@ export default function HeroSection() {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />
                 </svg>
-                100% Gene Accuracy
+                Clinician-verified inputs
               </div>
               <div className={styles.badge}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -74,6 +74,12 @@ export default function HeroSection() {
                   <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" />
                 </svg>
                 ELN Risk Aligned
+              </div>
+              <div className={styles.badge}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" /><path d="M8 12h8" /><path d="M12 8v8" />
+                </svg>
+                No black box logic
               </div>
             </div>
           </div>

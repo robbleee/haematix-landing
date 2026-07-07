@@ -23,10 +23,10 @@ export default function CtaSection() {
       <div className={styles.container}>
         <div className={`${styles.content} ${isVisible ? styles.visible : ''}`}>
           <h2 className={styles.title}>
-            Ready to modernise your diagnostic workflow?
+            Ready to modernise criteria review?
           </h2>
           <p className={styles.subtitle}>
-            Try the interactive leukaemia classifier — no login required.
+            Try the interactive leukaemia classification support workflow. No login required.
           </p>
           <div className={styles.ctaGroup}>
             <Link href="/interactive-classifier" className={styles.ctaPrimary}>

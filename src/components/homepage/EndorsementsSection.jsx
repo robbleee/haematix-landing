@@ -37,9 +37,9 @@ export default function EndorsementsSection() {
     <section className={styles.section} ref={ref}>
       <div className={styles.container}>
         <div className={`${styles.header} ${isVisible ? styles.visible : ''}`}>
-          <h2 className={styles.sectionTitle}>Endorsed by Leading NHS Clinicians</h2>
+          <h2 className={styles.sectionTitle}>Supported by Leading NHS Clinicians</h2>
           <p className={styles.sectionSubtitle}>
-            Senior haematologists across the UK are supporting Haem.io's clinical validation and adoption.
+            Senior haematologists across the UK are supporting Haem.io's validation work and clinician-led adoption pathway.
           </p>
         </div>
 

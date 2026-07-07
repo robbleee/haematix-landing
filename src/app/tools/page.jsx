@@ -31,9 +31,9 @@ const toolRows = [
   },
   {
     name: 'AML Treatment Explorer',
-    type: 'Treatment pathway explorer',
+    type: 'Consensus pathway explorer',
     status: 'Available',
-    purpose: 'Step through the Coats-Delphi AML treatment pathway cases using structured molecular and clinical inputs.',
+    purpose: 'Step through Coats-Delphi AML consensus pathway cases for educational review using structured molecular and clinical inputs.',
     data: 'Browser-based use. No account required for the public explorer.',
     href: '/aml-treatment-explorer',
     external: false,
@@ -42,7 +42,7 @@ const toolRows = [
     name: 'ELN AML Response Calculator',
     type: 'Response criteria calculator',
     status: 'Demo hosted',
-    purpose: 'Apply ELN 2017 and ELN 2022 AML response criteria from marrow findings and blood counts, with visible reasoning and PDF report output.',
+    purpose: 'Apply ELN 2017 and ELN 2022 AML response criteria from marrow findings and blood counts for clinician review, with visible reasoning and PDF report output.',
     data: 'Hosted demo. For patient-identifiable use, deploy the standalone Node app inside the relevant organisation.',
     href: 'https://haem-eln-response-calculator-92c7a45c14b8.herokuapp.com/',
     external: true,
@@ -51,7 +51,7 @@ const toolRows = [
 
 export const metadata = {
   title: 'Tools',
-  description: 'Haem.io tools and calculators for AML pathway exploration and ELN response assessment.',
+  description: 'Haem.io tools and calculators for AML pathway exploration and transparent ELN response criteria review.',
   alternates: {
     canonical: '/tools',
   },
@@ -74,7 +74,7 @@ export default function ToolsPage() {
         <strong>Data handling note</strong>
         <p>
           Public hosted demos should not be used with identifiable patient data.
-          Hospital or trial workflows should use an approved local deployment
+          Hospital or trial workflows should use a governed local deployment
           where required by information governance.
         </p>
       </section>

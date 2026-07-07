@@ -31,8 +31,8 @@ const architectureData = [
   },
   {
     id: 'act',
-    title: 'Act',
-    shortDesc: 'Support next-step decisions with diagnosis, risk, and rationale.',
+    title: 'Review',
+    shortDesc: 'Support clinician review with classification context, risk logic, and rationale.',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
@@ -46,7 +46,7 @@ const DiagnosticArchitecture = () => {
     <div className={styles.container}>
       <div className={styles.architectureWrapper}>
         <h2 className={styles.title}>How Haem.io Works</h2>
-        <p className={styles.subtitle}>A simple three-step diagnostic workflow.</p>
+        <p className={styles.subtitle}>A transparent three-step criteria review workflow.</p>
         
         <div className={styles.flowScrollWrapper}>
           <div className={styles.flowContainer}>

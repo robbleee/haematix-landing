@@ -146,10 +146,6 @@ export default function TreatmentExplorer() {
       <div className={styles.orbOne}/><div className={styles.orbTwo}/><div className={styles.gridTexture}/>
       <header className={styles.explorerHeader}>
         <a className={styles.homeBack} href="/" aria-label="Back to haem.io home">← haem.io home</a>
-        <section className={styles.safetyBanner}>
-          <strong>Not a medical device</strong>
-          <p>This educational tool summarises the results of a Coats-Delphi poll led by Tom Coats. It is intended to support discussion, not to function as a standalone treatment recommendation. Outputs should be interpreted alongside the source table, current evidence, local protocols, prescribing information, funding context, and specialist MDT review.</p>
-        </section>
       </header>
       <section className={styles.explorerShell}>
         <aside className={styles.pathPanel}>
@@ -168,7 +164,6 @@ export default function TreatmentExplorer() {
               <span className={styles.pathCopy}><strong>Consensus match</strong><small>{isResult ? matched ? consensusDisplayLabel(matched) : 'No exact match' : 'Waiting'}</small></span>
             </div>
           </div>
-          <div className={styles.privacyNote}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span><strong>Private by design</strong>Selections stay on this device and are cleared when you leave.</span></div>
         </aside>
 
         <div className={styles.questionPanel}>

@@ -268,8 +268,9 @@ async function testBrowserSmoke() {
     await page.setViewport({ width: 1280, height: 900 });
     await page.goto(`${baseUrl}/aml-treatment-explorer`, { waitUntil: 'networkidle0' });
     const safetyText = await page.evaluate(() => document.body.textContent);
-    assert.match(safetyText, /Not a medical device/i);
-    assert.match(safetyText, /Coats-Delphi poll led by Tom Coats/i);
+    assert.match(safetyText, /This is not a medical device/i);
+    assert.match(safetyText, /Delphi poll outputs/i);
+    assert.doesNotMatch(safetyText, /Coats-Delphi poll led by Tom Coats/i);
     const globalHeaderHidden = await page.evaluate(() => {
       const header = document.body.querySelector(':scope > header');
       return !header || getComputedStyle(header).display === 'none';

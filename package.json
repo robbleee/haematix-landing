@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test:coats": "node scripts/test-coats-explorer.mjs",
+    "test:coats:large": "node scripts/test-coats-explorer-large.mjs",
     "postinstall": "npx puppeteer browsers install chrome || true"
   },
   "dependencies": {

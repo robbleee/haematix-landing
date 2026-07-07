@@ -3,7 +3,21 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { jsPDF } from 'jspdf';
 import { classifyEln2022 } from '../../lib/classifierEngine';
-import { CYTOGENETIC_GROUPS, INITIAL_PROFILE, SAML_GENES, classifyCoats, deriveCoatsCytogenetics, toElnInput, transplantText } from '../../lib/coatsExplorer';
+import {
+  CYTOGENETIC_GROUPS,
+  CYTOGENETIC_MODIFIERS,
+  INITIAL_PROFILE,
+  SAML_GENES,
+  classifyCoats,
+  deriveCoatsCytogenetics,
+  hasPrimaryCytogeneticFinding,
+  isCytogeneticModifierDisabled,
+  isCytogeneticOptionDisabled,
+  selectTransplantText,
+  selectVenAzaText,
+  toElnInput,
+  toggleCytogeneticFinding as toggleCytogeneticFindingValue,
+} from '../../lib/coatsExplorer';
 import styles from './TreatmentExplorer.module.css';
 
 const STEPS = [
@@ -58,7 +72,7 @@ export default function TreatmentExplorer() {
 
   const update = (key, value) => setProfile((current) => ({ ...current, [key]: value }));
   const toggleGene = (gene) => update('samlGenes', profile.samlGenes.includes(gene) ? profile.samlGenes.filter((g) => g !== gene) : [...profile.samlGenes, gene]);
-  const toggleCytogeneticFinding = (finding) => update('cytogeneticFindings', profile.cytogeneticFindings.includes(finding) ? profile.cytogeneticFindings.filter((item) => item !== finding) : [...profile.cytogeneticFindings, finding]);
+  const toggleCytogeneticFinding = (finding) => update('cytogeneticFindings', toggleCytogeneticFindingValue(profile.cytogeneticFindings, finding));
   const setCytogeneticsStatus = (status) => setProfile((current) => ({ ...current, cytogeneticsStatus: status, cytogeneticFindings: status === 'reported' ? current.cytogeneticFindings : [] }));
   const canContinue = canContinueFromStep(currentStep?.key, profile);
   const next = () => {
@@ -138,7 +152,7 @@ export default function TreatmentExplorer() {
             {currentStep.key === 'saml' && <><div className={styles.countBadge}><span>{profile.samlGenes.length}</span><div><strong>selected</strong><small>{profile.samlGenes.length === 0 ? 'No defining mutations' : profile.samlGenes.length === 1 ? 'Single-mutation pathway' : '2+ mutation pathway'}</small></div></div><div className={styles.geneGrid}>{SAML_GENES.map((gene) => <button key={gene} onClick={() => toggleGene(gene)} className={profile.samlGenes.includes(gene) ? styles.geneSelected : ''}><span>{profile.samlGenes.includes(gene) ? '✓' : '+'}</span>{gene}</button>)}</div></>}
             {currentStep.key === 'context' && <ChoiceGrid value={profile.context} onChange={(v) => update('context', v)} choices={CONTEXT_CHOICES}/>}
             {currentStep.key === 'dnmt3a' && <div className={styles.binaryWrap}><button onClick={() => update('DNMT3A', true)} className={profile.DNMT3A === true ? styles.binarySelected : ''}><span>+</span><strong>Detected</strong><small>DNMT3A mutation present</small></button><button onClick={() => update('DNMT3A', false)} className={profile.DNMT3A === false ? styles.binarySelected : ''}><span>−</span><strong>Not detected</strong><small>Wild-type DNMT3A</small></button></div>}
-            {currentStep.key === 'patient' && <div className={styles.patientGrid}><label><span>Age <small>optional</small></span><div className={styles.inputWrap}><input value={profile.age} onChange={(e) => update('age', e.target.value.replace(/\D/g, '').slice(0,3))} inputMode="numeric" placeholder="e.g. 54"/><em>years</em></div></label><div><span className={styles.fieldLabel}>MRD status <small>optional</small></span><div className={styles.segmented}>{[['positive','Positive'],['negative','Negative'],['unknown','Not assessed']].map(([v,l]) => <button key={v} onClick={() => update('mrd', v)} className={profile.mrd === v ? styles.segmentActive : ''}>{l}</button>)}</div></div></div>}
+            {currentStep.key === 'patient' && <div className={styles.patientStack}><div className={styles.patientGrid}><label><span>Age <small>optional</small></span><div className={styles.inputWrap}><input value={profile.age} onChange={(e) => update('age', e.target.value.replace(/\D/g, '').slice(0,3))} inputMode="numeric" placeholder="e.g. 54"/><em>years</em></div></label><div><span className={styles.fieldLabel}>MRD status <small>optional</small></span><div className={styles.segmented}>{[['positive','Positive'],['negative','Negative'],['unknown','Not assessed']].map(([v,l]) => <button key={v} onClick={() => update('mrd', v)} className={profile.mrd === v ? styles.segmentActive : ''}>{l}</button>)}</div></div></div>{Number(profile.age || 0) >= 60 && <div><span className={styles.fieldLabel}>AML60+ risk <small>optional</small></span><div className={styles.segmented}>{[[null,'Not set'],['favourable','Favourable'],['intermediate_poor','Intermediate / poor']].map(([v,l]) => <button key={v || 'unset'} onClick={() => update('aml60Risk', v)} className={profile.aml60Risk === v ? styles.segmentActive : ''}>{l}</button>)}</div></div>}</div>}
 
             {profile.cytogeneticsStatus && <ElnBadge eln={eln} provisional={profile.cytogeneticsStatus === 'unavailable'} expanded={showElnWhy} onToggle={() => setShowElnWhy((value) => !value)}/>}
 
@@ -167,18 +181,23 @@ function CytogeneticsSelector({ profile, onStatus, onToggle }) {
     <div className={styles.statusGrid}>{statuses.map(([key, label, description]) => <button key={key} onClick={() => onStatus(key)} className={profile.cytogeneticsStatus === key ? styles.statusSelected : ''}><span className={styles.radio}><i/></span><span><strong>{label}</strong><small>{description}</small></span></button>)}</div>
     {profile.cytogeneticsStatus === 'reported' && <div className={styles.cytoGroups}>{CYTOGENETIC_GROUPS.map((group) => <section key={group.label} className={styles.cytoGroup} data-tone={group.tone}><div className={styles.cytoGroupTitle}><span/>{group.label}</div><div className={styles.cytoGrid}>{group.findings.map((finding) => {
       const selected = profile.cytogeneticFindings.includes(finding.key);
-      const adjunctSelected = finding.adjunctKey && profile.cytogeneticFindings.includes(finding.adjunctKey);
-      return <div key={finding.key} className={`${styles.cytoRow} ${finding.adjunctKey ? styles.cytoRowWithAdjunct : ''}`}>
-        <button aria-pressed={selected} disabled={finding.disabled} onClick={() => !finding.disabled && onToggle(finding.key)} className={`${selected ? styles.cytoSelected : ''} ${finding.disabled ? styles.cytoDisabled : ''}`}>
-          <span className={styles.cytoCheck}>{selected ? '✓' : finding.disabled ? '–' : '+'}</span>
-          <span><strong>{finding.label}</strong><small>{finding.description}</small>{finding.disabled && <em>Not yet surveyed</em>}</span>
+      const disabled = isCytogeneticOptionDisabled(profile, finding);
+      return <div key={finding.key} className={styles.cytoRow}>
+        <button aria-pressed={selected} disabled={disabled} onClick={() => !disabled && onToggle(finding.key)} className={`${selected ? styles.cytoSelected : ''} ${disabled ? styles.cytoDisabled : ''}`}>
+          <span className={styles.cytoCheck}>{selected ? '✓' : disabled ? '–' : '+'}</span>
+          <span><strong>{finding.label}</strong><small>{finding.description}</small>{finding.disabled && <em>Not yet surveyed</em>}{disabled && !finding.disabled && <em>Clear the selected cytogenetic group to choose this instead</em>}</span>
         </button>
-        {finding.adjunctKey && <button aria-pressed={adjunctSelected} onClick={() => onToggle(finding.adjunctKey)} className={`${styles.cytoAdjunct} ${adjunctSelected ? styles.cytoSelected : ''}`}>
-          <span className={styles.cytoCheck}>{adjunctSelected ? '✓' : '+'}</span>
-          <span><strong>{finding.adjunctLabel}</strong>{finding.adjunctDescription && <small>{finding.adjunctDescription}</small>}</span>
-        </button>}
       </div>;
-    })}</div></section>)}</div>}
+    })}</div></section>)}
+      <section className={styles.cytoGroup} data-tone="karyotype"><div className={styles.cytoGroupTitle}><span/>Karyotype modifiers</div><div className={styles.cytoGrid}>{CYTOGENETIC_MODIFIERS.map((modifier) => {
+        const selected = profile.cytogeneticFindings.includes(modifier.key);
+        const disabled = isCytogeneticModifierDisabled(profile);
+        return <div key={modifier.key} className={styles.cytoRow}><button aria-pressed={selected} disabled={disabled} onClick={() => !disabled && onToggle(modifier.key)} className={`${styles.cytoAdjunct} ${selected ? styles.cytoSelected : ''} ${disabled ? styles.cytoDisabled : ''}`}>
+          <span className={styles.cytoCheck}>{selected ? '✓' : disabled ? '–' : '+'}</span>
+          <span><strong>{modifier.label}</strong><small>{modifier.description}</small>{disabled && <em>Not applicable to this cytogenetic group</em>}</span>
+        </button></div>;
+      })}</div></section>
+    </div>}
     {profile.cytogeneticsStatus === 'reported' && profile.cytogeneticFindings.length === 0 && <p className={styles.emptyFindingNote}>Select Normal or the closest reported cytogenetic group to continue.</p>}
     {profile.cytogeneticsStatus === 'unavailable' && <p className={styles.unavailableNote}>A provisional molecular ELN result can be shown, but no cytogenetic finding will be assumed absent and no Coats case will be forced.</p>}
   </div>;
@@ -212,21 +231,39 @@ function Result({ matched, profile, eln, provisional, sessionId, onBack, onReset
     }
   };
   if (!matched) return <div className={styles.noMatch}><div className={styles.noMatchIcon}>?</div><span>Pathway complete</span><h2>No exact consensus case matched</h2><p>This combination falls outside the 28 defined Coats–Delphi cases, or cytogenetics are incomplete. It should be reviewed by a specialist multidisciplinary team rather than forced into a nearby branch.</p><DecisionTrace profile={profile} matched={matched} eln={eln}/><ElnBadge eln={eln} provisional={provisional} expanded={showResultEln} onToggle={() => setShowResultEln((value) => !value)}/>{pdfError && <p className={styles.pdfError}>{pdfError}</p>}<div className={styles.resultActions}><button onClick={onBack}>← Review answers</button><button className={styles.pdfButton} onClick={onExportPdf} disabled={exportingPdf}>{exportingPdf ? 'Preparing PDF…' : 'Export PDF'}</button><button onClick={onReset}>Start a new pathway</button></div></div>;
-  const noConsensus = matched.preferred === 'No consensus';
+  const noConsensus = matched.preferred.toLowerCase().includes('no consensus');
+  const transplant = selectTransplantText(matched, profile);
+  const venAza = selectVenAzaText(matched, profile);
   return <div className={styles.resultWrap}>
-    <div className={styles.resultTop}><div className={styles.resultSeal}><span>CASE</span><strong>{String(matched.number).padStart(2,'0')}</strong></div><div><span className={styles.resultEyebrow}>Consensus pathway matched</span><h2>{matched.name}</h2><p>{matched.incidence} of AML cases</p></div></div>
-    <div className={`${styles.treatmentHero} ${noConsensus ? styles.consensusAmber : ''}`}><div><span>Preferred consensus treatment</span><h3>{matched.preferred}</h3></div><span className={styles.matchPill}>{noConsensus ? 'MDT decision' : 'Primary pathway'}</span></div>
+    <div className={styles.resultTop}><div className={styles.resultSeal}><span>{matched.scenario ? 'CASE' : 'LOOKUP'}</span><strong>{String(matched.number).padStart(2,'0')}</strong></div><div><span className={styles.resultEyebrow}>Consensus pathway matched</span><h2>{matched.name}</h2><p>{matched.incidence} of AML cases · workbook row {matched.lookupRow}</p></div></div>
+    {matched.borrowedFrom && <div className={styles.borrowedNotice}><strong>Similar-case recommendation</strong><p>Tom's lookup row records this exact combination but does not provide direct treatment fields. The treatment recommendation below is borrowed from {matched.borrowedFrom.name} with the row-specific expert comment retained.</p></div>}
+    <div className={`${styles.treatmentHero} ${noConsensus ? styles.consensusAmber : ''}`}><div><span>Preferred consensus treatment</span><h3>{matched.preferred}</h3>{matched.preferredStrength && <p>{matched.preferredStrength}</p>}</div><span className={styles.matchPill}>{noConsensus ? 'MDT decision' : matched.preferredStrength || 'Primary pathway'}</span></div>
     <DecisionTrace profile={profile} matched={matched} eln={eln}/>
     <ElnBadge eln={eln} provisional={provisional} expanded={showResultEln} onToggle={() => setShowResultEln((value) => !value)}/>
-    <div className={styles.resultColumns}><div className={styles.resultCard}><span>Reasoning path</span><ol>{matched.reasons.map((reason,i) => <li key={reason}><i>{i+1}</i>{reason}</li>)}</ol></div><div className={styles.resultStack}><div className={styles.miniCard}><span>Reasonable alternatives</span><div className={styles.chips}>{matched.alternatives.map((a) => <i key={a}>{a}</i>)}</div></div><div className={styles.miniCard}><span>Transplant consensus</span><p>{transplantText(matched.number, Number(profile.age || 0), profile.mrd)}</p></div>{matched.trial && <div className={styles.miniCard}><span>Relevant trial pathway</span><p>{matched.trial}</p></div>}</div></div>
+    <div className={styles.resultColumns}><div className={styles.resultCard}><span>Reasoning path</span><ol>{matched.reasons.map((reason,i) => <li key={reason}><i>{i+1}</i>{reason}</li>)}</ol></div><div className={styles.resultStack}><div className={styles.miniCard}><span>Reasonable treatments</span><div className={styles.chips}>{matched.alternativeTreatments.length ? matched.alternativeTreatments.map((item) => <i key={`${item.treatment}-${item.strength || ''}`}>{item.treatment}{item.strength && <small>{item.strength}</small>}</i>) : <i>No alternatives recorded</i>}</div></div><div className={styles.miniCard}><span>Transplant consensus</span><RecommendationText value={transplant}/></div>{venAza && <div className={styles.miniCard}><span>Non-intensive option</span><RecommendationText value={venAza}/></div>}</div></div>
+    <div className={styles.detailGrid}>
+      {matched.ageImpact && <InfoCard label="Impact of age" value={matched.ageImpact}/>}
+      {matched.nonNhsAlternatives && <InfoCard label="Non-NHS funded alternatives" value={matched.nonNhsAlternatives}/>}
+      {matched.trial && <InfoCard label="Specific trial options" value={matched.trial}/>}
+      {matched.expertComment && <InfoCard label="Expert comment" value={matched.expertComment}/>}
+      {matched.comment && <InfoCard label="Consensus rationale" value={matched.comment}/>}
+    </div>
     {pdfError && <p className={styles.pdfError}>{pdfError}</p>}
     <div className={styles.resultFooter}><button onClick={onBack}>← Review answers</button><button className={styles.pdfButton} onClick={onExportPdf} disabled={exportingPdf}>{exportingPdf ? 'Preparing PDF…' : 'Export PDF'}</button><button onClick={onReset}>Start a new pathway ↗</button></div>
   </div>;
 }
 
+function RecommendationText({ value }) {
+  return <p>{String(value || '').split('\n').map((line, index) => <span key={`${line}-${index}`}>{line}{index < String(value || '').split('\n').length - 1 && <br/>}</span>)}</p>;
+}
+
+function InfoCard({ label, value }) {
+  return <div className={styles.miniCard}><span>{label}</span><RecommendationText value={value}/></div>;
+}
+
 function canContinueFromStep(stepKey, profile) {
   if (stepKey === 'flt3') return Boolean(profile.flt3);
-  if (stepKey === 'cytogenetics') return profile.cytogeneticsStatus === 'unavailable' || (profile.cytogeneticsStatus === 'reported' && profile.cytogeneticFindings.length > 0);
+  if (stepKey === 'cytogenetics') return profile.cytogeneticsStatus === 'unavailable' || (profile.cytogeneticsStatus === 'reported' && hasPrimaryCytogeneticFinding(profile));
   if (stepKey === 'context') return Boolean(profile.context);
   if (stepKey === 'dnmt3a') return profile.DNMT3A !== null;
   return true;
@@ -286,8 +323,8 @@ function getDecisionTrace(profile, matched, eln) {
   nodes.push({
     key: 'match',
     label: 'Consensus output',
-    value: matched ? `Case ${String(matched.number).padStart(2, '0')}` : 'No exact case',
-    detail: matched ? matched.name : 'No surveyed case matched this exact combination.',
+    value: matched ? `${matched.scenario ? 'Case' : 'Lookup'} ${String(matched.number).padStart(2, '0')}` : 'No exact case',
+    detail: matched?.borrowedFrom ? `Recommendation borrowed from ${matched.borrowedFrom.name}.` : matched ? matched.name : 'No surveyed case matched this exact combination.',
   });
 
   return nodes;
@@ -302,10 +339,9 @@ function getCytogeneticTraceLabel(profile) {
     .flatMap((group) => group.findings)
     .filter((finding) => selected.has(finding.key))
     .map((finding) => finding.label);
-  const adjuncts = CYTOGENETIC_GROUPS
-    .flatMap((group) => group.findings)
-    .filter((finding) => finding.adjunctKey && selected.has(finding.adjunctKey))
-    .map((finding) => finding.adjunctLabel);
+  const adjuncts = CYTOGENETIC_MODIFIERS
+    .filter((modifier) => selected.has(modifier.key))
+    .map((modifier) => modifier.label);
 
   return [...primaryFindings, ...adjuncts].join(' + ') || 'Reported, no listed group selected';
 }
@@ -367,9 +403,9 @@ function cytogeneticLabels(profile) {
   const labels = [];
   CYTOGENETIC_GROUPS.flatMap((group) => group.findings).forEach((finding) => {
     if (selected.has(finding.key)) labels.push(`${finding.label}${finding.description ? ` (${finding.description})` : ''}`);
-    if (finding.adjunctKey && selected.has(finding.adjunctKey)) {
-      labels.push(`${finding.adjunctLabel}${finding.adjunctDescription ? ` (${finding.adjunctDescription})` : ''}`);
-    }
+  });
+  CYTOGENETIC_MODIFIERS.forEach((modifier) => {
+    if (selected.has(modifier.key)) labels.push(`${modifier.label}${modifier.description ? ` (${modifier.description})` : ''}`);
   });
   return labels.length ? labels : ['No cytogenetic group selected'];
 }
@@ -379,6 +415,8 @@ function buildTelemetryProfile(profile, matched, eln) {
     version: 'coats-delphi-v1',
     outcome: matched ? 'matched' : 'no_exact_match',
     case_number: matched?.number || null,
+    case_id: matched?.caseId || null,
+    borrowed_from_case: matched?.borrowedFrom?.scenario || null,
     preferred_treatment: matched?.preferred || null,
     eln_risk: eln?.risk || null,
     markers: selectedMarkerLabels(profile),
@@ -391,6 +429,7 @@ function buildTelemetryProfile(profile, matched, eln) {
     dnmt3a_detected: profile.DNMT3A,
     age_band: getAgeBand(profile.age),
     mrd: profile.mrd || null,
+    aml60_risk: profile.aml60Risk || null,
   };
 }
 
@@ -536,9 +575,11 @@ async function exportExplorerPdf({ profile, matched, eln, provisional }) {
   const left = page.margin;
   const right = page.margin + 260;
   const colWidth = 226;
+  const transplantConsensus = matched ? selectTransplantText(matched, profile) : 'Specialist MDT review recommended.';
+  const venAzaGuidance = matched ? selectVenAzaText(matched, profile) : null;
   twoColumnRow(
     'Preferred consensus treatment',
-    matched?.preferred || 'No exact consensus treatment matched',
+    matched ? `${matched.preferred}${matched.preferredStrength ? ` (${matched.preferredStrength})` : ''}` : 'No exact consensus treatment matched',
     'ELN 2022 risk context',
     `${provisional ? 'Provisional ' : ''}${eln.risk}`
   );
@@ -546,9 +587,15 @@ async function exportExplorerPdf({ profile, matched, eln, provisional }) {
     'Incidence',
     matched?.incidence || 'Not applicable',
     'Transplant consensus',
-    matched ? transplantText(matched.number, Number(profile.age || 0), profile.mrd) : 'Specialist MDT review recommended.'
+    transplantConsensus
   );
-  if (matched?.trial) keyValue('Relevant trial pathway', matched.trial, left, page.width - page.margin * 2);
+  if (matched?.alternativeTreatments?.length) keyValue('Reasonable treatments', matched.alternativeTreatments.map((item) => `${item.treatment}${item.strength ? ` (${item.strength})` : ''}`).join('; '), left, page.width - page.margin * 2);
+  if (matched?.ageImpact) keyValue('Impact of age on decision', matched.ageImpact, left, page.width - page.margin * 2);
+  if (venAzaGuidance) keyValue('Ven-Aza / non-intensive guidance', venAzaGuidance, left, page.width - page.margin * 2);
+  if (matched?.nonNhsAlternatives) keyValue('Non-NHS funded alternatives', matched.nonNhsAlternatives, left, page.width - page.margin * 2);
+  if (matched?.trial) keyValue('Specific trial options', matched.trial, left, page.width - page.margin * 2);
+  if (matched?.borrowedFrom) keyValue('Similar-case source', `Recommendation borrowed from ${matched.borrowedFrom.name}`, left, page.width - page.margin * 2);
+  if (matched?.expertComment) keyValue('Expert comment', matched.expertComment, left, page.width - page.margin * 2);
 
   section('Decision Trace');
   numberedList(getDecisionTrace(profile, matched, eln).map((node) => `${node.label}: ${node.value}${node.detail ? ` - ${node.detail}` : ''}`), page.margin, page.width - page.margin * 2);
@@ -579,6 +626,7 @@ async function exportExplorerPdf({ profile, matched, eln, provisional }) {
     'MRD status',
     profile.mrd ? profile.mrd : 'Not assessed'
   );
+  if (Number(profile.age || 0) >= 60) keyValue('AML60+ risk', profile.aml60Risk ? profile.aml60Risk.replace('_', '/') : 'Not provided', left, page.width - page.margin * 2);
 
   section('ELN Derivation');
   bulletList((eln.derivation || []).map((line) => line.replace(/^Step \d+:?\s*/, '').replace(/^Final ELN 2022 risk:\s*/, 'Final risk: ')), page.margin, page.width - page.margin * 2);
@@ -610,7 +658,7 @@ function getSummary(profile, eln) {
     saml: profile.samlGenes.length ? `${profile.samlGenes.length} sAML mutation${profile.samlGenes.length > 1 ? 's' : ''}` : 'No sAML mutations',
     context: profile.context ? { denovo: 'De novo AML', taml: 'Therapy-related AML', prior_mds: 'Prior MDS' }[profile.context] : null,
     dnmt3a: profile.DNMT3A === null ? null : `DNMT3A ${profile.DNMT3A ? 'detected' : 'not detected'}`,
-    patient: profile.age ? `Age ${profile.age}${profile.mrd ? ` · MRD ${profile.mrd}` : ''}` : profile.mrd ? `MRD ${profile.mrd}` : 'Patient context optional',
+    patient: profile.age ? `Age ${profile.age}${profile.mrd ? ` · MRD ${profile.mrd}` : ''}${profile.aml60Risk ? ` · AML60+ ${profile.aml60Risk.replace('_', '/')}` : ''}` : profile.mrd ? `MRD ${profile.mrd}` : 'Patient context optional',
   };
 }
 

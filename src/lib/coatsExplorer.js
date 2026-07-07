@@ -398,7 +398,7 @@ function hydrateLookupRow(row, profileFlags, reasons) {
   const borrowedRow = borrowedScenario ? findRecommendationRowByScenario(borrowedScenario) : null;
   const recommendationRow = direct ? row : borrowedRow;
   const scenario = row.scenario || borrowedRow?.scenario || null;
-  const displayNumber = row.scenario || row.caseNumber;
+  const displayNumber = scenario || row.sourceRow;
   const preferred = parseTreatmentWithStrength(recommendationRow?.preferredTreatment || 'No direct recommendation');
   const alternatives = splitTreatmentList(recommendationRow?.reasonableTreatments);
   const name = row.scenario

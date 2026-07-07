@@ -267,6 +267,11 @@ async function testBrowserSmoke() {
     const page = await browser.newPage();
     await page.setViewport({ width: 1280, height: 900 });
     await page.goto(`${baseUrl}/aml-treatment-explorer`, { waitUntil: 'networkidle0' });
+    const safetyText = await page.evaluate(() => document.body.textContent);
+    assert.match(safetyText, /Not a medical device/i);
+    assert.match(safetyText, /Coats-Delphi poll led by Tom Coats/i);
+    const homeHref = await page.$eval('a[aria-label="Back to haem.io home"]', (link) => link.textContent);
+    assert.match(homeHref, /haem\.io home/i);
     await clickButtonByText(page, 'Continue');
     await clickButtonByText(page, 'Not detected');
     await clickButtonByText(page, 'Continue');
@@ -309,6 +314,8 @@ async function testBrowserSmoke() {
     await clickButtonByText(page, 'Reveal consensus match');
     await page.waitForFunction(() => document.body.textContent.includes('DA+gemtuzumab'), { timeout: 10000 });
     const body = await page.evaluate(() => document.body.textContent);
+    assert.match(body, /Scenario\s*01/i);
+    assert.doesNotMatch(body, /Case\s*15375/i);
     assert.match(body, /strong consensus/i);
     assert.match(body, /Similar-case recommendation/i);
     assert.match(body, /CBF AML/i);

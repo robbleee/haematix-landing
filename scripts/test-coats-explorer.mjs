@@ -29,6 +29,7 @@ assert.equal(cbf.preferredStrength, 'strong consensus');
 
 const cbfComplexProfile = { ...baseProfile, cytogeneticFindings: ['core_binding_factor', 'complex_karyotype'] };
 const cbfComplex = match(cbfComplexProfile);
+assert.equal(cbfComplex.number, 1);
 assert.equal(cbfComplex.borrowedFrom.scenario, 1);
 assert.equal(cbfComplex.preferred, cbf.preferred);
 assert.equal(classifyEln2022(toElnInput(cbfComplexProfile)).risk, 'Favorable');

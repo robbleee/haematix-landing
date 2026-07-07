@@ -144,6 +144,13 @@ export default function TreatmentExplorer() {
   return (
     <main className={styles.page}>
       <div className={styles.orbOne}/><div className={styles.orbTwo}/><div className={styles.gridTexture}/>
+      <header className={styles.explorerHeader}>
+        <a className={styles.homeBack} href="/" aria-label="Back to haem.io home">← haem.io home</a>
+        <section className={styles.safetyBanner}>
+          <strong>Not a medical device</strong>
+          <p>This educational tool summarises the results of a Coats-Delphi poll led by Tom Coats. It must not be used as a standalone treatment recommendation. Clinicians must use independent judgement and check all outputs against the source table, current evidence, local protocols, prescribing information, funding rules, and specialist MDT review.</p>
+        </section>
+      </header>
       <section className={styles.explorerShell}>
         <aside className={styles.pathPanel}>
           <div className={styles.panelTop}><span>Your pathway</span><button onClick={reset}>Reset</button></div>
@@ -158,7 +165,7 @@ export default function TreatmentExplorer() {
             })}
             <div className={`${styles.pathItem} ${isResult ? styles.active : styles.future}`}>
               <span className={styles.pathIcon}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="m5 12 4 4L19 6"/></svg></span>
-              <span className={styles.pathCopy}><strong>Consensus match</strong><small>{isResult ? matched ? `Case ${matched.number}` : 'No exact match' : 'Waiting'}</small></span>
+              <span className={styles.pathCopy}><strong>Consensus match</strong><small>{isResult ? matched ? consensusDisplayLabel(matched) : 'No exact match' : 'Waiting'}</small></span>
             </div>
           </div>
           <div className={styles.privacyNote}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span><strong>Private by design</strong>Selections stay on this device and are cleared when you leave.</span></div>
@@ -187,7 +194,7 @@ export default function TreatmentExplorer() {
         </div>
       </section>
 
-      <section className={styles.disclaimer}><div className={styles.disclaimerIcon}>!</div><div><strong>Clinical decision-support demonstration</strong><p>This explorer reproduces the current Coats–Delphi rule logic for educational demonstration. It does not provide medical advice and must not replace multidisciplinary review, patient assessment, local protocols, or current prescribing information.</p></div></section>
+      <section className={styles.disclaimer}><div className={styles.disclaimerIcon}>!</div><div><strong>Clinical judgement required</strong><p>This is not a medical device and does not provide medical advice. It reflects Delphi poll outputs only; every result must be checked by a clinician against patient context, evidence, local protocols, prescribing information, funding rules, and MDT review.</p></div></section>
     </main>
   );
 }
@@ -273,7 +280,7 @@ function Result({ matched, profile, eln, provisional, sessionId, onBack, onReset
   const transplant = selectTransplantText(matched, profile);
   const venAza = selectVenAzaText(matched, profile);
   return <div className={styles.resultWrap}>
-    <div className={styles.resultTop}><div className={styles.resultSeal}><span>{matched.scenario ? 'CASE' : 'LOOKUP'}</span><strong>{String(matched.number).padStart(2,'0')}</strong></div><div><span className={styles.resultEyebrow}>Consensus pathway matched</span><h2>{matched.name}</h2><p>{matched.incidence} of AML cases · workbook row {matched.lookupRow}</p></div></div>
+    <div className={styles.resultTop}><div className={styles.resultSeal}><span>{matched.scenario ? 'Scenario' : 'Lookup'}</span><strong>{String(matched.number).padStart(2,'0')}</strong></div><div><span className={styles.resultEyebrow}>Consensus pathway matched</span><h2>{matched.name}</h2><p>{matched.incidence} of AML cases · workbook row {matched.lookupRow}</p></div></div>
     {matched.borrowedFrom && <div className={styles.borrowedNotice}><strong>Similar-case recommendation</strong><p>Tom's lookup row records this exact combination but does not provide direct treatment fields. The treatment recommendation below is borrowed from {matched.borrowedFrom.name} with the row-specific expert comment retained.</p></div>}
     <div className={`${styles.treatmentHero} ${noConsensus ? styles.consensusAmber : ''}`}><div><span>Preferred consensus treatment</span><h3>{matched.preferred}</h3>{matched.preferredStrength && <p>{matched.preferredStrength}</p>}</div><span className={styles.matchPill}>{noConsensus ? 'MDT decision' : matched.preferredStrength || 'Primary pathway'}</span></div>
     <DecisionTrace profile={profile} matched={matched} eln={eln}/>
@@ -361,11 +368,16 @@ function getDecisionTrace(profile, matched, eln) {
   nodes.push({
     key: 'match',
     label: 'Consensus output',
-    value: matched ? `${matched.scenario ? 'Case' : 'Lookup'} ${String(matched.number).padStart(2, '0')}` : 'No exact case',
+    value: matched ? consensusDisplayLabel(matched) : 'No exact consensus case',
     detail: matched?.borrowedFrom ? `Recommendation borrowed from ${matched.borrowedFrom.name}.` : matched ? matched.name : 'No surveyed case matched this exact combination.',
   });
 
   return nodes;
+}
+
+function consensusDisplayLabel(matched) {
+  if (!matched) return 'No exact consensus case';
+  return matched.scenario ? `Scenario ${String(matched.scenario).padStart(2, '0')}` : `Lookup row ${matched.lookupRow}`;
 }
 
 function getCytogeneticTraceLabel(profile) {
@@ -602,7 +614,7 @@ async function exportExplorerPdf({ profile, matched, eln, provisional }) {
   y += 16;
   doc.setFillColor(255, 255, 255);
   doc.roundedRect(page.margin, y, page.width - page.margin * 2, 70, 10, 10, 'F');
-  const caseLabel = matched ? `Case ${String(matched.number).padStart(2, '0')}` : 'No exact case';
+  const caseLabel = consensusDisplayLabel(matched);
   setText(9, colours.teal, 'bold');
   doc.text(caseLabel.toUpperCase(), page.margin + 18, y + 22);
   setText(16, colours.ink, 'bold');
@@ -684,8 +696,8 @@ async function exportExplorerPdf({ profile, matched, eln, provisional }) {
   doc.text(`Generated: ${new Date().toLocaleString()}`, page.margin, y);
 
   addFooter();
-  const safeCase = matched ? `case-${String(matched.number).padStart(2, '0')}` : 'no-exact-match';
-  doc.save(`aml-treatment-explorer-${safeCase}.pdf`);
+  const safeLabel = consensusDisplayLabel(matched).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  doc.save(`aml-treatment-explorer-${safeLabel}.pdf`);
 }
 
 function getSummary(profile, eln) {

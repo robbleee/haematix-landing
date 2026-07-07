@@ -95,6 +95,8 @@ export const CYTOGENETIC_GROUPS = [
         key: 'other_adverse',
         label: 'Other adverse',
         description: 't(6;9), t(8;16)',
+        disabled: true,
+        disabledReason: 'Not yet polled for consensus',
         flags: { other_adverse_cytogenetics: true },
       },
     ],

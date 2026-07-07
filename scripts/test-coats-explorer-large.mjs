@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import http from 'node:http';
 import https from 'node:https';
 import {
+  CYTOGENETIC_GROUPS,
   CYTOGENETIC_MODIFIERS,
   INITIAL_PROFILE,
   classifyCoats,
@@ -119,6 +120,9 @@ function testDataIntegrity() {
   const modifierKeys = CYTOGENETIC_MODIFIERS.map((modifier) => modifier.key);
   assert.deepEqual(new Set(modifierKeys), new Set(['complex_karyotype', 'monosomal_karyotype']));
   assert.match(CYTOGENETIC_MODIFIERS.find((modifier) => modifier.key === 'complex_karyotype')?.label || '', /3\+/);
+  const otherAdverse = CYTOGENETIC_GROUPS.flatMap((group) => group.findings).find((finding) => finding.key === 'other_adverse');
+  assert.equal(otherAdverse?.disabled, true);
+  assert.match(otherAdverse?.disabledReason || '', /not yet polled for consensus/i);
 }
 
 function testLookupRowsReplay() {
@@ -267,6 +271,16 @@ async function testBrowserSmoke() {
     await clickButtonByText(page, 'Not detected');
     await clickButtonByText(page, 'Continue');
     await clickButtonByText(page, 'Cytogenetic result available');
+    const otherAdverseState = await page.evaluate(() => {
+      const normalise = (value) => value.replace(/\s+/g, ' ').trim().toLowerCase();
+      const otherAdverse = [...document.querySelectorAll('button')].find((button) => normalise(button.textContent || '').includes('other adverse'));
+      return {
+        disabled: Boolean(otherAdverse?.disabled),
+        reasonVisible: document.body.textContent.includes('Not yet polled for consensus'),
+      };
+    });
+    assert.equal(otherAdverseState.disabled, true, 'other adverse should be disabled in the UI');
+    assert.equal(otherAdverseState.reasonVisible, true, 'other adverse should explain that it has not yet been polled');
     await clickButtonByText(page, 'Other non-adverse');
     const nonAdversePromptVisible = await page.evaluate(() => document.body.textContent.includes('Does the report also show complex or monosomal karyotype?'));
     assert.equal(nonAdversePromptVisible, false, 'other non-adverse should not trigger the complex/3+ prompt');

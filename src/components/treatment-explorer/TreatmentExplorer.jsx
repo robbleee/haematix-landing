@@ -211,7 +211,7 @@ function CytogeneticsSelector({ profile, onStatus, onToggle, onOpenModifiers }) 
       return <div key={finding.key} className={styles.cytoRow}>
         <button aria-pressed={selected} disabled={disabled} onClick={() => !disabled && onToggle(finding.key)} className={`${selected ? styles.cytoSelected : ''} ${disabled ? styles.cytoDisabled : ''}`}>
           <span className={styles.cytoCheck}>{selected ? '✓' : disabled ? '–' : '+'}</span>
-          <span><strong>{finding.label}</strong><small>{finding.description}</small>{finding.disabled && <em>Not yet surveyed</em>}{disabled && !finding.disabled && <em>Clear the selected cytogenetic group to choose this instead</em>}</span>
+          <span><strong>{finding.label}</strong><small>{finding.description}</small>{finding.disabled && <em>{finding.disabledReason || 'Not yet surveyed'}</em>}{disabled && !finding.disabled && <em>Clear the selected cytogenetic group to choose this instead</em>}</span>
         </button>
       </div>;
     })}</div></section>)}

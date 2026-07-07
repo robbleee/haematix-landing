@@ -14,6 +14,7 @@ import {
   hasPrimaryCytogeneticFinding,
   isCytogeneticModifierDisabled,
   isCytogeneticOptionDisabled,
+  selectTransplantGuidance,
   selectTransplantText,
   selectVenAzaText,
   toElnInput,
@@ -290,15 +291,15 @@ function Result({ matched, profile, eln, provisional, sessionId, onBack, onReset
     <div className={styles.resultActions}><button onClick={onBack}>← Review answers</button><button className={styles.pdfButton} onClick={onExportPdf} disabled={exportingPdf}>{exportingPdf ? 'Preparing PDF…' : 'Export PDF'}</button><button onClick={onReset}>Start a new pathway</button></div>
   </div>;
   const noConsensus = matched.preferred.toLowerCase().includes('no consensus');
-  const transplant = selectTransplantText(matched, profile);
+  const transplantGuidance = selectTransplantGuidance(matched, profile);
   const venAza = selectVenAzaText(matched, profile);
   return <div className={styles.resultWrap}>
     <div className={styles.resultTop}><div className={styles.resultSeal}><span>{matched.scenario ? 'Scenario' : 'Lookup'}</span><strong>{String(matched.number).padStart(2,'0')}</strong></div><div><span className={styles.resultEyebrow}>Consensus pathway matched</span><h2>{matched.name}</h2><p>{matched.incidence} of AML cases · workbook row {matched.lookupRow}</p></div></div>
-    {matched.borrowedFrom && <div className={styles.borrowedNotice}><strong>Similar-case recommendation</strong><p>Tom's lookup row records this exact combination but does not provide direct treatment fields. The treatment recommendation below is borrowed from {matched.borrowedFrom.name} with the row-specific expert comment retained.</p></div>}
+    {matched.borrowedFrom && <div className={styles.borrowedNotice}><strong>Similar-case recommendation</strong><p>The Delphi poll lookup records this exact combination but does not provide direct treatment fields. The treatment recommendation below is borrowed from {matched.borrowedFrom.name} with the row-specific expert comment retained.</p></div>}
     <div className={`${styles.treatmentHero} ${noConsensus ? styles.consensusAmber : ''}`}><div><span>Preferred consensus treatment</span><h3>{matched.preferred}</h3>{matched.preferredStrength && <p>{matched.preferredStrength}</p>}</div><span className={styles.matchPill}>{noConsensus ? 'MDT decision' : matched.preferredStrength || 'Primary pathway'}</span></div>
     <DecisionTrace profile={profile} matched={matched} eln={eln}/>
     <ElnBadge eln={eln} provisional={provisional} expanded={showResultEln} onToggle={() => setShowResultEln((value) => !value)}/>
-    <div className={styles.resultColumns}><div className={styles.resultCard}><span>Reasoning path</span><ol>{matched.reasons.map((reason,i) => <li key={reason}><i>{i+1}</i>{reason}</li>)}</ol></div><div className={styles.resultStack}><div className={styles.miniCard}><span>Reasonable treatments</span><div className={styles.chips}>{matched.alternativeTreatments.length ? matched.alternativeTreatments.map((item) => <i key={`${item.treatment}-${item.strength || ''}`}>{item.treatment}{item.strength && <small>{item.strength}</small>}</i>) : <i>No alternatives recorded</i>}</div></div><div className={styles.miniCard}><span>Transplant consensus</span><RecommendationText value={transplant}/></div>{venAza && <div className={styles.miniCard}><span>Non-intensive option</span><RecommendationText value={venAza}/></div>}</div></div>
+    <div className={styles.resultColumns}><div className={styles.resultCard}><span>Reasoning path</span><ol>{matched.reasons.map((reason,i) => <li key={reason}><i>{i+1}</i>{reason}</li>)}</ol></div><div className={styles.resultStack}><div className={styles.miniCard}><span>Reasonable treatments</span><div className={styles.chips}>{matched.alternativeTreatments.length ? matched.alternativeTreatments.map((item) => <i key={`${item.treatment}-${item.strength || ''}`}>{item.treatment}{item.strength && <small>{item.strength}</small>}</i>) : <i>No alternatives recorded</i>}</div></div><TransplantGuidance guidance={transplantGuidance}/>{venAza && <div className={styles.miniCard}><span>Non-intensive option</span><RecommendationText value={venAza}/></div>}</div></div>
     <div className={styles.detailGrid}>
       {matched.ageImpact && <InfoCard label="Impact of age" value={matched.ageImpact}/>}
       {matched.nonNhsAlternatives && <InfoCard label="Non-NHS funded alternatives" value={matched.nonNhsAlternatives}/>}
@@ -313,6 +314,11 @@ function Result({ matched, profile, eln, provisional, sessionId, onBack, onReset
 
 function RecommendationText({ value }) {
   return <p>{String(value || '').split('\n').map((line, index) => <span key={`${line}-${index}`}>{line}{index < String(value || '').split('\n').length - 1 && <br/>}</span>)}</p>;
+}
+
+function TransplantGuidance({ guidance }) {
+  const branches = Array.isArray(guidance) && guidance.length ? guidance : [{ label: 'Transplant consensus', value: 'No transplant consensus recorded in the lookup table.', tone: 'general' }];
+  return <div className={styles.miniCard}><span>MRD-directed transplant guidance</span><div className={styles.mrdGuidance}>{branches.map((item, index) => <div className={`${styles.mrdBranch} ${styles[`mrdBranch_${item.tone || 'general'}`] || ''}`} key={`${item.label || 'branch'}-${index}`}><strong>{item.label || 'Transplant guidance'}</strong><RecommendationText value={item.value}/></div>)}</div></div>;
 }
 
 function InfoCard({ label, value }) {

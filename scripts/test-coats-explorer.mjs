@@ -4,6 +4,7 @@ import {
   classifyCoats,
   deriveCoatsCytogenetics,
   parseTreatmentWithStrength,
+  selectTransplantGuidance,
   selectTransplantText,
   toggleCytogeneticFinding,
   toElnInput,
@@ -52,5 +53,17 @@ const transplant = selectTransplantText(cbf, { age: '', mrd: null });
 assert.match(transplant, /MRD/);
 assert.match(transplant, /MRD positive|MRD\+|MRD\+ve/i);
 assert.match(transplant, /MRD negative|MRD-|MRD-ve/i);
+
+const unknownMrdGuidance = selectTransplantGuidance(cbf, { age: '', mrd: 'unknown' });
+assert.ok(unknownMrdGuidance.some((item) => /MRD negative/i.test(item.label)), 'unknown MRD should show a negative branch');
+assert.ok(unknownMrdGuidance.some((item) => /MRD positive/i.test(item.label)), 'unknown MRD should show a positive branch');
+
+const positiveMrdGuidance = selectTransplantGuidance(cbf, { age: '', mrd: 'positive' });
+assert.ok(positiveMrdGuidance.some((item) => /MRD positive/i.test(item.label)), 'positive MRD should show the positive branch');
+assert.ok(!positiveMrdGuidance.some((item) => /MRD negative/i.test(item.label)), 'positive MRD should not show the negative branch as selected guidance');
+
+const noConsensusTransplant = match({ ...baseProfile, NPM1: true, context: 'prior_mds', cytogeneticFindings: ['other_non_adverse'] });
+const noConsensusGuidance = selectTransplantGuidance(noConsensusTransplant, { age: '', mrd: 'unknown' });
+assert.ok(noConsensusGuidance.some((item) => item.tone === 'general' && /No consensus on whether/i.test(item.value)), 'MRD-contingent no-consensus wording should remain general guidance');
 
 console.log('coats explorer checks passed');

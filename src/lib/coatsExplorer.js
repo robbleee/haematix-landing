@@ -471,20 +471,33 @@ function filterMrdText(text, mrd) {
   return selected.length ? selected.join('\n') : text;
 }
 
-export function selectTransplantText(matched, profile) {
+function splitMrdBranches(text) {
+  const lines = String(text || '').split(/\n+/).map((line) => line.trim()).filter(Boolean);
+  const positivePattern = /MRD\s*(\+|pos|positive)|MRD\+ve|MRD \+ve|MRD\+/i;
+  const negativePattern = /MRD\s*(-|neg|negative)|MRD-ve|MRD -ve|MRD-ve/i;
+  const generalPattern = /no consensus|regardless of MRD|irrespective of MRD/i;
+  return lines.reduce((branches, line) => {
+    if (generalPattern.test(line)) branches.general.push(line);
+    else if (positivePattern.test(line)) branches.positive.push(line);
+    else if (negativePattern.test(line)) branches.negative.push(line);
+    else branches.general.push(line);
+    return branches;
+  }, { negative: [], positive: [], general: [] });
+}
+
+function transplantPathways(matched, profile = {}) {
   if (!matched) return 'Specialist MDT review recommended.';
   const age = Number(profile.age || 0);
   const options = [];
   const add = (label, value) => {
-    const filtered = filterMrdText(value, profile.mrd);
-    if (filtered) options.push(`${label}: ${filtered}`);
+    if (value) options.push({ label, value });
   };
 
   if (!age) {
     add('Pathway 1', matched.transplant?.cr1_1);
     add('Pathway 2', matched.transplant?.cr1_2);
     add('Pathway 3', matched.transplant?.cr1_3);
-    return options.join('\n\n') || 'No transplant consensus recorded in the lookup table.';
+    return options;
   }
 
   if (age < 60) {
@@ -498,6 +511,57 @@ export function selectTransplantText(matched, profile) {
     add('If AML60+ intermediate/poor risk', matched.transplant?.cr1_2);
   }
   add('Additional transplant note', matched.transplant?.cr1_3);
+  return options;
+}
+
+export function selectTransplantGuidance(matched, profile = {}) {
+  if (!matched) return [{ label: 'Transplant consensus', value: 'Specialist MDT review recommended.', tone: 'general' }];
+  const pathways = transplantPathways(matched, profile);
+  if (!pathways.length) return [{ label: 'Transplant consensus', value: 'No transplant consensus recorded in the lookup table.', tone: 'general' }];
+
+  const selectedMrd = profile.mrd && profile.mrd !== 'unknown' ? profile.mrd : null;
+  const cards = [];
+
+  pathways.forEach(({ label, value }) => {
+    const branches = splitMrdBranches(value);
+    const hasMrdSpecificBranches = Boolean(branches.negative.length || branches.positive.length);
+    const prefix = pathways.length > 1 ? `${label} - ` : '';
+
+    if (!hasMrdSpecificBranches) {
+      cards.push({ label, value: branches.general.join('\n'), tone: 'general' });
+      return;
+    }
+
+    if (branches.general.length && !selectedMrd) {
+      cards.push({ label, value: branches.general.join('\n'), tone: 'general' });
+    }
+
+    if (selectedMrd === 'negative') {
+      const text = branches.negative.length ? branches.negative.join('\n') : value;
+      cards.push({ label: `${prefix}MRD negative`, value: text, tone: 'negative' });
+      return;
+    }
+
+    if (selectedMrd === 'positive') {
+      const text = branches.positive.length ? branches.positive.join('\n') : value;
+      cards.push({ label: `${prefix}MRD positive`, value: text, tone: 'positive' });
+      return;
+    }
+
+    if (branches.negative.length) cards.push({ label: `${prefix}If MRD negative`, value: branches.negative.join('\n'), tone: 'negative' });
+    if (branches.positive.length) cards.push({ label: `${prefix}If MRD positive`, value: branches.positive.join('\n'), tone: 'positive' });
+  });
+
+  return cards.length ? cards : pathways.map(({ label, value }) => ({ label, value, tone: 'general' }));
+}
+
+export function selectTransplantText(matched, profile) {
+  const pathways = transplantPathways(matched, profile);
+  if (typeof pathways === 'string') return pathways;
+  const options = pathways.map(({ label, value }) => {
+    const filtered = filterMrdText(value, profile.mrd);
+    return filtered ? `${label}: ${filtered}` : null;
+  }).filter(Boolean);
   return options.join('\n\n') || 'No transplant consensus recorded in the lookup table.';
 }
 

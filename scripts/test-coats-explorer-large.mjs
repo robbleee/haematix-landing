@@ -10,6 +10,7 @@ import {
   hasPrimaryCytogeneticFinding,
   isCytogeneticModifierDisabled,
   parseTreatmentWithStrength,
+  selectTransplantGuidance,
   selectTransplantText,
   selectVenAzaText,
   toElnInput,
@@ -97,6 +98,7 @@ function assertValidMatch(match) {
   assert.ok(match.preferred, 'matched result should have a preferred treatment label');
   assert.ok(Array.isArray(match.reasons), 'matched result should include reasons');
   assert.ok(match.transplant && typeof match.transplant === 'object', 'matched result should include transplant object');
+  assert.ok(Array.isArray(selectTransplantGuidance(match, { age: '', mrd: 'unknown', aml60Risk: null })), 'structured transplant guidance should be an array');
   assert.doesNotThrow(() => selectTransplantText(match, { age: '', mrd: null, aml60Risk: null }));
   assert.doesNotThrow(() => selectTransplantText(match, { age: 64, mrd: 'positive', aml60Risk: null }));
   assert.doesNotThrow(() => selectVenAzaText(match, { age: 64 }));

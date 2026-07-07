@@ -383,7 +383,7 @@ function classifyCombinedIcc(parsedData) {
   };
 }
 
-function classifyEln2022(parsedData) {
+export function classifyEln2022(parsedData) {
   const derivation = [];
   const amlDef = parsedData.AML_defining_recurrent_genetic_abnormalities || {};
   const mdsMut = parsedData.MDS_related_mutation || {};
@@ -391,35 +391,44 @@ function classifyEln2022(parsedData) {
   const tp53 = parsedData.Biallelic_TP53_mutation || {};
 
   const markers = {
-    t_8_21: isTrue(amlDef['RUNX1::RUNX1T1']),
-    inv_16_or_t_16_16: isTrue(amlDef['CBFB::MYH11']),
-    t_9_11: isTrue(amlDef['MLLT3::KMT2A']),
-    t_6_9: isTrue(amlDef['DEK::NUP214']),
-    t_9_22: isTrue(amlDef['BCR::ABL1']),
-    kmt2a_rearranged: isTrue(amlDef.KMT2A) && !isTrue(amlDef['MLLT3::KMT2A']),
-    inv3_or_t3: isTrue(amlDef['GATA2::MECOM']) || isTrue(mdsCyto.inv3_t33),
-    minus5_or_del5q: isTrue(mdsCyto.del_5q),
-    minus7: isTrue(mdsCyto['-7']),
-    abnormal17p: isTrue(mdsCyto.del_17p),
-    complex_karyotype: isTrue(mdsCyto.Complex_karyotype),
-    npm1_mutation: isTrue(amlDef.NPM1),
-    flt3_itd: isTrue(parsedData.flt3_itd),
-    cebpa_bzip: isTrue(amlDef.CEBPA_bZIP_inframe) || isTrue(amlDef.bZIP) || isTrue(amlDef.CEBPA_biallelic),
+    t_8_21: isTrue(parsedData.t_8_21) || isTrue(amlDef['RUNX1::RUNX1T1']),
+    inv_16_or_t_16_16: isTrue(parsedData.inv_16_or_t_16_16) || isTrue(amlDef['CBFB::MYH11']),
+    core_binding_factor: isTrue(parsedData.core_binding_factor),
+    t_9_11: isTrue(parsedData.t_9_11) || isTrue(amlDef['MLLT3::KMT2A']),
+    t_6_9: isTrue(parsedData.t_6_9) || isTrue(amlDef['DEK::NUP214']),
+    t_9_22: isTrue(parsedData.t_9_22) || isTrue(amlDef['BCR::ABL1']),
+    kmt2a_rearranged: isTrue(parsedData.kmt2a_rearranged) || (isTrue(amlDef.KMT2A) && !isTrue(amlDef['MLLT3::KMT2A'])),
+    inv3_or_t3: isTrue(parsedData.inv3_or_t3) || isTrue(amlDef['GATA2::MECOM']) || isTrue(mdsCyto.inv3_t33),
+    t_8_16: isTrue(parsedData.t_8_16) || isTrue(amlDef['KAT6A::CREBBP']),
+    mds_associated_cytogenetics: isTrue(parsedData.mds_associated_cytogenetics),
+    other_adverse_cytogenetics: isTrue(parsedData.other_adverse_cytogenetics),
+    minus5_or_del5q: isTrue(parsedData.minus5_or_del5q) || isTrue(mdsCyto.del_5q) || isTrue(mdsCyto['-5']),
+    minus7: isTrue(parsedData.minus7) || isTrue(mdsCyto['-7']),
+    abnormal17p: isTrue(parsedData.abnormal17p) || isTrue(mdsCyto.del_17p),
+    complex_karyotype: isTrue(parsedData.complex_karyotype) || isTrue(mdsCyto.Complex_karyotype),
+    monosomal_karyotype: isTrue(parsedData.monosomal_karyotype) || isTrue(mdsCyto.monosomal_karyotype),
+    hyperdiploid_trisomy: isTrue(parsedData.hyperdiploid_trisomy) || isTrue(mdsCyto.hyperdiploid_trisomy),
+    npm1_mutation: isTrue(parsedData.npm1_mutation) || isTrue(parsedData.NPM1) || isTrue(amlDef.NPM1),
+    flt3_itd: isTrue(parsedData.flt3_itd) || isTrue(parsedData.FLT3_ITD),
+    cebpa_bzip: isTrue(parsedData.cebpa_bzip) || isTrue(amlDef.CEBPA_bZIP_inframe) || isTrue(amlDef.bZIP) || isTrue(amlDef.CEBPA_biallelic),
     tp53_mutation:
+      isTrue(parsedData.tp53_mutation) ||
+      isTrue(parsedData.TP53) ||
       isTrue(parsedData.tp53_mutation_simple) ||
       isTrue(tp53['2_x_TP53_mutations']) ||
       isTrue(tp53['1_x_TP53_mutation_del_17p']) ||
       isTrue(tp53['1_x_TP53_mutation_LOH']) ||
       isTrue(tp53['1_x_TP53_mutation_50_percent_vaf']) ||
       isTrue(tp53['1_x_TP53_mutation_10_percent_vaf']),
-    runx1_mutation: isTrue(mdsMut.RUNX1),
-    asxl1_mutation: isTrue(mdsMut.ASXL1),
-    ezh2_mutation: isTrue(mdsMut.EZH2),
-    bcor_mutation: isTrue(mdsMut.BCOR),
-    stag2_mutation: isTrue(mdsMut.STAG2),
-    srsf2_mutation: isTrue(mdsMut.SRSF2),
-    u2af1_mutation: isTrue(mdsMut.U2AF1),
-    zrsr2_mutation: isTrue(mdsMut.ZRSR2),
+    runx1_mutation: isTrue(parsedData.runx1_mutation) || isTrue(mdsMut.RUNX1),
+    asxl1_mutation: isTrue(parsedData.asxl1_mutation) || isTrue(mdsMut.ASXL1),
+    ezh2_mutation: isTrue(parsedData.ezh2_mutation) || isTrue(mdsMut.EZH2),
+    sf3b1_mutation: isTrue(parsedData.sf3b1_mutation) || isTrue(mdsMut.SF3B1),
+    bcor_mutation: isTrue(parsedData.bcor_mutation) || isTrue(mdsMut.BCOR),
+    stag2_mutation: isTrue(parsedData.stag2_mutation) || isTrue(mdsMut.STAG2),
+    srsf2_mutation: isTrue(parsedData.srsf2_mutation) || isTrue(mdsMut.SRSF2),
+    u2af1_mutation: isTrue(parsedData.u2af1_mutation) || isTrue(mdsMut.U2AF1),
+    zrsr2_mutation: isTrue(parsedData.zrsr2_mutation) || isTrue(mdsMut.ZRSR2),
   };
 
   const adverseReasons = [];
@@ -427,14 +436,20 @@ function classifyEln2022(parsedData) {
   if (markers.t_9_22) adverseReasons.push('t(9;22) [BCR::ABL1]');
   if (markers.kmt2a_rearranged) adverseReasons.push('KMT2A rearrangement (not t(9;11))');
   if (markers.inv3_or_t3) adverseReasons.push('inv(3)/t(3;3) [MECOM]');
+  if (markers.t_8_16) adverseReasons.push('t(8;16) [KAT6A::CREBBP]');
+  if (markers.mds_associated_cytogenetics) adverseReasons.push('MDS-associated cytogenetic abnormality');
+  if (markers.other_adverse_cytogenetics) adverseReasons.push('other adverse cytogenetic abnormality');
   if (markers.minus5_or_del5q) adverseReasons.push('-5 or del(5q)');
   if (markers.minus7) adverseReasons.push('-7');
   if (markers.abnormal17p) adverseReasons.push('17p abnormality');
   if (markers.complex_karyotype) adverseReasons.push('complex karyotype');
+  if (markers.monosomal_karyotype) adverseReasons.push('monosomal karyotype');
+  if (markers.hyperdiploid_trisomy) adverseReasons.push('hyperdiploid karyotype with ≥3 trisomies');
   if (markers.tp53_mutation) adverseReasons.push('TP53 mutation');
   if (markers.runx1_mutation) adverseReasons.push('RUNX1 mutation');
   if (markers.asxl1_mutation) adverseReasons.push('ASXL1 mutation');
   if (markers.ezh2_mutation) adverseReasons.push('EZH2 mutation');
+  if (markers.sf3b1_mutation) adverseReasons.push('SF3B1 mutation');
   if (markers.bcor_mutation) adverseReasons.push('BCOR mutation');
   if (markers.stag2_mutation) adverseReasons.push('STAG2 mutation');
   if (markers.srsf2_mutation) adverseReasons.push('SRSF2 mutation');
@@ -450,6 +465,7 @@ function classifyEln2022(parsedData) {
   derivation.push('No adverse markers found.');
 
   const favorableReasons = [];
+  if (markers.core_binding_factor) favorableReasons.push('core binding factor abnormality');
   if (markers.t_8_21) favorableReasons.push('t(8;21) [RUNX1::RUNX1T1]');
   if (markers.inv_16_or_t_16_16) favorableReasons.push('inv(16)/t(16;16) [CBFB::MYH11]');
   if (markers.npm1_mutation && !markers.flt3_itd) favorableReasons.push('NPM1 without FLT3-ITD');
@@ -487,4 +503,3 @@ export function runInteractiveClassifiers(parsedData) {
   const eln = classifyEln2022(parsedData);
   return { who, icc, eln };
 }
-

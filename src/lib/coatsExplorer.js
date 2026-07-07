@@ -1,5 +1,160 @@
 export const SAML_GENES = ['ASXL1', 'BCOR', 'EZH2', 'SF3B1', 'SRSF2', 'STAG2', 'U2AF1', 'ZRSR2', 'RUNX1'];
 
+export const CYTOGENETIC_GROUPS = [
+  {
+    label: 'Favourable risk',
+    tone: 'favourable',
+    findings: [
+      {
+        key: 'core_binding_factor',
+        label: 'Core binding factor',
+        description: 't(8;21), inv(16), or t(16;16)',
+        flags: { core_binding_factor: true },
+        adjunctKey: 'core_binding_factor_complex',
+        adjunctLabel: 'Three or more abnormalities',
+      },
+      {
+        key: 'acute_promyelocytic_leukaemia',
+        label: 'Acute promyelocytic leukaemia',
+        description: 'Visible for completeness; no consensus scenario yet',
+        disabled: true,
+      },
+    ],
+  },
+  {
+    label: 'Intermediate risk',
+    tone: 'intermediate',
+    findings: [
+      {
+        key: 'normal',
+        label: 'Normal',
+        description: 'Normal cytogenetic group',
+      },
+      {
+        key: 't_9_11',
+        label: 'KMT2A::MLLT3 (t(9;11))',
+        description: 'Specific intermediate KMT2A branch',
+        flags: { t_9_11: true },
+        adjunctKey: 't_9_11_complex',
+        adjunctLabel: 'Three or more abnormalities',
+      },
+      {
+        key: 'other_non_adverse',
+        label: 'Other non-adverse',
+        description: 'e.g. Trisomy 8',
+        adjunctKey: 'other_non_adverse_complex',
+        adjunctLabel: 'Three or more abnormalities',
+      },
+      {
+        key: 'other_non_adverse_mds',
+        label: 'Other non-adverse MDS associated',
+        description: 'e.g. del(20q); no consensus scenario yet',
+        disabled: true,
+      },
+    ],
+  },
+  {
+    label: 'Adverse risk',
+    tone: 'adverse',
+    findings: [
+      {
+        key: 'mds_associated',
+        label: 'MDS associated',
+        description: 'e.g. Monosomy 5, 7, 17, del(5q), abnormal 17(p)',
+        flags: { mds_associated_cytogenetics: true },
+        adjunctKey: 'mds_associated_complex_or_monosomal',
+        adjunctLabel: 'Three or more abnormalities or two monosomies',
+        adjunctDescription: 'excluding -X and -Y',
+      },
+      {
+        key: 'other_kmt2a',
+        label: 'Other KMT2Ar AML',
+        description: 'KMT2A rearranged, excluding t(9;11)',
+        flags: { kmt2a_rearranged: true },
+        adjunctKey: 'other_kmt2a_complex',
+        adjunctLabel: 'Three or more abnormalities',
+      },
+      {
+        key: 'gata2_mecom',
+        label: 'GATA2::MECOM',
+        description: 'inv(3), t(3;3), or 3q26',
+        flags: { inv3_or_t3: true },
+        adjunctKey: 'gata2_mecom_complex',
+        adjunctLabel: 'Three or more abnormalities',
+      },
+      {
+        key: 'bcr_abl',
+        label: 'BCR::ABL',
+        description: 'Visible for completeness; no consensus scenario yet',
+        disabled: true,
+      },
+      {
+        key: 'other_adverse',
+        label: 'Other adverse',
+        description: 't(6;9), t(8;16)',
+        flags: { other_adverse_cytogenetics: true },
+        adjunctKey: 'other_adverse_complex',
+        adjunctLabel: 'Three or more abnormalities',
+      },
+    ],
+  },
+];
+
+export function toElnInput(profile) {
+  const selected = new Set(profile.cytogeneticFindings || []);
+  const input = {};
+  CYTOGENETIC_GROUPS.flatMap((group) => group.findings).forEach((finding) => {
+    input[finding.key] = selected.has(finding.key);
+    Object.entries(finding.flags || {}).forEach(([key, value]) => {
+      input[key] = Boolean(input[key] || (selected.has(finding.key) && value));
+    });
+    if (finding.adjunctKey) {
+      input[finding.adjunctKey] = selected.has(finding.adjunctKey);
+      if (selected.has(finding.adjunctKey)) input.complex_karyotype = true;
+    }
+  });
+  if (selected.has('mds_associated_complex_or_monosomal')) {
+    input.monosomal_karyotype = true;
+  }
+  input.npm1_mutation = Boolean(profile.NPM1);
+  input.flt3_itd = profile.flt3 === 'itd' || profile.flt3 === 'both';
+  input.cebpa_bzip = Boolean(profile.CEBPA_bZIP);
+  input.tp53_mutation = Boolean(profile.TP53);
+  SAML_GENES.forEach((gene) => {
+    input[`${gene.toLowerCase()}_mutation`] = profile.samlGenes.includes(gene);
+  });
+  return input;
+}
+
+export function deriveCoatsCytogenetics(profile) {
+  if (profile.cytogeneticsStatus === 'unavailable') return null;
+  if (profile.cytogeneticsStatus === 'normal') return 'intermediate';
+
+  const selected = new Set(profile.cytogeneticFindings || []);
+  if (!selected.size) return 'intermediate';
+
+  if (selected.has('normal')) return selected.size === 1 ? 'intermediate' : null;
+
+  const hasComplexFeature = [...selected].some((key) => key.endsWith('_complex')) || selected.has('mds_associated_complex_or_monosomal');
+  const defining = [
+    selected.has('core_binding_factor') ? 'cbf' : null,
+    selected.has('t_9_11') ? 't911' : null,
+    selected.has('other_kmt2a') ? 'kmt2a' : null,
+    selected.has('gata2_mecom') ? 'mecom' : null,
+  ].filter(Boolean);
+  if (defining.length > 1) return null;
+
+  const hasAdverseGroup = selected.has('mds_associated') || selected.has('other_adverse');
+  if (defining.length && (hasAdverseGroup || hasComplexFeature)) return null;
+  if (defining.length) return defining[0];
+
+  if (selected.has('mds_associated_complex_or_monosomal')) return 'complex';
+  if (hasComplexFeature) return 'complex';
+  if (selected.has('mds_associated')) return 'm5';
+  if (hasAdverseGroup) return 'adverse';
+  return 'intermediate';
+}
+
 export const CASES = {
   1: ['CBF AML (Core Binding Factor)', '~10%', 'DA + GO', ['No other treatment considered reasonable'], null],
   2: ['NPM1 favourable risk', '~13%', 'DA + GO', ['FLAG-Ida'], 'VICTOR'],
@@ -101,6 +256,6 @@ export function transplantText(caseNumber, age, mrd) {
 
 export const INITIAL_PROFILE = {
   NPM1: false, TP53: false, DDX41: false, CEBPA_bZIP: false,
-  flt3: null, cytogenetics: null, samlGenes: [], context: null,
+  flt3: null, cytogeneticsStatus: null, cytogeneticFindings: [], samlGenes: [], context: null,
   DNMT3A: null, age: '', mrd: null,
 };

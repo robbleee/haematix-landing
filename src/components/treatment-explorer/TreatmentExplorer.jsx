@@ -407,7 +407,11 @@ async function exportExplorerPdf({ profile, matched, eln, provisional }) {
   };
   let y = page.margin;
 
-  const text = (value) => (value === null || value === undefined || value === '' ? 'Not provided' : String(value));
+  const text = (value) => (
+    value === null || value === undefined || value === ''
+      ? 'Not provided'
+      : String(value).replace(/[\u2012-\u2015]/g, '-').replace(/\u00b7/g, '-')
+  );
   const setText = (size, colour = colours.ink, style = 'normal') => {
     doc.setFont('helvetica', style);
     doc.setFontSize(size);
@@ -426,32 +430,66 @@ async function exportExplorerPdf({ profile, matched, eln, provisional }) {
     doc.text(lines, x, y);
     y += lines.length * lineHeight;
   };
-  const section = (title) => {
-    ensureSpace(36);
-    y += 14;
+  const wrappedLines = (value, width) => doc.splitTextToSize(text(value), width);
+  const keyValueHeight = (value, width) => wrappedLines(value, width).length * 13 + 19;
+  const drawKeyValueAt = (label, value, x, startY, width) => {
+    setText(8, colours.muted, 'bold');
+    doc.text(text(label).toUpperCase(), x, startY);
+    setText(10, colours.ink, 'bold');
+    doc.text(wrappedLines(value, width), x, startY + 13);
+  };
+  const section = (title, minHeight = 36) => {
+    ensureSpace(minHeight);
+    y += 12;
     setText(9, colours.teal, 'bold');
     doc.text(title.toUpperCase(), page.margin, y);
-    y += 10;
+    y += 11;
     doc.setDrawColor(...colours.line);
     doc.line(page.margin, y, page.width - page.margin, y);
-    y += 18;
+    y += 16;
   };
   const keyValue = (label, value, x, width) => {
-    ensureSpace(36);
-    setText(8, colours.muted, 'bold');
-    doc.text(label.toUpperCase(), x, y);
-    y += 12;
-    addWrapped(value, x, width, 10, colours.ink, 'normal', 13);
-    y += 5;
+    const height = keyValueHeight(value, width);
+    ensureSpace(height);
+    drawKeyValueAt(label, value, x, y, width);
+    y += height + 5;
+  };
+  const twoColumnRow = (leftLabel, leftValue, rightLabel, rightValue) => {
+    const leftHeight = keyValueHeight(leftValue, colWidth);
+    const rightHeight = keyValueHeight(rightValue, colWidth);
+    const rowHeight = Math.max(leftHeight, rightHeight);
+    ensureSpace(rowHeight + 8);
+    const rowY = y;
+    drawKeyValueAt(leftLabel, leftValue, left, rowY, colWidth);
+    drawKeyValueAt(rightLabel, rightValue, right, rowY, colWidth);
+    y += rowHeight + 12;
   };
   const bulletList = (items, x, width) => {
     const list = items?.length ? items : ['None recorded'];
     list.forEach((item) => {
-      ensureSpace(24);
+      const lines = wrappedLines(item, width - 14);
+      const itemHeight = lines.length * 12 + 7;
+      ensureSpace(itemHeight);
       setText(10, colours.teal, 'bold');
       doc.text('-', x, y);
-      addWrapped(item, x + 12, width - 12, 10, colours.ink, 'normal', 13);
-      y += 2;
+      setText(9.5, colours.ink);
+      doc.text(lines, x + 14, y);
+      y += itemHeight;
+    });
+  };
+  const numberedList = (items, x, width) => {
+    const list = items?.length ? items : ['None recorded'];
+    list.forEach((item, index) => {
+      const lines = wrappedLines(item, width - 28);
+      const itemHeight = lines.length * 12 + 8;
+      ensureSpace(itemHeight);
+      setText(8, [255, 255, 255], 'bold');
+      doc.setFillColor(...colours.teal);
+      doc.roundedRect(x, y - 8, 15, 15, 4, 4, 'F');
+      doc.text(String(index + 1), x + 5, y + 3);
+      setText(9.5, colours.ink);
+      doc.text(lines, x + 25, y);
+      y += itemHeight;
     });
   };
   const addPageHeader = () => {
@@ -498,44 +536,49 @@ async function exportExplorerPdf({ profile, matched, eln, provisional }) {
   const left = page.margin;
   const right = page.margin + 260;
   const colWidth = 226;
-  keyValue('Preferred consensus treatment', matched?.preferred || 'No exact consensus treatment matched', left, colWidth);
-  const afterLeft = y;
-  y -= 53;
-  keyValue('ELN 2022 risk context', `${provisional ? 'Provisional ' : ''}${eln.risk}`, right, colWidth);
-  y = Math.max(y, afterLeft);
-  keyValue('Incidence', matched?.incidence || 'Not applicable', left, colWidth);
-  const afterIncidence = y;
-  y -= 53;
-  keyValue('Transplant consensus', matched ? transplantText(matched.number, Number(profile.age || 0), profile.mrd) : 'Specialist MDT review recommended.', right, colWidth);
-  y = Math.max(y, afterIncidence);
+  twoColumnRow(
+    'Preferred consensus treatment',
+    matched?.preferred || 'No exact consensus treatment matched',
+    'ELN 2022 risk context',
+    `${provisional ? 'Provisional ' : ''}${eln.risk}`
+  );
+  twoColumnRow(
+    'Incidence',
+    matched?.incidence || 'Not applicable',
+    'Transplant consensus',
+    matched ? transplantText(matched.number, Number(profile.age || 0), profile.mrd) : 'Specialist MDT review recommended.'
+  );
   if (matched?.trial) keyValue('Relevant trial pathway', matched.trial, left, page.width - page.margin * 2);
 
   section('Decision Trace');
-  bulletList(getDecisionTrace(profile, matched, eln).map((node, index) => `${index + 1}. ${node.label}: ${node.value}${node.detail ? ` - ${node.detail}` : ''}`), page.margin, page.width - page.margin * 2);
+  numberedList(getDecisionTrace(profile, matched, eln).map((node) => `${node.label}: ${node.value}${node.detail ? ` - ${node.detail}` : ''}`), page.margin, page.width - page.margin * 2);
 
   if (matched?.reasons?.length) {
     section('Matched Branch Evidence');
     bulletList(matched.reasons, page.margin, page.width - page.margin * 2);
   }
 
-  section('Selected Inputs');
-  keyValue('Defining genetics', selectedMarkerLabels(profile).join(', ') || 'No defining marker selected', left, colWidth);
-  const afterMarkers = y;
-  y -= 53;
-  keyValue('FLT3 result', getFlt3Label(profile.flt3), right, colWidth);
-  y = Math.max(y, afterMarkers);
+  section('Selected Inputs', 285);
+  twoColumnRow(
+    'Defining genetics',
+    selectedMarkerLabels(profile).join(', ') || 'No defining marker selected',
+    'FLT3 result',
+    getFlt3Label(profile.flt3)
+  );
   keyValue('Cytogenetics', cytogeneticLabels(profile).join('; '), left, page.width - page.margin * 2);
   keyValue('MDS-related mutation genes', profile.samlGenes.join(', ') || 'None selected', left, page.width - page.margin * 2);
-  keyValue('Disease context', getContextLabel(profile.context), left, colWidth);
-  const afterContext = y;
-  y -= 53;
-  keyValue('DNMT3A', profile.DNMT3A === null ? 'Not asked for this pathway' : profile.DNMT3A ? 'Detected' : 'Not detected', right, colWidth);
-  y = Math.max(y, afterContext);
-  keyValue('Age', profile.age ? `${profile.age} years` : 'Not provided', left, colWidth);
-  const afterAge = y;
-  y -= 53;
-  keyValue('MRD status', profile.mrd ? profile.mrd : 'Not assessed', right, colWidth);
-  y = Math.max(y, afterAge);
+  twoColumnRow(
+    'Disease context',
+    getContextLabel(profile.context),
+    'DNMT3A',
+    profile.DNMT3A === null ? 'Not asked for this pathway' : profile.DNMT3A ? 'Detected' : 'Not detected'
+  );
+  twoColumnRow(
+    'Age',
+    profile.age ? `${profile.age} years` : 'Not provided',
+    'MRD status',
+    profile.mrd ? profile.mrd : 'Not assessed'
+  );
 
   section('ELN Derivation');
   bulletList((eln.derivation || []).map((line) => line.replace(/^Step \d+:?\s*/, '').replace(/^Final ELN 2022 risk:\s*/, 'Final risk: ')), page.margin, page.width - page.margin * 2);

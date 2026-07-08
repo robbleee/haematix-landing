@@ -193,7 +193,17 @@ export default function TreatmentExplorer() {
         </div>
       </section>
 
-      <section className={styles.disclaimer}><div className={styles.disclaimerIcon}>!</div><div><strong>Clinical context required</strong><p>This is not a medical device and does not provide medical advice. It reflects Delphi poll outputs only and should be interpreted in the context of the individual patient, current evidence, local protocols, prescribing information, funding context, and MDT discussion.</p></div></section>
+      <section className={styles.disclaimer}>
+        <div className={styles.disclaimerIcon}>!</div>
+        <div>
+          <strong>Clinical context required</strong>
+          <p>This is not a medical device and does not provide medical advice. It reflects Delphi poll outputs only and should be interpreted in the context of the individual patient, current evidence, local protocols, prescribing information, funding context, and MDT discussion.</p>
+        </div>
+        <div className={styles.reportIssue}>
+          <strong>Report an issue</strong>
+          <p>Email <a href="mailto:robert.lee@haem.io?subject=AML%20Treatment%20Explorer%20issue">robert.lee@haem.io</a>. We review every report and aim to respond within two working days.</p>
+        </div>
+      </section>
     </main>
   );
 }
@@ -281,7 +291,7 @@ function Result({ matched, profile, eln, provisional, sessionId, onBack, onReset
       <div>
         <span>Review pathway</span>
         <h2>No surveyed consensus match</h2>
-        <p>This input combination is not directly covered by the current Coats-Delphi lookup, or cytogenetics are incomplete. The explorer therefore has not extrapolated a treatment recommendation.</p>
+        <p>This input combination is not covered by a current Delphi poll row with treatment fields or a usable similar-case reference, or cytogenetics are incomplete. The explorer therefore has not extrapolated a treatment recommendation.</p>
       </div>
     </div>
     <div className={styles.noMatchGrid}>
@@ -343,8 +353,8 @@ function isPreferredNoConsensus(matched) {
 }
 
 function ReasonableTreatments({ matched }) {
-  const rationale = reasonableTreatmentRationale(matched);
-  return <div className={`${styles.miniCard} ${styles.reasonablePanel}`}><span>Reasonable treatments</span><div className={styles.chips}>{matched.alternativeTreatments.length ? matched.alternativeTreatments.map((item) => <i key={`${item.treatment}-${item.strength || ''}`}>{item.treatment}{item.strength && <small>{item.strength}</small>}</i>) : <i>No alternatives recorded</i>}</div>{rationale && <p className={styles.treatmentRationale}><strong>Reasoning:</strong> {rationale}</p>}</div>;
+  const sourceNote = matched.comment || matched.expertComment || '';
+  return <div className={`${styles.miniCard} ${styles.reasonablePanel}`}><span>Reasonable treatments</span><div className={styles.chips}>{matched.alternativeTreatments.length ? matched.alternativeTreatments.map((item) => <i key={`${item.treatment}-${item.strength || ''}`}>{item.treatment}{item.strength && <small>{item.strength}</small>}</i>) : <i>No alternatives recorded</i>}</div>{sourceNote && <p className={styles.treatmentRationale}><strong>Source note:</strong> {sourceNote}</p>}</div>;
 }
 
 function TransplantGuidance({ guidance }) {
@@ -368,26 +378,6 @@ function shouldAskDnmt3a(profile) {
   const selected = new Set(profile.cytogeneticFindings || []);
   const intermediateCytogenetics = profile.cytogeneticsStatus === 'normal' || selected.has('normal') || selected.has('other_non_adverse');
   return Boolean(profile.NPM1 && ['itd', 'both'].includes(profile.flt3) && intermediateCytogenetics);
-}
-
-function reasonableTreatmentRationale(matched) {
-  const source = matched?.comment || matched?.expertComment || '';
-  if (!source) return '';
-  const terms = (matched.alternativeTreatments || [])
-    .flatMap((item) => [item.treatment, item.treatment?.replace(/\s+/g, ''), item.treatment?.replace(/CPX-351/i, 'CPX')])
-    .filter(Boolean)
-    .map((term) => term.toLowerCase());
-  const sentences = source
-    .replace(/\s+/g, ' ')
-    .split(/(?<=[.!?])\s+/)
-    .map((sentence) => sentence.trim())
-    .filter(Boolean);
-  const treatmentSentences = sentences.filter((sentence) => !/MRD|transplant|allogeneic|alloSCT|allo-SCT|SCT|consolidat/i.test(sentence));
-  const picked = treatmentSentences.filter((sentence) => {
-    const normalised = sentence.toLowerCase().replace(/\s+/g, '');
-    return terms.some((term) => normalised.includes(term.replace(/\s+/g, ''))) || /alternative|reasonable|some experts|some participants|preference|favou?r|no consensus/i.test(sentence);
-  });
-  return (picked.length ? picked : treatmentSentences).slice(0, 2).join(' ');
 }
 
 function getDecisionTrace(profile, matched, eln) {
@@ -673,7 +663,7 @@ async function exportExplorerPdf({ profile, matched, eln, provisional }) {
   doc.text('AML Treatment Explorer Result', page.margin, y);
   y += 22;
   addWrapped(
-    'Coats-Delphi consensus pathway export. Generated from the selected inputs in the web explorer.',
+    'Delphi poll lookup export. Generated from the selected inputs in the web explorer.',
     page.margin,
     page.width - page.margin * 2,
     10,
@@ -787,7 +777,7 @@ function whyCopy(stepKey) {
     markers: 'These defining mutations sit near the top of the decision tree and can override later cytogenetic or secondary-mutation branches.',
     flt3: 'FLT3-ITD and FLT3-TKD lead to different consensus cases and distinguish several targeted-treatment pathways.',
     cytogenetics: 'Cytogenetic category determines whether favourable, intermediate, adverse, KMT2A, complex-karyotype, or MECOM logic is evaluated.',
-    saml: 'The consensus separates NPM1 and intermediate-cytogenetic cases according to whether zero, one, or at least two myelodysplasia-related mutations are present.',
+    saml: 'The current lookup flags this as present when any listed myelodysplasia-related mutation is selected.',
     context: 'Therapy-related disease and AML arising after prior MDS or CMML have dedicated consensus branches; transformed MPN is shown but not yet selectable.',
     dnmt3a: 'DNMT3A specifically separates Cases 10 and 11 when NPM1 and FLT3-ITD coexist with normal or other non-adverse intermediate cytogenetics.',
     patient: 'Age selects the relevant transplant age band. MRD determines whether conditional “transplant if MRD-positive” recommendations apply.',

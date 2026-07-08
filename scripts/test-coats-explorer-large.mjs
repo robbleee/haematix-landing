@@ -97,6 +97,8 @@ function assertValidMatch(match) {
   assert.ok(match.name, 'matched result should have a name');
   assert.ok(match.preferred, 'matched result should have a preferred treatment label');
   assert.ok(Array.isArray(match.reasons), 'matched result should include reasons');
+  assert.ok(match.directRecommendation || match.borrowedFrom, 'matched result should be direct workbook content or workbook similar-case content');
+  assert.ok(match.reasons.every((reason) => !/Fallback scenario/i.test(reason)), 'matched result should not use internal fallback scenario mapping');
   assert.ok(match.transplant && typeof match.transplant === 'object', 'matched result should include transplant object');
   assert.ok(Array.isArray(selectTransplantGuidance(match, { age: '', mrd: 'unknown', aml60Risk: null })), 'structured transplant guidance should be an array');
   assert.doesNotThrow(() => selectTransplantText(match, { age: '', mrd: null, aml60Risk: null }));
@@ -133,7 +135,8 @@ function testLookupRowsReplay() {
     stats.rows += 1;
     const profile = profileFromFlags(row.flags);
     assert.doesNotThrow(() => toElnInput(profile), `toElnInput failed for row ${row.sourceRow}`);
-    assert.doesNotThrow(() => classifyEln2022(toElnInput(profile)), `ELN failed for row ${row.sourceRow}`);
+    const eln = classifyEln2022(toElnInput(profile));
+    assert.doesNotMatch(eln.medianOS || '', /Approximately|Not reached|months/i, `ELN median OS should not expose unsupported survival estimates for row ${row.sourceRow}`);
     const match = classifyProfile(profile);
     assertValidMatch(match);
     if (match) stats.matched += 1;
@@ -173,6 +176,7 @@ function testExhaustiveProfileSweep() {
                 stats.profiles += 1;
                 const input = toElnInput(profile);
                 const eln = classifyEln2022(input);
+                assert.doesNotMatch(eln.medianOS || '', /Approximately|Not reached|months/i, 'ELN median OS should not expose unsupported survival estimates');
                 if (eln.risk === 'Adverse') stats.adverseEln += 1;
                 const match = classifyProfile(profile);
                 if (match) {
@@ -209,6 +213,9 @@ function testExhaustiveProfileSweep() {
 
   const otherAdverseComplex = { ...cbfComplex, cytogeneticFindings: ['other_adverse', 'complex_karyotype'] };
   assert.equal(classifyProfile(otherAdverseComplex).borrowedFrom?.scenario, 27);
+
+  const unsupportedCbfDnmt3a = { ...cbfComplex, cytogeneticFindings: ['core_binding_factor'], DNMT3A: true };
+  assert.equal(classifyProfile(unsupportedCbfDnmt3a), null, 'unsupported profiles should not fall back to internally mapped scenarios');
 
   const otherNonAdverse = {
     ...INITIAL_PROFILE,
@@ -272,7 +279,13 @@ async function testBrowserSmoke() {
     const safetyText = await page.evaluate(() => document.body.textContent);
     assert.match(safetyText, /This is not a medical device/i);
     assert.match(safetyText, /Delphi poll outputs/i);
+    assert.match(safetyText, /Report an issue/i);
+    assert.match(safetyText, /robert\.lee@haem\.io/i);
+    assert.match(safetyText, /two working days/i);
     assert.doesNotMatch(safetyText, /Coats-Delphi poll led by Tom Coats/i);
+    assert.doesNotMatch(safetyText, /Tom Coats|Tom’s|Tom's/i);
+    const issueHref = await page.$eval('a[href^="mailto:robert.lee@haem.io"]', (link) => link.getAttribute('href'));
+    assert.match(issueHref || '', /AML%20Treatment%20Explorer%20issue/);
     const globalHeaderHidden = await page.evaluate(() => {
       const header = document.body.querySelector(':scope > header');
       return !header || getComputedStyle(header).display === 'none';
@@ -327,6 +340,9 @@ async function testBrowserSmoke() {
     assert.match(body, /strong consensus/i);
     assert.match(body, /Similar-case recommendation/i);
     assert.match(body, /CBF AML/i);
+    assert.match(body, /Source note:/i);
+    assert.doesNotMatch(body, /Reasoning:/i);
+    assert.doesNotMatch(body, /Fallback scenario/i);
   } finally {
     await browser.close();
   }

@@ -27,6 +27,7 @@ const cbf = match({ ...baseProfile, cytogeneticFindings: ['core_binding_factor']
 assert.equal(cbf.scenario, 1);
 assert.equal(cbf.preferred, 'DA+gemtuzumab');
 assert.equal(cbf.preferredStrength, 'strong consensus');
+assert.equal(cbf.directRecommendation, true);
 
 const cbfComplexProfile = { ...baseProfile, cytogeneticFindings: ['core_binding_factor', 'complex_karyotype'] };
 const cbfComplex = match(cbfComplexProfile);
@@ -34,10 +35,16 @@ assert.equal(cbfComplex.number, 1);
 assert.equal(cbfComplex.borrowedFrom.scenario, 1);
 assert.equal(cbfComplex.preferred, cbf.preferred);
 assert.equal(classifyEln2022(toElnInput(cbfComplexProfile)).risk, 'Favorable');
+assert.ok(cbfComplex.reasons.some((reason) => /Workbook lookup row/i.test(reason)));
+assert.ok(cbfComplex.reasons.every((reason) => !/Fallback scenario/i.test(reason)));
 
 const kmt2aComplex = match({ ...baseProfile, cytogeneticFindings: ['other_kmt2a', 'complex_karyotype'] });
 assert.equal(kmt2aComplex.borrowedFrom.scenario, 17);
 assert.equal(kmt2aComplex.preferred, 'FLAG-Ida');
+assert.ok(kmt2aComplex.reasons.every((reason) => !/Fallback scenario/i.test(reason)));
+
+const unsupportedCombination = match({ ...baseProfile, cytogeneticFindings: ['core_binding_factor'], DNMT3A: true });
+assert.equal(unsupportedCombination, null, 'unsupported combinations should not fall back to an internally mapped scenario');
 
 const trisomyFindings = toggleCytogeneticFinding(['other_non_adverse'], 'complex_karyotype');
 assert.deepEqual(trisomyFindings, ['other_non_adverse']);

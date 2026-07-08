@@ -53,7 +53,7 @@ export const CYTOGENETIC_GROUPS = [
       {
         key: 'other_non_adverse',
         label: 'Other non-adverse',
-        description: 'e.g. trisomy 8 or multiple trisomies',
+        description: 'e.g. isolated trisomy 8 or non-adverse changes',
       },
       {
         key: 'other_non_adverse_mds',
@@ -300,51 +300,6 @@ function findBestLookupRow(profileFlags) {
   })[0];
 }
 
-function legacyScenarioNumber(p) {
-  const count = SAML_GENES.filter((gene) => p.samlGenes.includes(gene)).length;
-  const intermediate = p.cytogenetics === 'intermediate';
-  const adverse = ['adverse', 'complex', 'complex_m7', 'm7', 'm5', 'mecom'].includes(p.cytogenetics);
-  const complex = p.cytogenetics === 'complex' || p.cytogenetics === 'complex_m7';
-  const m7 = p.cytogenetics === 'complex_m7' || p.cytogenetics === 'm7';
-
-  if (p.DDX41 && !p.TP53) return 28;
-  if (p.cytogenetics === 'cbf' && !p.DDX41 && !p.TP53) return 1;
-
-  if (p.NPM1 && !p.DDX41 && !p.TP53 && !adverse) {
-    if (p.flt3 === 'tkd' && count === 0) return 3;
-    if (p.flt3 !== 'itd' && p.flt3 !== 'both' && count === 0 && !['taml', 'prior_mds'].includes(p.context)) return 2;
-    if (count >= 1) return 4;
-    if (p.context === 'prior_mds') return 6;
-    if (p.context === 'taml') return 7;
-  }
-
-  if (p.CEBPA_bZIP && !p.DDX41 && !p.TP53) return 8;
-  if (p.cytogenetics === 't911') return 16;
-  if (p.cytogenetics === 'kmt2a' && !p.DDX41 && !p.TP53) return 17;
-
-  if (intermediate) {
-    if (p.NPM1 && ['itd', 'both'].includes(p.flt3) && p.DNMT3A && !p.DDX41 && !p.TP53) return 11;
-    if (p.NPM1 && ['itd', 'both'].includes(p.flt3) && !p.DNMT3A && !p.DDX41 && !p.TP53) return 10;
-    if (p.flt3 === 'both' && !p.NPM1 && !p.DDX41 && !p.TP53) return 14;
-    if (p.flt3 === 'tkd' && !p.NPM1 && !p.DDX41 && !p.TP53) return 13;
-    if (p.flt3 === 'itd' && !p.NPM1 && !p.DDX41 && !p.TP53) return 12;
-    if (p.context === 'taml' && !p.DDX41 && !p.TP53) return 15;
-    if (count >= 1 && !p.TP53 && !p.CEBPA_bZIP && !p.DDX41) return 20;
-    if (!p.DDX41 && !p.TP53) return 9;
-  }
-
-  if (adverse) {
-    if (p.NPM1 && !p.TP53 && !p.CEBPA_bZIP && !p.DDX41) return 22;
-    if (p.cytogenetics === 'kmt2a' && !p.DDX41 && !p.TP53) return 17;
-    if (['itd', 'both'].includes(p.flt3) && !p.TP53 && !p.CEBPA_bZIP && !p.DDX41) return 23;
-    if (p.flt3 === 'tkd' && !p.TP53 && !p.CEBPA_bZIP && !p.DDX41) return 24;
-  }
-  if (complex && m7 && !p.TP53 && !p.DDX41 && !p.CEBPA_bZIP) return 18;
-  if (complex && m7 && p.TP53 && !p.DDX41) return 19;
-  if (p.cytogenetics === 'mecom' && !p.TP53 && !p.CEBPA_bZIP && !p.DDX41) return 27;
-  return null;
-}
-
 function scenarioName(scenario, fallback = null) {
   return SCENARIO_META[scenario]?.name || fallback || `Lookup case ${scenario}`;
 }
@@ -396,10 +351,11 @@ function hydrateLookupRow(row, profileFlags, reasons) {
   const direct = hasRecommendation(row);
   const borrowedScenario = direct ? null : similarCaseNumber(row);
   const borrowedRow = borrowedScenario ? findRecommendationRowByScenario(borrowedScenario) : null;
+  if (!direct && !borrowedRow) return null;
   const recommendationRow = direct ? row : borrowedRow;
   const scenario = row.scenario || borrowedRow?.scenario || null;
   const displayNumber = scenario || row.sourceRow;
-  const preferred = parseTreatmentWithStrength(recommendationRow?.preferredTreatment || 'No direct recommendation');
+  const preferred = parseTreatmentWithStrength(recommendationRow?.preferredTreatment || '');
   const alternatives = splitTreatmentList(recommendationRow?.reasonableTreatments);
   const name = row.scenario
     ? scenarioName(row.scenario)
@@ -455,10 +411,6 @@ export function classifyCoats(p) {
 
   const exactRow = findBestLookupRow(profileFlags);
   if (exactRow) return hydrateLookupRow(exactRow, profileFlags, [...reasons, `Workbook lookup row ${exactRow.sourceRow}`]);
-
-  const scenario = legacyScenarioNumber(p);
-  const scenarioRow = findRecommendationRowByScenario(scenario);
-  if (scenarioRow) return hydrateLookupRow(scenarioRow, profileFlags, [...reasons, `Fallback scenario ${scenario}`]);
   return null;
 }
 

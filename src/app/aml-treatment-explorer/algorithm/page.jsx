@@ -12,7 +12,7 @@ import styles from './algorithm.module.css';
 
 export const metadata = {
   title: 'AML Treatment Explorer Algorithm',
-  description: 'Algorithm sheet for the Haem.io AML Treatment Explorer Coats-Delphi lookup, decision flow, cytogenetics handling, and workbook cases.',
+  description: 'Algorithm sheet for the Haem.io AML Treatment Explorer Delphi poll lookup, decision flow, cytogenetics handling, and workbook cases.',
   alternates: { canonical: '/aml-treatment-explorer/algorithm' },
 };
 
@@ -40,7 +40,7 @@ const OVERVIEW_FLOW = [
   ['Inputs', 'Defining mutations, FLT3, cytogenetics, sAML genes, disease context, age and MRD.'],
   ['Normalisation', 'Selections are converted into workbook flags and a separate ELN 2022 context input.'],
   ['Cytogenetic branch', 'One primary cytogenetic category is selected; complex and monosomal are stored as modifiers.'],
-  ['Workbook lookup', 'The resolver searches Tom Coats’ static workbook rows for an exact flag combination.'],
+  ['Workbook lookup', 'The resolver searches the static Delphi poll workbook rows for an exact flag combination.'],
   ['Recommendation source', 'Direct treatment fields are used when present; otherwise a populated Similar Case row borrows that case’s recommendation.'],
   ['Result', 'Preferred treatment, reasonable treatments, transplant text, Ven-Aza/non-intensive text, trial/funding notes, and explanatory trace are displayed.'],
 ];
@@ -50,7 +50,7 @@ const PRIORITY_FLOW = [
   ['Defining biology', 'CBF, NPM1, CEBPA bZIP, DDX41, TP53, KMT2A and MECOM-related flags remain explicit in lookup matching.'],
   ['Intermediate branch', 'Normal and other non-adverse cytogenetics route through the intermediate-karyotype flag; DNMT3A refines NPM1 + FLT3-ITD rows.'],
   ['Adverse branch', 'MDS-associated, KMT2A adverse, MECOM/other adverse and complex/monosomal modifiers are represented as separate flags.'],
-  ['No exact match', 'If the selected combination is not represented in the lookup table and no fallback applies, no treatment recommendation is extrapolated.'],
+  ['No exact match', 'If the selected combination is not represented in the lookup table and no workbook Similar Case applies, no treatment recommendation is extrapolated.'],
 ];
 
 const CYTO_FLOW = [
@@ -85,18 +85,18 @@ const EXAMPLES = [
   {
     title: 'Incomplete cytogenetics',
     inputs: ['Molecular findings entered', 'Cytogenetics unavailable'],
-    output: 'Shows provisional ELN 2022 risk context but does not invent a Coats-Delphi treatment case.',
+    output: 'Shows provisional ELN 2022 risk context but does not invent a Delphi poll treatment case.',
   },
 ];
 
 const LEGACY_SCENARIOS = {
   5: {
     currentHandling: 'Current workbook handling: NPM1 + any sAML mutation is represented by Scenario 4.',
-    reason: 'Tom’s updated lookup rows do not carry a distinct scenario for 2+ sAML mutations; the static flags contain sAML mutation present/absent rather than a mutation-count category.',
+    reason: 'The updated lookup rows do not carry a distinct scenario for 2+ sAML mutations; the static flags contain sAML mutation present/absent rather than a mutation-count category.',
   },
   21: {
     currentHandling: 'Current workbook handling: intermediate cytogenetics + any sAML mutation is represented by Scenario 20.',
-    reason: 'Tom’s updated lookup rows do not carry a distinct scenario for 2+ sAML mutations; the static flags contain sAML mutation present/absent rather than a mutation-count category.',
+    reason: 'The updated lookup rows do not carry a distinct scenario for 2+ sAML mutations; the static flags contain sAML mutation present/absent rather than a mutation-count category.',
   },
 };
 
@@ -291,7 +291,7 @@ export default function TreatmentExplorerAlgorithmPage() {
       <section className={styles.hero}>
         <div>
           <Link href="/aml-treatment-explorer" className={styles.backLink}>Back to explorer</Link>
-          <p className={styles.kicker}>Coats-Delphi AML Treatment Explorer</p>
+          <p className={styles.kicker}>Delphi Poll AML Treatment Explorer</p>
           <h1>Algorithm and lookup sheet</h1>
           <p className={styles.lead}>A complete explanation of how the explorer turns clinical selections into ELN context, workbook flags, consensus-case matching and displayed treatment guidance.</p>
         </div>
@@ -441,7 +441,7 @@ export default function TreatmentExplorerAlgorithmPage() {
             <p className={styles.kicker}>Exhaustive lookup</p>
             <h2>All workbook rows used by the calculator</h2>
           </div>
-          <p>The static lookup contains every non-empty row converted from Tom’s workbook. This table is intentionally exhaustive so every similar-case and direct row can be inspected.</p>
+          <p>The static lookup contains every non-empty row converted from the source workbook. This table is intentionally exhaustive so every similar-case and direct row can be inspected.</p>
         </div>
         <details className={styles.detailsTable} open>
           <summary>Show {COATS_LOOKUP_ROWS.length} static lookup rows, including {rowsWithSimilarCase.length} rows with Similar Case guidance</summary>

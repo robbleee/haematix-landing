@@ -460,7 +460,7 @@ export function classifyEln2022(parsedData) {
   if (adverseReasons.length) {
     derivation.push(`Adverse markers found: ${adverseReasons.join(', ')}`);
     derivation.push('Final ELN 2022 risk: Adverse');
-    return { risk: 'Adverse', medianOS: 'Approximately 8-10 months', derivation };
+    return { risk: 'Adverse', medianOS: 'Not provided by ELN 2022 risk table', derivation };
   }
   derivation.push('No adverse markers found.');
 
@@ -490,11 +490,11 @@ export function classifyEln2022(parsedData) {
 
   if (favorableReasons.length && !markers.flt3_itd) {
     derivation.push('Final ELN 2022 risk: Favorable');
-    return { risk: 'Favorable', medianOS: 'Not reached or >60 months', derivation };
+    return { risk: 'Favorable', medianOS: 'Not provided by ELN 2022 risk table', derivation };
   }
 
   derivation.push('Final ELN 2022 risk: Intermediate');
-  return { risk: 'Intermediate', medianOS: 'Approximately 16-24 months', derivation };
+  return { risk: 'Intermediate', medianOS: 'Not provided by ELN 2022 risk table', derivation };
 }
 
 export function runInteractiveClassifiers(parsedData) {

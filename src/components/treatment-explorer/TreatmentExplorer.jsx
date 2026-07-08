@@ -275,6 +275,7 @@ function Result({ matched, profile, eln, provisional, sessionId, onBack, onReset
     }
   };
   if (!matched) return <div className={styles.noMatch}>
+    <SourceWarning/>
     <div className={styles.noMatchPanel}>
       <div className={styles.noMatchMark}>!</div>
       <div>
@@ -294,12 +295,14 @@ function Result({ matched, profile, eln, provisional, sessionId, onBack, onReset
   const transplantGuidance = selectTransplantGuidance(matched, profile);
   const venAza = selectVenAzaText(matched, profile);
   return <div className={styles.resultWrap}>
+    <SourceWarning/>
     <div className={styles.resultTop}><div className={styles.resultSeal}><span>{matched.scenario ? 'Scenario' : 'Lookup'}</span><strong>{String(matched.number).padStart(2,'0')}</strong></div><div><span className={styles.resultEyebrow}>Consensus pathway matched</span><h2>{matched.name}</h2><p>{matched.incidence} of AML cases · workbook row {matched.lookupRow}</p></div></div>
-    {matched.borrowedFrom && <div className={styles.borrowedNotice}><strong>Similar-case recommendation</strong><p>The Delphi poll lookup records this exact combination but does not provide direct treatment fields. The treatment recommendation below is borrowed from {matched.borrowedFrom.name} with the row-specific expert comment retained.</p></div>}
+    {matched.borrowedFrom && <SimilarCaseNotice matched={matched} noConsensus={noConsensus}/>}
     <div className={`${styles.treatmentHero} ${noConsensus ? styles.consensusAmber : ''}`}><div><span>Preferred consensus treatment</span><h3>{matched.preferred}</h3>{matched.preferredStrength && <p>{matched.preferredStrength}</p>}</div><span className={styles.matchPill}>{noConsensus ? 'MDT decision' : matched.preferredStrength || 'Primary pathway'}</span></div>
+    <ReasonableTreatments matched={matched}/>
     <DecisionTrace profile={profile} matched={matched} eln={eln}/>
     <ElnBadge eln={eln} provisional={provisional} expanded={showResultEln} onToggle={() => setShowResultEln((value) => !value)}/>
-    <div className={styles.resultColumns}><div className={styles.resultCard}><span>Reasoning path</span><ol>{matched.reasons.map((reason,i) => <li key={reason}><i>{i+1}</i>{reason}</li>)}</ol></div><div className={styles.resultStack}><div className={styles.miniCard}><span>Reasonable treatments</span><div className={styles.chips}>{matched.alternativeTreatments.length ? matched.alternativeTreatments.map((item) => <i key={`${item.treatment}-${item.strength || ''}`}>{item.treatment}{item.strength && <small>{item.strength}</small>}</i>) : <i>No alternatives recorded</i>}</div></div><TransplantGuidance guidance={transplantGuidance}/>{venAza && <div className={styles.miniCard}><span>Non-intensive option</span><RecommendationText value={venAza}/></div>}</div></div>
+    <div className={styles.resultColumns}><div className={styles.resultCard}><span>Reasoning path</span><ol>{matched.reasons.map((reason,i) => <li key={reason}><i>{i+1}</i>{reason}</li>)}</ol></div><div className={styles.resultStack}><TransplantGuidance guidance={transplantGuidance}/>{venAza && <div className={styles.miniCard}><span>Non-intensive option</span><RecommendationText value={venAza}/></div>}</div></div>
     <div className={styles.detailGrid}>
       {matched.ageImpact && <InfoCard label="Impact of age" value={matched.ageImpact}/>}
       {matched.nonNhsAlternatives && <InfoCard label="Non-NHS funded alternatives" value={matched.nonNhsAlternatives}/>}
@@ -314,6 +317,34 @@ function Result({ matched, profile, eln, provisional, sessionId, onBack, onReset
 
 function RecommendationText({ value }) {
   return <p>{String(value || '').split('\n').map((line, index) => <span key={`${line}-${index}`}>{line}{index < String(value || '').split('\n').length - 1 && <br/>}</span>)}</p>;
+}
+
+function SourceWarning() {
+  return <div className={styles.sourceWarning}><strong>Reference lookup only</strong><p>This page is a searchable view of the source Delphi poll spreadsheet, filtered by the inputs provided. It is not a standalone treatment recommendation or medical device output. Check the source row before using the result in discussion.</p><a href="/aml-delphi-source-lookup.xlsx" download>Download source spreadsheet</a></div>;
+}
+
+function SimilarCaseNotice({ matched, noConsensus }) {
+  const title = noConsensus ? 'Similar-case consensus position' : 'Similar-case recommendation';
+  const body = noConsensus
+    ? `The Delphi poll lookup records this exact combination but does not provide direct treatment fields. It is mapped to ${matched.borrowedFrom.name} for the consensus position and row-specific expert comment; that source case did not reach a preferred-treatment consensus.`
+    : `The Delphi poll lookup records this exact combination but does not provide direct treatment fields. The treatment recommendation below is borrowed from ${matched.borrowedFrom.name} with the row-specific expert comment retained.`;
+  return <div className={styles.borrowedNotice}><strong>{title}</strong><p>{body}</p></div>;
+}
+
+function similarCaseSourceText(matched) {
+  if (!matched?.borrowedFrom) return '';
+  return isPreferredNoConsensus(matched)
+    ? `Consensus position mapped to ${matched.borrowedFrom.name}; no preferred-treatment consensus was reached in that source case.`
+    : `Recommendation borrowed from ${matched.borrowedFrom.name}.`;
+}
+
+function isPreferredNoConsensus(matched) {
+  return Boolean(matched?.preferred && matched.preferred.toLowerCase().includes('no consensus'));
+}
+
+function ReasonableTreatments({ matched }) {
+  const rationale = reasonableTreatmentRationale(matched);
+  return <div className={`${styles.miniCard} ${styles.reasonablePanel}`}><span>Reasonable treatments</span><div className={styles.chips}>{matched.alternativeTreatments.length ? matched.alternativeTreatments.map((item) => <i key={`${item.treatment}-${item.strength || ''}`}>{item.treatment}{item.strength && <small>{item.strength}</small>}</i>) : <i>No alternatives recorded</i>}</div>{rationale && <p className={styles.treatmentRationale}><strong>Reasoning:</strong> {rationale}</p>}</div>;
 }
 
 function TransplantGuidance({ guidance }) {
@@ -337,6 +368,26 @@ function shouldAskDnmt3a(profile) {
   const selected = new Set(profile.cytogeneticFindings || []);
   const intermediateCytogenetics = profile.cytogeneticsStatus === 'normal' || selected.has('normal') || selected.has('other_non_adverse');
   return Boolean(profile.NPM1 && ['itd', 'both'].includes(profile.flt3) && intermediateCytogenetics);
+}
+
+function reasonableTreatmentRationale(matched) {
+  const source = matched?.comment || matched?.expertComment || '';
+  if (!source) return '';
+  const terms = (matched.alternativeTreatments || [])
+    .flatMap((item) => [item.treatment, item.treatment?.replace(/\s+/g, ''), item.treatment?.replace(/CPX-351/i, 'CPX')])
+    .filter(Boolean)
+    .map((term) => term.toLowerCase());
+  const sentences = source
+    .replace(/\s+/g, ' ')
+    .split(/(?<=[.!?])\s+/)
+    .map((sentence) => sentence.trim())
+    .filter(Boolean);
+  const treatmentSentences = sentences.filter((sentence) => !/MRD|transplant|allogeneic|alloSCT|allo-SCT|SCT|consolidat/i.test(sentence));
+  const picked = treatmentSentences.filter((sentence) => {
+    const normalised = sentence.toLowerCase().replace(/\s+/g, '');
+    return terms.some((term) => normalised.includes(term.replace(/\s+/g, ''))) || /alternative|reasonable|some experts|some participants|preference|favou?r|no consensus/i.test(sentence);
+  });
+  return (picked.length ? picked : treatmentSentences).slice(0, 2).join(' ');
 }
 
 function getDecisionTrace(profile, matched, eln) {
@@ -388,7 +439,7 @@ function getDecisionTrace(profile, matched, eln) {
     key: 'match',
     label: 'Consensus output',
     value: matched ? consensusDisplayLabel(matched) : 'No exact consensus case',
-    detail: matched?.borrowedFrom ? `Recommendation borrowed from ${matched.borrowedFrom.name}.` : matched ? matched.name : 'No surveyed case matched this exact combination.',
+    detail: matched?.borrowedFrom ? similarCaseSourceText(matched) : matched ? matched.name : 'No surveyed case matched this exact combination.',
   });
 
   return nodes;
@@ -663,7 +714,7 @@ async function exportExplorerPdf({ profile, matched, eln, provisional }) {
   if (venAzaGuidance) keyValue('Ven-Aza / non-intensive guidance', venAzaGuidance, left, page.width - page.margin * 2);
   if (matched?.nonNhsAlternatives) keyValue('Non-NHS funded alternatives', matched.nonNhsAlternatives, left, page.width - page.margin * 2);
   if (matched?.trial) keyValue('Specific trial options', matched.trial, left, page.width - page.margin * 2);
-  if (matched?.borrowedFrom) keyValue('Similar-case source', `Recommendation borrowed from ${matched.borrowedFrom.name}`, left, page.width - page.margin * 2);
+  if (matched?.borrowedFrom) keyValue('Similar-case source', similarCaseSourceText(matched), left, page.width - page.margin * 2);
   if (matched?.expertComment) keyValue('Expert comment', matched.expertComment, left, page.width - page.margin * 2);
 
   section('Decision Trace');

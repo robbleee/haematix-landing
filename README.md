@@ -1,79 +1,73 @@
-# Haem.io - Haematology Diagnosis Tool
+# haem.io Website
 
-A modern web application for haematology diagnosis, providing classification according to WHO 2022 and ICC 2022 standards for AML and MDS, as well as risk stratification.
+The public haem.io website, product explainer, and interactive demonstration
+surface. It brings together the main marketing pages, technical documentation,
+classification and treatment-explorer demos, clinical-trial information, and
+investor material.
 
-## Features
+## Main areas
 
-- **Data Extraction**: Extract key data fields from free text molecular, cytogenetic, and clinical reports
-- **Dual Pathway Classification**: Process data through both WHO 2022 and ICC 2022 classification systems
-- **Risk Stratification**: Perform ELN risk stratification for AML and IPSS for MDS
-- **Interactive Flow Diagram**: Visualize the classification process with an interactive diagram
+- Product and architecture overview
+- AML/MDS classification and evidence demonstrations
+- AML treatment explorer and supporting algorithm documentation
+- Clinical-trial and global-access pages
+- Validation, compliance, and technical documentation
+- Conference, investor, and data-room experiences
 
-## Tech Stack
+Demonstrations are informational and must not be used as a substitute for
+clinical judgement, local policy, or review of the underlying source material.
 
-- **Frontend**: Next.js 15.x
-- **Styling**: CSS Modules
-- **UI Components**: Custom React components
+## Technology
 
-## Getting Started
+- Next.js 15 and React 18
+- CSS Modules
+- Server-side routes for backend integration, email, and selected utilities
+- Local `@haemio/flowdiagram` package
 
-### Prerequisites
+## Local development
 
-- Node.js 18.x or higher
-- npm 7.x or higher
+Requirements: Node.js 18 or newer and npm.
 
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/haemato-dx.git
-   cd haemato-dx
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Run the development server:
-   ```bash
-   npm run dev
-   ```
-
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
-
-## Project Structure
-
-```
-my-nextjs-app/
-├── public/            # Static assets
-├── src/
-│   ├── app/           # Next.js app directory
-│   │   ├── globals.css    # Global styles
-│   │   ├── layout.jsx     # Root layout component
-│   │   ├── page.jsx       # Main landing page
-│   │   └── page.module.css # Page-specific styles
-│   └── components/    # React components
-│       ├── FlowDiagram.jsx       # Flow diagram component
-│       └── FlowDiagram.module.css # Component styles
-├── package.json       # Project dependencies
-└── README.md          # Project documentation
+```bash
+git clone https://github.com/Haem-io/haemio-landing-page.git
+cd haemio-landing-page
+npm ci
+npm run dev
 ```
 
-## Development
+Open `http://localhost:3000`.
 
-- **Component Styling**: We use CSS Modules for component-specific styling
-- **Theme Colors**:
-  - Primary Color: `#009688` (teal)
-  - Background Color: `#FFFFFF` (white)
-  - Secondary Background: `#F2F2F2` (light grey)
-  - Text Color: `#263238` (dark greyish-blue)
+Create `.env.local` only when a feature needs external services. Common
+server-side settings include `HAEM_API_BASE_URL`, `HAEM_API_KEY`,
+`HAEM_API_BEARER_TOKEN`, `RESEND_API_KEY`, and `GOOGLE_MAPS_API_KEY`. Never
+commit credentials, and never place a secret in a `NEXT_PUBLIC_*` variable.
+
+## Verification
+
+```bash
+npm run build
+npm run test:coats
+```
+
+The larger COATS browser suite can be run with:
+
+```bash
+npm run test:coats:large
+```
+
+## Structure
+
+```text
+src/app/                 Next.js routes and server endpoints
+src/components/          Shared page, product, and demo components
+src/data/                Versioned site and explorer data
+src/lib/                 Classifier and explorer support code
+packages/flowdiagram/    Local flow-diagram package
+scripts/                 Verification and content utilities
+```
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- World Health Organization (WHO) 2022 Classification
-- International Consensus Classification (ICC) 2022 
+Copyright HAEMIO LTD. All rights reserved. No permission to redistribute or
+reuse this repository is granted unless a separate written agreement says
+otherwise.

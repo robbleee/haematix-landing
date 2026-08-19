@@ -13,7 +13,7 @@ export default function HeroSection() {
             </div>
 
             <h1 className={styles.title}>
-              Turning complex findings into clearer <em>diagnostic decisions.</em>
+              Haem.io turns complex findings into clearer <em>diagnostic decisions.</em>
             </h1>
           </div>
 

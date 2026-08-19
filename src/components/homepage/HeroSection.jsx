@@ -9,19 +9,19 @@ export default function HeroSection() {
         <div className={styles.introGrid}>
           <div className={styles.titleColumn}>
             <div className={styles.eyebrow}>
-              AML &amp; MDS decision support
+              Haematology decision support
             </div>
 
             <h1 className={styles.title}>
-              Focused software for the work around an <em>AML or MDS diagnosis.</em>
+              Better software for the work around a <em>diagnosis.</em>
             </h1>
           </div>
 
           <div className={styles.copyColumn}>
             <p className={styles.subtitle}>
-              Our current focus is a clinician-reviewed platform that brings together
-              source-linked findings, diagnostic classification, risk profiling, and
-              potential clinical-trial matching for AML and MDS.
+              Our current work centres on AML and MDS diagnostic workflows, with
+              particular attention to TP53-related complexity. We build clinician-reviewed
+              tools that keep the source evidence and reasoning visible.
             </p>
 
             <div className={styles.ctaGroup}>

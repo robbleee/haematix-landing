@@ -66,9 +66,9 @@ export default function ProductWalkthrough() {
           <span className={styles.kicker}>How we build</span>
           <h2 className={styles.sectionTitle}>The source and the reasoning stay visible</h2>
           <p className={styles.sectionSubtitle}>
-            Our main platform is currently focused on AML and MDS, from source-linked
-            findings and diagnostic classification to risk profiling and potential
-            trial matching.
+            We currently apply this approach to AML and MDS diagnostic workflows,
+            with a particular focus on making TP53 findings and their implications
+            easier to review.
           </p>
         </div>
 

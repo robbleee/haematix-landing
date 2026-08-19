@@ -11,7 +11,7 @@ export const metadata = {
     default: 'Haem.io | Haematology Decision Support',
     template: '%s | Haem.io'
   },
-  description: 'Haem.io is currently focused on clinician-reviewed AML and MDS diagnostic classification, risk profiling, and potential clinical-trial matching.',
+  description: 'Haem.io builds clinician-reviewed tools for AML and MDS diagnostic workflows, with a particular focus on TP53-related complexity.',
   alternates: {
     canonical: '/'
   },
@@ -21,6 +21,7 @@ export const metadata = {
     'leukaemia decision support',
     'leukaemia classifier',
     'myeloid disease classification',
+    'TP53',
     'haematology criteria review'
   ],
   openGraph: {
@@ -28,7 +29,7 @@ export const metadata = {
     url: 'https://haem.io',
     siteName: 'Haem.io',
     title: 'Haem.io | Haematology Decision Support',
-    description: 'Clinician-reviewed software focused on AML and MDS diagnostic classification, risk profiling, and potential clinical-trial matching.',
+    description: 'Clinician-reviewed tools for AML and MDS diagnostic workflows, with a particular focus on TP53-related complexity.',
     images: [
       {
         url: '/new-screenshots-for-landing/classification-result.png',
@@ -41,7 +42,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Haem.io | Haematology Decision Support',
-    description: 'Clinician-reviewed software focused on AML and MDS diagnostic classification, risk profiling, and potential clinical-trial matching.',
+    description: 'Clinician-reviewed tools for AML and MDS diagnostic workflows, with a particular focus on TP53-related complexity.',
     images: ['/new-screenshots-for-landing/classification-result.png'],
   },
   robots: {

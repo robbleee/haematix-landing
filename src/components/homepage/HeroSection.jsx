@@ -13,7 +13,7 @@ export default function HeroSection() {
             </div>
 
             <h1 className={styles.title}>
-              Better software for the work around a <em>diagnosis.</em>
+              Better <em>diagnostic software.</em>
             </h1>
           </div>
 

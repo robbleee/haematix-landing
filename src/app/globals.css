@@ -89,7 +89,7 @@ body:has(.landing-home) .desktop-nav a {
 }
 
 body:has(.landing-home) .site-logo a {
-  color: #123c36;
+  color: #00897b;
 }
 
 body:has(.landing-home) .site-logo span {

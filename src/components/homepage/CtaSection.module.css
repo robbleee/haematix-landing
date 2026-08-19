@@ -1,6 +1,6 @@
 .section {
   padding: 0;
-  background: #fff;
+  background: #f8fcfa;
 }
 
 .container {
@@ -20,9 +20,9 @@
   overflow: hidden;
   align-items: center;
   padding: clamp(2.5rem, 6vw, 5rem);
-  border: 1px solid #173f3b;
+  border: 1px solid #00897b;
   border-radius: 2px;
-  background: #173f3b;
+  background: #00897b;
 }
 
 .content::before {
@@ -50,7 +50,7 @@
   grid-area: subtitle;
   max-width: 580px;
   margin: 0;
-  color: #8f9698;
+  color: #d5eee9;
   font-size: 0.9rem;
 }
 
@@ -75,7 +75,7 @@
 
 .ctaPrimary {
   background: #f4f5f5;
-  color: #111415;
+  color: #00695c;
 }
 
 .ctaPrimary:hover {
@@ -83,12 +83,12 @@
 }
 
 .ctaSecondary {
-  border: 1px solid #383c3e;
-  color: #c4c8c9;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #effbf8;
 }
 
 .ctaSecondary:hover {
-  border-color: #585e60;
+  border-color: #fff;
   color: #fff;
 }
 

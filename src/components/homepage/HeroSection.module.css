@@ -1,7 +1,7 @@
 .hero {
   padding: 8rem 0 7rem;
-  background: #fbfcf9;
-  color: #172321;
+  background: linear-gradient(180deg, #eef9f5 0%, #fbfffd 72%);
+  color: #123c36;
 }
 
 .container {
@@ -20,7 +20,7 @@
 
 .eyebrow {
   margin-bottom: 2.2rem;
-  color: #687873;
+  color: #4f746d;
   font-size: 0.72rem;
   font-weight: 650;
   letter-spacing: 0.1em;
@@ -33,14 +33,14 @@
   height: 1px;
   margin-right: 0.75rem;
   vertical-align: middle;
-  background: #168477;
+  background: #00a18f;
   content: "";
 }
 
 .title {
   max-width: 760px;
   margin: 0;
-  color: #172321;
+  color: #123c36;
   font-size: clamp(3rem, 5vw, 4rem);
   font-weight: 540;
   letter-spacing: -0.045em;
@@ -48,7 +48,7 @@
 }
 
 .title em {
-  color: #2b6b61;
+  color: #00897b;
   font-family: Georgia, 'Times New Roman', serif;
   font-weight: 400;
   letter-spacing: -0.035em;
@@ -60,7 +60,7 @@
 
 .subtitle {
   margin: 0 0 1.8rem;
-  color: #55645f;
+  color: #46655f;
   font-size: 1rem;
   line-height: 1.75;
 }
@@ -80,7 +80,7 @@
   gap: 0.5rem;
   padding: 0.75rem 1rem;
   border-radius: 4px;
-  background: #173f3b;
+  background: #00897b;
   color: #fff;
   font-size: 0.84rem;
   font-weight: 620;
@@ -88,7 +88,7 @@
 }
 
 .ctaPrimary:hover {
-  background: #24514c;
+  background: #007467;
 }
 
 .ctaSecondary {
@@ -100,8 +100,8 @@
 }
 
 .ctaSecondary:hover {
-  border-color: #173f3b;
-  color: #173f3b;
+  border-color: #00897b;
+  color: #00695c;
 }
 
 .ctaSecondary span {
@@ -142,8 +142,8 @@
   padding: clamp(0.7rem, 1.5vw, 1.15rem);
   border: 1px solid #ccd7d3;
   border-radius: 2px;
-  background: #eef3f0;
-  box-shadow: 10px 14px 0 #dce7e3;
+  background: #e5f4ef;
+  box-shadow: 10px 14px 0 #cfe8e1;
 }
 
 .screenshotImg {
@@ -173,7 +173,7 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #168477;
+  background: #00a18f;
   content: "";
 }
 
@@ -214,6 +214,6 @@
   }
 
   .imageFrame {
-    box-shadow: 6px 8px 0 #dce7e3;
+    box-shadow: 6px 8px 0 #cfe8e1;
   }
 }

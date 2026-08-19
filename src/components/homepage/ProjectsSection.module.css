@@ -1,6 +1,6 @@
 .section {
   padding: 9rem 0;
-  background: #fff;
+  background: #fbfffd;
 }
 
 .container {
@@ -16,7 +16,7 @@
   align-items: start;
   margin-bottom: 5rem;
   padding-top: 1.4rem;
-  border-top: 1px solid #cfd9d5;
+  border-top: 1px solid #c7dfd8;
 }
 
 .kicker {
@@ -30,7 +30,7 @@
 .header h2 {
   max-width: 690px;
   margin: 0;
-  color: #172321;
+  color: #123c36;
   font-size: clamp(2.3rem, 4.4vw, 4rem);
   font-weight: 510;
   letter-spacing: -0.055em;
@@ -45,7 +45,7 @@
 }
 
 .list {
-  border-bottom: 1px solid #cfd9d5;
+  border-bottom: 1px solid #c7dfd8;
 }
 
 .project {
@@ -53,11 +53,11 @@
   grid-template-columns: 0.45fr 1.95fr;
   gap: 2rem;
   padding: 2.2rem 0 2.5rem;
-  border-top: 1px solid #cfd9d5;
+  border-top: 1px solid #c7dfd8;
 }
 
 .projectIndex {
-  color: #2b756a;
+  color: #00897b;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.68rem;
 }
@@ -75,7 +75,7 @@
 
 .projectBody h3 {
   margin: 0 0 0.85rem;
-  color: #172321;
+  color: #123c36;
   font-size: clamp(1.7rem, 3vw, 2.6rem);
   font-weight: 520;
   letter-spacing: -0.045em;
@@ -94,14 +94,14 @@
   justify-content: space-between;
   gap: 2rem;
   padding-top: 1rem;
-  border-top: 1px solid #e1e7e4;
+  border-top: 1px solid #dbece7;
   color: #7a8782;
   font-size: 0.75rem;
 }
 
 .projectFooter a {
   flex: 0 0 auto;
-  color: #173f3b;
+  color: #007467;
   font-weight: 620;
 }
 

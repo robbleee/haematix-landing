@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #087b72;
+  --primary-color: #00897b;
   --background-color: #ffffff;
   --secondary-background-color: #f5f7f6;
   --text-color: #182322;
@@ -79,8 +79,8 @@ button:hover, .button:hover {
 }
 
 body:has(.landing-home) .site-header {
-  background: rgba(248, 250, 249, 0.96);
-  border-bottom-color: #dce4e1;
+  background: rgba(244, 251, 248, 0.96);
+  border-bottom-color: #cfe5df;
 }
 
 body:has(.landing-home) .site-logo a,
@@ -89,19 +89,19 @@ body:has(.landing-home) .desktop-nav a {
 }
 
 body:has(.landing-home) .site-logo a {
-  color: #172321;
+  color: #123c36;
 }
 
 body:has(.landing-home) .site-logo span {
-  color: #087b72;
+  color: #00897b;
 }
 
 body:has(.landing-home) .desktop-nav a:hover {
-  color: #173f3b;
+  color: #00695c;
 }
 
 body:has(.landing-home) .desktop-nav .header-login {
-  background: #173f3b;
+  background: #00897b;
   color: #fff;
 }
 

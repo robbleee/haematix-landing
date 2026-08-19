@@ -1,6 +1,6 @@
 .section {
   padding: 9rem 0;
-  background: #fff;
+  background: #f8fcfa;
 }
 
 .container {
@@ -16,7 +16,7 @@
   align-items: start;
   margin-bottom: 4.5rem;
   padding-top: 1.4rem;
-  border-top: 1px solid #dfe1de;
+  border-top: 1px solid #cfe4de;
 }
 
 .kicker {
@@ -29,7 +29,7 @@
 
 .sectionTitle {
   margin: 0;
-  color: #171a19;
+  color: #123c36;
   font-size: clamp(2.3rem, 4.4vw, 4rem);
   font-weight: 510;
   letter-spacing: -0.055em;
@@ -45,8 +45,8 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  border-top: 1px solid #dfe1de;
-  border-left: 1px solid #dfe1de;
+  border-top: 1px solid #cfe4de;
+  border-left: 1px solid #cfe4de;
 }
 
 .quoteCard {
@@ -55,13 +55,13 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 2rem;
-  border-right: 1px solid #dfe1de;
-  border-bottom: 1px solid #dfe1de;
+  border-right: 1px solid #cfe4de;
+  border-bottom: 1px solid #cfe4de;
   transition: background-color 180ms ease;
 }
 
 .quoteCard:hover {
-  background: #f7f7f5;
+  background: #edf8f4;
 }
 
 .quoteText {

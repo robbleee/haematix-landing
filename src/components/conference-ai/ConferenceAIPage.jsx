@@ -19,7 +19,7 @@ export default function ConferenceAIPage() {
 
         <h1 className={styles.title}>
           <span className={styles.titleLine}>Conference</span>
-          <span className={styles.titleAccent}>AI</span>
+          <span className={styles.titleAccent}>IQ</span>
         </h1>
 
         <p className={styles.subtitle}>

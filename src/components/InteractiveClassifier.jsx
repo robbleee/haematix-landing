@@ -3,6 +3,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { CORE_FIELDS, ADVANCED_FIELDS, allFieldPaths } from '../lib/classifierFieldCatalog';
 import { runInteractiveClassifiers } from '../lib/classifierEngine';
+import {
+  educationalMetadata,
+  validateEducationalClassifierInput,
+} from '../lib/educationalClassifierSafety.mjs';
 import styles from './InteractiveClassifier.module.css';
 
 function setPathValue(target, path, value) {
@@ -35,44 +39,24 @@ const DEFAULT_RESULTS = {
 
 const DEFAULT_MDS_CONFIRMATION = {
   cytopenia_confirmed: false,
-  morphological_dysplasia: false,
   wbc_cytosis: false,
   monocyte_cytosis: false,
   platelet_cytosis: false,
   eosinophil_cytosis: false,
 };
 
-function withFallbackTrace(resultSet, message) {
-  const annotate = (item, key) => {
-    const trace = Array.isArray(item?.derivation) ? item.derivation : [];
-    return { ...item, derivation: [message, ...trace], fallbackSource: key };
-  };
-  return {
-    who: annotate(resultSet?.who, 'who'),
-    icc: annotate(resultSet?.icc, 'icc'),
-    eln: annotate(resultSet?.eln, 'eln'),
-  };
-}
-
-async function classifyWithFallback(parsedData, fallbackMessage) {
-  try {
-    const response = await fetch('/api/classifier', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ parsed_data: parsedData }),
-    });
-
-    const payload = await response.json().catch(() => ({}));
-    if (!response.ok) {
-      throw new Error(payload?.error || 'Classification failed.');
-    }
-    return { payload, usedFallback: false };
-  } catch (error) {
-    return {
-      payload: withFallbackTrace(runInteractiveClassifiers(parsedData), fallbackMessage),
-      usedFallback: true,
-    };
+function runEducationalCalculation(parsedData) {
+  const validation = validateEducationalClassifierInput(parsedData);
+  if (!validation.ok) {
+    return { result: null, error: validation.message };
   }
+  return {
+    result: {
+      ...runInteractiveClassifiers(parsedData),
+      metadata: educationalMetadata(),
+    },
+    error: '',
+  };
 }
 
 function TerminalTrace({ steps }) {
@@ -148,10 +132,8 @@ const InteractiveClassifier = () => {
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [search, setSearch] = useState('');
   const [results, setResults] = useState(DEFAULT_RESULTS);
-  const [isLoading, setIsLoading] = useState(false);
-  const [usingFallback, setUsingFallback] = useState(false);
+  const [educationalError, setEducationalError] = useState('');
   const [showMdsConfirmation, setShowMdsConfirmation] = useState(false);
-  const [isSubmittingMdsConfirmation, setIsSubmittingMdsConfirmation] = useState(false);
   const [mdsConfirmation, setMdsConfirmation] = useState({ ...DEFAULT_MDS_CONFIRMATION });
 
   const filter = search.trim().toLowerCase();
@@ -170,48 +152,15 @@ const InteractiveClassifier = () => {
   }, [blasts, fieldState]);
 
   useEffect(() => {
-    let cancelled = false;
-
-    const classify = async () => {
-      setIsLoading(true);
-      try {
-        const { payload, usedFallback } = await classifyWithFallback(
-          parsedData,
-          'Backend unavailable. Falling back to local classifier engine.'
-        );
-
-        if (!cancelled) {
-          setUsingFallback(usedFallback);
-          setResults(payload);
-        }
-      } catch (error) {
-        if (!cancelled) {
-          setUsingFallback(true);
-          setResults(
-            withFallbackTrace(
-              runInteractiveClassifiers(parsedData),
-              'Backend unavailable. Falling back to local classifier engine.'
-            )
-          );
-        }
-      } finally {
-        if (!cancelled) {
-          setIsLoading(false);
-        }
-      }
-    };
-
-    classify();
-
-    return () => {
-      cancelled = true;
-    };
+    const calculation = runEducationalCalculation(parsedData);
+    setEducationalError(calculation.error);
+    setResults(calculation.result);
+    if (calculation.error) setShowMdsConfirmation(false);
   }, [parsedData]);
 
   const needsMdsConfirmation =
-    (results?.who?.classification === 'Needs MDS confirmation' ||
-      results?.icc?.classification === 'Needs MDS confirmation') &&
-    !isLoading;
+    results?.who?.classification === 'Needs MDS confirmation' ||
+    results?.icc?.classification === 'Needs MDS confirmation';
 
   useEffect(() => {
     if (needsMdsConfirmation) {
@@ -223,33 +172,16 @@ const InteractiveClassifier = () => {
     setMdsConfirmation((prev) => ({ ...prev, [field]: !prev[field] }));
   };
 
-  const handleMdsConfirmSubmit = async () => {
-    setIsSubmittingMdsConfirmation(true);
+  const handleMdsConfirmSubmit = () => {
     const mdsData = {
       ...parsedData,
       ...mdsConfirmation,
       require_mds_confirmation: true,
     };
-    try {
-      const { payload, usedFallback } = await classifyWithFallback(
-        mdsData,
-        'Backend unavailable during MDS confirmation. Falling back to local classifier engine.'
-      );
-      setUsingFallback(usedFallback);
-      setResults(payload);
-      setShowMdsConfirmation(false);
-    } catch (error) {
-      setUsingFallback(true);
-      setResults(
-        withFallbackTrace(
-          runInteractiveClassifiers(mdsData),
-          'Backend unavailable during MDS confirmation. Falling back to local classifier engine.'
-        )
-      );
-      setShowMdsConfirmation(false);
-    } finally {
-      setIsSubmittingMdsConfirmation(false);
-    }
+    const calculation = runEducationalCalculation(mdsData);
+    setEducationalError(calculation.error);
+    setResults(calculation.result);
+    setShowMdsConfirmation(false);
   };
 
   const resetAll = () => {
@@ -265,13 +197,13 @@ const InteractiveClassifier = () => {
       <div className={styles.pageGlow} />
       
       <div className={styles.header}>
-        <div className={styles.badge}>Real-Time Evaluation</div>
-        <h1 className={styles.title}>Interactive Classifier Engine</h1>
+        <div className={styles.badge}>Local educational calculator</div>
+        <h1 className={styles.title}>Interactive Criteria Explorer</h1>
         <p className={styles.subtitle}>
-          Experiment with genetic permutations and blast thresholds to see how our logic seamlessly processes WHO 2022, ICC 2022, and ELN 2022 criteria.
+          Explore how a limited set of genetic variables and blast thresholds affect illustrative WHO 2022, ICC 2022, and ELN 2022 outputs.
         </p>
         <div className={styles.disclaimer}>
-          <strong>Note:</strong> This calculator is a highly simplified demonstration. Unlike our main haem.io platform—which features automated AI extraction and comprehensive guardrails—this tool requires manual data entry and is provided for illustrative purposes only. It currently supports AML and MDS pathways only. No clinical guarantees are made regarding the results it produces.
+          <strong>Educational use only:</strong> This calculation runs locally in your browser from preset variables. It does not parse reports, perform flow–morphology reconciliation, or screen for BPDCN. Do not enter those data or use this output for clinical decisions.
         </div>
       </div>
 
@@ -314,12 +246,6 @@ const InteractiveClassifier = () => {
               </button>
             )}
           </div>
-          {usingFallback && (
-            <div className={styles.disclaimer} style={{ marginTop: '-0.25rem', marginBottom: '0.5rem' }}>
-              <strong>Offline mode:</strong> Backend unavailable. Using local classifier engine fallback.
-            </div>
-          )}
-
           <div className={styles.sliderCard}>
             <div className={styles.sliderHeader}>
               <h3 className={styles.sectionLabel}>Bone Marrow Blasts</h3>
@@ -368,39 +294,45 @@ const InteractiveClassifier = () => {
 
         {/* Right Column - Results */}
         <div className={styles.resultsColumn}>
-          <div className={styles.resultsDashboard}>
+          {educationalError || !results ? (
+            <div className={styles.disclaimer}>
+              <strong>No classification produced:</strong> {educationalError || 'The educational input could not be evaluated.'}
+            </div>
+          ) : (
+            <div className={styles.resultsDashboard}>
             
-            <div className={`${styles.resultCard} ${styles.schemeCard}`}>
-              <div className={styles.resultHeader}>
-                <div className={styles.resultIcon}>WHO</div>
-                <div className={styles.resultLabel}>WHO 2022 Classification</div>
+              <div className={`${styles.resultCard} ${styles.schemeCard}`}>
+                <div className={styles.resultHeader}>
+                  <div className={styles.resultIcon}>WHO</div>
+                  <div className={styles.resultLabel}>Illustrative WHO 2022 output</div>
+                </div>
+                <div className={styles.resultValue}>{results.who.classification}</div>
+                <TerminalTrace steps={results.who.derivation} />
               </div>
-              <div className={styles.resultValue}>{isLoading ? 'Calculating...' : results.who.classification}</div>
-              <TerminalTrace steps={isLoading ? ['Waiting for backend response...'] : results.who.derivation} />
-            </div>
 
-            <div className={`${styles.resultCard} ${styles.schemeCard}`}>
-              <div className={styles.resultHeader}>
-                <div className={styles.resultIcon}>ICC</div>
-                <div className={styles.resultLabel}>ICC 2022 Classification</div>
+              <div className={`${styles.resultCard} ${styles.schemeCard}`}>
+                <div className={styles.resultHeader}>
+                  <div className={styles.resultIcon}>ICC</div>
+                  <div className={styles.resultLabel}>Illustrative ICC 2022 output</div>
+                </div>
+                <div className={styles.resultValue}>{results.icc.classification}</div>
+                <TerminalTrace steps={results.icc.derivation} />
               </div>
-              <div className={styles.resultValue}>{isLoading ? 'Calculating...' : results.icc.classification}</div>
-              <TerminalTrace steps={isLoading ? ['Waiting for backend response...'] : results.icc.derivation} />
-            </div>
 
-            <div className={`${styles.resultCard} ${styles[`eln${results.eln.risk}`]}`}>
-              <div className={styles.resultHeader}>
-                <div className={styles.resultIcon}>ELN</div>
-                <div className={styles.resultLabel}>ELN 2022 (Intensive) Risk Stratification</div>
+              <div className={`${styles.resultCard} ${styles[`eln${results.eln.risk}`]}`}>
+                <div className={styles.resultHeader}>
+                  <div className={styles.resultIcon}>ELN</div>
+                  <div className={styles.resultLabel}>Illustrative ELN 2022 intensive risk</div>
+                </div>
+                <div className={styles.resultValue}>
+                  {results.eln.risk} Risk
+                  <span className={styles.subValue}>Median OS: {results.eln.medianOS}</span>
+                </div>
+                <TerminalTrace steps={results.eln.derivation} />
               </div>
-              <div className={styles.resultValue}>
-                {isLoading ? 'Calculating...' : `${results.eln.risk} Risk`}
-                <span className={styles.subValue}>Median OS: {isLoading ? '...' : results.eln.medianOS}</span>
-              </div>
-              <TerminalTrace steps={isLoading ? ['Waiting for backend response...'] : results.eln.derivation} />
-            </div>
 
-          </div>
+            </div>
+          )}
         </div>
       </div>
       {showMdsConfirmation && (
@@ -408,14 +340,11 @@ const InteractiveClassifier = () => {
           <div className={styles.modalCard}>
             <h3 className={styles.modalTitle}>MDS Confirmation Required</h3>
             <p className={styles.modalSubtitle}>
-              The backend requested additional confirmation to determine whether this case is truly MDS.
+              Add the limited confirmation variables used by this educational local model.
             </p>
             <div className={styles.modalChecklist}>
               <button type="button" className={`${styles.modalToggle} ${mdsConfirmation.cytopenia_confirmed ? styles.modalToggleActive : ''}`} onClick={() => handleMdsToggle('cytopenia_confirmed')}>
                 Persistent cytopenia confirmed
-              </button>
-              <button type="button" className={`${styles.modalToggle} ${mdsConfirmation.morphological_dysplasia ? styles.modalToggleActive : ''}`} onClick={() => handleMdsToggle('morphological_dysplasia')}>
-                Morphological dysplasia present
               </button>
               <button type="button" className={`${styles.modalToggle} ${mdsConfirmation.wbc_cytosis ? styles.modalToggleActive : ''}`} onClick={() => handleMdsToggle('wbc_cytosis')}>
                 WBC cytosis present (exclusion)
@@ -435,7 +364,6 @@ const InteractiveClassifier = () => {
                 type="button"
                 className={styles.modalSecondary}
                 onClick={() => setShowMdsConfirmation(false)}
-                disabled={isSubmittingMdsConfirmation}
               >
                 Close
               </button>
@@ -443,9 +371,8 @@ const InteractiveClassifier = () => {
                 type="button"
                 className={styles.modalPrimary}
                 onClick={handleMdsConfirmSubmit}
-                disabled={isSubmittingMdsConfirmation}
               >
-                {isSubmittingMdsConfirmation ? 'Submitting...' : 'Reclassify with MDS Confirmation'}
+                Recalculate with MDS confirmation
               </button>
             </div>
           </div>

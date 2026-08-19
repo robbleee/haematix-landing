@@ -1,4 +1,4 @@
-function fallbackPanel(title, label) {
+function waitingPanel(title, label) {
   return {
     title,
     label,
@@ -86,7 +86,7 @@ export const toolConfigs = {
       },
     ],
     renderResults(result) {
-      if (!result) return [fallbackPanel('ELN 2022', 'Risk')];
+      if (!result) return [waitingPanel('ELN 2022', 'Risk')];
       return [
         {
           title: 'ELN 2022',
@@ -142,8 +142,8 @@ export const toolConfigs = {
     renderResults(result) {
       if (!result) {
         return [
-          fallbackPanel('WHO 2022', 'Output'),
-          fallbackPanel('ICC 2022', 'Output'),
+          waitingPanel('WHO 2022', 'Output'),
+          waitingPanel('ICC 2022', 'Output'),
         ];
       }
       return [
@@ -186,9 +186,9 @@ export const toolConfigs = {
     renderResults(result) {
       if (!result) {
         return [
-          fallbackPanel('WHO 2022', 'TP53 output'),
-          fallbackPanel('ICC 2022', 'TP53 output'),
-          fallbackPanel('ELN 2022', 'Risk impact'),
+          waitingPanel('WHO 2022', 'TP53 output'),
+          waitingPanel('ICC 2022', 'TP53 output'),
+          waitingPanel('ELN 2022', 'Risk impact'),
         ];
       }
       return [

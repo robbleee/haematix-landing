@@ -9,35 +9,22 @@ export default function CtaSection() {
 
   return (
     <section className={styles.section} ref={ref}>
-      {/* Wave divider */}
-      <div className={styles.waveDivider}>
-        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <path d="M0 40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0V40Z" fill="#e8f5f3" />
-        </svg>
-      </div>
-
-      {/* Floating orbs */}
-      <div className={`${styles.orb} ${styles.orb1}`} />
-      <div className={`${styles.orb} ${styles.orb2}`} />
-
       <div className={styles.container}>
         <div className={`${styles.content} ${isVisible ? styles.visible : ''}`}>
           <h2 className={styles.title}>
-            Ready to modernise criteria review?
+            Building with clinical teams
           </h2>
           <p className={styles.subtitle}>
-            Try the interactive leukaemia classification support workflow. No login required.
+            We are developing focused tools with collaborators in the UK and Cambodia.
           </p>
           <div className={styles.ctaGroup}>
-            <Link href="/interactive-classifier" className={styles.ctaPrimary}>
-              Try the Classifier
+            <Link href="/#projects" className={styles.ctaPrimary}>
+              Explore our work
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
               </svg>
             </Link>
-            <a href="https://app.haem.io/" target="_blank" rel="noopener noreferrer" className={styles.ctaSecondary}>
-              Sign In to App
-            </a>
+            <Link href="/team" className={styles.ctaSecondary}>About the team</Link>
           </div>
         </div>
       </div>

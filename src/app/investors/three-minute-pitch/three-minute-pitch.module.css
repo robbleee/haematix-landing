@@ -1,0 +1,255 @@
+.page {
+  min-height: 100vh;
+  background: #f7faf9;
+  color: #15211f;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+
+.hero {
+  background:
+    linear-gradient(135deg, rgba(0, 128, 111, 0.12), rgba(20, 184, 166, 0)),
+    #ffffff;
+  border-bottom: 1px solid rgba(21, 33, 31, 0.08);
+}
+
+.heroInner,
+.content {
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.heroInner {
+  padding: 72px 0 56px;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  color: #006b5f;
+  font-weight: 700;
+  text-decoration: none;
+  margin-bottom: 40px;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}
+
+.kicker {
+  margin: 0 0 12px;
+  color: #007c70;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 760px;
+  margin: 0;
+  font-size: clamp(2.6rem, 6vw, 5.4rem);
+  line-height: 0.98;
+  letter-spacing: 0;
+  color: #102522;
+}
+
+.standfirst {
+  max-width: 720px;
+  margin: 24px 0 0;
+  font-size: 1.24rem;
+  line-height: 1.55;
+  color: #52625f;
+}
+
+.metaGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 40px;
+  border: 1px solid rgba(21, 33, 31, 0.1);
+  background: rgba(21, 33, 31, 0.1);
+}
+
+.metaGrid div {
+  background: #ffffff;
+  padding: 22px;
+}
+
+.metaGrid span,
+.beatMeta span {
+  display: block;
+  color: #6b7a77;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.metaGrid strong {
+  display: block;
+  margin-top: 8px;
+  color: #102522;
+  font-size: 1.35rem;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.75fr);
+  gap: 28px;
+  padding: 42px 0 72px;
+}
+
+.scriptPanel,
+.slidesPanel,
+.beats,
+.deliveryNotes {
+  background: #ffffff;
+  border: 1px solid rgba(21, 33, 31, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(21, 33, 31, 0.06);
+}
+
+.scriptPanel {
+  grid-column: 1 / -1;
+  padding: 34px;
+}
+
+.slidesPanel {
+  grid-column: 1 / -1;
+  padding: 34px;
+}
+
+.sectionHeader {
+  margin-bottom: 18px;
+}
+
+.sectionHeader h2,
+.deliveryNotes h2 {
+  margin: 0;
+  color: #102522;
+  font-size: 1.6rem;
+  letter-spacing: 0;
+}
+
+.slideGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.miniSlide {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 300px;
+  padding: 24px;
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(0, 128, 111, 0.1), rgba(255, 255, 255, 0)),
+    #f8fbfa;
+  border: 1px solid rgba(0, 128, 111, 0.18);
+}
+
+.slideEyebrow {
+  margin: 0 0 16px;
+  color: #007c70;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.miniSlide h3 {
+  margin: 0;
+  color: #102522;
+  font-size: 1.38rem;
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+
+.miniSlide ul {
+  display: grid;
+  gap: 10px;
+  margin: 22px 0 0;
+  padding-left: 18px;
+  color: #40504d;
+  line-height: 1.42;
+  font-size: 0.95rem;
+}
+
+.scriptPanel p,
+.beat p {
+  margin: 0;
+  color: #374743;
+  font-size: 1.04rem;
+  line-height: 1.75;
+}
+
+.beats {
+  padding: 30px;
+}
+
+.beat {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 24px;
+  padding: 24px 0;
+  border-top: 1px solid rgba(21, 33, 31, 0.1);
+}
+
+.beat:first-of-type {
+  border-top: 0;
+  padding-top: 4px;
+}
+
+.beatMeta strong {
+  display: block;
+  margin-top: 8px;
+  color: #007c70;
+  font-size: 1.1rem;
+}
+
+.deliveryNotes {
+  align-self: start;
+  padding: 30px;
+}
+
+.deliveryNotes ul {
+  display: grid;
+  gap: 16px;
+  margin: 20px 0 0;
+  padding-left: 20px;
+  color: #465652;
+  line-height: 1.6;
+}
+
+@media (max-width: 860px) {
+  .heroInner,
+  .content {
+    width: min(100% - 28px, 1120px);
+  }
+
+  .metaGrid,
+  .content,
+  .beat {
+    grid-template-columns: 1fr;
+  }
+
+  .heroInner {
+    padding: 46px 0 42px;
+  }
+
+  .scriptPanel,
+  .slidesPanel,
+  .beats,
+  .deliveryNotes {
+    padding: 24px;
+  }
+
+  .slideGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .miniSlide {
+    min-height: 0;
+    aspect-ratio: auto;
+  }
+}

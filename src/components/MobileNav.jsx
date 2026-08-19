@@ -20,38 +20,20 @@ export default function MobileNav() {
       <button 
         className="mobile-menu-button"
         onClick={toggleMenu}
-        aria-label="Toggle mobile menu"
+        aria-label={isOpen ? 'Close navigation' : 'Open navigation'}
+        aria-expanded={isOpen}
       >
-        ☰
+        <span aria-hidden="true">{isOpen ? '×' : '☰'}</span>
       </button>
 
       {/* Mobile Navigation */}
       <div className={`mobile-nav ${isOpen ? 'show' : ''}`}>
-        <ul style={{ listStyle: 'none', margin: 0, padding: '1rem' }}>
-          <li style={{ padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
-            <Link href="/" style={{ textDecoration: 'none', display: 'block' }} onClick={closeMenu}>Home</Link>
-          </li>
-          <li style={{ padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
-            <Link href="/team" style={{ textDecoration: 'none', display: 'block' }} onClick={closeMenu}>Team</Link>
-          </li>
-          <li style={{ padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
-            <Link href="/articles" style={{ textDecoration: 'none', display: 'block' }} onClick={closeMenu}>Articles</Link>
-          </li>
-          <li style={{ padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
-            <Link href="/tools" style={{ textDecoration: 'none', display: 'block' }} onClick={closeMenu}>Tools</Link>
-          </li>
-          <li style={{ padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
-            <a href="https://learn.haem.io" style={{ textDecoration: 'none', display: 'block' }} onClick={closeMenu}>Learn</a>
-          </li>
-          <li style={{ padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
-            <Link href="/clinical-trials" style={{ textDecoration: 'none', display: 'block' }} onClick={closeMenu}>Clinical Trials</Link>
-          </li>
-          <li style={{ padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
-            <Link href="/mcp" style={{ textDecoration: 'none', display: 'block' }} onClick={closeMenu}>MCP</Link>
-          </li>
-          <li style={{ padding: '0.75rem 0' }}>
-            <a className="button" href="https://app.haem.io/" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', width: '100%', textAlign: 'center' }}>Login</a>
-          </li>
+        <ul>
+          <li><Link href="/#projects" onClick={closeMenu}>Projects</Link></li>
+          <li><Link href="/clinical-trials" onClick={closeMenu}>Clinical trials</Link></li>
+          <li><Link href="/articles" onClick={closeMenu}>Articles</Link></li>
+          <li><Link href="/team" onClick={closeMenu}>Team</Link></li>
+          <li><a className="mobile-login" href="https://app.haem.io/" target="_blank" rel="noopener noreferrer">Sign in</a></li>
         </ul>
       </div>
     </>

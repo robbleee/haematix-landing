@@ -1,6 +1,6 @@
 'use client';
 
-import BackendLinkedTool from './BackendLinkedTool';
+import EducationalCalculatorTool from './BackendLinkedTool';
 import { toolConfigs } from './toolConfigs';
 
 export default function ToolShell({ toolKey }) {
@@ -10,5 +10,5 @@ export default function ToolShell({ toolKey }) {
     return null;
   }
 
-  return <BackendLinkedTool config={config} />;
+  return <EducationalCalculatorTool config={config} />;
 }

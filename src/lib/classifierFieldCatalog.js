@@ -39,12 +39,8 @@ export const CORE_FIELDS = [
     ],
   },
   {
-    group: 'Morphology & Clinical (AML)',
+    group: 'Clinical / genetic context',
     fields: [
-      { path: 'basophilic_differentiation', label: 'Basophilic differentiation' },
-      { path: 'bm_trilineage_proliferation', label: 'Panmyelosis' },
-      { path: 'bm_fibrosis', label: 'Significant marrow fibrosis' },
-      { path: 'erythroid_confirmation', label: 'Erythroid differentiation (≥80%)' },
       { path: 'down_syndrome', label: 'Down syndrome' },
       { path: 'gata1_mutation', label: 'GATA1 mutation' },
     ],
@@ -91,4 +87,3 @@ export const ADVANCED_FIELDS = [
 export function allFieldPaths() {
   return [...CORE_FIELDS, ...ADVANCED_FIELDS].flatMap((g) => g.fields.map((f) => f.path));
 }
-

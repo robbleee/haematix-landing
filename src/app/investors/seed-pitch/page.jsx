@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from '../investors.module.css';
 
-const shortPitchSlides = [
+const investorPitchSlides = [
   {
     id: 'title',
     content: (
@@ -12,39 +12,10 @@ const shortPitchSlides = [
           <div className={styles.titleMain}>
             <h1 className={styles.companyName}>Haem.io</h1>
             <p className={styles.tagline}>Intelligent Diagnostics for Precision Haematology</p>
+            <div className={styles.seedBadge}>Investor Deck | £750,000 Seed Round</div>
           </div>
-          <div className={styles.titlePattern} aria-hidden="true">
-            <div className={styles.coverInputStack}>
-              <div className={styles.coverStageLabel}>Unstructured reports</div>
-              <div className={styles.coverReportCard}>
-                <span>NPM1</span>
-                <span>FLT3-ITD</span>
-                <span>TP53</span>
-                <span>Karyotype</span>
-              </div>
-            </div>
-            <div className={styles.coverDownArrow}></div>
-            <div className={styles.coverExtractionCard}>
-              <strong>LLM</strong>
-              <span>Genetic feature extraction</span>
-            </div>
-            <div className={styles.coverDownArrow}></div>
-            <div className={styles.coverAlgorithmCard}>
-              <div className={styles.coverAlgoTitle}>Haem.io algorithms</div>
-              <div className={styles.coverMiniTree}>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-              <div className={styles.coverOutputs}>
-                <span>Diagnosis</span>
-                <span>Risk</span>
-                <span>Trials</span>
-              </div>
-            </div>
+          <div className={styles.clinicalBackground}>
+            <div className={styles.backgroundPattern}></div>
           </div>
         </div>
       </div>
@@ -82,7 +53,7 @@ const shortPitchSlides = [
             <div className={styles.flowArrow}>→</div>
             <div className={styles.diagnostician}>
               <h4>Overwhelmed Clinician</h4>
-              <p>A specialist has to reconcile every source before diagnostic reasoning can even begin.</p>
+              <p>Clinicians spend hours extracting facts before diagnostic reasoning can even begin.</p>
             </div>
             <div className={styles.flowArrow}>→</div>
             <div className={styles.flowPanel}>
@@ -101,42 +72,54 @@ const shortPitchSlides = [
   {
     id: 'solution',
     title: 'The Solution',
-    subtitle: 'LLM feature extraction plus formal diagnostic algorithms',
+    subtitle: 'AI extraction plus formal diagnostic logic',
     content: (
       <div className={styles.slideContent}>
-        <div className={styles.solutionRedesign}>
-          <div className={styles.solutionLead}>
-            <h3>
-              Haem.io is the reasoning layer that turns fragmented diagnostic reports into a traceable
-              clinical decision.
-            </h3>
-            <p>
-              An LLM extracts genetic and clinical features. Haem.io's deterministic algorithms use those features for
-              diagnosis, risk stratification, and clinical-trial matching.
-            </p>
-            <div className={styles.solutionTime}>~2 minutes · Explainable · Clinician-in-the-loop</div>
-          </div>
+        <h3>
+          Haem.io turns unstructured lab reports into explainable classification, risk stratification,
+          guideline-aligned decision support, and clinical trial matching in minutes.
+        </h3>
 
-          <div className={styles.solutionProcess}>
-            <div className={styles.solutionStep}>
-              <span>01</span>
-              <h4>Input</h4>
-              <p>PDFs, scans, text reports, genomics, flow cytometry, morphology, and clinical context.</p>
-            </div>
-            <div className={styles.solutionStep}>
-              <span>02</span>
-              <h4>Extraction</h4>
-              <p>An LLM extracts mutations, fusions, cytogenetics, flow markers, morphology, and clinical features.</p>
-            </div>
-            <div className={styles.solutionStep}>
-              <span>03</span>
-              <h4>Algorithms</h4>
-              <p>Structured features are passed into Haem.io algorithms for diagnosis, risk, and trial matching.</p>
-            </div>
-            <div className={styles.solutionStep}>
-              <span>04</span>
-              <h4>Output</h4>
-              <p>Diagnosis, derivation trace, risk stratification, treatment context, and eligible trials.</p>
+        <div className={styles.horizontalFlow}>
+          <div className={styles.hFlowStep}>
+            <span className={styles.miniNum}>1</span>
+            <span>Upload unstructured lab report</span>
+          </div>
+          <div className={styles.hFlowArrow}>→</div>
+          <div className={styles.hFlowStep}>
+            <span className={styles.miniNum}>2</span>
+            <span>AI extracts clinical facts</span>
+          </div>
+          <div className={styles.hFlowArrow}>→</div>
+          <div className={styles.hFlowStep}>
+            <span className={styles.miniNum}>3</span>
+            <span>Logic engine applies WHO + ICC</span>
+          </div>
+          <div className={styles.hFlowArrow}>→</div>
+          <div className={styles.hFlowStep}>
+            <span className={styles.miniNum}>4</span>
+            <span>Traceable decision support</span>
+          </div>
+        </div>
+
+        <div className={styles.transformResult} style={{ borderColor: 'var(--primary-color)', color: 'var(--primary-color)', maxWidth: '460px', margin: '0 auto 2rem' }}>
+          ~2 minutes · Explainable · Clinically auditable
+        </div>
+
+        <div className={styles.workflowInsight}>
+          <div className={styles.timeComparison}>
+            <div className={styles.beforeAfter}>
+              <div className={styles.beforeTime}>
+                <div className={styles.beforeLabel}>Before</div>
+                <div className={styles.beforeValue}>Hours to Weeks</div>
+                <div className={styles.beforeDescription}>Manual diagnosis process</div>
+              </div>
+              <div className={styles.comparisonArrow}>→</div>
+              <div className={styles.afterTime}>
+                <div className={styles.afterLabel}>With Haem.io</div>
+                <div className={styles.afterValue}>~2 Minutes</div>
+                <div className={styles.afterDescription}>Clinician-in-the-loop decision support</div>
+              </div>
             </div>
           </div>
         </div>
@@ -151,23 +134,21 @@ const shortPitchSlides = [
       <div className={styles.slideContent}>
         <div className={styles.productProofLayout}>
           <div className={styles.productTraceFrame}>
-            <img src="/screenshots/icc-tp53-execution-path.png" alt="ICC 2022 AML execution path trace" />
+            <img src="/screenshots/icc-tp53-execution-path.png" alt="ICC 2022 AML diagnostic execution path" />
           </div>
 
           <div className={styles.productProofNotes}>
             <div className={styles.proofStatus}>
-              <span className={styles.proofKicker}>Current status</span>
+              <div className={styles.proofKicker}>Current status</div>
               <h3>Production beta with 10 haematologists</h3>
               <p>AML and MDS classifiers are built and being tested before formal NHS pilot validation.</p>
             </div>
-
             <div className={styles.proofChecklist}>
-              <h4>Product proof</h4>
+              <h4>What investors need to see</h4>
               <ul>
-                <li><strong>LLM extraction:</strong> unstructured reports become structured genetic and clinical features.</li>
-                <li><strong>Diagnostic algorithms:</strong> extracted features feed diagnosis, risk, and trial matching.</li>
-                <li><strong>Full trace:</strong> every output can be reviewed and challenged by the clinician.</li>
-                <li><strong>Trials layer:</strong> leukemia trial matching engine built for UK studies.</li>
+                <li><strong>AI extraction:</strong> unstructured reports become clean clinical and molecular facts.</li>
+                <li><strong>Formal logic:</strong> WHO 2022 and ICC 2022 pathways are applied consistently.</li>
+                <li><strong>Full trace:</strong> every output can be reviewed by the clinician.</li>
               </ul>
             </div>
           </div>
@@ -176,45 +157,45 @@ const shortPitchSlides = [
     ),
   },
   {
-    id: 'platform',
-    title: 'Haematology Is The Wedge',
-    subtitle: 'Genomics-based diagnosis starts in blood cancer, then expands',
+    id: 'expansion',
+    title: 'Haematology Is Just The Start',
+    subtitle: 'Genomics-based diagnosis starts in blood cancers, then expands across oncology',
     content: (
       <div className={styles.slideContent}>
-        <div className={styles.expansionTimelineLayout}>
-          <div className={styles.timelineLead}>
-            <h3>Blood cancer is the first wedge for a broader genomics diagnosis platform.</h3>
+        <div className={styles.genomicsExpansionLayout}>
+          <div className={styles.genomicsLead}>
+            <span className={styles.proofKicker}>Platform thesis</span>
+            <h3>The same problem is coming for every genomics-driven cancer pathway.</h3>
             <p>
-              The same architecture can extract molecular features, apply disease-specific algorithms,
-              and connect patients to the next clinical action.
+              Haematology is the first wedge because it is diagnostically complex today. Diagnosis in haematology and oncology is built around international standards, so the platform can scale globally without being rebuilt market by market.
             </p>
           </div>
 
-          <div className={styles.expansionTimeline}>
-            <div className={styles.timelineStage}>
-              <span>Now</span>
-              <h4>AML / MDS</h4>
-              <p>Production beta in testing with 10 haematologists.</p>
+          <div className={styles.genomicsPath}>
+            <div className={styles.genomicsStep}>
+              <span>01</span>
+              <h4>Haematology</h4>
+              <p>AML and MDS in production beta with 10 haematologists.</p>
             </div>
-            <div className={styles.timelineStage}>
-              <span>Near term</span>
-              <h4>Leukemia trials</h4>
-              <p>UK trial matching engine built from patient genetics and diagnosis.</p>
-            </div>
-            <div className={styles.timelineStage}>
-              <span>Prototype</span>
+            <div className={styles.genomicsStep}>
+              <span>02</span>
               <h4>Lung cancer</h4>
-              <p>Genomics-driven solid tumour diagnosis prototype already built.</p>
+              <p>Prototype already built for the next genomics-led diagnostic pathway.</p>
             </div>
-            <div className={styles.timelineStage}>
-              <span>Expansion</span>
-              <h4>More diseases</h4>
-              <p>Further cancers first, then other genomics-led diseases over time.</p>
+            <div className={styles.genomicsStep}>
+              <span>03</span>
+              <h4>Other cancers</h4>
+              <p>Extend the same structured reasoning layer across solid tumours.</p>
+            </div>
+            <div className={styles.genomicsStep}>
+              <span>04</span>
+              <h4>Beyond oncology</h4>
+              <p>Longer-term potential wherever complex biomarkers meet clinical guidelines.</p>
             </div>
           </div>
 
-          <div className={styles.timelineFooter}>
-            Commercial signal: discussions with four interested pharma companies about grant funding linked to patient identification and trial matching.
+          <div className={styles.genomicsFooter}>
+            Haem.io is not a single blood cancer tool. It is the decision layer for molecular medicine, and with appropriate governance the structured genomic insight layer becomes a valuable data asset.
           </div>
         </div>
       </div>
@@ -223,12 +204,12 @@ const shortPitchSlides = [
   {
     id: 'market',
     title: 'Business Model + Market',
-    subtitle: 'Bottom-up NHS licensing with strategic pull from labs and pharma',
+    subtitle: 'Bottom-up NHS wedge, downstream insight layer, oncology expansion upside',
     content: (
       <div className={styles.slideContent}>
         <div className={styles.marketModelLayout}>
           <div>
-            <h3>Annual SaaS licensing</h3>
+            <h3 style={{ margin: '0 0 1rem', color: '#0f172a' }}>Annual SaaS licensing</h3>
             <div className={styles.pricingCards}>
               <div className={styles.priceCard}>
                 <h4>NHS Trusts</h4>
@@ -243,37 +224,78 @@ const shortPitchSlides = [
                 <p>£100k-£200k/year</p>
               </div>
             </div>
+            <div style={{ background: '#f8fafc', borderRadius: '14px', padding: '1.35rem', borderLeft: '4px solid var(--primary-color)', marginTop: '1.5rem' }}>
+              <p style={{ margin: 0, color: '#334155', lineHeight: 1.55 }}>
+                NHS trusts already outsource complex cases at significant cost. Haem.io turns that spend into faster local specialist-grade decision support.
+              </p>
+            </div>
             <div className={styles.competitorNote}>
-              <strong>Why hospitals buy:</strong>
-              <span>
-                Pricing is comparable to current HODS diagnostic-service spend, but HODS is an information-sharing platform with no diagnostic insight. Multiple trusts have told us they want to replace it.
-              </span>
+              <strong>Competitive position:</strong>
+              <span> morphology and lab AI companies solve the upstream automation problem. Their outputs still need a downstream reasoning layer to become diagnosis, risk, trial matching, and hospital-ready insight.</span>
             </div>
           </div>
 
-          <div className={styles.marketProofColumn}>
-            <div className={styles.marketStatRow}>
-              <div className={styles.marketStatCard}>
-                <div className={styles.marketStatNumber}>1.2M</div>
-                <div className={styles.marketStatLabel}>blood cancer diagnoses per year globally</div>
+          <div style={{ display: 'grid', gap: '1rem' }}>
+            <div style={{ background: 'linear-gradient(135deg, #f0fdf4, #dcfce7)', borderRadius: '18px', padding: '1.75rem', border: '2px solid var(--primary-color)' }}>
+              <div style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--primary-color)', textTransform: 'uppercase', marginBottom: '0.75rem' }}>Why haematology first</div>
+              <h3 style={{ margin: 0, color: '#0f172a' }}>Hardest diagnostic edge case in oncology</h3>
+              <p style={{ color: '#475569', lineHeight: 1.55 }}>Hundreds of subtypes, dozens of mutations, and dual international guidelines make blood cancers the right first market.</p>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div style={{ background: 'white', borderRadius: '16px', padding: '1.5rem', textAlign: 'center', border: '1px solid #e2e8f0' }}>
+                <div style={{ fontSize: '2.6rem', fontWeight: '800', color: 'var(--primary-color)', lineHeight: 1 }}>1.2M</div>
+                <div style={{ color: '#475569', fontWeight: '600' }}>blood cancer diagnoses / year globally</div>
               </div>
-              <div className={styles.marketStatCard}>
-                <div className={styles.marketStatNumber}>200+</div>
-                <div className={styles.marketStatLabel}>subtypes requiring specialist interpretation</div>
+              <div style={{ background: 'white', borderRadius: '16px', padding: '1.5rem', textAlign: 'center', border: '1px solid #e2e8f0' }}>
+                <div style={{ fontSize: '2.6rem', fontWeight: '800', color: 'var(--primary-color)', lineHeight: 1 }}>£30B</div>
+                <div style={{ color: '#475569', fontWeight: '600' }}>AI medical diagnostics market by 2034</div>
               </div>
             </div>
-            <div className={styles.competitorNote}>
-              <strong>Positioning:</strong>
-              <span>
-                Most competitors focus upstream on morphology or lab automation. Those tools still need a downstream reasoning layer to turn results into meaningful hospital decisions.
-              </span>
+            <div style={{ background: 'white', borderRadius: '14px', padding: '1.25rem', border: '1px solid #e2e8f0' }}>
+              <strong>Expansion path:</strong>
+              <span style={{ color: '#64748b' }}> AML/MDS → other blood cancers → genomics-driven solid tumours.</span>
             </div>
-            <div className={styles.competitorNote}>
-              <strong>Commercial extension:</strong>
-              <span>
-                The same patient-identification layer supports pharma-sponsored trial matching without compromising clinical neutrality.
-              </span>
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 'investor-fit',
+    title: 'Why This Wins',
+    subtitle: 'Enabling technology for data-driven, efficient specialist care',
+    content: (
+      <div className={styles.slideContent}>
+        <div className={styles.investorFitLayout}>
+          <div className={styles.investorFitLead}>
+            <div className={styles.investorFitKicker}>Investment thesis</div>
+            <h3>Clinical AI that turns fragmented data into action.</h3>
+            <p>
+              Haem.io sits at the intersection of medtech software, health data infrastructure, and specialist clinical decision support.
+            </p>
+            <div className={styles.investorFitNote}>
+              <strong>Core wedge:</strong>
+              <span> haematology diagnosis, where genomic complexity has outgrown manual workflow.</span>
             </div>
+            <div className={styles.investorFitChecklist}>
+              <span>Global standards architecture</span>
+              <span>Clinician-in-the-loop AI</span>
+              <span>Genomic insight layer</span>
+            </div>
+          </div>
+
+          <div className={styles.investorFitCards}>
+            {[
+              ['Enabling technology', 'AI extraction plus formal diagnostic logic can sit above existing lab and hospital systems.'],
+              ['Data-driven insight', 'Structured genomic and outcome data can generate insight for hospitals, research, and pharma over time.'],
+              ['Workflow efficiency', 'Reduces manual synthesis for specialist clinicians and supports local NHS decision-making.'],
+              ['Global scaling', 'International diagnostic standards let the same platform expand across haematology, oncology, and other diseases.'],
+            ].map(([heading, text]) => (
+              <div key={heading} className={styles.investorFitCard}>
+                <h4>{heading}</h4>
+                <p>{text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -325,7 +347,11 @@ const shortPitchSlides = [
             </div>
           </div>
           <div className={styles.validationFooter}>
-            <span>Buy-in from key opinion leaders in UK haematology</span>
+            <span>4 Letters of Support</span>
+            <span>•</span>
+            <span>Letter of Intent for Pilot Study</span>
+            <span>•</span>
+            <span>3 NHS Trusts in pipeline</span>
           </div>
         </div>
       </div>
@@ -368,7 +394,7 @@ const shortPitchSlides = [
               <div className={styles.memberInfo}>
                 <h3>Dr. John Burthem</h3>
                 <h4>Chief Medical Officer & Co-Founder</h4>
-                <p>FRCP, FRCPath. Senior NHS consultant at Manchester Foundation Trust, regional diagnostic service lead, 50+ publications, and UK NEQAS digital advisory lead.</p>
+                <p>FRCP, FRCPath. Senior NHS consultant at Manchester Foundation Trust and lead of a regional diagnostic service for haematological malignancies.</p>
               </div>
             </div>
 
@@ -379,13 +405,13 @@ const shortPitchSlides = [
               <div className={styles.memberInfo}>
                 <h3>Dr. Luke Carter-Brzezinski</h3>
                 <h4>Clinical Director & Co-Founder</h4>
-                <p>Consultant Haematologist at MFT's Regional Diagnostic Service. Leads clinical outreach, validation strategy, and real-world workflow feedback from practicing clinicians.</p>
+                <p>Consultant Haematologist at MFT's Regional Diagnostic Service. Leads clinical outreach, validation strategy, and real-world workflow feedback.</p>
               </div>
             </div>
           </div>
           <div style={{ textAlign: 'center', marginTop: '1.25rem', padding: '0.85rem 1.5rem', background: '#f8fafc', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
             <p style={{ margin: 0, fontSize: '0.95rem', color: '#475569' }}>
-              Clinical logic co-developed directly with specialist NHS haematologists and translated into auditable software.
+              Haem.io is in the process of spinning out of Manchester University NHS Foundation Trust, with clinical logic co-developed directly with specialist NHS haematologists.
             </p>
           </div>
         </div>
@@ -417,16 +443,16 @@ const shortPitchSlides = [
                   <span className={styles.runwayAmount}>£105k</span>
                 </div>
                 <div className={styles.runwayItem}>
-                  <span>CMO part-time (John)</span>
+                  <span>Dr John Burthem, part-time CMO</span>
+                  <span className={styles.runwayAmount}>£45k</span>
+                </div>
+                <div className={styles.runwayItem}>
+                  <span>Commercial/Sales Lead</span>
                   <span className={styles.runwayAmount}>£60k</span>
                 </div>
                 <div className={styles.runwayItem}>
-                  <span>Clinical Director part-time (Luke)</span>
-                  <span className={styles.runwayAmount}>£50k</span>
-                </div>
-                <div className={styles.runwayItem}>
-                  <span>Commercial/Sales support</span>
-                  <span className={styles.runwayAmount}>£40k</span>
+                  <span>Dr Luke Carter-Brzezinski, part-time Clinical Director</span>
+                  <span className={styles.runwayAmount}>£45k</span>
                 </div>
               </div>
               <div className={styles.sectionTotal}>£420k</div>
@@ -495,7 +521,7 @@ const shortPitchSlides = [
           <h1 className={styles.companyName} style={{ fontSize: '4rem' }}>Haem.io</h1>
           <p className={styles.ctaTagline}>
             Precision diagnostics for every haematologist, everywhere.<br />
-            Built by clinicians. LLM-assisted extraction. Algorithmic by design.
+            Built by clinicians. Powered by AI. Explainable by design.
           </p>
           <div style={{ fontSize: '1rem', color: '#64748b', marginBottom: '1rem' }}>
             Global standards. Production beta. Ready for NHS validation.
@@ -513,7 +539,7 @@ const shortPitchSlides = [
   },
 ];
 
-export default function ThreeMinutePitchDeck() {
+export default function SeedPitchDeck() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isCleanMode, setIsCleanMode] = useState(false);
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
@@ -522,11 +548,11 @@ export default function ThreeMinutePitchDeck() {
   const printViewRef = useRef(null);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % shortPitchSlides.length);
+    setCurrentSlide((prev) => (prev + 1) % investorPitchSlides.length);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + shortPitchSlides.length) % shortPitchSlides.length);
+    setCurrentSlide((prev) => (prev - 1 + investorPitchSlides.length) % investorPitchSlides.length);
   };
 
   const goToSlide = (index) => {
@@ -539,7 +565,7 @@ export default function ThreeMinutePitchDeck() {
       const html2pdf = (await import('html2pdf.js')).default;
       const opt = {
         margin: [0.5, 0.5],
-        filename: 'Haemio-Three-Minute-Pitch.pdf',
+        filename: 'Haemio-Investor-Pitch.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: {
           scale: 2,
@@ -603,7 +629,7 @@ export default function ThreeMinutePitchDeck() {
         setCurrentSlide(0);
       } else if (e.key === 'End') {
         e.preventDefault();
-        setCurrentSlide(shortPitchSlides.length - 1);
+        setCurrentSlide(investorPitchSlides.length - 1);
       }
     };
 
@@ -630,15 +656,7 @@ export default function ThreeMinutePitchDeck() {
     };
   }, []);
 
-  const slide = shortPitchSlides[currentSlide];
-  const renderSlideHeader = (slideData) => (
-    slideData.title ? (
-      <div className={styles.slideHeader}>
-        <h1>{slideData.title}</h1>
-        <p className={styles.slideSubtitle}>{slideData.subtitle}</p>
-      </div>
-    ) : null
-  );
+  const slide = investorPitchSlides[currentSlide];
 
   return (
     <div className={`${styles.pitchDeck} ${styles.shortPitchDeck} ${styles.classicPitchDeck}`} ref={deckRef}>
@@ -670,24 +688,34 @@ export default function ThreeMinutePitchDeck() {
         <div
           key={currentSlide}
           className={styles.slide}
-          data-slide-label={`${currentSlide + 1}/${shortPitchSlides.length}`}
+          data-slide-label={`${currentSlide + 1}/${investorPitchSlides.length}`}
         >
           <div className="container">
-            {renderSlideHeader(slide)}
+            {(slide.title || slide.subtitle) && (
+              <div className={styles.slideHeader}>
+                {slide.title && <h1>{slide.title}</h1>}
+                {slide.subtitle && <p className={styles.slideSubtitle}>{slide.subtitle}</p>}
+              </div>
+            )}
             {slide.content}
           </div>
         </div>
       </div>
 
       <div className={styles.printView} ref={printViewRef}>
-        {shortPitchSlides.map((slideData, index) => (
+        {investorPitchSlides.map((slideData, index) => (
           <div
             key={slideData.id || index}
             className={styles.slide}
-            data-slide-label={`${index + 1}/${shortPitchSlides.length}`}
+            data-slide-label={`${index + 1}/${investorPitchSlides.length}`}
           >
             <div className="container">
-              {renderSlideHeader(slideData)}
+              {(slideData.title || slideData.subtitle) && (
+                <div className={styles.slideHeader}>
+                  {slideData.title && <h1>{slideData.title}</h1>}
+                  {slideData.subtitle && <p className={styles.slideSubtitle}>{slideData.subtitle}</p>}
+                </div>
+              )}
               {slideData.content}
             </div>
           </div>
@@ -700,7 +728,7 @@ export default function ThreeMinutePitchDeck() {
             ← Previous
           </button>
           <div className={styles.slideIndicators}>
-            {shortPitchSlides.map((_, index) => (
+            {investorPitchSlides.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
@@ -708,7 +736,7 @@ export default function ThreeMinutePitchDeck() {
               />
             ))}
           </div>
-          <button onClick={nextSlide} className={styles.navButton} disabled={currentSlide === shortPitchSlides.length - 1}>
+          <button onClick={nextSlide} className={styles.navButton} disabled={currentSlide === investorPitchSlides.length - 1}>
             Next →
           </button>
         </div>

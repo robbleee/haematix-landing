@@ -625,15 +625,15 @@ body:has(.pitchDeck) main {
   .hero h1 {
     font-size: 2.5rem;
   }
-  
+
   .subtitle {
     font-size: 1.2rem;
   }
-  
+
   .keyMetric {
     padding: 2rem;
   }
-  
+
   .metricNumber {
     font-size: 3rem;
   }
@@ -7757,6 +7757,1075 @@ body:has(.pitchDeck) main {
   margin: 0;
 }
 
+body:has(.classicPitchDeck) :global(nextjs-portal) {
+  display: none !important;
+}
+
+/* Classic investor PDF treatment */
+.classicPitchDeck {
+  --deck-ink: #111827;
+  --deck-muted: #667085;
+  --deck-soft: #f8fafc;
+  --deck-line: #d7e5e2;
+  --deck-accent: #00806f;
+  --deck-accent-soft: #eef8f6;
+  background: #ffffff;
+  color: var(--deck-ink);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+
+.classicPitchDeck .slide {
+  position: relative;
+  align-items: stretch;
+  justify-content: center;
+  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  padding: 0;
+  background: #ffffff;
+  color: var(--deck-ink);
+}
+
+.classicPitchDeck .slide:first-of-type {
+  opacity: 1;
+  animation: none;
+}
+
+.classicPitchDeck .slide::before {
+  content: 'Haem.io | Confidential';
+  position: absolute;
+  left: 66px;
+  bottom: 28px;
+  color: #98a2b3;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0;
+  z-index: 4;
+}
+
+.classicPitchDeck .slide::after {
+  content: attr(data-slide-label);
+  position: absolute;
+  right: 66px;
+  bottom: 28px;
+  color: #98a2b3;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0;
+  z-index: 4;
+}
+
+.classicPitchDeck .backButton {
+  top: 1rem;
+  right: 27.25rem;
+  left: auto;
+  border-radius: 999px;
+  padding: 0.65rem 1.05rem;
+  font-size: 0.82rem;
+}
+
+.classicPitchDeck .downloadPitchButton {
+  top: 1rem;
+  right: 15.4rem;
+  left: auto;
+  border-radius: 999px;
+  padding: 0.65rem 1.05rem;
+  font-size: 0.82rem;
+}
+
+.classicPitchDeck .fullscreenPitchButton {
+  top: 1rem;
+  right: 2rem;
+  left: auto;
+  border-radius: 999px;
+  padding: 0.65rem 1.05rem;
+  font-size: 0.82rem;
+}
+
+.classicPitchDeck .navigation {
+  top: auto;
+  right: 50%;
+  bottom: 0.9rem;
+  transform: translateX(50%);
+  flex-direction: row;
+  gap: 0.75rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.12);
+}
+
+.classicPitchDeck .slideIndicators {
+  flex-direction: row;
+  gap: 0.45rem;
+  margin: 0;
+}
+
+.classicPitchDeck .indicator {
+  width: 8px;
+  height: 8px;
+}
+
+.classicPitchDeck .navButton {
+  min-width: auto;
+  border-radius: 999px;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.72rem;
+}
+
+.classicPitchDeck .slide > :global(.container) {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 1280px);
+  max-width: 1280px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 50px 66px 56px;
+}
+
+.classicPitchDeck .slideHeader {
+  display: grid;
+  align-content: start;
+  min-height: 94px;
+  margin: 0 0 22px;
+  padding: 0 0 17px;
+  border-bottom: 1px solid rgba(0, 128, 111, 0.2);
+  text-align: left;
+}
+
+.classicPitchDeck .slideHeader h1 {
+  margin: 0 !important;
+  color: var(--deck-accent) !important;
+  font-size: 2.15rem !important;
+  font-weight: 680;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.classicPitchDeck .slideSubtitle {
+  max-width: 840px;
+  margin: 8px 0 0;
+  color: var(--deck-muted);
+  font-size: 1rem !important;
+  font-weight: 450;
+  line-height: 1.35;
+}
+
+.classicPitchDeck .slideContent {
+  flex: 1;
+  width: 100%;
+  max-width: none;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.classicPitchDeck .slideContent h3 {
+  margin: 0 0 1rem;
+  color: var(--deck-ink);
+  font-size: 1.32rem !important;
+  font-weight: 660;
+  line-height: 1.25;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+.classicPitchDeck .slideContent h4 {
+  color: var(--deck-ink);
+  font-size: 1rem;
+  font-weight: 680;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.classicPitchDeck .slideContent p,
+.classicPitchDeck li {
+  color: var(--deck-muted);
+  font-size: 0.9rem;
+  line-height: 1.42;
+}
+
+.classicPitchDeck [style*="linear-gradient"] {
+  background: var(--deck-soft) !important;
+}
+
+.classicPitchDeck [style*="box-shadow"] {
+  box-shadow: none !important;
+}
+
+.classicPitchDeck [style*="border-radius"],
+.classicPitchDeck .demoCard,
+.classicPitchDeck .advantagePoint,
+.classicPitchDeck .quoteCard,
+.classicPitchDeck .priceCard,
+.classicPitchDeck .teamMember,
+.classicPitchDeck .runwaySection,
+.classicPitchDeck .milestoneItem {
+  border-radius: 8px !important;
+}
+
+.classicPitchDeck .demoCard,
+.classicPitchDeck .advantagePoint,
+.classicPitchDeck .quoteCard,
+.classicPitchDeck .priceCard,
+.classicPitchDeck .teamMember,
+.classicPitchDeck .runwaySection,
+.classicPitchDeck .milestoneItem,
+.classicPitchDeck .flowPanel,
+.classicPitchDeck .diagnostician {
+  border: 1px solid var(--deck-line) !important;
+  box-shadow: none !important;
+  background: #ffffff !important;
+}
+
+.classicPitchDeck .titleSlide,
+.classicPitchDeck .ctaSlide {
+  min-height: calc(100vh - 112px);
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+}
+
+.classicPitchDeck .titleMain {
+  max-width: 780px;
+  margin: 0;
+}
+
+.classicPitchDeck .companyName {
+  margin: 0 0 0.9rem !important;
+  color: var(--deck-accent) !important;
+  font-size: 4.6rem !important;
+  font-weight: 760;
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+.classicPitchDeck .tagline,
+.classicPitchDeck .ctaTagline {
+  max-width: 740px;
+  margin: 0;
+  color: #475467;
+  font-size: 1.45rem;
+  font-weight: 420;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+.classicPitchDeck .seedBadge,
+.classicPitchDeck .ctaBadge {
+  margin-top: 1.5rem;
+  border: 1px solid rgba(0, 107, 95, 0.24);
+  border-radius: 6px;
+  background: var(--deck-accent-soft) !important;
+  color: var(--deck-accent);
+  font-size: 0.9rem;
+  font-weight: 760;
+  letter-spacing: 0;
+  padding: 0.65rem 0.9rem;
+}
+
+.classicPitchDeck .clinicalBackground {
+  display: none;
+}
+
+.classicPitchDeck .humanCostLayout {
+  max-width: none;
+  gap: 1.15rem;
+}
+
+.classicPitchDeck .costStats {
+  gap: 1rem;
+  padding: 1.25rem 1.4rem;
+  border: 1px solid var(--deck-line);
+  border-radius: 8px;
+  background: #ffffff !important;
+}
+
+.classicPitchDeck .statNumber {
+  color: var(--deck-ink);
+  font-size: 1.72rem;
+  font-weight: 760;
+}
+
+.classicPitchDeck .statLabel {
+  color: var(--deck-muted);
+  font-size: 0.88rem;
+}
+
+.classicPitchDeck .statDivider {
+  background: var(--deck-line);
+}
+
+.classicPitchDeck .diagnosticFlow {
+  gap: 0.85rem;
+  margin: 1rem 0;
+  padding: 0;
+  max-width: none;
+}
+
+.classicPitchDeck .flowPanel,
+.classicPitchDeck .diagnostician {
+  min-width: 0;
+  max-width: none;
+  min-height: 140px;
+  padding: 1rem;
+}
+
+.classicPitchDeck .diagnostician::before {
+  display: none;
+}
+
+.classicPitchDeck .flowPanel h4,
+.classicPitchDeck .diagnostician h4 {
+  margin: 0 0 0.45rem;
+  color: var(--deck-ink);
+  font-size: 0.98rem;
+}
+
+.classicPitchDeck .flowPanel p,
+.classicPitchDeck .diagnostician p {
+  color: var(--deck-muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.classicPitchDeck .flowArrow,
+.classicPitchDeck .hFlowArrow,
+.classicPitchDeck .comparisonArrow {
+  color: var(--deck-accent);
+  animation: none;
+}
+
+.classicPitchDeck .bottomStatement {
+  margin-top: 0.4rem;
+  padding: 0.8rem 1rem;
+  border-left: 3px solid var(--deck-accent);
+  border-radius: 6px;
+  background: var(--deck-soft);
+  color: var(--deck-ink);
+  font-size: 1rem;
+  line-height: 1.35;
+  text-align: left;
+}
+
+.classicPitchDeck .horizontalFlow {
+  align-items: stretch;
+  margin: 1.1rem 0;
+}
+
+.classicPitchDeck .hFlowStep {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--deck-line);
+  border-radius: 6px;
+  background: #ffffff !important;
+  color: var(--deck-ink);
+  font-size: 0.78rem;
+  line-height: 1.25;
+  white-space: normal;
+}
+
+.classicPitchDeck .miniNum {
+  width: 24px;
+  height: 24px;
+  background: var(--deck-accent);
+  font-size: 0.76rem;
+}
+
+.classicPitchDeck .transformResult {
+  border-color: var(--deck-line) !important;
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--deck-accent) !important;
+}
+
+.classicPitchDeck .workflowInsight {
+  margin-top: 0.8rem;
+  padding: 1rem;
+  border: 1px solid var(--deck-line);
+  border-radius: 8px;
+  background: #ffffff !important;
+  color: var(--deck-ink);
+}
+
+.classicPitchDeck .beforeAfter {
+  gap: 1rem;
+}
+
+.classicPitchDeck .beforeValue,
+.classicPitchDeck .afterValue {
+  color: var(--deck-ink);
+  font-size: 1.45rem;
+  text-shadow: none;
+}
+
+.classicPitchDeck .beforeLabel,
+.classicPitchDeck .afterLabel,
+.classicPitchDeck .beforeDescription,
+.classicPitchDeck .afterDescription {
+  color: var(--deck-muted);
+}
+
+.classicPitchDeck .demoCard {
+  padding: 0.75rem !important;
+}
+
+.classicPitchDeck .demoCard::before {
+  background: var(--deck-accent);
+}
+
+.classicPitchDeck .demoCard img {
+  height: 342px !important;
+}
+
+.classicPitchDeck .advantageGrid {
+  gap: 0.85rem !important;
+  max-width: none;
+  margin-top: 0 !important;
+}
+
+.classicPitchDeck .advantagePoint {
+  padding: 0.95rem !important;
+}
+
+.classicPitchDeck .pointNumber {
+  position: static;
+  width: 24px;
+  height: 24px;
+  margin-bottom: 0.55rem;
+  border-radius: 4px;
+  background: var(--deck-accent) !important;
+  box-shadow: none;
+  font-size: 0.78rem;
+}
+
+.classicPitchDeck .advantagePoint h4 {
+  margin: 0 0 0.35rem;
+  color: var(--deck-ink);
+  font-size: 0.96rem;
+}
+
+.classicPitchDeck .advantagePoint p {
+  color: var(--deck-muted);
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+.classicPitchDeck .pricingCards {
+  gap: 0.7rem;
+}
+
+.classicPitchDeck .priceCard {
+  padding: 0.8rem;
+}
+
+.classicPitchDeck .priceCard h4 {
+  font-size: 0.86rem;
+}
+
+.classicPitchDeck .priceCard p {
+  color: var(--deck-accent);
+  font-size: 1.02rem;
+}
+
+.productProofLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.42fr) minmax(290px, 0.72fr);
+  gap: 1.45rem;
+  align-items: stretch;
+}
+
+.productTraceFrame {
+  min-height: 0;
+  border: 1px solid var(--deck-line);
+  border-top: 3px solid var(--deck-accent);
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.productTraceFrame img {
+  display: block;
+  width: 100%;
+  height: 372px;
+  object-fit: cover;
+  object-position: left top;
+}
+
+.productProofNotes {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.proofStatus,
+.proofChecklist {
+  padding: 1.05rem 0 1.05rem 1rem;
+  border-left: 3px solid var(--deck-accent);
+}
+
+.proofKicker {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--deck-accent);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.proofStatus h3 {
+  margin: 0;
+  color: var(--deck-ink);
+  font-size: 1.26rem !important;
+  line-height: 1.16;
+}
+
+.proofStatus p {
+  margin: 0.7rem 0 0;
+}
+
+.proofChecklist h4 {
+  margin: 0 0 0.7rem;
+}
+
+.proofChecklist ul {
+  display: grid;
+  gap: 0.62rem;
+  margin: 0;
+  padding-left: 1rem;
+  color: var(--deck-muted);
+}
+
+.genomicsExpansionLayout {
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  gap: 1.6rem;
+  align-items: start;
+}
+
+.genomicsLead {
+  padding-top: 0.25rem;
+}
+
+.genomicsLead h3 {
+  margin-bottom: 1rem;
+  color: var(--deck-ink);
+  font-size: 1.7rem !important;
+  line-height: 1.18;
+}
+
+.genomicsLead p {
+  max-width: 420px;
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.52;
+}
+
+.genomicsPath {
+  display: grid;
+  gap: 0.72rem;
+}
+
+.genomicsStep {
+  display: grid;
+  grid-template-columns: 44px 150px minmax(0, 1fr);
+  gap: 0.8rem;
+  align-items: start;
+  padding: 0.78rem 0;
+  border-top: 1px solid var(--deck-line);
+}
+
+.genomicsStep:last-child {
+  border-bottom: 1px solid var(--deck-line);
+}
+
+.genomicsStep span {
+  color: var(--deck-accent);
+  font-size: 0.78rem;
+  font-weight: 780;
+}
+
+.genomicsStep h4 {
+  margin: 0;
+  color: var(--deck-ink);
+  font-size: 1rem;
+}
+
+.genomicsStep p {
+  margin: 0;
+  font-size: 0.82rem;
+}
+
+.genomicsFooter {
+  grid-column: 1 / -1;
+  margin-top: 0.35rem;
+  padding: 0.9rem 1rem;
+  border-left: 3px solid var(--deck-accent);
+  background: var(--deck-accent-soft);
+  color: var(--deck-ink);
+  font-size: 0.98rem;
+  line-height: 1.35;
+}
+
+.expansionTimelineLayout {
+  display: grid;
+  gap: 1.75rem;
+  align-content: center;
+}
+
+.timelineLead {
+  max-width: 760px;
+  padding-left: 1rem;
+  border-left: 4px solid var(--deck-accent);
+}
+
+.timelineLead h3 {
+  margin: 0 0 0.65rem;
+  color: var(--deck-ink);
+  font-size: 1.56rem !important;
+  line-height: 1.18;
+}
+
+.timelineLead p {
+  max-width: 680px;
+  margin: 0;
+  color: var(--deck-muted);
+  font-size: 0.94rem;
+  line-height: 1.46;
+}
+
+.expansionTimeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  padding-top: 2.15rem;
+}
+
+.expansionTimeline::before {
+  content: '';
+  position: absolute;
+  top: 0.86rem;
+  left: 7%;
+  right: 7%;
+  height: 2px;
+  background: rgba(0, 128, 111, 0.36);
+}
+
+.timelineStage {
+  position: relative;
+  padding: 1rem 0.92rem;
+  border: 1px solid var(--deck-line);
+  border-top: 3px solid var(--deck-accent);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.timelineStage::before {
+  content: '';
+  position: absolute;
+  top: -1.65rem;
+  left: 0.95rem;
+  width: 13px;
+  height: 13px;
+  border: 2px solid var(--deck-accent);
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.timelineStage span {
+  display: block;
+  margin-bottom: 0.58rem;
+  color: var(--deck-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.timelineStage h4 {
+  margin: 0 0 0.42rem;
+  color: var(--deck-ink);
+  font-size: 1rem;
+}
+
+.timelineStage p {
+  margin: 0;
+  color: var(--deck-muted);
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+.timelineFooter {
+  padding: 0.86rem 1rem;
+  border-left: 3px solid var(--deck-accent);
+  border-radius: 6px;
+  background: var(--deck-accent-soft);
+  color: var(--deck-ink);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.marketModelLayout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.7rem;
+  align-items: start;
+  margin-top: 0.25rem;
+}
+
+.competitorNote {
+  margin-top: 1rem;
+  padding: 0.9rem 0 0.9rem 1rem;
+  border-left: 3px solid var(--deck-accent);
+  color: var(--deck-ink);
+  font-size: 0.88rem;
+  line-height: 1.42;
+}
+
+.competitorNote span {
+  color: var(--deck-muted);
+}
+
+.seriesAUnlock {
+  margin-top: 1rem;
+  padding: 1rem 1.5rem;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+  background: #f0fdf4;
+  text-align: center;
+}
+
+.seriesAUnlock p {
+  margin: 0;
+  color: #334155;
+  font-size: 1.02rem;
+  line-height: 1.45;
+}
+
+.classicPitchDeck .costStats {
+  border: 0 !important;
+  border-top: 1px solid var(--deck-line) !important;
+  border-bottom: 1px solid var(--deck-line) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+.classicPitchDeck .flowPanel,
+.classicPitchDeck .diagnostician {
+  border: 0 !important;
+  border-top: 2px solid var(--deck-accent) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+.classicPitchDeck .diagnostician {
+  border: 2px solid #dc2626 !important;
+  outline: 1px solid rgba(220, 38, 38, 0.24);
+  outline-offset: 4px;
+  background: #fffafa !important;
+}
+
+.classicPitchDeck .diagnostician h4 {
+  color: #b42318 !important;
+}
+
+.classicPitchDeck .hFlowStep,
+.classicPitchDeck .priceCard,
+.classicPitchDeck .advantagePoint,
+.classicPitchDeck .quoteCard,
+.classicPitchDeck .teamMember,
+.classicPitchDeck .runwaySection,
+.classicPitchDeck .milestoneItem,
+.investorFitLead,
+.investorFitCard {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.investorFitLayout {
+  display: grid;
+  grid-template-columns: 0.96fr 1.04fr;
+  gap: 1.4rem;
+  align-items: start;
+}
+
+.investorFitLead {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1.35rem;
+  border: 1px solid var(--deck-line);
+  border-top: 3px solid var(--deck-accent);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.investorFitKicker {
+  color: var(--deck-accent);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.investorFitLead h3 {
+  margin: 0;
+  color: var(--deck-ink);
+  font-size: 1.42rem !important;
+  line-height: 1.16;
+}
+
+.investorFitLead p {
+  margin: 0;
+  color: var(--deck-muted);
+  font-size: 1rem;
+  line-height: 1.42;
+}
+
+.investorFitNote {
+  padding: 0.85rem 0.95rem;
+  border-radius: 6px;
+  background: var(--deck-soft);
+  color: var(--deck-ink);
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+.investorFitNote span {
+  color: var(--deck-muted);
+}
+
+.investorFitChecklist {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.45rem;
+  padding-top: 0.15rem;
+}
+
+.investorFitChecklist span {
+  padding-left: 0.8rem;
+  border-left: 2px solid var(--deck-accent);
+  color: var(--deck-muted);
+  font-size: 0.82rem;
+  font-weight: 620;
+}
+
+.investorFitCards {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.investorFitCard {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--deck-line);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.investorFitCard h4 {
+  margin: 0 0 0.28rem;
+  color: var(--deck-ink);
+  font-size: 0.98rem;
+}
+
+.investorFitCard p {
+  margin: 0;
+  color: var(--deck-muted);
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.classicPitchDeck .validationLayout {
+  max-width: none;
+  gap: 0.95rem;
+}
+
+.classicPitchDeck .quoteGrid {
+  gap: 0.85rem;
+}
+
+.classicPitchDeck .quoteCard {
+  padding: 1rem;
+}
+
+.classicPitchDeck .quoteText {
+  color: var(--deck-ink);
+  font-size: 0.78rem;
+  line-height: 1.38;
+}
+
+.classicPitchDeck .quoteAttribution strong {
+  color: var(--deck-ink);
+}
+
+.classicPitchDeck .validationFooter {
+  border-radius: 6px;
+  background: var(--deck-accent) !important;
+  font-size: 0.82rem;
+}
+
+.classicPitchDeck .teamLayout {
+  max-width: none;
+}
+
+.classicPitchDeck .teamGrid {
+  gap: 0.75rem;
+  margin-bottom: 0.9rem;
+}
+
+.classicPitchDeck .teamMember {
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.85rem;
+  text-align: left;
+}
+
+.classicPitchDeck .teamMember:hover,
+.classicPitchDeck .advantagePoint:hover,
+.classicPitchDeck .flowPanel:hover {
+  transform: none;
+}
+
+.classicPitchDeck .memberPhoto img {
+  width: 58px;
+  height: 58px;
+  border: 1px solid var(--deck-line);
+  border-radius: 6px;
+  box-shadow: none;
+}
+
+.classicPitchDeck .memberInfo h3 {
+  margin: 0 0 0.15rem;
+  color: var(--deck-ink);
+  font-size: 0.96rem !important;
+  text-align: left;
+}
+
+.classicPitchDeck .memberInfo h4 {
+  margin: 0 0 0.45rem;
+  color: var(--deck-accent);
+  font-size: 0.64rem;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.classicPitchDeck .memberInfo p {
+  color: var(--deck-muted);
+  font-size: 0.68rem;
+  line-height: 1.34;
+}
+
+.classicPitchDeck .runwayLayout {
+  max-width: none;
+}
+
+.classicPitchDeck .runwayTotal {
+  margin-bottom: 0.55rem;
+  padding: 0.7rem;
+  border-radius: 8px;
+  background: var(--deck-accent) !important;
+}
+
+.classicPitchDeck .totalAmount {
+  font-size: 2.08rem;
+}
+
+.classicPitchDeck .totalLabel {
+  margin: 0;
+  font-size: 0.78rem;
+}
+
+.classicPitchDeck .runwayBreakdown {
+  gap: 0.6rem;
+  margin-bottom: 0.45rem;
+}
+
+.classicPitchDeck .runwaySection {
+  padding: 0.58rem;
+}
+
+.classicPitchDeck .runwaySection h4 {
+  margin-bottom: 0.32rem;
+  padding-bottom: 0.28rem;
+  font-size: 0.78rem;
+}
+
+.classicPitchDeck .runwayItems {
+  gap: 0.24rem;
+  margin-bottom: 0.32rem;
+}
+
+.classicPitchDeck .runwayItem,
+.classicPitchDeck .milestoneText {
+  font-size: 0.66rem;
+  line-height: 1.22;
+}
+
+.classicPitchDeck .sectionTotal {
+  color: var(--deck-accent);
+  padding-top: 0.32rem;
+  font-size: 0.82rem;
+}
+
+.classicPitchDeck .milestoneTimeline {
+  gap: 0.6rem;
+  margin-top: 0.55rem;
+}
+
+.classicPitchDeck .milestoneItem {
+  padding: 0.55rem;
+}
+
+.classicPitchDeck .milestoneTime {
+  color: var(--deck-accent);
+  margin-bottom: 0.28rem;
+  font-size: 0.66rem;
+}
+
+.classicPitchDeck .seriesAUnlock {
+  margin-top: 0.5rem;
+  padding: 0.62rem 1rem;
+  border-color: rgba(0, 128, 111, 0.22);
+  border-radius: 8px;
+  background: var(--deck-accent-soft);
+}
+
+.classicPitchDeck .seriesAUnlock p {
+  font-size: 0.84rem;
+  line-height: 1.32;
+}
+
+.classicPitchDeck .ctaSlide {
+  gap: 1rem;
+}
+
+.classicPitchDeck .ctaContact {
+  color: var(--deck-muted);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 900px) {
+  .classicPitchDeck .slide {
+    height: auto;
+    min-height: 100vh;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .classicPitchDeck .slide > :global(.container) {
+    height: auto;
+    padding: 36px 24px 56px;
+  }
+
+  .classicPitchDeck .slide::before {
+    left: 24px;
+  }
+
+  .classicPitchDeck .slide::after {
+    right: 24px;
+  }
+}
+
 .financialTable {
   overflow-x: auto;
   margin-bottom: 1.5rem;
@@ -7978,12 +9047,12 @@ body:has(.pitchDeck) main {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  
+
   .pricingHighlight {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .priceAmount {
     font-size: 2.5rem;
   }
@@ -7993,7 +9062,7 @@ body:has(.pitchDeck) main {
   .pricingCards {
     grid-template-columns: 1fr;
   }
-  
+
   .financialTable {
     font-size: 0.85rem;
   }
@@ -8526,4 +9595,837 @@ body:has(.pitchDeck) main {
   .quoteGrid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Three-minute classic deck refinements */
+.classicPitchDeck .slideContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.classicPitchDeck .slideContent > * {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.solutionRedesign {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 1.8rem;
+  align-items: center;
+}
+
+.solutionLead {
+  padding-left: 1.2rem;
+  border-left: 4px solid var(--primary-color);
+}
+
+.solutionLead h3 {
+  margin-bottom: 1rem;
+}
+
+.solutionLead p {
+  max-width: 450px;
+  margin: 0;
+}
+
+.solutionTime {
+  display: inline-flex;
+  margin-top: 1.1rem;
+  padding: 0.56rem 0.75rem;
+  border: 1px solid rgba(0, 128, 111, 0.24);
+  border-radius: 6px;
+  color: var(--primary-color);
+  font-size: 0.84rem;
+  font-weight: 780;
+}
+
+.solutionProcess {
+  border-top: 1px solid #d7e5e2;
+  border-bottom: 1px solid #d7e5e2;
+}
+
+.solutionStep {
+  display: grid;
+  grid-template-columns: 42px 104px minmax(0, 1fr);
+  gap: 0.8rem;
+  align-items: start;
+  padding: 0.86rem 0;
+  border-top: 1px solid #d7e5e2;
+}
+
+.solutionStep:first-child {
+  border-top: 0;
+}
+
+.solutionStep span {
+  color: var(--primary-color);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.solutionStep h4 {
+  margin: 0;
+  color: #111827;
+  font-size: 0.98rem;
+}
+
+.solutionStep p {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.36;
+}
+
+.marketProofColumn {
+  display: grid;
+  gap: 0.95rem;
+}
+
+.marketStatRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+}
+
+.marketStatCard {
+  padding: 1rem;
+  border: 1px solid #d7e5e2;
+  border-top: 3px solid var(--primary-color);
+  border-radius: 8px;
+  background: #ffffff;
+  text-align: left;
+}
+
+.marketStatNumber {
+  color: var(--primary-color);
+  font-size: 2rem;
+  font-weight: 780;
+  line-height: 1;
+  margin-bottom: 0.45rem;
+}
+
+.marketStatLabel {
+  color: #667085;
+  font-size: 0.84rem;
+  font-weight: 620;
+  line-height: 1.3;
+}
+
+.classicPitchDeck .productProofLayout {
+  align-items: center;
+}
+
+.classicPitchDeck .productTraceFrame {
+  border-radius: 8px;
+}
+
+.classicPitchDeck .productTraceFrame img {
+  height: 390px;
+  object-fit: contain;
+  object-position: center;
+  background: #ffffff;
+}
+
+.classicPitchDeck .proofChecklist li {
+  font-size: 0.8rem;
+}
+
+.classicPitchDeck .solutionRedesign {
+  align-items: center;
+}
+
+.classicPitchDeck .solutionLead h3 {
+  font-size: 1.42rem !important;
+}
+
+.classicPitchDeck .marketModelLayout h3 {
+  margin-bottom: 1rem;
+}
+
+.classicPitchDeck .marketStatCard {
+  box-shadow: none;
+}
+
+.classicPitchDeck .genomicsExpansionLayout {
+  align-items: center;
+}
+
+.classicPitchDeck .genomicsFooter {
+  border-radius: 6px;
+}
+
+.classicPitchDeck .expansionTimelineLayout {
+  justify-content: center;
+}
+
+.classicPitchDeck .teamLayout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.classicPitchDeck .teamGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.classicPitchDeck .titleSlide {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.72fr);
+  gap: 4rem;
+  align-items: center;
+  width: 100%;
+}
+
+.classicPitchDeck .titleMain {
+  align-self: center;
+}
+
+.titlePattern {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 34px auto 34px auto;
+  align-items: center;
+  justify-items: center;
+  gap: 0;
+  width: min(380px, 100%);
+  min-height: 410px;
+  justify-self: end;
+  padding: 0 0 0 42px;
+  border-left: 1px solid rgba(0, 128, 111, 0.16);
+  opacity: 0.95;
+}
+
+.titlePattern::before {
+  content: '';
+  position: absolute;
+  inset: 10px 0 10px 42px;
+  background:
+    linear-gradient(rgba(0, 128, 111, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 128, 111, 0.055) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 86%, transparent);
+  z-index: 0;
+}
+
+.coverInputStack,
+.coverExtractionCard,
+.coverAlgorithmCard,
+.coverDownArrow {
+  position: relative;
+  z-index: 1;
+}
+
+.coverInputStack {
+  display: grid;
+  gap: 0.48rem;
+  justify-items: center;
+}
+
+.coverStageLabel,
+.coverAlgoTitle {
+  color: var(--deck-accent);
+  font-size: 0.66rem;
+  font-weight: 820;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.coverReportCard {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 0.42rem;
+  padding: 0.78rem 0.9rem;
+  border: 1px solid rgba(102, 112, 133, 0.18);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.coverReportCard span {
+  min-width: 68px;
+  padding: 0.28rem 0.42rem;
+  border-radius: 4px;
+  background: rgba(102, 112, 133, 0.12);
+  color: #667085;
+  font-size: 0.63rem;
+  font-weight: 720;
+  text-align: center;
+}
+
+.coverDownArrow {
+  width: 2px;
+  height: 26px;
+  background: rgba(0, 128, 111, 0.54);
+}
+
+.coverDownArrow::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 1px solid rgba(0, 128, 111, 0.76);
+  border-right: 1px solid rgba(0, 128, 111, 0.76);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.coverExtractionCard {
+  display: grid;
+  gap: 0.28rem;
+  justify-items: center;
+  min-width: 176px;
+  padding: 0.86rem 1rem;
+  border: 2px solid var(--deck-accent);
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 0 0 9px rgba(0, 128, 111, 0.07);
+}
+
+.coverExtractionCard strong {
+  color: var(--deck-accent);
+  font-size: 1.18rem;
+  line-height: 1;
+}
+
+.coverExtractionCard span {
+  color: #667085;
+  font-size: 0.62rem;
+  font-weight: 760;
+  text-transform: uppercase;
+}
+
+.coverAlgorithmCard {
+  display: grid;
+  gap: 0.7rem;
+  justify-items: center;
+  width: 260px;
+  padding: 0.88rem 0.95rem 0.82rem;
+  border: 1px solid rgba(0, 128, 111, 0.22);
+  border-top: 3px solid var(--deck-accent);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.coverMiniTree {
+  position: relative;
+  width: 138px;
+  height: 72px;
+}
+
+.coverMiniTree::before {
+  content: '';
+  position: absolute;
+  left: 68px;
+  top: 10px;
+  width: 2px;
+  height: 34px;
+  background: rgba(0, 128, 111, 0.5);
+}
+
+.coverMiniTree span {
+  position: absolute;
+  border: 2px solid var(--deck-accent);
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.coverMiniTree span:nth-child(1) {
+  left: 61px;
+  top: 0;
+  width: 14px;
+  height: 14px;
+}
+
+.coverMiniTree span:nth-child(2),
+.coverMiniTree span:nth-child(3) {
+  top: 42px;
+  height: 2px;
+  border: 0;
+  border-radius: 0;
+  background: rgba(0, 128, 111, 0.5);
+  transform-origin: left center;
+}
+
+.coverMiniTree span:nth-child(2) {
+  left: 68px;
+  width: 55px;
+  transform: rotate(28deg);
+}
+
+.coverMiniTree span:nth-child(3) {
+  left: 68px;
+  width: 55px;
+  transform: rotate(152deg);
+}
+
+.coverMiniTree span:nth-child(4) {
+  left: 4px;
+  top: 56px;
+  width: 12px;
+  height: 12px;
+}
+
+.coverMiniTree span:nth-child(5) {
+  left: 62px;
+  top: 56px;
+  width: 12px;
+  height: 12px;
+}
+
+.coverMiniTree span:nth-child(6) {
+  right: 4px;
+  top: 56px;
+  width: 12px;
+  height: 12px;
+}
+
+.coverChaos,
+.coverAi,
+.coverTree,
+.coverOutputs,
+.coverArrow,
+.patternLabel {
+  position: relative;
+  z-index: 1;
+}
+
+.coverChaos {
+  display: grid;
+  gap: 8px;
+  align-content: center;
+  justify-items: center;
+  width: 150px;
+}
+
+.coverChaos span {
+  display: block;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(102, 112, 133, 0.26);
+}
+
+.coverChaos span:nth-child(1) {
+  width: 76px;
+  margin-left: 14px;
+}
+
+.coverChaos span:nth-child(2) {
+  width: 104px;
+}
+
+.coverChaos span:nth-child(3) {
+  width: 62px;
+  margin-left: 28px;
+}
+
+.coverChaos span:nth-child(4) {
+  width: 94px;
+  margin-left: 8px;
+}
+
+.coverChaos span:nth-child(5) {
+  width: 70px;
+  margin-left: 20px;
+}
+
+.coverArrow {
+  justify-self: center;
+  width: 2px;
+  height: 30px;
+  background: rgba(0, 128, 111, 0.52);
+}
+
+.coverArrow::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 1px solid rgba(0, 128, 111, 0.72);
+  border-right: 1px solid rgba(0, 128, 111, 0.72);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.coverAi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
+  justify-self: center;
+  border: 2px solid var(--deck-accent);
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--deck-accent);
+  font-weight: 820;
+  box-shadow: 0 0 0 10px rgba(0, 128, 111, 0.07);
+}
+
+.coverAi span {
+  font-size: 1.18rem;
+  line-height: 1;
+}
+
+.coverAi small {
+  display: block;
+  width: 66px;
+  margin-top: 0.24rem;
+  color: #667085;
+  font-size: 0.48rem;
+  font-weight: 720;
+  line-height: 1.08;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.coverTree {
+  position: relative;
+  width: 126px;
+  height: 118px;
+  justify-self: center;
+}
+
+.treeRoot,
+.treeLeaf {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  border: 2px solid var(--deck-accent);
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.treeRoot {
+  left: 56px;
+  top: 4px;
+}
+
+.treeLeaf:nth-child(5) {
+  left: 12px;
+  top: 92px;
+}
+
+.treeLeaf:nth-child(6) {
+  left: 56px;
+  top: 92px;
+}
+
+.treeLeaf:nth-child(7) {
+  left: 100px;
+  top: 92px;
+}
+
+.treeBranch {
+  position: absolute;
+  left: 63px;
+  top: 20px;
+  height: 2px;
+  background: rgba(0, 128, 111, 0.52);
+  transform-origin: left center;
+}
+
+.treeBranch:nth-child(2) {
+  width: 70px;
+  transform: rotate(90deg);
+}
+
+.treeBranch:nth-child(3) {
+  left: 62px;
+  top: 66px;
+  width: 56px;
+  transform: rotate(143deg);
+}
+
+.treeBranch:nth-child(4) {
+  left: 64px;
+  top: 66px;
+  width: 56px;
+  transform: rotate(37deg);
+}
+
+.coverOutputs {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 0.55rem;
+  justify-content: center;
+}
+
+.coverOutputs span {
+  color: var(--deck-accent);
+  font-size: 0.62rem;
+  font-weight: 780;
+}
+
+.patternLabel {
+  position: absolute;
+  right: 0;
+  bottom: 18px;
+  padding: 0.48rem 0.62rem;
+  border: 1px solid rgba(0, 128, 111, 0.22);
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--deck-accent);
+  font-size: 0.76rem;
+  font-weight: 780;
+}
+
+@media (max-width: 900px) {
+  .solutionRedesign,
+  .genomicsExpansionLayout,
+  .expansionTimeline,
+  .marketModelLayout,
+  .productProofLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .expansionTimeline::before {
+    display: none;
+  }
+
+  .timelineStage::before {
+    display: none;
+  }
+
+  .solutionStep {
+    grid-template-columns: 36px 90px minmax(0, 1fr);
+  }
+
+  .marketStatRow,
+  .classicPitchDeck .teamGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .classicPitchDeck .titleSlide {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .titlePattern {
+    justify-self: start;
+    height: 220px;
+    transform: scale(0.82);
+    transform-origin: left top;
+  }
+}
+
+/* Investor deck polish pass */
+.classicPitchDeck .validationLayout {
+  display: grid;
+  gap: 1.15rem;
+  justify-content: center;
+  max-width: 1040px;
+}
+
+.classicPitchDeck .quoteGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.classicPitchDeck .quoteCard {
+  min-height: 122px;
+  padding: 1.05rem 1.12rem;
+  border: 1px solid var(--deck-line) !important;
+  border-left: 3px solid var(--deck-accent) !important;
+  background: #ffffff !important;
+}
+
+.classicPitchDeck .quoteText {
+  margin-bottom: 0.85rem;
+  font-size: 0.82rem;
+  line-height: 1.43;
+}
+
+.classicPitchDeck .validationFooter {
+  justify-self: center;
+  width: min(760px, 100%);
+  padding: 0.78rem 1rem;
+  border: 1px solid rgba(0, 128, 111, 0.2);
+  border-radius: 8px;
+  background: var(--deck-accent-soft) !important;
+  color: var(--deck-accent);
+  font-size: 0.84rem;
+  font-weight: 780;
+}
+
+.classicPitchDeck .runwayLayout {
+  display: grid;
+  gap: 0.78rem;
+  align-content: center;
+  max-width: 1060px;
+}
+
+.classicPitchDeck .runwayTotal {
+  margin: 0;
+  padding: 0.86rem;
+}
+
+.classicPitchDeck .runwayBreakdown {
+  gap: 0.85rem;
+  margin: 0;
+}
+
+.classicPitchDeck .runwaySection {
+  display: flex;
+  flex-direction: column;
+  padding: 0.72rem;
+}
+
+.classicPitchDeck .runwayItems {
+  gap: 0.32rem;
+}
+
+.classicPitchDeck .milestoneTimeline {
+  gap: 0.85rem;
+  margin: 0;
+}
+
+.classicPitchDeck .milestoneItem {
+  padding: 0.68rem;
+}
+
+.classicPitchDeck .seriesAUnlock {
+  margin: 0;
+  padding: 0.72rem 1rem;
+}
+
+.classicPitchDeck .expansionTimelineLayout {
+  gap: 1.25rem;
+}
+
+.classicPitchDeck .timelineLead {
+  max-width: 850px;
+}
+
+.classicPitchDeck .expansionTimeline {
+  gap: 0.95rem;
+  padding-top: 0;
+}
+
+.classicPitchDeck .expansionTimeline::before,
+.classicPitchDeck .timelineStage::before {
+  display: none;
+}
+
+.classicPitchDeck .timelineStage {
+  min-height: 136px;
+  padding: 0.95rem;
+  border: 1px solid var(--deck-line);
+  border-left: 3px solid var(--deck-accent);
+  border-top: 1px solid var(--deck-line);
+  border-radius: 8px;
+}
+
+.classicPitchDeck .timelineStage:not(:last-child)::after {
+  content: '→';
+  position: absolute;
+  top: 50%;
+  right: -0.76rem;
+  z-index: 2;
+  width: 1.2rem;
+  transform: translateY(-50%);
+  color: var(--deck-accent);
+  font-size: 1rem;
+  font-weight: 780;
+  text-align: center;
+}
+
+.classicPitchDeck .timelineStage span {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 0.7rem;
+  padding: 0.24rem 0.42rem;
+  border-radius: 4px;
+  background: var(--deck-accent-soft);
+  color: var(--deck-accent);
+  font-size: 0.62rem;
+}
+
+.classicPitchDeck .timelineStage h4 {
+  font-size: 0.98rem;
+}
+
+.classicPitchDeck .timelineStage p {
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.classicPitchDeck .timelineFooter {
+  padding: 0.82rem 1rem;
+  border-radius: 8px;
+}
+
+.coverAlgorithmCard {
+  gap: 0.78rem;
+  width: 282px;
+  padding: 0.95rem 1.05rem 0.9rem;
+}
+
+.coverMiniTree {
+  width: 184px;
+  height: 70px;
+}
+
+.coverMiniTree::before {
+  left: 91px;
+  top: 15px;
+  height: 30px;
+}
+
+.coverMiniTree::after {
+  content: '';
+  position: absolute;
+  left: 26px;
+  top: 45px;
+  width: 132px;
+  height: 2px;
+  background: rgba(0, 128, 111, 0.48);
+}
+
+.coverMiniTree span:nth-child(1) {
+  left: 84px;
+  top: 0;
+  width: 14px;
+  height: 14px;
+}
+
+.coverMiniTree span:nth-child(2),
+.coverMiniTree span:nth-child(3) {
+  display: none;
+}
+
+.coverMiniTree span:nth-child(4),
+.coverMiniTree span:nth-child(5),
+.coverMiniTree span:nth-child(6) {
+  top: 39px;
+  width: 12px;
+  height: 12px;
+  z-index: 1;
+}
+
+.coverMiniTree span:nth-child(4) {
+  left: 20px;
+}
+
+.coverMiniTree span:nth-child(5) {
+  left: 85px;
+}
+
+.coverMiniTree span:nth-child(6) {
+  right: 20px;
+}
+
+.coverOutputs {
+  width: 184px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+.coverOutputs span {
+  text-align: center;
 }

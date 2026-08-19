@@ -1,10 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=MedievalSharp&family=Uncial+Antiqua&family=Pirata+One&family=Germania+One&family=Fraktur&display=swap');
-
 :root {
-  --primary-color: #009688;
-  --background-color: #FFFFFF;
-  --secondary-background-color: #F2F2F2;
-  --text-color: #263238;
+  --primary-color: #087b72;
+  --background-color: #ffffff;
+  --secondary-background-color: #f5f7f6;
+  --text-color: #182322;
   --border-radius: 8px;
   --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   --transition: all 0.3s ease;
@@ -73,6 +71,87 @@ button:hover, .button:hover {
   background-clip: text;
 }
 
+.site-header {
+  position: relative;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid #e5eae8;
+}
+
+body:has(.landing-home) .site-header {
+  background: rgba(248, 250, 249, 0.96);
+  border-bottom-color: #dce4e1;
+}
+
+body:has(.landing-home) .site-logo a,
+body:has(.landing-home) .desktop-nav a {
+  color: #52625e;
+}
+
+body:has(.landing-home) .site-logo a {
+  color: #172321;
+}
+
+body:has(.landing-home) .site-logo span {
+  color: #087b72;
+}
+
+body:has(.landing-home) .desktop-nav a:hover {
+  color: #173f3b;
+}
+
+body:has(.landing-home) .desktop-nav .header-login {
+  background: #173f3b;
+  color: #fff;
+}
+
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.05rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-logo {
+  font-size: 1.15rem;
+  font-weight: 750;
+  letter-spacing: -0.035em;
+}
+
+.site-logo a {
+  color: #172321;
+}
+
+.site-logo span {
+  color: var(--primary-color);
+}
+
+.desktop-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 1.65rem;
+  list-style: none;
+}
+
+.desktop-nav a {
+  color: #4a5956;
+  font-size: 0.9rem;
+  font-weight: 520;
+}
+
+.desktop-nav a:hover {
+  color: #172321;
+}
+
+.desktop-nav .header-login {
+  padding: 0.58rem 0.9rem;
+  color: #173f3b;
+  background: #eef5f3;
+  border-radius: 7px;
+}
+
 /* Mobile navigation fixes */
 .mobile-header {
   padding: 1rem !important;
@@ -93,6 +172,20 @@ button:hover, .button:hover {
   padding: 1rem !important;
 }
 
+.mobile-nav a {
+  display: block;
+  color: #293835;
+}
+
+.mobile-nav .mobile-login {
+  margin-top: 0.35rem;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  background: #eef5f3;
+  border-radius: 7px;
+  color: #173f3b;
+}
+
 .mobile-nav li {
   padding: 0.75rem 0 !important;
   border-bottom: 1px solid #f0f0f0 !important;
@@ -104,7 +197,7 @@ button:hover, .button:hover {
   border: none !important;
   font-size: 1.5rem !important;
   cursor: pointer !important;
-  color: var(--primary-color) !important;
+  color: #293835 !important;
   padding: 0.5rem !important;
 }
 
@@ -123,6 +216,10 @@ button:hover, .button:hover {
     display: block !important;
   }
 
+  body:has(.landing-home) .mobile-menu-button {
+    color: #173f3b !important;
+  }
+
   .mobile-nav.show {
     display: flex !important;
     flex-direction: column !important;
@@ -131,7 +228,8 @@ button:hover, .button:hover {
     left: 0 !important;
     right: 0 !important;
     background: white !important;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    border-bottom: 1px solid #e5eae8;
+    box-shadow: 0 16px 30px rgba(21, 44, 40, 0.08) !important;
     z-index: 1000 !important;
   }
   
@@ -141,7 +239,7 @@ button:hover, .button:hover {
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
-    padding: 1rem !important;
+    padding: 0.85rem 1.25rem !important;
   }
   
   /* Simplify header text */

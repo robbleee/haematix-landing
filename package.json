@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test:classifier": "node --test tests/classifier-safety.test.mjs",
     "test:coats": "node scripts/test-coats-explorer.mjs",
     "test:coats:large": "node scripts/test-coats-explorer-large.mjs",
     "postinstall": "npx puppeteer browsers install chrome || true"

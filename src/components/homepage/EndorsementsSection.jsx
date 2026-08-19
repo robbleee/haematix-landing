@@ -37,16 +37,17 @@ export default function EndorsementsSection() {
     <section className={styles.section} ref={ref}>
       <div className={styles.container}>
         <div className={`${styles.header} ${isVisible ? styles.visible : ''}`}>
-          <h2 className={styles.sectionTitle}>Supported by Leading NHS Clinicians</h2>
+          <span className={styles.kicker}>Clinician feedback</span>
+          <h2 className={styles.sectionTitle}>What clinicians have said</h2>
           <p className={styles.sectionSubtitle}>
-            Senior haematologists across the UK are supporting Haem.io's validation work and clinician-led adoption pathway.
+            Selected feedback shared with Haem.io.
           </p>
         </div>
 
         <div className={`${styles.grid} ${isVisible ? styles.visible : ''}`}>
           {endorsements.map((e) => (
             <div key={e.name} className={styles.quoteCard}>
-              <p className={styles.quoteText}>"{e.quote}"</p>
+              <p className={styles.quoteText}>“{e.quote}”</p>
               <div className={styles.attribution}>
                 <span className={styles.attributionName}>{e.name}</span>
                 <span className={styles.attributionRole}>{e.role}</span>

@@ -53,15 +53,11 @@ export default function ComplianceFooter() {
   ];
 
   const quickLinks = [
-    { title: 'Home', href: '/' },
-    { title: 'Our Vision', href: '/vision' },
-    { title: 'Roadmap', href: '/roadmap' },
-    { title: 'Source Docs', href: '/source-docs' },
-    { title: 'Validation', href: '/validation-evidence' },
-    { title: 'LLM Index', href: '/llms.txt' },
-    { title: 'Testing Suite', href: '/testing-stats' },
+    { title: 'Tools', href: '/tools' },
+    { title: 'Clinical trials', href: '/clinical-trials' },
+    { title: 'Articles', href: '/articles' },
+    { title: 'Team', href: '/team' },
     { title: 'App Login', href: 'https://app.haem.io/', external: true },
-    { title: 'Investors', href: '/investors' }
   ];
 
   return (
@@ -87,7 +83,7 @@ export default function ComplianceFooter() {
 
           {/* Quick Links */}
           <div className={styles.section}>
-            <h3 className={styles.sectionTitle}>Quick Links</h3>
+            <h3 className={styles.sectionTitle}>Explore</h3>
             <ul className={styles.linkList}>
               {quickLinks.map((link, index) => (
                 <li key={index}>
@@ -124,32 +120,6 @@ export default function ComplianceFooter() {
             </ul>
           </div>
 
-          {/* Healthcare Compliance */}
-          <div className={styles.section}>
-            <h3 className={styles.sectionTitle}>Healthcare Standards</h3>
-            <div className={styles.complianceInfo}>
-              <p className={styles.complianceItem}>
-                <span className={styles.complianceIcon}>*</span>
-                <strong>UK GDPR Documentation</strong><br />
-                <small>Controller and processor documentation</small>
-              </p>
-              <p className={styles.complianceItem}>
-                <span className={styles.complianceIcon}>*</span>
-                <strong>Healthcare Grade Security</strong><br />
-                <small>Encryption, access controls, and audit logs</small>
-              </p>
-              <p className={styles.complianceItem}>
-                <span className={styles.complianceIcon}>*</span>
-                <strong>Transparent Criteria Logic</strong><br />
-                <small>WHO 2022 & ICC 2022 reasoning trails</small>
-              </p>
-              <p className={styles.complianceItem}>
-                <span className={styles.complianceIcon}>*</span>
-                <strong>GB UKCA Pathway</strong><br />
-                <small>Class I pathway in preparation, not currently UKCA-marked</small>
-              </p>
-            </div>
-          </div>
         </div>
 
         {/* Bottom Bar */}
@@ -159,9 +129,6 @@ export default function ComplianceFooter() {
             <p className={styles.disclaimer}>
               This tool is for healthcare professional decision support only and should not replace clinical judgement.
             </p>
-          </div>
-          <div className={styles.lastUpdated}>
-            <p>Documentation last updated: July 2026</p>
           </div>
         </div>
       </div>

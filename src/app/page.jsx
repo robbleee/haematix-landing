@@ -1,11 +1,9 @@
 'use client';
 
 import HeroSection from '../components/homepage/HeroSection';
-import HowItWorksSection from '../components/homepage/HowItWorksSection';
+import ProjectsSection from '../components/homepage/ProjectsSection';
 import ProductWalkthrough from '../components/homepage/ProductWalkthrough';
-import StatsSection from '../components/homepage/StatsSection';
 import EndorsementsSection from '../components/homepage/EndorsementsSection';
-import LearnSection from '../components/homepage/LearnSection';
 import CtaSection from '../components/homepage/CtaSection';
 
 export default function Home() {
@@ -31,30 +29,28 @@ export default function Home() {
         }
       },
       {
-        '@type': 'SoftwareApplication',
-        name: 'Haem.io Haematology Decision Support',
-        applicationCategory: 'HealthApplication',
-        operatingSystem: 'Web',
-        url: 'https://haem.io/interactive-classifier',
-        description:
-          'Clinician-facing leukaemia and myeloid disease decision support for transparent WHO 2022 and ICC 2022 criteria review.'
+        '@type': 'ItemList',
+        name: 'Haem.io current projects',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, url: 'https://haem.io/projects/eln-response', name: 'AML treatment response' },
+          { '@type': 'ListItem', position: 2, url: 'https://haem.io/projects/haemos', name: 'haemOS diagnostic workflow' },
+          { '@type': 'ListItem', position: 3, url: 'https://haem.io/projects/cambodia', name: 'Cambodia AML workspace' }
+        ]
       }
     ]
   };
 
   return (
-    <>
+    <div className="landing-home">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <HeroSection />
-      <HowItWorksSection />
+      <ProjectsSection />
       <ProductWalkthrough />
-      <StatsSection />
       <EndorsementsSection />
-      <LearnSection />
       <CtaSection />
-    </>
+    </div>
   );
 }

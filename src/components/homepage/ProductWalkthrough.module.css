@@ -1,155 +1,175 @@
 .section {
-  padding: 5rem 0;
-  background: var(--background-color);
+  padding: 9rem 0;
+  background: #f4f8f6;
+  border-block: 1px solid #dce5e2;
 }
 
 .container {
-  max-width: 1440px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 5rem;
+  padding: 0 2rem;
 }
 
 .header {
-  text-align: center;
-  margin-bottom: 4rem;
+  display: grid;
+  grid-template-columns: 0.45fr 1.25fr 0.7fr;
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 7rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid #cfd1cd;
+}
+
+.kicker {
+  color: #657873;
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .sectionTitle {
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: var(--text-color);
-  margin-bottom: 0.75rem;
+  margin: 0;
+  color: #171a19;
+  font-size: clamp(2.3rem, 4.5vw, 4.2rem);
+  font-weight: 510;
+  letter-spacing: -0.055em;
+  line-height: 1.03;
 }
 
 .sectionSubtitle {
-  font-size: 1.1rem;
-  color: #546e7a;
-  max-width: 560px;
-  margin: 0 auto;
-  line-height: 1.6;
+  margin: 0;
+  color: #696f6d;
+  font-size: 0.92rem;
+  line-height: 1.65;
 }
 
-/* Row layout */
 .row {
   display: grid;
-  grid-template-columns: 2fr 3fr;
-  gap: 4rem;
+  gap: clamp(3rem, 7vw, 7rem);
   align-items: center;
-  margin-bottom: 5rem;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  margin-bottom: 9rem;
+}
+
+.alignright {
+  grid-template-columns: minmax(250px, 0.7fr) minmax(0, 1.45fr);
+}
+
+.alignleft {
+  grid-template-columns: minmax(0, 1.45fr) minmax(250px, 0.7fr);
 }
 
 .row:last-child {
   margin-bottom: 0;
 }
 
-.rowVisible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Alternate image side */
 .alignright .textCol { order: 1; }
 .alignright .imageCol { order: 2; }
 .alignleft .textCol { order: 2; }
 .alignleft .imageCol { order: 1; }
 
-/* Text column */
-.textCol {
+.textCol,
+.imageCol {
   min-width: 0;
 }
 
 .stepNum {
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--primary-color);
-  color: white;
-  font-weight: 700;
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.4rem;
+  color: #7e8582;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
 }
 
 .rowTitle {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--text-color);
-  margin-bottom: 0.75rem;
-  line-height: 1.25;
+  margin-bottom: 1rem;
+  color: #1a1d1c;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 520;
+  letter-spacing: -0.045em;
+  line-height: 1.08;
 }
 
 .rowDesc {
-  font-size: 1rem;
-  color: #546e7a;
-  line-height: 1.65;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.4rem;
+  color: #656c69;
+  font-size: 0.93rem;
+  line-height: 1.75;
 }
 
 .pointsList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #d5d7d3;
+  list-style: none;
 }
 
 .pointsList li {
   display: flex;
   align-items: flex-start;
-  gap: 0.5rem;
-  font-size: 0.92rem;
-  color: #37474f;
+  gap: 0.65rem;
+  padding: 0.72rem 0;
+  border-bottom: 1px solid #d5d7d3;
+  color: #4f5653;
+  font-size: 0.78rem;
   line-height: 1.5;
 }
 
 .pointsList li svg {
-  flex-shrink: 0;
-  color: var(--primary-color);
-  margin-top: 2px;
+  width: 12px;
+  height: 12px;
+  flex: 0 0 auto;
+  margin-top: 0.18rem;
+  color: #087b72;
 }
 
-/* Image column */
 .imageCol {
-  min-width: 0;
+  position: relative;
+  padding: 0;
+}
+
+.imageCol::before {
+  content: none;
 }
 
 .screenshot {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #cbd7d3;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 8px 10px 0 #dce7e3;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
+@media (max-width: 840px) {
+  .section {
+    padding: 5rem 0;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .header {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 4rem;
+  }
+
   .row {
     grid-template-columns: 1fr;
     gap: 2rem;
-    margin-bottom: 3.5rem;
+    margin-bottom: 6rem;
   }
 
   .alignleft .textCol,
-  .alignright .textCol {
-    order: 1;
-  }
+  .alignright .textCol { order: 1; }
 
   .alignleft .imageCol,
-  .alignright .imageCol {
-    order: 2;
-  }
-
-  .rowTitle {
-    font-size: 1.35rem;
-  }
-
-  .sectionTitle {
-    font-size: 1.8rem;
-  }
+  .alignright .imageCol { order: 2; }
 }

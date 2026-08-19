@@ -1,0 +1,131 @@
+.section {
+  padding: 9rem 0;
+  background: #fff;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 0.45fr 1.25fr 0.7fr;
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 5rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid #cfd9d5;
+}
+
+.kicker {
+  color: #657570;
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.header h2 {
+  max-width: 690px;
+  margin: 0;
+  color: #172321;
+  font-size: clamp(2.3rem, 4.4vw, 4rem);
+  font-weight: 510;
+  letter-spacing: -0.055em;
+  line-height: 1.03;
+}
+
+.header p {
+  margin: 0;
+  color: #687773;
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.list {
+  border-bottom: 1px solid #cfd9d5;
+}
+
+.project {
+  display: grid;
+  grid-template-columns: 0.45fr 1.95fr;
+  gap: 2rem;
+  padding: 2.2rem 0 2.5rem;
+  border-top: 1px solid #cfd9d5;
+}
+
+.projectIndex {
+  color: #2b756a;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.68rem;
+}
+
+.projectMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.1rem;
+  color: #76837f;
+  font-size: 0.69rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.projectBody h3 {
+  margin: 0 0 0.85rem;
+  color: #172321;
+  font-size: clamp(1.7rem, 3vw, 2.6rem);
+  font-weight: 520;
+  letter-spacing: -0.045em;
+}
+
+.projectBody > p {
+  max-width: 760px;
+  margin: 0 0 2rem;
+  color: #56645f;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.projectFooter {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e1e7e4;
+  color: #7a8782;
+  font-size: 0.75rem;
+}
+
+.projectFooter a {
+  flex: 0 0 auto;
+  color: #173f3b;
+  font-weight: 620;
+}
+
+@media (max-width: 760px) {
+  .section {
+    padding: 5rem 0;
+  }
+
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  .header,
+  .project {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .header {
+    margin-bottom: 3rem;
+  }
+
+  .projectFooter {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

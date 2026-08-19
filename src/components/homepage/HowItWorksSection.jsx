@@ -23,8 +23,8 @@ const steps = [
     id: 'classify',
     number: '02',
     title: 'Map',
-    shortDesc: 'Apply WHO, ICC, and ELN criteria to produce a traceable review output.',
-    detail: 'Dual-framework criteria mapping against WHO 2022 5th Edition and ICC 2022. Every decision node is traceable with full reasoning chains visible.',
+    shortDesc: 'Map the reviewed inputs against configured classification and risk criteria.',
+    detail: 'The interface presents WHO 2022 and ICC 2022 criteria mapping with the relevant pathway and rationale available for inspection.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5" />
@@ -58,14 +58,15 @@ export default function HowItWorksSection() {
     <section className={styles.section} ref={ref}>
       <div className={styles.container}>
         <div className={`${styles.header} ${isVisible ? styles.visible : ''}`}>
-          <h2 className={styles.sectionTitle}>How Haem.io Works</h2>
-          <p className={styles.sectionSubtitle}>A transparent three-step criteria review workflow</p>
+          <span className={styles.kicker}>Workflow</span>
+          <h2 className={styles.sectionTitle}>From findings to a reviewable result</h2>
+          <p className={styles.sectionSubtitle}>A focused three-step criteria review workflow.</p>
         </div>
 
         <div className={styles.stepsContainer}>
           {steps.map((step, index) => (
             <div key={step.id} className={styles.stepWrapper}>
-              <div
+              <article
                 className={`${styles.stepCard} ${isVisible ? styles.visible : ''}`}
                 style={{ animationDelay: `${index * 0.3}s` }}
                 onClick={() => toggleExpand(step.id)}
@@ -87,7 +88,7 @@ export default function HowItWorksSection() {
                     <polyline points="6 9 12 15 18 9" />
                   </svg>
                 </button>
-              </div>
+              </article>
 
               {index < steps.length - 1 && (
                 <div className={`${styles.arrow} ${isVisible ? styles.arrowVisible : ''}`}

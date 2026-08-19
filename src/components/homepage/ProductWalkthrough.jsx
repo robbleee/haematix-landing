@@ -6,92 +6,54 @@ import styles from './ProductWalkthrough.module.css';
 
 const sections = [
   {
-    id: 'upload',
-    step: '01',
-    title: 'Upload a report, or enter data manually',
-    description: 'Enter structured findings directly, or use a report workflow to prepare key haematology findings for clinician review: mutations, VAF, cytogenetic abnormalities, blast percentage, and clinical qualifiers.',
-    points: [
-      'Supports structured review of report findings',
-      'Detects mutations with variant allele frequency',
-      'Identifies cytogenetic abnormalities and karyotype',
-      'Extracts blast counts, flow markers, and clinical context',
-    ],
-    image: '/new-screenshots-for-landing/data-entry.png',
-    alt: 'Report workflow showing structured findings from a TP53 case report',
-    align: 'right',
-  },
-  {
     id: 'inspect',
-    step: '02',
-    title: 'Review the structured data',
-    description: 'Every parsed or entered value is displayed in a structured summary alongside the source material. Clinicians can check, correct, and confirm the data before criteria are applied. Nothing is a black box.',
+    step: '01',
+    title: 'Review findings against their source',
+    description: 'Structured findings remain alongside the original report text, so clinicians can inspect what was recorded and identify items that still need review.',
     points: [
-      'Side-by-side view: parsed data vs original report',
-      'Genetic mutations with classification significance flags',
-      'TP53 allelic status detection (LOH, del17p, multi-hit)',
-      'Cytogenetic complexity and myeloid-related abnormalities identified',
+      'Source report and structured findings shown together',
+      'Blast, molecular, cytogenetic, and immunophenotype review',
+      'Clinician-entered values clearly distinguished',
+      'Uncertain parser matches surfaced for review',
     ],
-    image: '/new-screenshots-for-landing/data-inspector.png',
-    alt: 'Data inspector showing parsed mutations (TP53, DNMT3A, TET2, ASXL1), cytogenetics, and original report',
-    align: 'left',
+    image: '/new-screenshots-for-landing/source-review-current.png',
+    width: 2870,
+    height: 1622,
+    alt: 'Classification results input summary showing structured findings beside highlighted source report evidence',
+    align: 'right',
   },
   {
-    id: 'classify',
-    step: '03',
-    title: 'See the full criteria pathway',
-    description: 'Haem.io runs clinician-confirmed case data through every decision node in the WHO 2022 and ICC 2022 classification trees. The result is not just a label: it is the complete execution path showing exactly which rules fired and why.',
+    id: 'map',
+    step: '02',
+    title: 'See the complete classifier map',
+    description: 'Explore the configured WHO, ICC, ELN risk, validation-and-gates, and downstream MRD logic as a connected system rather than a hidden calculation.',
     points: [
-      'Full decision tree visualisation for WHO and ICC',
-      'Every branch point shown: which passed, which failed',
-      'Traceable reasoning with no hidden logic',
-      'Dual classification: WHO 2022 5th Edition + ICC 2022',
+      'Complete WHO 2022 classifier view',
+      'Explicit terminal results and labelled branches',
+      'Selectable decisions and outcomes',
+      'Separate views for AML, CML, MDS, CMML, and MPN rules',
     ],
-    image: '/new-screenshots-for-landing/diagnostic-path.png',
-    alt: 'ICC 2022 execution path showing the complete criteria decision tree with highlighted route',
-    align: 'right',
+    image: '/new-screenshots-for-landing/classifier-map-current.png',
+    width: 2872,
+    height: 1618,
+    alt: 'Complete classifier map showing WHO 2022 AML rules, labelled branches, and terminal results',
+    align: 'left',
   },
   {
     id: 'result',
-    step: '04',
-    title: 'Dual-framework classification with full reasoning',
-    description: 'Haem.io displays WHO 2022 and ICC 2022 classification outputs side by side for clinician review. Each result includes the complete reasoning chain: every rule evaluated and every decision explained.',
+    step: '03',
+    title: 'Compare framework outputs',
+    description: 'WHO 2022 and ICC 2022 outcomes are presented separately, with direct access to the clinical reasoning steps and diagnostic trace behind each result.',
     points: [
-      'WHO 2022 5th Edition and ICC 2022 results side by side',
-      'Clinical reasoning steps numbered and explained',
-      'Final pathway derivation from blast percentage to genetic findings',
-      'TP53 multi-hit evaluation with allelic status logic',
+      'WHO 2022 and ICC 2022 outcomes kept distinct',
+      'Clinical reasoning available step by step',
+      'Diagnostic trace linked from each framework result',
+      'Outputs remain available for clinician review',
     ],
-    image: '/new-screenshots-for-landing/classification-result.png',
-    alt: 'Classification results showing WHO 2022 and ICC 2022 with clinical reasoning traces',
-    align: 'left',
-  },
-  {
-    id: 'risk',
-    step: '05',
-    title: 'Risk stratification and clinical decision support',
-    description: 'Where configured, Haem.io applies ELN 2022 and ELN 2024 risk logic. Each risk category includes the calculation chain and supporting context so clinicians can verify every step.',
-    points: [
-      'ELN 2022 intensive and ELN 2024 non-intensive risk',
-      'Median overall survival estimates',
-      'Calculation steps visible and auditable',
-    ],
-    image: '/new-screenshots-for-landing/Risk-calculator.png',
-    alt: 'Risk stratification showing ELN 2022 Adverse and ELN 2024 Adverse with median survival',
-    align: 'left',
-  },
-  {
-    id: 'trials',
-    step: '06',
-    title: 'Clinical trial matching support',
-    description: 'Based on classification context, genetics, and case profile, Haem.io can surface potentially relevant clinical trials for review. Each match shows eligibility signals and what additional data is needed to confirm suitability.',
-    points: [
-      'Matches against curated UK trial database',
-      'Eligibility signals (high, needs data, ineligible)',
-      'Shows what extra information would refine the match',
-      'Direct links to trial registries and contact details',
-    ],
-    image: '/new-screenshots-for-landing/clinical-trials.png',
-    alt: 'Clinical trial matching showing eligible trials with confidence scores',
+    image: '/new-screenshots-for-landing/classification-results-current.png',
+    width: 1748,
+    height: 570,
+    alt: 'WHO 2022 and ICC 2022 classification outputs with links to clinical reasoning and diagnostic traces',
     align: 'right',
   },
 ];
@@ -101,9 +63,12 @@ export default function ProductWalkthrough() {
     <section className={styles.section}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <h2 className={styles.sectionTitle}>See Inside the Platform</h2>
+          <span className={styles.kicker}>How we build</span>
+          <h2 className={styles.sectionTitle}>The source and the reasoning stay visible</h2>
           <p className={styles.sectionSubtitle}>
-            From report upload to trial matching — every step is transparent, traceable, and clinician-verifiable.
+            Our main platform is currently focused on AML and MDS, from source-linked
+            findings and diagnostic classification to risk profiling and potential
+            trial matching.
           </p>
         </div>
 
@@ -115,7 +80,7 @@ export default function ProductWalkthrough() {
   );
 }
 
-function WalkthroughRow({ step, title, description, points, image, alt, align }) {
+function WalkthroughRow({ step, title, description, points, image, width, height, alt, align }) {
   const [ref, isVisible] = useIntersectionObserver({ threshold: 0.15 });
 
   return (
@@ -142,8 +107,8 @@ function WalkthroughRow({ step, title, description, points, image, alt, align })
         <Image
           src={image}
           alt={alt}
-          width={1000}
-          height={630}
+          width={width}
+          height={height}
           className={styles.screenshot}
         />
       </div>

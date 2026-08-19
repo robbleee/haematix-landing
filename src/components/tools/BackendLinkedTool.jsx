@@ -1,6 +1,11 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import { runInteractiveClassifiers } from '../../lib/classifierEngine';
+import {
+  educationalMetadata,
+  validateEducationalClassifierInput,
+} from '../../lib/educationalClassifierSafety.mjs';
 import styles from './BackendLinkedTool.module.css';
 
 function setPathValue(target, path, value) {
@@ -18,23 +23,6 @@ function setPathValue(target, path, value) {
 
 function countSelected(fields) {
   return Object.values(fields).filter(Boolean).length;
-}
-
-async function classify(parsedData) {
-  const response = await fetch('/api/classifier', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      parsed_data: parsedData,
-      tool_mode: 'public_structured_calculator',
-    }),
-  });
-
-  const payload = await response.json().catch(() => ({}));
-  if (!response.ok) {
-    throw new Error(payload?.error || 'Classification failed.');
-  }
-  return payload;
 }
 
 function ResultPanel({ title, value, label, trace }) {
@@ -98,12 +86,11 @@ function buildInitialFieldState(groups) {
   return state;
 }
 
-export default function BackendLinkedTool({ config }) {
+export default function EducationalCalculatorTool({ config }) {
   const [blasts, setBlasts] = useState(config.defaultBlasts ?? 25);
   const [fieldState, setFieldState] = useState(() => buildInitialFieldState(config.groups));
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
 
   const parsedData = useMemo(() => {
     const data = { blasts_percentage: Number(blasts) };
@@ -119,40 +106,20 @@ export default function BackendLinkedTool({ config }) {
   }, [blasts, config, fieldState]);
 
   useEffect(() => {
-    let cancelled = false;
-    let timerId;
-
-    async function run() {
-      setLoading(true);
-      setError('');
-      try {
-        const payload = await classify(parsedData);
-        if (!cancelled) {
-          setResult(payload);
-        }
-      } catch (err) {
-        if (!cancelled) {
-          setError(err instanceof Error ? err.message : 'Classification failed.');
-          setResult(null);
-        }
-      } finally {
-        if (!cancelled) {
-          setLoading(false);
-        }
-      }
+    const validation = validateEducationalClassifierInput(parsedData);
+    if (!validation.ok) {
+      setError(validation.message);
+      setResult(null);
+      return;
     }
-
-    timerId = setTimeout(run, 350);
-
-    return () => {
-      cancelled = true;
-      clearTimeout(timerId);
-    };
+    setError('');
+    setResult({
+      ...runInteractiveClassifiers(parsedData),
+      metadata: educationalMetadata(),
+    });
   }, [parsedData]);
 
   const selected = countSelected(fieldState);
-  const source = result?.metadata?.source === 'backend' ? 'Backend classifier' : 'Local fallback';
-  const backendAvailable = result?.metadata?.backend_available !== false;
 
   const reset = () => {
     setBlasts(config.defaultBlasts ?? 25);
@@ -168,12 +135,11 @@ export default function BackendLinkedTool({ config }) {
       </section>
 
       <section className={styles.notice}>
-        <strong>Backend-linked</strong>
+        <strong>Educational local calculator</strong>
         <p>
-          This page sends structured, non-identifiable inputs to the same classifier
-          proxy used by the haem.io demo tools. If that backend is unavailable, the
-          page shows that it has used the local deterministic fallback. Flow
-          cytometry gating is treated as out of scope for these focused calculators.
+          This page evaluates preset variables locally in your browser. It does not
+          use the clinical classifier, parse reports, reconcile flow and morphology,
+          or screen for BPDCN. It is illustrative only and must not guide care.
         </p>
       </section>
 
@@ -211,15 +177,15 @@ export default function BackendLinkedTool({ config }) {
 
         <aside className={styles.results}>
           <div className={styles.statusLine}>
-            <span className={backendAvailable ? styles.statusOk : styles.statusFallback}>
-              {loading ? 'Calculating' : source}
+            <span className={styles.statusOk}>
+              Local educational model
             </span>
           </div>
 
-          {error && <p className={styles.error}>{error}</p>}
-
-          {loading && !result ? (
-            <div className={styles.empty}>Running criteria engine...</div>
+          {error || !result ? (
+            <p className={styles.error}>
+              No classification produced. {error || 'The educational input could not be evaluated.'}
+            </p>
           ) : (
             config.renderResults(result).map((panel) => (
               <ResultPanel
